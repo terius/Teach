@@ -16,7 +16,6 @@
     /// </summary>
     public enum ClientStyle
     {
-        
         PC = 1,
         Android = 2
     }
