@@ -189,7 +189,8 @@ namespace TeacherUser
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-
+            string username = this.listView1.SelectedItems[0].SubItems[1].Text;
+            GlobalVariable.client.Send_StopLockScreen(username);
         }
     }
 

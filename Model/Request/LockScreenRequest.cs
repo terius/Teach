@@ -6,4 +6,10 @@
 
         
     }
+    public class StopLockScreenRequest
+    {
+        public string receivename { get; set; }
+
+
+    }
 }

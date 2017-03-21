@@ -132,6 +132,19 @@ namespace MyTCP
         }
 
 
+        public void Send_StopLockScreen(string userName)
+        {
+
+            SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
+            message.Action = (int)CommandType.Stop_Lock_Screen_Request;
+            message.Data = new StopLockScreenRequest { receivename = userName };
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
+
         #endregion
     }
 

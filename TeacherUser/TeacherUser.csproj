@@ -274,6 +274,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ViewRtsp.Designer.cs" />
+    <Compile Include="ViewRtsp1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewRtsp.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CallTheRoll.resx">
       <DependentUpon>CallTheRoll.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,7 +340,10 @@
     <EmbeddedResource Include="VideoChat.resx">
       <DependentUpon>VideoChat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewRtsp.resx" />
+    <EmbeddedResource Include="ViewRtsp.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ViewRtsp1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
