@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnLockScreen = new System.Windows.Forms.Button();
+            this.btnStopLockScreen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLockScreen
@@ -41,13 +42,24 @@
             this.btnLockScreen.UseVisualStyleBackColor = true;
             this.btnLockScreen.Click += new System.EventHandler(this.btnLockScreen_Click);
             // 
+            // btnStopLockScreen
+            // 
+            this.btnStopLockScreen.Location = new System.Drawing.Point(27, 42);
+            this.btnStopLockScreen.Name = "btnStopLockScreen";
+            this.btnStopLockScreen.Size = new System.Drawing.Size(75, 23);
+            this.btnStopLockScreen.TabIndex = 1;
+            this.btnStopLockScreen.Text = "关闭黑屏";
+            this.btnStopLockScreen.UseVisualStyleBackColor = true;
+            this.btnStopLockScreen.Click += new System.EventHandler(this.btnStopLockScreen_Click);
+            // 
             // UserMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(523, 402);
+            this.Controls.Add(this.btnStopLockScreen);
             this.Controls.Add(this.btnLockScreen);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserMainForm";
             this.Text = "Student";
             this.Load += new System.EventHandler(this.UserMainForm_Load);
@@ -58,6 +70,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnLockScreen;
+        private System.Windows.Forms.Button btnStopLockScreen;
     }
 }
 

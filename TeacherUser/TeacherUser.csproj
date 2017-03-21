@@ -47,16 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\CSkin.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.AXVLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>Libs\DLL\Interop.AXVLC.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>Libs\DLL\Interop.WMPLib.dll</HintPath>
-    </Reference>
     <Reference Include="Media, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.dll</HintPath>
       <Private>True</Private>
@@ -273,11 +263,8 @@
     <Compile Include="ViewRtsp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewRtsp.Designer.cs" />
-    <Compile Include="ViewRtsp1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViewRtsp.resx</DependentUpon>
+    <Compile Include="ViewRtsp.Designer.cs">
+      <DependentUpon>ViewRtsp.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CallTheRoll.resx">
       <DependentUpon>CallTheRoll.cs</DependentUpon>
@@ -341,8 +328,7 @@
       <DependentUpon>VideoChat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewRtsp.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ViewRtsp1.Designer.cs</LastGenOutput>
+      <DependentUpon>ViewRtsp.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
@@ -364,6 +350,23 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="AxAXVLC">
+      <Guid>{DF2BBE39-40A8-433B-A279-073F48DA94B6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AXVLC">
+      <Guid>{DF2BBE39-40A8-433B-A279-073F48DA94B6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>

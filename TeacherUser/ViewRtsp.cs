@@ -1,13 +1,13 @@
-﻿using System;
+﻿using MyTCP;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using TcpConnectJson;
-using System.Threading;
 
 namespace TeacherUser
 {
@@ -19,9 +19,7 @@ namespace TeacherUser
         private TcpConnectJson.ScreenMonitor screenmonitor;
         private string ip = "";
         private int port = 0;
-       
-
-        public ViewRtsp(string rtspAddress,TcpConnectJson.ScreenMonitor Screenmonitor,string IP,int Port)
+        public ViewRtsp(string rtspAddress, TcpConnectJson.ScreenMonitor Screenmonitor, string IP, int Port)
         {
             InitializeComponent();
             this.playAddress = rtspAddress;
@@ -35,20 +33,8 @@ namespace TeacherUser
             InitializeComponent();
             this.playAddress = rtspAddress;
             player = new VlcPlayer(this.axVLCPlugin21);
-           //this.MaximumSize = new Size(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height); 
-  
-       }
+            //this.MaximumSize = new Size(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height); 
 
-        private void ViewRtsp_Load(object sender, EventArgs e)
-        {
-           // this.timer1.Enabled = true;
-           // this.timer1.Enabled = true
-            /*
-            if (this.player != null && playAddress != null)
-            {
-                player.startPlay(playAddress);
-            }
-           */
         }
         protected override void WndProc(ref Message m)
         {
@@ -67,7 +53,7 @@ namespace TeacherUser
                 if (m.WParam.ToInt32() == SC_MAXIMIZE) //是否点击最大化
                 {
                     //MessageBox.Show("最大化");
-                   this.FormBorderStyle = FormBorderStyle.None;
+                    this.FormBorderStyle = FormBorderStyle.None;
 
                     this.WindowState = FormWindowState.Maximized;
                 }
@@ -82,6 +68,12 @@ namespace TeacherUser
             }
             base.WndProc(ref m);
         }
+
+        private void ViewRtsp_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void ViewRtsp_FormClosing(object sender, FormClosingEventArgs e)
         {
             //MessageBox.Show("界面即将关闭");
@@ -91,6 +83,7 @@ namespace TeacherUser
                 player.dispose();
             }
         }
+
         internal void startPlay()
         {
             //throw new NotImplementedException();
@@ -100,17 +93,6 @@ namespace TeacherUser
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Normal||this.WindowState==FormWindowState.Maximized)
-            {
-                if (this.player != null && playAddress != null)
-                {
-                    player.startPlay(playAddress);
-                }
-            }
-        }
-//按下ESC键，退出全屏
         private void ViewRtsp_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -119,7 +101,5 @@ namespace TeacherUser
                 this.FormBorderStyle = FormBorderStyle.Sizable;
             }
         }
-
-       
     }
 }

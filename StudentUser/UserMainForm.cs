@@ -7,9 +7,9 @@ namespace StudentUser
 {
     public partial class UserMainForm : Form
     {
-        
+
         Cls.UserActivityHook actHook;
-        private  BlackScreen bsForm = null;
+        private BlackScreen bsForm = null;
         private delegate void DoSomething();
         // MyTcpClient client;
         ViewRtsp videoPlayer;
@@ -21,7 +21,7 @@ namespace StudentUser
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-        
+
 
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
@@ -29,7 +29,7 @@ namespace StudentUser
             //player.LoadFile("d:\\1.mkv");//视频文件路径
         }
 
-        
+
 
 
 
@@ -43,9 +43,12 @@ namespace StudentUser
                     showViewRtsp(resp.url);
                     break;
                 case 11:
-                    LockScreenReponse lsresp = JsonHelper.DeserializeObj<LockScreenReponse>(message.DataStr);
+                    // LockScreenReponse lsresp = JsonHelper.DeserializeObj<LockScreenReponse>(message.DataStr);
                     // BlockInput(true);
                     LockScreen();
+                    break;
+                case 12:
+                    StopLockScreen();
                     break;
                 default:
                     break;
@@ -53,7 +56,7 @@ namespace StudentUser
         }
 
 
-      
+
 
 
 
@@ -64,8 +67,8 @@ namespace StudentUser
             {
                 videoPlayer = new ViewRtsp(rtsp);
                 videoPlayer.Show();
-            //  videoPlayer = f;
-            videoPlayer.startPlay();
+                //  videoPlayer = f;
+                videoPlayer.startPlay();
             }));
         }
 
@@ -74,13 +77,13 @@ namespace StudentUser
         /// </summary>
         private void LockScreen()
         {
-            actHook = new Cls.UserActivityHook();
+            //  actHook = new Cls.UserActivityHook();
             //actHook.OnMouseActivity += new MouseEventHandler(MouseMoved);
             //actHook.KeyDown += new KeyEventHandler(MyKeyDown);
             //actHook.KeyPress += new KeyPressEventHandler(MyKeyPress);
             //actHook.KeyUp += new KeyEventHandler(MyKeyUp);
-            actHook.Start();
-          
+            //    actHook.Start();
+
             this.BeginInvoke(new Action(() =>
             {
                 BlackScreen frm = new BlackScreen();
@@ -90,9 +93,37 @@ namespace StudentUser
 
         }
 
+        /// <summary>
+        /// 撤销锁屏
+        /// </summary>
+        private void StopLockScreen()
+        {
+            if (actHook != null)
+            {
+                actHook.Stop();
+            }
+            this.BeginInvoke(new Action(() =>
+            {
+                FormCollection fc = Application.OpenForms;
+                foreach (Form frm in fc)
+                {
+                    if (frm.Name == "BlackScreen")
+                    {
+                        frm.Close();
+                        break;
+                    }
+                }
+            }));
+        }
+
         private void btnLockScreen_Click(object sender, EventArgs e)
         {
             LockScreen();
+        }
+
+        private void btnStopLockScreen_Click(object sender, EventArgs e)
+        {
+            StopLockScreen();
         }
     }
 }
