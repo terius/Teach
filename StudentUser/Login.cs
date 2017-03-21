@@ -13,7 +13,7 @@ namespace StudentUser
         {
             InitializeComponent();
         }
-
+        string userGuid;
 
         //   private delegate void messageListCallback(string content);
         //  private messageListCallback messageCallback;
@@ -24,7 +24,7 @@ namespace StudentUser
             GlobalVariable.client = new MyTcpClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
-            this.textBox1.Text = "stu"+ DateTime.Now.ToString("MMddHHmmss");
+            this.textBox1.Text = "stu" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "110";
 
 
@@ -42,6 +42,12 @@ namespace StudentUser
                     {
                         this.DialogResult = DialogResult.OK;
                         GlobalVariable.client.OnReveieveData -= Client_OnReveieveData;
+                        GlobalVariable.LoginUserInfo = new LoginUserInfo
+                        {
+                            DisplayName = textBox1.Text.Trim(),
+                            UserName = userGuid,
+                            UserType = ClientRole.Student
+                        };
                         this.Close();
                     }
                     else
@@ -59,11 +65,7 @@ namespace StudentUser
         }
 
         Action<string> TranMessage;
-        private void MessageDue_OnReceieveMessage(Model.ReceieveMessage message)
-        {
 
-
-        }
 
 
 
@@ -90,8 +92,8 @@ namespace StudentUser
                 MessageBox.Show("请输入学号！");
                 return;
             }
-
-            await GlobalVariable.client.Send_UserLogin(nickName, no, ClientRole.Student);
+            userGuid = Guid.NewGuid().ToString();
+            await GlobalVariable.client.Send_UserLogin(userGuid, nickName, no, ClientRole.Student);
         }
 
 

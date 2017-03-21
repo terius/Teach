@@ -184,6 +184,12 @@
     <Compile Include="PopformForScreenCap.Designer.cs">
       <DependentUpon>PopformForScreenCap.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrivateChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrivateChatForm.Designer.cs">
+      <DependentUpon>PrivateChatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrivateLetter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PopformForScreenCap.resx">
       <DependentUpon>PopformForScreenCap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrivateChatForm.resx">
+      <DependentUpon>PrivateChatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrivateLetter.resx">
       <DependentUpon>PrivateLetter.cs</DependentUpon>

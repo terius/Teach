@@ -6,6 +6,7 @@ using MyTCP;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using TeacherUser.InformationInter;
 
 namespace TeacherUser
 {
@@ -16,6 +17,7 @@ namespace TeacherUser
         private static bool beingScreenBroadcast = false;//正在屏幕广播
         private static bool beingWatching = false;//正在查看学生端
         private string rtspAddress = null;
+        public List<ChatForm> chatFormList = new List<ChatForm>();
         #endregion
 
         public BaseForm()
@@ -37,7 +39,7 @@ namespace TeacherUser
 
             switch (message.Action)
             {
-                case (int)CommandType.Send_OnlineList:
+                case (int)CommandType.OnlineList:
                     IList<OnlineListResult> infos = JsonHelper.DeserializeObj<List<OnlineListResult>>(message.DataStr);
                     this.Invoke(new Action(() =>
                     {
@@ -68,7 +70,7 @@ namespace TeacherUser
             //switch (deviceType)
             //{
             //    case "COMPUTER":
-          //  this.listView1.Items.Add("计算机");
+            //  this.listView1.Items.Add("计算机");
             //        this.listView1.Items[userCount].SubItems.Add(role);
             //        this.listView1.Items[userCount].SubItems.Add(ip);
             //        this.listView1.Items[userCount].SubItems.Add(port);
@@ -191,6 +193,16 @@ namespace TeacherUser
         {
             string username = this.listView1.SelectedItems[0].SubItems[1].Text;
             GlobalVariable.client.Send_StopLockScreen(username);
+        }
+
+        private void PrivateChatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userName = this.listView1.SelectedItems[0].SubItems[1].Text;
+            string receName = this.listView1.SelectedItems[0].Text;
+            PrivateChatForm f = new PrivateChatForm(receName);
+            f.Show();
+
+            
         }
     }
 

@@ -2,13 +2,13 @@
 {
     public enum CommandType
     {
-        Send_UserLogin = 1,
-        Rece_UserLogin = 2,
-        Send_OnlineList = 3,
-        Send_ScreenInteract=7,
-        Lock_Screen_Request=11,
-        Stop_Lock_Screen_Request = 12,
-        Private_Chat_Request=13
+        UserLogin = 1,
+        UserLoginRes = 2,
+        OnlineList = 3,
+        ScreenInteract=7,
+        LockScreen=11,
+        StopLockScreen = 12,
+        PrivateChat=13
     }
 
     /// <summary>

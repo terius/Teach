@@ -70,7 +70,7 @@ namespace MyTCP
         //    return _instance;
         //}
         #region 发送命令
-        public async Task Send_UserLogin(string nickName, string password, ClientRole clientRole)
+        public async Task Send_UserLogin(string userName,string nickName, string password, ClientRole clientRole)
         {
             var loginInfo = new LoginInfo();
             if (clientRole == ClientRole.Teacher || clientRole == ClientRole.Assistant)
@@ -81,14 +81,14 @@ namespace MyTCP
             }
             else
             {
-                loginInfo.username = Guid.NewGuid().ToString();
+                loginInfo.username = userName;
                 loginInfo.nickname = nickName;
                 loginInfo.no = password;
             }
             loginInfo.clientRole = clientRole;
             loginInfo.clientStyle = ClientStyle.PC;
             SendMessage<LoginInfo> message = new SendMessage<LoginInfo>();
-            message.Action = (int)CommandType.Send_UserLogin;
+            message.Action = (int)CommandType.UserLogin;
             message.Data = loginInfo;
             await SendMessage(message);
             //Task.Run(async () =>
@@ -100,7 +100,7 @@ namespace MyTCP
         public void Send_OnlineList()
         {
             SendMessage<object> message = new SendMessage<object>();
-            message.Action = (int)CommandType.Send_OnlineList;
+            message.Action = (int)CommandType.OnlineList;
             Task.Run(async () =>
             {
                 await this.SendMessage(message);
@@ -111,7 +111,7 @@ namespace MyTCP
         {
             string rtspAddress = _screenInteract.beginScreenInteract();
             SendMessage<ScreenInteract_Request> message = new SendMessage<ScreenInteract_Request>();
-            message.Action = (int)CommandType.Send_ScreenInteract;
+            message.Action = (int)CommandType.ScreenInteract;
             message.Data = new ScreenInteract_Request { url = rtspAddress };
             Task.Run(async () =>
             {
@@ -123,7 +123,7 @@ namespace MyTCP
         {
 
             SendMessage<LockScreenRequest> message = new SendMessage<LockScreenRequest>();
-            message.Action = (int)CommandType.Lock_Screen_Request;
+            message.Action = (int)CommandType.LockScreen;
             message.Data = new LockScreenRequest { receivename = userName };
             Task.Run(async () =>
             {
@@ -136,8 +136,21 @@ namespace MyTCP
         {
 
             SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
-            message.Action = (int)CommandType.Stop_Lock_Screen_Request;
+            message.Action = (int)CommandType.StopLockScreen;
             message.Data = new StopLockScreenRequest { receivename = userName };
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
+
+        public void Send_PrivateChat(string receieveName, string sendName, string msg)
+        {
+
+            SendMessage<PrivateChatRequest> message = new SendMessage<PrivateChatRequest>();
+            message.Action = (int)CommandType.PrivateChat;
+            message.Data = new PrivateChatRequest { receivename = receieveName, sendname = sendName, msg = msg };
             Task.Run(async () =>
             {
                 await this.SendMessage(message);

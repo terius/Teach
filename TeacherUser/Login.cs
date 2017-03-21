@@ -41,6 +41,12 @@ namespace TeacherUser
                 {
                     this.DialogResult = DialogResult.OK;
                     GlobalVariable.client.OnReveieveData -= Client_OnReveieveData;
+                    GlobalVariable.LoginUserInfo = new LoginUserInfo
+                    {
+                        DisplayName = "老师",
+                        UserName = textBox1.Text.Trim(),
+                        UserType = ClientRole.Teacher
+                    };
                     this.Close();
                 }
                 else
@@ -108,13 +114,13 @@ namespace TeacherUser
         private async void button1_Click(object sender, EventArgs e)//登录 
         {
             //string connectionString = "Database='" + ConfigurationManager.AppSettings["Database"] + "';Data Source='" + ConfigurationManager.AppSettings["serverIP"]+ "';User Id='" + ConfigurationManager.AppSettings["User ID"]+ "';Password='" + ConfigurationManager.AppSettings["Password"]+ "'";//默认端口3306 
-            string userName = this.textBox1.Text.Trim();
+            string displayName = this.textBox1.Text.Trim();
             string userPass = this.textBox2.Text.Trim();
             int userRole = rbTeacher.Checked ? 1 : 2;
 
-            if (userName == string.Empty)
+            if (displayName == string.Empty)
             {
-                MessageBox.Show("请输入用户名！");
+                MessageBox.Show("请输入姓名！");
                 return;
             }
             if (userPass == string.Empty)
@@ -123,7 +129,7 @@ namespace TeacherUser
                 return;
             }
 
-            await GlobalVariable.client.Send_UserLogin(userName, userPass, ClientRole.Teacher);
+            await GlobalVariable.client.Send_UserLogin(displayName,displayName, userPass, ClientRole.Teacher);
 
             //this.Hide();
             //MainForm f = new MainForm();

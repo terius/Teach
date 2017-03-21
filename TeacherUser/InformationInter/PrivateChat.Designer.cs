@@ -32,29 +32,36 @@
             this.PrivateSendBtn = new System.Windows.Forms.Button();
             this.PrivateClearBtn = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.privateChatImageSendBtn = new System.Windows.Forms.Button();
             this.videoChat = new System.Windows.Forms.Button();
             this.reliefPrivateChatBtn = new System.Windows.Forms.Button();
             this.PrivateContentRtb = new System.Windows.Forms.RichTextBox();
-            this.privateChatImageSendBtn = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PrivateHistRtb
             // 
-            this.PrivateHistRtb.Location = new System.Drawing.Point(15, 12);
+            this.PrivateHistRtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PrivateHistRtb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PrivateHistRtb.Location = new System.Drawing.Point(0, 0);
+            this.PrivateHistRtb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PrivateHistRtb.Name = "PrivateHistRtb";
-            this.PrivateHistRtb.Size = new System.Drawing.Size(457, 192);
+            this.PrivateHistRtb.Size = new System.Drawing.Size(848, 309);
             this.PrivateHistRtb.TabIndex = 0;
             this.PrivateHistRtb.Text = "";
             // 
             // PrivateSendBtn
             // 
-            this.PrivateSendBtn.Location = new System.Drawing.Point(24, 173);
+            this.PrivateSendBtn.Location = new System.Drawing.Point(284, 18);
+            this.PrivateSendBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PrivateSendBtn.Name = "PrivateSendBtn";
-            this.PrivateSendBtn.Size = new System.Drawing.Size(75, 23);
+            this.PrivateSendBtn.Size = new System.Drawing.Size(100, 29);
             this.PrivateSendBtn.TabIndex = 1;
             this.PrivateSendBtn.Text = "发送文字";
             this.PrivateSendBtn.UseVisualStyleBackColor = true;
@@ -62,9 +69,11 @@
             // 
             // PrivateClearBtn
             // 
-            this.PrivateClearBtn.Location = new System.Drawing.Point(333, 214);
+            this.PrivateClearBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PrivateClearBtn.Location = new System.Drawing.Point(608, 18);
+            this.PrivateClearBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PrivateClearBtn.Name = "PrivateClearBtn";
-            this.PrivateClearBtn.Size = new System.Drawing.Size(75, 23);
+            this.PrivateClearBtn.Size = new System.Drawing.Size(100, 29);
             this.PrivateClearBtn.TabIndex = 2;
             this.PrivateClearBtn.Text = "清空";
             this.PrivateClearBtn.UseVisualStyleBackColor = true;
@@ -72,7 +81,9 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(67, 31);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -82,22 +93,32 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.privateChatImageSendBtn);
-            this.splitContainer1.Panel2.Controls.Add(this.videoChat);
-            this.splitContainer1.Panel2.Controls.Add(this.reliefPrivateChatBtn);
             this.splitContainer1.Panel2.Controls.Add(this.PrivateContentRtb);
-            this.splitContainer1.Panel2.Controls.Add(this.PrivateSendBtn);
-            this.splitContainer1.Panel2.Controls.Add(this.PrivateClearBtn);
-          //  this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(489, 451);
-            this.splitContainer1.SplitterDistance = 207;
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(848, 675);
+            this.splitContainer1.SplitterDistance = 309;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // privateChatImageSendBtn
+            // 
+            this.privateChatImageSendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.privateChatImageSendBtn.Location = new System.Drawing.Point(392, 18);
+            this.privateChatImageSendBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.privateChatImageSendBtn.Name = "privateChatImageSendBtn";
+            this.privateChatImageSendBtn.Size = new System.Drawing.Size(100, 29);
+            this.privateChatImageSendBtn.TabIndex = 8;
+            this.privateChatImageSendBtn.Text = "发送图片";
+            this.privateChatImageSendBtn.UseVisualStyleBackColor = true;
+            this.privateChatImageSendBtn.Click += new System.EventHandler(this.privateChatImageSend_Click);
             // 
             // videoChat
             // 
-            this.videoChat.Location = new System.Drawing.Point(414, 214);
+            this.videoChat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.videoChat.Location = new System.Drawing.Point(716, 18);
+            this.videoChat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.videoChat.Name = "videoChat";
-            this.videoChat.Size = new System.Drawing.Size(75, 23);
+            this.videoChat.Size = new System.Drawing.Size(100, 29);
             this.videoChat.TabIndex = 7;
             this.videoChat.Text = "视频聊天";
             this.videoChat.UseVisualStyleBackColor = true;
@@ -105,9 +126,11 @@
             // 
             // reliefPrivateChatBtn
             // 
-            this.reliefPrivateChatBtn.Location = new System.Drawing.Point(252, 214);
+            this.reliefPrivateChatBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.reliefPrivateChatBtn.Location = new System.Drawing.Point(500, 18);
+            this.reliefPrivateChatBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reliefPrivateChatBtn.Name = "reliefPrivateChatBtn";
-            this.reliefPrivateChatBtn.Size = new System.Drawing.Size(75, 23);
+            this.reliefPrivateChatBtn.Size = new System.Drawing.Size(100, 29);
             this.reliefPrivateChatBtn.TabIndex = 6;
             this.reliefPrivateChatBtn.Text = "解除禁止";
             this.reliefPrivateChatBtn.UseVisualStyleBackColor = true;
@@ -115,33 +138,40 @@
             // 
             // PrivateContentRtb
             // 
-            this.PrivateContentRtb.Location = new System.Drawing.Point(15, 30);
+            this.PrivateContentRtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PrivateContentRtb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PrivateContentRtb.Location = new System.Drawing.Point(0, 0);
+            this.PrivateContentRtb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PrivateContentRtb.Name = "PrivateContentRtb";
-            this.PrivateContentRtb.Size = new System.Drawing.Size(457, 114);
+            this.PrivateContentRtb.Size = new System.Drawing.Size(848, 296);
             this.PrivateContentRtb.TabIndex = 5;
             this.PrivateContentRtb.Text = "";
-            // 
-            // privateChatImageSendBtn
-            // 
-            this.privateChatImageSendBtn.Location = new System.Drawing.Point(137, 173);
-            this.privateChatImageSendBtn.Name = "privateChatImageSendBtn";
-            this.privateChatImageSendBtn.Size = new System.Drawing.Size(75, 23);
-            this.privateChatImageSendBtn.TabIndex = 8;
-            this.privateChatImageSendBtn.Text = "发送图片";
-            this.privateChatImageSendBtn.UseVisualStyleBackColor = true;
-            this.privateChatImageSendBtn.Click += new System.EventHandler(this.privateChatImageSend_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.videoChat);
+            this.panel1.Controls.Add(this.privateChatImageSendBtn);
+            this.panel1.Controls.Add(this.PrivateSendBtn);
+            this.panel1.Controls.Add(this.PrivateClearBtn);
+            this.panel1.Controls.Add(this.reliefPrivateChatBtn);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 296);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(848, 65);
+            this.panel1.TabIndex = 9;
+            // 
             // PrivateChat
             // 
             this.AcceptButton = this.PrivateSendBtn;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 540);
+            this.ClientSize = new System.Drawing.Size(848, 675);
             this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PrivateChat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PrivateChat";
@@ -149,7 +179,9 @@
             this.Load += new System.EventHandler(this.PrivateChat_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -165,5 +197,6 @@
         private System.Windows.Forms.Button videoChat;
         private System.Windows.Forms.Button privateChatImageSendBtn;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Request\LockScreenRequest.cs" />
+    <Compile Include="Request\PrivateChatRequest.cs" />
     <Compile Include="Response\LockScreenReponse.cs" />
     <Compile Include="Response\ScreenInteract_Response.cs" />
     <Compile Include="Response\OnlineListResult.cs" />
@@ -49,7 +50,7 @@
     <Compile Include="LoginInfo.cs" />
     <Compile Include="SendCommand.cs" />
     <Compile Include="Response\LoginResult.cs" />
-    <Compile Include="UserInfo.cs" />
+    <Compile Include="LoginUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
