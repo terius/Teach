@@ -7,7 +7,8 @@
         Send_OnlineList = 3,
         Send_ScreenInteract=7,
         Lock_Screen_Request=11,
-        Stop_Lock_Screen_Request = 12
+        Stop_Lock_Screen_Request = 12,
+        Private_Chat_Request=13
     }
 
     /// <summary>
