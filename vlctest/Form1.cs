@@ -21,6 +21,8 @@ namespace vlctest
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
             vlcControl1.VlcLibDirectoryNeeded += VlcControl1_VlcLibDirectoryNeeded;
         }
 
