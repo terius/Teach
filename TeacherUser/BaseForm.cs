@@ -1,16 +1,13 @@
-﻿using CCWin;
-using Common;
+﻿using Common;
 using Helpers;
 using Model;
-using MyTCP;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using TeacherUser.InformationInter;
 
 namespace TeacherUser
 {
-    public partial class BaseForm : Skin_DevExpress
+    public partial class BaseForm : Form
     {
         #region 自定义字段
         private static bool beingCallTheRoll = false;//

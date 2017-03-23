@@ -157,6 +157,17 @@
     <Compile Include="BaseForm.designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="controls\SMSPanelEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\SMSPanelEx.designer.cs">
+      <DependentUpon>SMSPanelEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\SMSPanelEx1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SMSPanelEx.resx</DependentUpon>
+    </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +176,12 @@
     </Compile>
     <Compile Include="CommonHelper.cs" />
     <Compile Include="DoSomething.cs" />
+    <Compile Include="MyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm.designer.cs">
+      <DependentUpon>MyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalVariable.cs" />
     <Compile Include="InformationInter\PrivateChat.cs">
       <SubType>Form</SubType>
@@ -278,8 +295,16 @@
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="controls\SMSPanelEx.resx">
+      <DependentUpon>SMSPanelEx.cs</DependentUpon>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SMSPanelEx1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm.resx">
+      <DependentUpon>MyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformationInter\PrivateChat.resx">
       <DependentUpon>PrivateChat.cs</DependentUpon>
@@ -426,6 +451,12 @@
     <Content Include="pictures\icon_user_nor.png" />
     <Content Include="pictures\icon_user_pre.png" />
     <Content Include="pictures\icon_xiao.png" />
+    <None Include="Resources\rt.png" />
+    <None Include="Resources\rm.png" />
+    <None Include="Resources\rb.png" />
+    <None Include="Resources\lt.png" />
+    <None Include="Resources\lm.png" />
+    <None Include="Resources\lb.png" />
     <None Include="Resources\AxInterop.AXVLC.dll" />
   </ItemGroup>
   <ItemGroup>
