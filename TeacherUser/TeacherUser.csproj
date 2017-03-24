@@ -43,9 +43,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\DLL\AxInterop.WMPLib.dll</HintPath>
     </Reference>
-    <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\CSkin.dll</HintPath>
+    <Reference Include="DMSkin">
+      <HintPath>..\..\..\..\..\DLL\skin\DMSkin.dll</HintPath>
     </Reference>
     <Reference Include="Media, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.dll</HintPath>
@@ -136,6 +135,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -157,16 +157,11 @@
     <Compile Include="BaseForm.designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="controls\SMSPanelEx.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="DMForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="controls\SMSPanelEx.designer.cs">
-      <DependentUpon>SMSPanelEx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="controls\SMSPanelEx1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SMSPanelEx.resx</DependentUpon>
+    <Compile Include="DMForm.Designer.cs">
+      <DependentUpon>DMForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -219,6 +214,7 @@
     <Compile Include="ConfServerIP.Designer.cs">
       <DependentUpon>ConfServerIP.cs</DependentUpon>
     </Compile>
+    <Compile Include="RenderHelper.cs" />
     <Compile Include="showTipForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,16 +285,15 @@
     <Compile Include="ViewRtsp.Designer.cs">
       <DependentUpon>ViewRtsp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Win32.cs" />
     <EmbeddedResource Include="CallTheRoll.resx">
       <DependentUpon>CallTheRoll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\SMSPanelEx.resx">
-      <DependentUpon>SMSPanelEx.cs</DependentUpon>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SMSPanelEx1.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="DMForm.resx">
+      <DependentUpon>DMForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
@@ -381,6 +376,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="controls\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +447,8 @@
     <Content Include="pictures\icon_user_nor.png" />
     <Content Include="pictures\icon_user_pre.png" />
     <Content Include="pictures\icon_xiao.png" />
+    <None Include="pictures\welcome.jpg" />
+    <None Include="pictures\login_pic.png" />
     <None Include="Resources\rt.png" />
     <None Include="Resources\rm.png" />
     <None Include="Resources\rb.png" />

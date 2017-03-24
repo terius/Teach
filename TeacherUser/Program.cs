@@ -1,7 +1,5 @@
 ﻿using Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace TeacherUser
@@ -25,13 +23,13 @@ namespace TeacherUser
                     Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
                     AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
                     #endregion
-                    Login frm = new Login();
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        Application.Run(new BaseForm());
-                    }
+                    //Login frm = new Login();
+                    //if (frm.ShowDialog() == DialogResult.OK)
+                    //{
+                    //    Application.Run(new BaseForm());
+                    //}
 
-                    //    Application.Run(new Form2());
+                    Application.Run(new DMForm());
                 }
                 else
                 {
