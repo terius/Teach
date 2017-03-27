@@ -5,10 +5,11 @@
         UserLogin = 1,
         UserLoginRes = 2,
         OnlineList = 3,
-        ScreenInteract=7,
-        LockScreen=11,
+        ScreenInteract = 7,
+        LockScreen = 11,
         StopLockScreen = 12,
-        PrivateChat=13
+        PrivateChat = 13,
+        GroupChat = 14
     }
 
     /// <summary>
@@ -28,5 +29,12 @@
         Teacher = 1,
         Assistant = 2,
         Student = 3
+    }
+
+    public enum ChatType
+    {
+        PrivateChat,
+        GroupChat,
+        TeamChat
     }
 }

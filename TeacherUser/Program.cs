@@ -19,6 +19,8 @@ namespace TeacherUser
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
+                    //初始化表情资源
+                    GlobalResourceManager.Initialize();
                     #region 线程异常处理
                     Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
                     AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
@@ -29,7 +31,7 @@ namespace TeacherUser
                     //    Application.Run(new BaseForm());
                     //}
 
-                    Application.Run(new DMForm());
+                    Application.Run(new CSkinBaseForm());
                 }
                 else
                 {

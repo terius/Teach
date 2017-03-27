@@ -1,7 +1,9 @@
 ﻿using DMSkin.Controls;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace TeacherUser
@@ -11,11 +13,15 @@ namespace TeacherUser
         public DMForm()
         {
             InitializeComponent();
+            this.panel1.Paint += Panel1_Paint;
         }
 
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawString(this.Text, Fo, NoSelectSb, 3, 5);
+        }
 
         Font Fo = new Font("微软雅黑", 12);
-        Pen p = new Pen(Color.FromArgb(236, 236, 236), 4);
         SolidBrush NoSelectSb = new SolidBrush(Color.White);
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -23,7 +29,7 @@ namespace TeacherUser
             e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
             e.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
 
-            e.Graphics.DrawString(this.Text, new Font("微软雅黑", 12), new SolidBrush(Color.White), 3, 5);
+            
         }
 
         private void dmButtonCloseLight1_Click(object sender, System.EventArgs e)
@@ -41,20 +47,17 @@ namespace TeacherUser
             WindowState = this.WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
         }
 
-        private void metroTile1_Click(object sender, System.EventArgs e)
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            MessageBox.Show("aaaaaa");
-        }
-
-        private void metroToolBar1_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            var list = (MetroToolBar)sender;
-            MessageBox.Show(list.Items[list.SelectedIndex].Text);
-        }
-
-        private void DMForm_Load(object sender, System.EventArgs e)
-        {
-            
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture(); //释放鼠标捕捉
+                SendMessage(Handle, 0xA1, 0x02, 0);
+            }
         }
     }
 

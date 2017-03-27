@@ -180,7 +180,7 @@
             // 
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(10, 86);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(10, 109);
             // 
             // toolStripContainer1.LeftToolStripPanel
             // 
@@ -193,7 +193,7 @@
             // toolStripContainer1.RightToolStripPanel
             // 
             this.toolStripContainer1.RightToolStripPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripContainer1.Size = new System.Drawing.Size(160, 115);
+            this.toolStripContainer1.Size = new System.Drawing.Size(160, 138);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -212,7 +212,7 @@
             this.GroupChatToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(150, 86);
+            this.menuStrip1.Size = new System.Drawing.Size(150, 109);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -245,6 +245,7 @@
             this.GroupChatToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.GroupChatToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.GroupChatToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("GroupChatToolStripMenuItem.Image")));
+            this.GroupChatToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.GroupChatToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.GroupChatToolStripMenuItem.Name = "GroupChatToolStripMenuItem";
             this.GroupChatToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
@@ -634,9 +635,9 @@
             // 
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.listView1.Location = new System.Drawing.Point(3, 167);
+            this.listView1.Location = new System.Drawing.Point(3, 233);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(169, 575);
+            this.listView1.Size = new System.Drawing.Size(169, 509);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -654,7 +655,7 @@
             this.StudentInteractToolStripMenuItem,
             this.StopStudentInteractToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(195, 200);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(195, 172);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // PrivateChatToolStripMenuItem

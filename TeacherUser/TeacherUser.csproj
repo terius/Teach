@@ -43,8 +43,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\DLL\AxInterop.WMPLib.dll</HintPath>
     </Reference>
+    <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CSkin.dll</HintPath>
+    </Reference>
     <Reference Include="DMSkin">
-      <HintPath>..\..\..\..\..\DLL\skin\DMSkin.dll</HintPath>
+      <HintPath>..\..\..\..\dll\DMSkin.dll</HintPath>
     </Reference>
     <Reference Include="Media, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.dll</HintPath>
@@ -157,6 +161,12 @@
     <Compile Include="BaseForm.designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CskinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CskinForm.Designer.cs">
+      <DependentUpon>CskinForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DMForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +181,25 @@
     </Compile>
     <Compile Include="CommonHelper.cs" />
     <Compile Include="DoSomething.cs" />
+    <Compile Include="FrmCountenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCountenance.designer.cs">
+      <DependentUpon>FrmCountenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSkinBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSkinBaseForm.designer.cs">
+      <DependentUpon>CSkinBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmQQChat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQQChat.designer.cs">
+      <DependentUpon>FrmQQChat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalResourceManager.cs" />
     <Compile Include="MyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,11 +321,23 @@
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CskinForm.resx">
+      <DependentUpon>CskinForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DMForm.resx">
       <DependentUpon>DMForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCountenance.resx">
+      <DependentUpon>FrmCountenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSkinBaseForm.resx">
+      <DependentUpon>CSkinBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmQQChat.resx">
+      <DependentUpon>FrmQQChat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.cs</DependentUpon>
@@ -447,6 +488,54 @@
     <Content Include="pictures\icon_user_nor.png" />
     <Content Include="pictures\icon_user_pre.png" />
     <Content Include="pictures\icon_xiao.png" />
+    <None Include="Resources\sysbtn_restore_normal.png" />
+    <None Include="Resources\sysbtn_restore_hover.png" />
+    <None Include="Resources\sysbtn_restore_down.png" />
+    <None Include="Resources\sysbtn_min_normal.png" />
+    <None Include="Resources\sysbtn_min_hover.png" />
+    <None Include="Resources\sysbtn_min_down.png" />
+    <None Include="Resources\sysbtn_max_normal.png" />
+    <None Include="Resources\sysbtn_max_hover.png" />
+    <None Include="Resources\sysbtn_max_down.png" />
+    <None Include="Resources\sysbtn_close_normal.png" />
+    <None Include="Resources\sysbtn_close_hover.png" />
+    <None Include="Resources\sysbtn_close_down.png" />
+    <None Include="Resources\ShadowPalace.png" />
+    <None Include="Resources\set_icon.png" />
+    <None Include="Resources\noon.jpg" />
+    <None Include="Resources\night.jpg" />
+    <None Include="Resources\morning.jpg" />
+    <None Include="Resources\menu_btn_normal.png" />
+    <None Include="Resources\menu_btn_highlight.png" />
+    <None Include="Resources\main_7.jpg" />
+    <None Include="Resources\main_6.jpg" />
+    <None Include="Resources\main_5.jpg" />
+    <None Include="Resources\main_4.jpg" />
+    <None Include="Resources\main_3.jpg" />
+    <None Include="Resources\main_2.jpg" />
+    <None Include="Resources\main_1.jpg" />
+    <None Include="Resources\icon_close_normal.png" />
+    <None Include="Resources\icon_close_hover.png" />
+    <None Include="Resources\icon_close_down.png" />
+    <None Include="Resources\Full_close_normal.PNG" />
+    <None Include="Resources\Full_close_hover.PNG" />
+    <None Include="Resources\Full_close_down.PNG" />
+    <None Include="Resources\btn_norml.png" />
+    <None Include="Resources\btn_Mouse.png" />
+    <None Include="Resources\btn_Down.png" />
+    <None Include="Resources\BackPalace1.png" />
+    <None Include="Resources\BackPalace.png" />
+    <None Include="Resources\allbtn_highlight.png" />
+    <None Include="Resources\allbtn_down.png" />
+    <None Include="Resources\aio_setting_white_normal.png" />
+    <None Include="Resources\aio_setting_white_hover.png" />
+    <None Include="Resources\aio_setting_white_down.png" />
+    <None Include="Resources\aio_setting_normal.png" />
+    <None Include="Resources\aio_setting_hover.png" />
+    <None Include="Resources\aio_setting_down.png" />
+    <None Include="Resources\aio_head_normal.png" />
+    <None Include="Resources\afternoon.jpg" />
+    <None Include="Resources\4.png" />
     <None Include="pictures\welcome.jpg" />
     <None Include="pictures\login_pic.png" />
     <None Include="Resources\rt.png" />

@@ -145,12 +145,29 @@ namespace MyTCP
         }
 
 
-        public void Send_PrivateChat(string receieveName, string sendName, string msg)
+        public void Send_PrivateChat(PrivateChatRequest request)
         {
 
             SendMessage<PrivateChatRequest> message = new SendMessage<PrivateChatRequest>();
             message.Action = (int)CommandType.PrivateChat;
-            message.Data = new PrivateChatRequest { receivename = receieveName, sendname = sendName, msg = msg };
+            message.Data = request;
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
+
+        public void Send_GroupChat( string sendName, string msg)
+        {
+            SendMessage<GroupChatRequest> message = new SendMessage<GroupChatRequest>();
+            message.Action = (int)CommandType.GroupChat;
+            message.Data = new GroupChatRequest
+            {
+                sendname = sendName,
+                msg = msg
+            };
+
             Task.Run(async () =>
             {
                 await this.SendMessage(message);

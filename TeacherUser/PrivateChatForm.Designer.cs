@@ -37,6 +37,7 @@
             this.PrivateSendBtn = new System.Windows.Forms.Button();
             this.PrivateClearBtn = new System.Windows.Forms.Button();
             this.reliefPrivateChatBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,9 +88,11 @@
             this.PrivateContentRtb.Size = new System.Drawing.Size(1052, 237);
             this.PrivateContentRtb.TabIndex = 5;
             this.PrivateContentRtb.Text = "";
+            this.PrivateContentRtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrivateContentRtb_KeyDown);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.videoChat);
             this.panel1.Controls.Add(this.privateChatImageSendBtn);
             this.panel1.Controls.Add(this.PrivateSendBtn);
@@ -133,6 +136,7 @@
             this.PrivateSendBtn.TabIndex = 1;
             this.PrivateSendBtn.Text = "发送文字";
             this.PrivateSendBtn.UseVisualStyleBackColor = true;
+            this.PrivateSendBtn.Click += new System.EventHandler(this.PrivateSendBtn_Click);
             // 
             // PrivateClearBtn
             // 
@@ -156,6 +160,18 @@
             this.reliefPrivateChatBtn.Text = "解除禁止";
             this.reliefPrivateChatBtn.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(380, 18);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 29);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "发送群聊";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PrivateChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -164,6 +180,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "PrivateChatForm";
             this.Text = "PrivateChatForm";
+            this.Load += new System.EventHandler(this.PrivateChatForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -184,5 +201,6 @@
         private System.Windows.Forms.Button PrivateSendBtn;
         private System.Windows.Forms.Button PrivateClearBtn;
         private System.Windows.Forms.Button reliefPrivateChatBtn;
+        private System.Windows.Forms.Button button1;
     }
 }

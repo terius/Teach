@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Request\LockScreenRequest.cs" />
+    <Compile Include="Request\GroupChatRequest.cs" />
     <Compile Include="Request\PrivateChatRequest.cs" />
     <Compile Include="Response\LockScreenReponse.cs" />
     <Compile Include="Response\ScreenInteract_Response.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Response\LoginResult.cs" />
     <Compile Include="LoginUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ChatStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

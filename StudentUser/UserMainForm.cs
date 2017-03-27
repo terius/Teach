@@ -1,4 +1,5 @@
-﻿using Helpers;
+﻿using Common;
+using Helpers;
 using Model;
 using System;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace StudentUser
 
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
+            Text = GlobalVariable.LoginUserInfo.DisplayName;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
 
 
@@ -35,7 +37,7 @@ namespace StudentUser
 
         private void Client_OnReveieveData(ReceieveMessage message)
         {
-
+            appendMsg(JsonHelper.SerializeObj(message));
             switch (message.Action)
             {
                 case 7:
@@ -50,8 +52,30 @@ namespace StudentUser
                 case 12:
                     StopLockScreen();
                     break;
+
+                case (int)CommandType.PrivateChat:
+                  
+                    break;
                 default:
                     break;
+            }
+        }
+
+
+        private void appendMsg(string msg)
+        {
+            if (this.richTextBox1.InvokeRequired)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    this.richTextBox1.AppendText(msg+"\r\n");
+
+                }));
+            }
+            else
+            {
+                this.richTextBox1.AppendText(msg + "\r\n");
+
             }
         }
 

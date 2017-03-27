@@ -1,4 +1,5 @@
 ﻿using Common;
+using DMSkin.Controls;
 using Helpers;
 using Model;
 using System;
@@ -7,7 +8,7 @@ using System.Windows.Forms;
 
 namespace TeacherUser
 {
-    public partial class BaseForm : Form
+    public partial class BaseForm : DMForm
     {
         #region 自定义字段
         private static bool beingCallTheRoll = false;//
@@ -27,6 +28,7 @@ namespace TeacherUser
         {
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
+          
             // tcpClient.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage1;
             // beginAction();
         }
@@ -52,6 +54,7 @@ namespace TeacherUser
         //显示用户列表
         private void userListShow(IList<OnlineListResult> onLineList)
         {
+
             this.listView1.Clear();
             foreach (OnlineListResult item in onLineList)
             {
@@ -103,11 +106,6 @@ namespace TeacherUser
 
         }
 
-        private void SaveSignToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void menuStrip1_ItemClicked(object sender, System.Windows.Forms.ToolStripItemClickedEventArgs e)
         {
 
@@ -120,29 +118,29 @@ namespace TeacherUser
         /// <param name="e"></param>
         private void ScreenBroadcastToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string text = this.ScreenBroadcastToolStripMenuItem.Text;
-            if (text == "屏幕广播")
-            {
-                if (!beingWatching)
-                {
-                    GlobalVariable.client.CreateScreenInteract();
-                    GlobalVariable.client.Send_ScreenInteract();
-                    this.ScreenBroadcastToolStripMenuItem.Text = "关闭广播";
-                    beingScreenBroadcast = true;
-                }
-                else
-                {
-                    //  showTip();
-                    return;
-                }
-            }
-            else
-            {
-                //  si.stopScreenInteract();
-                this.ScreenBroadcastToolStripMenuItem.Text = "屏幕广播";
-                rtspAddress = null;
-                beingScreenBroadcast = false;
-            }
+            //string text = this.ScreenBroadcastToolStripMenuItem.Text;
+            //if (text == "屏幕广播")
+            //{
+            //    if (!beingWatching)
+            //    {
+            //        GlobalVariable.client.CreateScreenInteract();
+            //        GlobalVariable.client.Send_ScreenInteract();
+            //        this.ScreenBroadcastToolStripMenuItem.Text = "关闭广播";
+            //        beingScreenBroadcast = true;
+            //    }
+            //    else
+            //    {
+            //        //  showTip();
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    //  si.stopScreenInteract();
+            //    this.ScreenBroadcastToolStripMenuItem.Text = "屏幕广播";
+            //    rtspAddress = null;
+            //    beingScreenBroadcast = false;
+            //}
         }
 
         private void btnReflashOnLine_Click(object sender, EventArgs e)
@@ -195,8 +193,8 @@ namespace TeacherUser
         private void PrivateChatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string userName = this.listView1.SelectedItems[0].SubItems[1].Text;
-            string receName = this.listView1.SelectedItems[0].Text;
-            PrivateChatForm f = new PrivateChatForm(receName);
+            string displayName = this.listView1.SelectedItems[0].Text;
+            PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);
             f.Show();
 
             
