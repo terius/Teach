@@ -45,8 +45,8 @@ namespace TeacherUser
             UpdateStyles();
         }
 
-        FrmQQChat chat;
-        public FrmCountenance(FrmQQChat frm) {
+        MyChatForm chat;
+        public FrmCountenance(MyChatForm frm) {
             InitializeComponent();
             this.chat = frm;
             SetStyles();

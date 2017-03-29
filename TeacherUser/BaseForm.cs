@@ -8,14 +8,14 @@ using System.Windows.Forms;
 
 namespace TeacherUser
 {
-    public partial class BaseForm : DMForm
+    public partial class BaseForm : CSkinBaseForm
     {
         #region 自定义字段
         private static bool beingCallTheRoll = false;//
         private static bool beingScreenBroadcast = false;//正在屏幕广播
         private static bool beingWatching = false;//正在查看学生端
         private string rtspAddress = null;
-        public List<ChatForm> chatFormList = new List<ChatForm>();
+        public List<MyChatForm> chatFormList = new List<MyChatForm>();
         #endregion
 
         public BaseForm()
@@ -46,6 +46,15 @@ namespace TeacherUser
                         userListShow(infos);
                     }));
                     break;
+                case (int)CommandType.PrivateChat:
+                    var PrivateChatResponse = JsonHelper.DeserializeObj<PrivateChatRequest>(message.DataStr);
+                    this.Invoke(new Action(() =>
+                    {
+                        this.messageList.AppendText(message.DataStr);
+                    
+                    }));
+
+                    break;
                 default:
                     break;
             }
@@ -55,7 +64,7 @@ namespace TeacherUser
         private void userListShow(IList<OnlineListResult> onLineList)
         {
 
-            this.listView1.Clear();
+            this.onlineList.Clear();
             foreach (OnlineListResult item in onLineList)
             {
                 ListViewItem listItem = new ListViewItem();
@@ -63,7 +72,8 @@ namespace TeacherUser
                 listItem.Text = item.nickname;
                 listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 39;
                 listItem.SubItems.Add(item.username);
-                this.listView1.Items.Add(listItem);
+                
+                this.onlineList.Items.Add(listItem);
             }
 
 
@@ -143,10 +153,7 @@ namespace TeacherUser
             //}
         }
 
-        private void btnReflashOnLine_Click(object sender, EventArgs e)
-        {
-            GlobalVariable.client.Send_OnlineList();
-        }
+     
 
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -165,14 +172,14 @@ namespace TeacherUser
 
             if (e.Button == MouseButtons.Right)
             {
-                ListViewItem lvi = listView1.GetItemAt(e.X, e.Y);
+                ListViewItem lvi = onlineList.GetItemAt(e.X, e.Y);
                 if (lvi != null)
                 {
-                    listView1.ContextMenuStrip = contextMenuStrip1;
+                    onlineList.ContextMenuStrip = contextMenuStrip1;
                 }
                 else
                 {
-                    listView1.ContextMenuStrip = null;
+                    onlineList.ContextMenuStrip = null;
                 }
                 return;
             }
@@ -180,24 +187,38 @@ namespace TeacherUser
 
         private void ScreenLockToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string username = this.listView1.SelectedItems[0].SubItems[1].Text;
+            string username = this.onlineList.SelectedItems[0].SubItems[1].Text;
             GlobalVariable.client.Send_LockScreen(username);
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            string username = this.listView1.SelectedItems[0].SubItems[1].Text;
+            string username = this.onlineList.SelectedItems[0].SubItems[1].Text;
             GlobalVariable.client.Send_StopLockScreen(username);
         }
 
         private void PrivateChatToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string userName = this.listView1.SelectedItems[0].SubItems[1].Text;
-            string displayName = this.listView1.SelectedItems[0].Text;
-            PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);
+            string userName = this.onlineList.SelectedItems[0].SubItems[1].Text;
+            string displayName = this.onlineList.SelectedItems[0].Text;
+            //  PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);
+            MyChatForm f = new MyChatForm(displayName, userName);
             f.Show();
 
             
+        }
+
+        private void openChatForm(string displayName, string userName)
+        {
+            foreach (var form in chatFormList)
+            {
+
+            }
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            GlobalVariable.client.Send_OnlineList();
         }
     }
 

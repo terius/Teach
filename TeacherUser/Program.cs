@@ -25,13 +25,13 @@ namespace TeacherUser
                     Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
                     AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
                     #endregion
-                    //Login frm = new Login();
-                    //if (frm.ShowDialog() == DialogResult.OK)
-                    //{
-                    //    Application.Run(new BaseForm());
-                    //}
+                    Login frm = new Login();
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        Application.Run(new BaseForm());
+                    }
 
-                    Application.Run(new CSkinBaseForm());
+                  //  Application.Run(new CSkinBaseForm());
                 }
                 else
                 {

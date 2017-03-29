@@ -15,7 +15,7 @@
  * * 请保留以上版权信息，否则作者将保留追究法律责任。
  * *
  * * 创建时间：2015-01-28
- * * 说明：FrmQQChat.Designer.cs
+ * * 说明：ChatForm.Designer.cs
  * *
 ********************************************************************/
 
@@ -52,16 +52,16 @@ namespace TeacherUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Back = global::TeacherUser.Properties.Resources.main_1;
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(183)))), ((int)(((byte)(183)))), ((int)(((byte)(183)))));
-            this.ClientSize = new System.Drawing.Size(585, 508);
+            this.ClientSize = new System.Drawing.Size(771, 613);
             this.CloseBoxSize = new System.Drawing.Size(30, 27);
             this.CloseDownBack = global::TeacherUser.Properties.Resources.sysbtn_close_down;
             this.CloseMouseBack = global::TeacherUser.Properties.Resources.sysbtn_close_hover;
             this.CloseNormlBack = global::TeacherUser.Properties.Resources.sysbtn_close_normal;
             this.ControlBoxOffset = new System.Drawing.Point(0, 0);
             this.DropBack = false;
-            this.EffectCaption = CCWin.TitleType.None;
+            this.ForeColor = System.Drawing.Color.Black;
             this.InnerBorderColor = System.Drawing.Color.Transparent;
             this.MaxDownBack = global::TeacherUser.Properties.Resources.sysbtn_max_down;
             this.MaxMouseBack = global::TeacherUser.Properties.Resources.sysbtn_max_hover;
@@ -84,7 +84,7 @@ namespace TeacherUser
             this.ShowDrawIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmQQChat_Paint);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ChatForm_Paint);
             this.ResumeLayout(false);
 
         }

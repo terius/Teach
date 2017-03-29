@@ -15,7 +15,7 @@
  * * 请保留以上版权信息，否则作者将保留追究法律责任。
  * *
  * * 创建时间：2015-01-28
- * * 说明：FrmQQChat.cs
+ * * 说明：ChatForm.cs
  * *
 ********************************************************************/
 
@@ -40,7 +40,7 @@ namespace TeacherUser
      
 
         #region 窗体重绘时
-        private void FrmQQChat_Paint(object sender, PaintEventArgs e) {
+        private void ChatForm_Paint(object sender, PaintEventArgs e) {
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
  

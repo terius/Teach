@@ -193,11 +193,11 @@
     <Compile Include="CSkinBaseForm.designer.cs">
       <DependentUpon>CSkinBaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmQQChat.cs">
+    <Compile Include="MyChatForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmQQChat.designer.cs">
-      <DependentUpon>FrmQQChat.cs</DependentUpon>
+    <Compile Include="MyChatForm.designer.cs">
+      <DependentUpon>MyChatForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalResourceManager.cs" />
     <Compile Include="MyForm.cs">
@@ -336,8 +336,8 @@
     <EmbeddedResource Include="CSkinBaseForm.resx">
       <DependentUpon>CSkinBaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmQQChat.resx">
-      <DependentUpon>FrmQQChat.cs</DependentUpon>
+    <EmbeddedResource Include="MyChatForm.resx">
+      <DependentUpon>MyChatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.cs</DependentUpon>
@@ -419,6 +419,7 @@
   <ItemGroup>
     <Folder Include="controls\" />
     <Folder Include="Images\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxAXVLC">
