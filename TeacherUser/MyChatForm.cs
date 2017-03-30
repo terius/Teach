@@ -124,7 +124,7 @@ namespace TeacherUser
             request.sendname = GlobalVariable.LoginUserInfo.DisplayName;
 
             GlobalVariable.client.Send_PrivateChat(request);
-         //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
+            //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
 
 
         }
@@ -132,10 +132,12 @@ namespace TeacherUser
 
         private void AddMessageToHistory(ChatBoxContent content)
         {
-           
+
             var showTime = DateTime.Now.ToLongTimeString();
-            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", _myName, showTime), new Font(this.messageFont, FontStyle.Regular), Color.SeaGreen);
-            this.chatBox_history.AppendText("    ");
+            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", _myName, showTime),
+                new Font(this.messageFont, FontStyle.Regular), Color.SeaGreen);
+
+            content.Text = "    " + content.Text.Replace("\n", "\n    ");
             this.chatBox_history.AppendChatBoxContent(content);
             this.chatBox_history.AppendText("\n");
             this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
@@ -145,12 +147,26 @@ namespace TeacherUser
             this.chatBoxSend.Text = string.Empty;
             this.chatBoxSend.Focus();
         }
+
         #endregion
 
         #region 接收信息封装
         private void OnReceivedMsg(ChatBoxContent content, DateTime? originTime)
         {
             this.AppendChatBoxContent(lblChatName.Tag == null ? "小黄鸡" : lblChatName.Tag.ToString(), originTime, content, Color.Blue, false);
+        }
+
+        public void AddReceivedMsg(PrivateChatRequest response)
+        {
+            ChatBoxContent content = new ChatBoxContent(response.msg, messageFont, Color.Black);
+            var showTime = DateTime.Now.ToLongTimeString();
+            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", response.sendname, showTime),
+                new Font(this.messageFont, FontStyle.Regular), Color.Blue);
+            content.Text = "    " + content.Text.Replace("\n", "\n    ");
+            this.chatBox_history.AppendChatBoxContent(content);
+            this.chatBox_history.AppendText("\n");
+            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+            this.chatBox_history.ScrollToCaret();
         }
         #endregion
 
@@ -425,5 +441,10 @@ namespace TeacherUser
             }
         }
         #endregion
+
+        private void MyChatForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+          //  this.DialogResult = DialogResult.Cancel;
+        }
     }
 }

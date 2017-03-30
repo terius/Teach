@@ -870,6 +870,7 @@ namespace TeacherUser
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "";
             this.SysBottomClick += new CCWin.CCSkinMain.SysBottomEventHandler(this.ChatForm_SysBottomClick);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyChatForm_FormClosed);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ChatForm_Paint);
             this.skinToolStrip2.ResumeLayout(false);
             this.skinToolStrip2.PerformLayout();

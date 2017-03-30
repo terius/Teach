@@ -4,6 +4,7 @@ using Helpers;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TeacherUser
@@ -28,7 +29,7 @@ namespace TeacherUser
         {
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
-          
+
             // tcpClient.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage1;
             // beginAction();
         }
@@ -51,15 +52,38 @@ namespace TeacherUser
                     this.Invoke(new Action(() =>
                     {
                         this.messageList.AppendText(message.DataStr);
-                    
-                    }));
 
+                    }));
+                    AppendToPrivateForm(PrivateChatResponse);
                     break;
                 default:
                     break;
             }
             // this.Invoke(new Action(() => this.messageList.AppendText(message.DataStr)));
         }
+
+        private void AppendToPrivateForm(PrivateChatRequest privateChatResponse)
+        {
+            var f = chatFormList.Where(d => d.Name == privateChatResponse.receivename).FirstOrDefault();
+            if (f == null)
+            {
+                return;
+            }
+            if (f.InvokeRequired)
+            {
+                f.BeginInvoke(new Action(() =>
+                {
+                    f.AddReceivedMsg(privateChatResponse);
+
+                }));
+            }
+            else
+            {
+                f.AddReceivedMsg(privateChatResponse);
+            }
+
+        }
+
         //显示用户列表
         private void userListShow(IList<OnlineListResult> onLineList)
         {
@@ -72,7 +96,7 @@ namespace TeacherUser
                 listItem.Text = item.nickname;
                 listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 39;
                 listItem.SubItems.Add(item.username);
-                
+
                 this.onlineList.Items.Add(listItem);
             }
 
@@ -153,7 +177,7 @@ namespace TeacherUser
             //}
         }
 
-     
+
 
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -202,18 +226,45 @@ namespace TeacherUser
             string userName = this.onlineList.SelectedItems[0].SubItems[1].Text;
             string displayName = this.onlineList.SelectedItems[0].Text;
             //  PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);
-            MyChatForm f = new MyChatForm(displayName, userName);
-            f.Show();
+            openChatForm(displayName, userName);
+            //  f = new MyChatForm(displayName, userName);
+            //  f.Show();
 
-            
+
+        }
+
+
+        private void CreateChatForm()
+        {
+
         }
 
         private void openChatForm(string displayName, string userName)
         {
+            bool isDue = false;
             foreach (var form in chatFormList)
             {
+                if (form.Name == userName)
+                {
+                    isDue = true;
+                    form.BringToFront();
+                    break;
 
+                }
             }
+            if (!isDue)
+            {
+                MyChatForm chatForm = new MyChatForm(displayName, userName);
+                chatForm.FormClosed += ChatForm_FormClosed;
+                chatForm.Name = userName;
+                chatFormList.Add(chatForm);
+                chatForm.Show();
+            }
+        }
+
+        private void ChatForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            chatFormList.Remove((MyChatForm)sender);
         }
 
         private void btnReload_Click(object sender, EventArgs e)
