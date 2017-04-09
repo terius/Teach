@@ -21,11 +21,11 @@ namespace StudentUser
                 ChatList = new List<ChatStore>();
             }
             var store = new ChatStore();
-            store.ChatType = ChatType.PrivateChat;
-            store.Message = request.msg;
-            store.ReceieveName = request.receivename;
-            store.SendName = request.sendname;
-            store.SendTime = DateTime.Now;
+            //store.ChatType = ChatType.PrivateChat;
+            //store.Message = request.msg;
+            //store.ReceieveName = request.receivename;
+            //store.SendName = request.sendname;
+            //store.SendTime = DateTime.Now;
             ChatList.Add(store);
 
         }

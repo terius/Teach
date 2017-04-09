@@ -44,11 +44,37 @@
             this.StopStudentInteractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageList = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
             this.btnReload = new CCWin.SkinControl.SkinButton();
             this.onlineList = new CCWin.SkinControl.SkinListView();
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.toolStripContainer6 = new System.Windows.Forms.ToolStripContainer();
+            this.menuStrip7 = new System.Windows.Forms.MenuStrip();
+            this.UserManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScreenRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip7 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripContainer5 = new System.Windows.Forms.ToolStripContainer();
+            this.menuStrip5 = new System.Windows.Forms.MenuStrip();
+            this.FileDispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip6 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel8 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.ScreenBroadcastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StudentOperateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VideoPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip3 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
+            this.menuStrip3 = new System.Windows.Forms.MenuStrip();
+            this.ScreenSlientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoteControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MouseKeyboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip4 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer4 = new System.Windows.Forms.ToolStripContainer();
             this.menuStrip4 = new System.Windows.Forms.MenuStrip();
             this.TeamDiscussToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,10 +88,32 @@
             this.GroupChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.skinLine1 = new CCWin.SkinControl.SkinLine();
             this.contextMenuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.skinPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.toolStripContainer6.LeftToolStripPanel.SuspendLayout();
+            this.toolStripContainer6.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer6.SuspendLayout();
+            this.menuStrip7.SuspendLayout();
+            this.statusStrip7.SuspendLayout();
+            this.toolStripContainer5.LeftToolStripPanel.SuspendLayout();
+            this.toolStripContainer5.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer5.SuspendLayout();
+            this.menuStrip5.SuspendLayout();
+            this.statusStrip6.SuspendLayout();
+            this.toolStripContainer2.BottomToolStripPanel.SuspendLayout();
+            this.toolStripContainer2.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer2.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
+            this.statusStrip3.SuspendLayout();
+            this.toolStripContainer3.LeftToolStripPanel.SuspendLayout();
+            this.toolStripContainer3.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer3.SuspendLayout();
+            this.menuStrip3.SuspendLayout();
+            this.statusStrip4.SuspendLayout();
             this.toolStripContainer4.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer4.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer4.SuspendLayout();
@@ -209,22 +257,32 @@
             // 
             // messageList
             // 
-            this.messageList.Location = new System.Drawing.Point(285, 368);
+            this.messageList.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.messageList.Location = new System.Drawing.Point(0, 241);
             this.messageList.Name = "messageList";
-            this.messageList.Size = new System.Drawing.Size(607, 96);
+            this.messageList.Size = new System.Drawing.Size(1384, 309);
             this.messageList.TabIndex = 5;
             this.messageList.Text = "";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.skinPanel1);
-            this.panel2.Controls.Add(this.messageList);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(4, 165);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1291, 550);
+            this.panel2.Size = new System.Drawing.Size(1588, 550);
             this.panel2.TabIndex = 14;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.messageList);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(204, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1384, 550);
+            this.panel1.TabIndex = 9;
             // 
             // skinPanel1
             // 
@@ -267,7 +325,6 @@
             // 
             this.onlineList.BorderColor = System.Drawing.Color.Blue;
             this.onlineList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.onlineList.ContextMenuStrip = this.contextMenuStrip1;
             this.onlineList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.onlineList.LargeImageList = this.MenuImageList;
             this.onlineList.Location = new System.Drawing.Point(1, 41);
@@ -279,6 +336,7 @@
             this.onlineList.TabIndex = 7;
             this.onlineList.UseCompatibleStateImageBehavior = false;
             this.onlineList.View = System.Windows.Forms.View.List;
+            this.onlineList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onlineList_MouseDown);
             // 
             // skinLabel2
             // 
@@ -298,15 +356,371 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel3.Controls.Add(this.toolStripContainer6);
+            this.panel3.Controls.Add(this.toolStripContainer5);
+            this.panel3.Controls.Add(this.toolStripContainer2);
+            this.panel3.Controls.Add(this.toolStripContainer3);
             this.panel3.Controls.Add(this.toolStripContainer4);
             this.panel3.Controls.Add(this.toolStripContainer1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(4, 28);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 5, 1);
-            this.panel3.Size = new System.Drawing.Size(1291, 137);
+            this.panel3.Size = new System.Drawing.Size(1588, 137);
             this.panel3.TabIndex = 15;
+            // 
+            // toolStripContainer6
+            // 
+            // 
+            // toolStripContainer6.ContentPanel
+            // 
+            this.toolStripContainer6.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStripContainer6.ContentPanel.Size = new System.Drawing.Size(16, 107);
+            this.toolStripContainer6.Dock = System.Windows.Forms.DockStyle.Left;
+            // 
+            // toolStripContainer6.LeftToolStripPanel
+            // 
+            this.toolStripContainer6.LeftToolStripPanel.Controls.Add(this.menuStrip7);
+            this.toolStripContainer6.Location = new System.Drawing.Point(1113, 0);
+            this.toolStripContainer6.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripContainer6.Name = "toolStripContainer6";
+            this.toolStripContainer6.Size = new System.Drawing.Size(160, 136);
+            this.toolStripContainer6.TabIndex = 9;
+            this.toolStripContainer6.Text = "toolStripContainer6";
+            // 
+            // toolStripContainer6.TopToolStripPanel
+            // 
+            this.toolStripContainer6.TopToolStripPanel.Controls.Add(this.statusStrip7);
+            // 
+            // menuStrip7
+            // 
+            this.menuStrip7.BackColor = System.Drawing.Color.DodgerBlue;
+            this.menuStrip7.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip7.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip7.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.UserManageToolStripMenuItem,
+            this.ScreenRecordToolStripMenuItem});
+            this.menuStrip7.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip7.Name = "menuStrip7";
+            this.menuStrip7.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.menuStrip7.Size = new System.Drawing.Size(144, 107);
+            this.menuStrip7.TabIndex = 0;
+            this.menuStrip7.Text = "menuStrip7";
+            // 
+            // UserManageToolStripMenuItem
+            // 
+            this.UserManageToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.UserManageToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.UserManageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("UserManageToolStripMenuItem.Image")));
+            this.UserManageToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.UserManageToolStripMenuItem.Name = "UserManageToolStripMenuItem";
+            this.UserManageToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.UserManageToolStripMenuItem.Text = "账号管理";
+            // 
+            // ScreenRecordToolStripMenuItem
+            // 
+            this.ScreenRecordToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.ScreenRecordToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ScreenRecordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ScreenRecordToolStripMenuItem.Image")));
+            this.ScreenRecordToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.ScreenRecordToolStripMenuItem.Name = "ScreenRecordToolStripMenuItem";
+            this.ScreenRecordToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.ScreenRecordToolStripMenuItem.Text = "屏幕录制";
+            // 
+            // statusStrip7
+            // 
+            this.statusStrip7.BackColor = System.Drawing.Color.DodgerBlue;
+            this.statusStrip7.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStrip7.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.statusStrip7.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip7.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel9});
+            this.statusStrip7.Location = new System.Drawing.Point(0, 0);
+            this.statusStrip7.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.statusStrip7.Name = "statusStrip7";
+            this.statusStrip7.Size = new System.Drawing.Size(160, 29);
+            this.statusStrip7.SizingGrip = false;
+            this.statusStrip7.TabIndex = 0;
+            // 
+            // toolStripStatusLabel9
+            // 
+            this.toolStripStatusLabel9.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolStripStatusLabel9.ForeColor = System.Drawing.Color.White;
+            this.toolStripStatusLabel9.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
+            this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
+            this.toolStripStatusLabel9.Size = new System.Drawing.Size(125, 24);
+            this.toolStripStatusLabel9.Spring = true;
+            this.toolStripStatusLabel9.Text = "其他";
+            // 
+            // toolStripContainer5
+            // 
+            // 
+            // toolStripContainer5.BottomToolStripPanel
+            // 
+            this.toolStripContainer5.BottomToolStripPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            // 
+            // toolStripContainer5.ContentPanel
+            // 
+            this.toolStripContainer5.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStripContainer5.ContentPanel.Size = new System.Drawing.Size(16, 107);
+            this.toolStripContainer5.Dock = System.Windows.Forms.DockStyle.Left;
+            // 
+            // toolStripContainer5.LeftToolStripPanel
+            // 
+            this.toolStripContainer5.LeftToolStripPanel.Controls.Add(this.menuStrip5);
+            this.toolStripContainer5.Location = new System.Drawing.Point(953, 0);
+            this.toolStripContainer5.Name = "toolStripContainer5";
+            this.toolStripContainer5.Size = new System.Drawing.Size(160, 136);
+            this.toolStripContainer5.TabIndex = 8;
+            this.toolStripContainer5.Text = "toolStripContainer5";
+            // 
+            // toolStripContainer5.TopToolStripPanel
+            // 
+            this.toolStripContainer5.TopToolStripPanel.Controls.Add(this.statusStrip6);
+            // 
+            // menuStrip5
+            // 
+            this.menuStrip5.BackColor = System.Drawing.Color.DodgerBlue;
+            this.menuStrip5.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip5.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileDispatchToolStripMenuItem});
+            this.menuStrip5.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip5.Name = "menuStrip5";
+            this.menuStrip5.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.menuStrip5.Size = new System.Drawing.Size(144, 107);
+            this.menuStrip5.TabIndex = 1;
+            this.menuStrip5.Text = "menuStrip5";
+            // 
+            // FileDispatchToolStripMenuItem
+            // 
+            this.FileDispatchToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FileDispatchToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.FileDispatchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("FileDispatchToolStripMenuItem.Image")));
+            this.FileDispatchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.FileDispatchToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.FileDispatchToolStripMenuItem.Name = "FileDispatchToolStripMenuItem";
+            this.FileDispatchToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.FileDispatchToolStripMenuItem.Text = "文件分发";
+            // 
+            // statusStrip6
+            // 
+            this.statusStrip6.BackColor = System.Drawing.Color.DodgerBlue;
+            this.statusStrip6.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStrip6.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip6.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel8});
+            this.statusStrip6.Location = new System.Drawing.Point(0, 0);
+            this.statusStrip6.Name = "statusStrip6";
+            this.statusStrip6.Size = new System.Drawing.Size(160, 29);
+            this.statusStrip6.SizingGrip = false;
+            this.statusStrip6.TabIndex = 0;
+            // 
+            // toolStripStatusLabel8
+            // 
+            this.toolStripStatusLabel8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolStripStatusLabel8.ForeColor = System.Drawing.Color.White;
+            this.toolStripStatusLabel8.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
+            this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
+            this.toolStripStatusLabel8.Size = new System.Drawing.Size(125, 24);
+            this.toolStripStatusLabel8.Spring = true;
+            this.toolStripStatusLabel8.Text = "文件";
+            // 
+            // toolStripContainer2
+            // 
+            // 
+            // toolStripContainer2.BottomToolStripPanel
+            // 
+            this.toolStripContainer2.BottomToolStripPanel.Controls.Add(this.menuStrip2);
+            // 
+            // toolStripContainer2.ContentPanel
+            // 
+            this.toolStripContainer2.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStripContainer2.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(446, 43);
+            this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.toolStripContainer2.Location = new System.Drawing.Point(507, 0);
+            this.toolStripContainer2.Margin = new System.Windows.Forms.Padding(4);
+            this.toolStripContainer2.Name = "toolStripContainer2";
+            this.toolStripContainer2.Size = new System.Drawing.Size(446, 136);
+            this.toolStripContainer2.TabIndex = 7;
+            this.toolStripContainer2.Text = "toolStripContainer2";
+            // 
+            // toolStripContainer2.TopToolStripPanel
+            // 
+            this.toolStripContainer2.TopToolStripPanel.Controls.Add(this.statusStrip3);
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.menuStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ScreenBroadcastToolStripMenuItem,
+            this.StudentOperateToolStripMenuItem,
+            this.VideoPlayToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.menuStrip2.Size = new System.Drawing.Size(446, 64);
+            this.menuStrip2.TabIndex = 0;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // ScreenBroadcastToolStripMenuItem
+            // 
+            this.ScreenBroadcastToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.ScreenBroadcastToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ScreenBroadcastToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ScreenBroadcastToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ScreenBroadcastToolStripMenuItem.Image")));
+            this.ScreenBroadcastToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ScreenBroadcastToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.ScreenBroadcastToolStripMenuItem.Name = "ScreenBroadcastToolStripMenuItem";
+            this.ScreenBroadcastToolStripMenuItem.Size = new System.Drawing.Size(94, 60);
+            this.ScreenBroadcastToolStripMenuItem.Text = "屏幕广播";
+            this.ScreenBroadcastToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // StudentOperateToolStripMenuItem
+            // 
+            this.StudentOperateToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.StudentOperateToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.StudentOperateToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.StudentOperateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("StudentOperateToolStripMenuItem.Image")));
+            this.StudentOperateToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.StudentOperateToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.StudentOperateToolStripMenuItem.Name = "StudentOperateToolStripMenuItem";
+            this.StudentOperateToolStripMenuItem.Size = new System.Drawing.Size(94, 60);
+            this.StudentOperateToolStripMenuItem.Text = "学生演示";
+            this.StudentOperateToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // VideoPlayToolStripMenuItem
+            // 
+            this.VideoPlayToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.VideoPlayToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.VideoPlayToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.VideoPlayToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("VideoPlayToolStripMenuItem.Image")));
+            this.VideoPlayToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.VideoPlayToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.VideoPlayToolStripMenuItem.Name = "VideoPlayToolStripMenuItem";
+            this.VideoPlayToolStripMenuItem.Size = new System.Drawing.Size(94, 60);
+            this.VideoPlayToolStripMenuItem.Text = "视频直播";
+            this.VideoPlayToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // statusStrip3
+            // 
+            this.statusStrip3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.statusStrip3.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel5});
+            this.statusStrip3.Location = new System.Drawing.Point(0, 0);
+            this.statusStrip3.Name = "statusStrip3";
+            this.statusStrip3.Size = new System.Drawing.Size(446, 29);
+            this.statusStrip3.SizingGrip = false;
+            this.statusStrip3.TabIndex = 0;
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolStripStatusLabel5.ForeColor = System.Drawing.Color.White;
+            this.toolStripStatusLabel5.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(411, 24);
+            this.toolStripStatusLabel5.Spring = true;
+            this.toolStripStatusLabel5.Text = "演播室";
+            // 
+            // toolStripContainer3
+            // 
+            // 
+            // toolStripContainer3.ContentPanel
+            // 
+            this.toolStripContainer3.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStripContainer3.ContentPanel.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(16, 107);
+            this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Left;
+            // 
+            // toolStripContainer3.LeftToolStripPanel
+            // 
+            this.toolStripContainer3.LeftToolStripPanel.Controls.Add(this.menuStrip3);
+            this.toolStripContainer3.Location = new System.Drawing.Point(347, 0);
+            this.toolStripContainer3.Name = "toolStripContainer3";
+            this.toolStripContainer3.Size = new System.Drawing.Size(160, 136);
+            this.toolStripContainer3.TabIndex = 6;
+            this.toolStripContainer3.Text = "toolStripContainer3";
+            // 
+            // toolStripContainer3.TopToolStripPanel
+            // 
+            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.statusStrip4);
+            // 
+            // menuStrip3
+            // 
+            this.menuStrip3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.menuStrip3.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ScreenSlientToolStripMenuItem,
+            this.RemoteControlToolStripMenuItem});
+            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip3.Name = "menuStrip3";
+            this.menuStrip3.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.menuStrip3.Size = new System.Drawing.Size(144, 107);
+            this.menuStrip3.TabIndex = 0;
+            this.menuStrip3.Text = "menuStrip3";
+            // 
+            // ScreenSlientToolStripMenuItem
+            // 
+            this.ScreenSlientToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
+            this.ScreenSlientToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ScreenSlientToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ScreenSlientToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ScreenSlientToolStripMenuItem.Image")));
+            this.ScreenSlientToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ScreenSlientToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.ScreenSlientToolStripMenuItem.Name = "ScreenSlientToolStripMenuItem";
+            this.ScreenSlientToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.ScreenSlientToolStripMenuItem.Text = "屏幕肃静";
+            // 
+            // RemoteControlToolStripMenuItem
+            // 
+            this.RemoteControlToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
+            this.RemoteControlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MouseKeyboardMenuItem});
+            this.RemoteControlToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.RemoteControlToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.RemoteControlToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("RemoteControlToolStripMenuItem.Image")));
+            this.RemoteControlToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.RemoteControlToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.RemoteControlToolStripMenuItem.Name = "RemoteControlToolStripMenuItem";
+            this.RemoteControlToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.RemoteControlToolStripMenuItem.Text = "远程控制";
+            // 
+            // MouseKeyboardMenuItem
+            // 
+            this.MouseKeyboardMenuItem.Name = "MouseKeyboardMenuItem";
+            this.MouseKeyboardMenuItem.Size = new System.Drawing.Size(194, 28);
+            this.MouseKeyboardMenuItem.Text = "禁用鼠标键盘";
+            // 
+            // statusStrip4
+            // 
+            this.statusStrip4.BackColor = System.Drawing.Color.DodgerBlue;
+            this.statusStrip4.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStrip4.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel6});
+            this.statusStrip4.Location = new System.Drawing.Point(0, 0);
+            this.statusStrip4.Name = "statusStrip4";
+            this.statusStrip4.Size = new System.Drawing.Size(160, 29);
+            this.statusStrip4.SizingGrip = false;
+            this.statusStrip4.TabIndex = 0;
+            // 
+            // toolStripStatusLabel6
+            // 
+            this.toolStripStatusLabel6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolStripStatusLabel6.ForeColor = System.Drawing.Color.White;
+            this.toolStripStatusLabel6.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
+            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(125, 24);
+            this.toolStripStatusLabel6.Spring = true;
+            this.toolStripStatusLabel6.Text = "控制";
             // 
             // toolStripContainer4
             // 
@@ -318,7 +732,7 @@
             // toolStripContainer4.ContentPanel
             // 
             this.toolStripContainer4.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStripContainer4.ContentPanel.Size = new System.Drawing.Size(20, 107);
+            this.toolStripContainer4.ContentPanel.Size = new System.Drawing.Size(26, 107);
             this.toolStripContainer4.Dock = System.Windows.Forms.DockStyle.Left;
             // 
             // toolStripContainer4.LeftToolStripPanel
@@ -344,7 +758,8 @@
             this.TeamViewToolStripMenuItem});
             this.menuStrip4.Location = new System.Drawing.Point(0, 0);
             this.menuStrip4.Name = "menuStrip4";
-            this.menuStrip4.Size = new System.Drawing.Size(140, 107);
+            this.menuStrip4.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.menuStrip4.Size = new System.Drawing.Size(134, 107);
             this.menuStrip4.TabIndex = 0;
             this.menuStrip4.Text = "menuStrip4";
             // 
@@ -402,7 +817,7 @@
             // 
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(37, 107);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(43, 107);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Left;
             // 
             // toolStripContainer1.LeftToolStripPanel
@@ -435,7 +850,8 @@
             this.GroupChatToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(150, 107);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(144, 107);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -495,11 +911,24 @@
             this.toolStripStatusLabel4.Spring = true;
             this.toolStripStatusLabel4.Text = "班级";
             // 
+            // skinLine1
+            // 
+            this.skinLine1.BackColor = System.Drawing.Color.Transparent;
+            this.skinLine1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.skinLine1.LineColor = System.Drawing.Color.White;
+            this.skinLine1.LineHeight = 1;
+            this.skinLine1.Location = new System.Drawing.Point(4, 165);
+            this.skinLine1.Name = "skinLine1";
+            this.skinLine1.Size = new System.Drawing.Size(1588, 10);
+            this.skinLine1.TabIndex = 16;
+            this.skinLine1.Text = "skinLine1";
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1299, 719);
+            this.ClientSize = new System.Drawing.Size(1596, 719);
+            this.Controls.Add(this.skinLine1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -511,8 +940,49 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.skinPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.toolStripContainer6.LeftToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer6.LeftToolStripPanel.PerformLayout();
+            this.toolStripContainer6.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer6.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer6.ResumeLayout(false);
+            this.toolStripContainer6.PerformLayout();
+            this.menuStrip7.ResumeLayout(false);
+            this.menuStrip7.PerformLayout();
+            this.statusStrip7.ResumeLayout(false);
+            this.statusStrip7.PerformLayout();
+            this.toolStripContainer5.LeftToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer5.LeftToolStripPanel.PerformLayout();
+            this.toolStripContainer5.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer5.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer5.ResumeLayout(false);
+            this.toolStripContainer5.PerformLayout();
+            this.menuStrip5.ResumeLayout(false);
+            this.menuStrip5.PerformLayout();
+            this.statusStrip6.ResumeLayout(false);
+            this.statusStrip6.PerformLayout();
+            this.toolStripContainer2.BottomToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer2.BottomToolStripPanel.PerformLayout();
+            this.toolStripContainer2.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer2.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer2.ResumeLayout(false);
+            this.toolStripContainer2.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
+            this.statusStrip3.ResumeLayout(false);
+            this.statusStrip3.PerformLayout();
+            this.toolStripContainer3.LeftToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer3.LeftToolStripPanel.PerformLayout();
+            this.toolStripContainer3.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer3.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer3.ResumeLayout(false);
+            this.toolStripContainer3.PerformLayout();
+            this.menuStrip3.ResumeLayout(false);
+            this.menuStrip3.PerformLayout();
+            this.statusStrip4.ResumeLayout(false);
+            this.statusStrip4.PerformLayout();
             this.toolStripContainer4.LeftToolStripPanel.ResumeLayout(false);
             this.toolStripContainer4.LeftToolStripPanel.PerformLayout();
             this.toolStripContainer4.TopToolStripPanel.ResumeLayout(false);
@@ -570,5 +1040,32 @@
         private CCWin.SkinControl.SkinPanel skinPanel1;
         private CCWin.SkinControl.SkinLabel skinLabel2;
         private CCWin.SkinControl.SkinButton btnReload;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer3;
+        private System.Windows.Forms.MenuStrip menuStrip3;
+        private System.Windows.Forms.ToolStripMenuItem ScreenSlientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RemoteControlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MouseKeyboardMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip4;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer2;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem ScreenBroadcastToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StudentOperateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VideoPlayToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer5;
+        private System.Windows.Forms.MenuStrip menuStrip5;
+        private System.Windows.Forms.ToolStripMenuItem FileDispatchToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip6;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel8;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer6;
+        private System.Windows.Forms.MenuStrip menuStrip7;
+        private System.Windows.Forms.ToolStripMenuItem UserManageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ScreenRecordToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip7;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel9;
+        private CCWin.SkinControl.SkinLine skinLine1;
     }
 }

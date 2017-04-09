@@ -48,7 +48,6 @@ namespace TeacherUser
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyChatForm));
-            this.lblChatName = new CCWin.SkinControl.SkinLabel();
             this.chatBox_history = new CCWin.SkinControl.SkinChatRichTextBox();
             this.chatBoxSend = new CCWin.SkinControl.SkinChatRichTextBox();
             this.skinToolStrip2 = new CCWin.SkinControl.SkinToolStrip();
@@ -80,29 +79,6 @@ namespace TeacherUser
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItem27 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem28 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem29 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem30 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem31 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem35 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem37 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem38 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem39 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem40 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem41 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem42 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem43 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem44 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem45 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem46 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem47 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem48 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem49 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSend = new CCWin.SkinControl.SkinButton();
             this.btnClose = new CCWin.SkinControl.SkinButton();
             this.SendMenu = new CCWin.SkinControl.SkinContextMenuStrip();
@@ -119,68 +95,74 @@ namespace TeacherUser
             this.气泡设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem51 = new System.Windows.Forms.ToolStripSeparator();
             this.更多设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.skinSplitContainer1 = new CCWin.SkinControl.SkinSplitContainer();
+            this.Content_panel = new System.Windows.Forms.Panel();
+            this.Chanel3_Info = new System.Windows.Forms.Panel();
+            this.Chanel2_Info = new System.Windows.Forms.Panel();
+            this.Chanel_panel2 = new System.Windows.Forms.Panel();
+            this.CNum2 = new System.Windows.Forms.Label();
+            this.Chn_2 = new System.Windows.Forms.Label();
+            this.cp2 = new System.Windows.Forms.PictureBox();
+            this.Chanel1_Info = new System.Windows.Forms.Panel();
+            this.Chanel_panel1 = new System.Windows.Forms.Panel();
+            this.CNum1 = new System.Windows.Forms.Label();
+            this.Chn_1 = new System.Windows.Forms.Label();
+            this.cp1 = new System.Windows.Forms.PictureBox();
+            this.btnReload = new CCWin.SkinControl.SkinButton();
             this.skinToolStrip2.SuspendLayout();
             this.SendMenu.SuspendLayout();
             this.SysMenu.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).BeginInit();
+            this.skinSplitContainer1.Panel1.SuspendLayout();
+            this.skinSplitContainer1.Panel2.SuspendLayout();
+            this.skinSplitContainer1.SuspendLayout();
+            this.Content_panel.SuspendLayout();
+            this.Chanel_panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cp2)).BeginInit();
+            this.Chanel_panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cp1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblChatName
-            // 
-            this.lblChatName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblChatName.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.Anamorphosis;
-            this.lblChatName.AutoSize = true;
-            this.lblChatName.BackColor = System.Drawing.Color.Transparent;
-            this.lblChatName.BorderColor = System.Drawing.Color.White;
-            this.lblChatName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblChatName.Font = new System.Drawing.Font("微软雅黑", 14F);
-            this.lblChatName.ForeColor = System.Drawing.Color.Black;
-            this.lblChatName.ForeColorSuit = true;
-            this.lblChatName.Location = new System.Drawing.Point(7, 6);
-            this.lblChatName.Name = "lblChatName";
-            this.lblChatName.Size = new System.Drawing.Size(86, 31);
-            this.lblChatName.TabIndex = 125;
-            this.lblChatName.Text = "唯爱。";
             // 
             // chatBox_history
             // 
-            this.chatBox_history.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatBox_history.BackColor = System.Drawing.Color.White;
+            this.chatBox_history.BackColor = System.Drawing.Color.Gainsboro;
             this.chatBox_history.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatBox_history.ContextMenuMode = CCWin.SkinControl.ChatBoxContextMenuMode.None;
+            this.chatBox_history.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chatBox_history.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.chatBox_history.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.chatBox_history.Location = new System.Drawing.Point(2, 86);
+            this.chatBox_history.Location = new System.Drawing.Point(0, 0);
             this.chatBox_history.Name = "chatBox_history";
             this.chatBox_history.PopoutImageWhenDoubleClick = false;
             this.chatBox_history.ReadOnly = true;
             this.chatBox_history.SelectControl = null;
             this.chatBox_history.SelectControlIndex = 0;
             this.chatBox_history.SelectControlPoint = new System.Drawing.Point(0, 0);
-            this.chatBox_history.Size = new System.Drawing.Size(662, 343);
+            this.chatBox_history.Size = new System.Drawing.Size(827, 494);
             this.chatBox_history.TabIndex = 1;
             this.chatBox_history.Text = "";
             // 
             // chatBoxSend
             // 
-            this.chatBoxSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.chatBoxSend.BackColor = System.Drawing.Color.White;
             this.chatBoxSend.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatBoxSend.ContextMenuMode = CCWin.SkinControl.ChatBoxContextMenuMode.None;
+            this.chatBoxSend.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.chatBoxSend.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.chatBoxSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.chatBoxSend.Location = new System.Drawing.Point(2, 435);
+            this.chatBoxSend.Location = new System.Drawing.Point(0, 526);
+            this.chatBoxSend.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.chatBoxSend.Name = "chatBoxSend";
             this.chatBoxSend.PopoutImageWhenDoubleClick = false;
             this.chatBoxSend.SelectControl = null;
             this.chatBoxSend.SelectControlIndex = 0;
             this.chatBoxSend.SelectControlPoint = new System.Drawing.Point(0, 0);
-            this.chatBoxSend.Size = new System.Drawing.Size(662, 119);
+            this.chatBoxSend.Size = new System.Drawing.Size(827, 138);
             this.chatBoxSend.TabIndex = 0;
             this.chatBoxSend.Text = "";
+            this.chatBoxSend.TextChanged += new System.EventHandler(this.chatBoxSend_TextChanged);
             // 
             // skinToolStrip2
             // 
@@ -208,7 +190,7 @@ namespace TeacherUser
             this.skinToolStrip2.BaseItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
             this.skinToolStrip2.BaseItemSplitter = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(195)))), ((int)(((byte)(204)))));
             this.skinToolStrip2.BindTabControl = null;
-            this.skinToolStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.skinToolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.skinToolStrip2.DropDownImageSeparator = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
             this.skinToolStrip2.Fore = System.Drawing.Color.Black;
             this.skinToolStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 4, 2);
@@ -228,12 +210,11 @@ namespace TeacherUser
             this.ToolFile,
             this.toolStripButton4,
             this.toolStripSplitButton1,
-            this.toolStripButton5,
-            this.toolStripDropDownButton3});
-            this.skinToolStrip2.Location = new System.Drawing.Point(2, 52);
+            this.toolStripButton5});
+            this.skinToolStrip2.Location = new System.Drawing.Point(0, 494);
             this.skinToolStrip2.Name = "skinToolStrip2";
             this.skinToolStrip2.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinToolStrip2.Size = new System.Drawing.Size(326, 32);
+            this.skinToolStrip2.Size = new System.Drawing.Size(827, 32);
             this.skinToolStrip2.SkinAllColor = true;
             this.skinToolStrip2.TabIndex = 133;
             this.skinToolStrip2.Text = "skinToolStrip2";
@@ -470,172 +451,6 @@ namespace TeacherUser
             this.toolStripButton5.Text = "toolStripButton1";
             this.toolStripButton5.ToolTipText = "屏幕分享";
             // 
-            // toolStripDropDownButton3
-            // 
-            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem27,
-            this.toolStripMenuItem28,
-            this.toolStripMenuItem29,
-            this.toolStripSeparator1,
-            this.toolStripMenuItem30,
-            this.toolStripMenuItem31,
-            this.toolStripMenuItem35,
-            this.toolStripMenuItem40,
-            this.toolStripSeparator3,
-            this.toolStripMenuItem46,
-            this.toolStripMenuItem47,
-            this.toolStripMenuItem48,
-            this.toolStripMenuItem49});
-            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
-            this.toolStripDropDownButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Margin = new System.Windows.Forms.Padding(8, 1, 0, 2);
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(39, 29);
-            this.toolStripDropDownButton3.Text = "toolStripButton8";
-            this.toolStripDropDownButton3.ToolTipText = "应用";
-            // 
-            // toolStripMenuItem27
-            // 
-            this.toolStripMenuItem27.Name = "toolStripMenuItem27";
-            this.toolStripMenuItem27.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem27.Text = "发送短信";
-            // 
-            // toolStripMenuItem28
-            // 
-            this.toolStripMenuItem28.Name = "toolStripMenuItem28";
-            this.toolStripMenuItem28.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem28.Text = "发送邮件";
-            // 
-            // toolStripMenuItem29
-            // 
-            this.toolStripMenuItem29.Name = "toolStripMenuItem29";
-            this.toolStripMenuItem29.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem29.Text = "手机免费聊QQ";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
-            // 
-            // toolStripMenuItem30
-            // 
-            this.toolStripMenuItem30.Name = "toolStripMenuItem30";
-            this.toolStripMenuItem30.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem30.Text = "搜索";
-            // 
-            // toolStripMenuItem31
-            // 
-            this.toolStripMenuItem31.Name = "toolStripMenuItem31";
-            this.toolStripMenuItem31.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem31.Text = "腾讯视频";
-            // 
-            // toolStripMenuItem35
-            // 
-            this.toolStripMenuItem35.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem37,
-            this.toolStripMenuItem38,
-            this.toolStripSeparator2,
-            this.toolStripMenuItem39});
-            this.toolStripMenuItem35.Name = "toolStripMenuItem35";
-            this.toolStripMenuItem35.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem35.Text = "财付通";
-            // 
-            // toolStripMenuItem37
-            // 
-            this.toolStripMenuItem37.Name = "toolStripMenuItem37";
-            this.toolStripMenuItem37.Size = new System.Drawing.Size(174, 26);
-            this.toolStripMenuItem37.Text = "我要付款";
-            // 
-            // toolStripMenuItem38
-            // 
-            this.toolStripMenuItem38.Name = "toolStripMenuItem38";
-            this.toolStripMenuItem38.Size = new System.Drawing.Size(174, 26);
-            this.toolStripMenuItem38.Text = "查询交易记录";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
-            // 
-            // toolStripMenuItem39
-            // 
-            this.toolStripMenuItem39.Name = "toolStripMenuItem39";
-            this.toolStripMenuItem39.Size = new System.Drawing.Size(174, 26);
-            this.toolStripMenuItem39.Text = "交易发布";
-            // 
-            // toolStripMenuItem40
-            // 
-            this.toolStripMenuItem40.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem41,
-            this.toolStripMenuItem42,
-            this.toolStripMenuItem43,
-            this.toolStripMenuItem44,
-            this.toolStripMenuItem45});
-            this.toolStripMenuItem40.Name = "toolStripMenuItem40";
-            this.toolStripMenuItem40.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem40.Text = "QQ风尚";
-            // 
-            // toolStripMenuItem41
-            // 
-            this.toolStripMenuItem41.Name = "toolStripMenuItem41";
-            this.toolStripMenuItem41.Size = new System.Drawing.Size(144, 26);
-            this.toolStripMenuItem41.Text = "QQ头像";
-            // 
-            // toolStripMenuItem42
-            // 
-            this.toolStripMenuItem42.Name = "toolStripMenuItem42";
-            this.toolStripMenuItem42.Size = new System.Drawing.Size(144, 26);
-            this.toolStripMenuItem42.Text = "QQ皮肤";
-            // 
-            // toolStripMenuItem43
-            // 
-            this.toolStripMenuItem43.Name = "toolStripMenuItem43";
-            this.toolStripMenuItem43.Size = new System.Drawing.Size(144, 26);
-            this.toolStripMenuItem43.Text = "QQ表情";
-            // 
-            // toolStripMenuItem44
-            // 
-            this.toolStripMenuItem44.Name = "toolStripMenuItem44";
-            this.toolStripMenuItem44.Size = new System.Drawing.Size(144, 26);
-            this.toolStripMenuItem44.Text = "会员炫铃";
-            // 
-            // toolStripMenuItem45
-            // 
-            this.toolStripMenuItem45.Name = "toolStripMenuItem45";
-            this.toolStripMenuItem45.Size = new System.Drawing.Size(144, 26);
-            this.toolStripMenuItem45.Text = "下载壁纸";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(180, 6);
-            // 
-            // toolStripMenuItem46
-            // 
-            this.toolStripMenuItem46.Name = "toolStripMenuItem46";
-            this.toolStripMenuItem46.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem46.Text = "给他推荐好友";
-            // 
-            // toolStripMenuItem47
-            // 
-            this.toolStripMenuItem47.Name = "toolStripMenuItem47";
-            this.toolStripMenuItem47.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem47.Text = "删除好友";
-            // 
-            // toolStripMenuItem48
-            // 
-            this.toolStripMenuItem48.Name = "toolStripMenuItem48";
-            this.toolStripMenuItem48.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem48.Text = "移至黑名单";
-            // 
-            // toolStripMenuItem49
-            // 
-            this.toolStripMenuItem49.Name = "toolStripMenuItem49";
-            this.toolStripMenuItem49.Size = new System.Drawing.Size(183, 26);
-            this.toolStripMenuItem49.Text = "举报";
-            // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -645,7 +460,7 @@ namespace TeacherUser
             this.btnSend.DownBack = ((System.Drawing.Image)(resources.GetObject("btnSend.DownBack")));
             this.btnSend.DrawType = CCWin.SkinControl.DrawStyle.Img;
             this.btnSend.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSend.Location = new System.Drawing.Point(474, 569);
+            this.btnSend.Location = new System.Drawing.Point(953, 674);
             this.btnSend.Margin = new System.Windows.Forms.Padding(0);
             this.btnSend.MouseBack = ((System.Drawing.Image)(resources.GetObject("btnSend.MouseBack")));
             this.btnSend.Name = "btnSend";
@@ -668,7 +483,7 @@ namespace TeacherUser
             this.btnClose.DownBack = ((System.Drawing.Image)(resources.GetObject("btnClose.DownBack")));
             this.btnClose.DrawType = CCWin.SkinControl.DrawStyle.Img;
             this.btnClose.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnClose.Location = new System.Drawing.Point(388, 569);
+            this.btnClose.Location = new System.Drawing.Point(867, 674);
             this.btnClose.MouseBack = ((System.Drawing.Image)(resources.GetObject("btnClose.MouseBack")));
             this.btnClose.Name = "btnClose";
             this.btnClose.NormlBack = ((System.Drawing.Image)(resources.GetObject("btnClose.NormlBack")));
@@ -825,25 +640,217 @@ namespace TeacherUser
             this.更多设置ToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.更多设置ToolStripMenuItem.Text = "更多设置";
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.skinSplitContainer1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(4, 28);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
+            this.panel2.Size = new System.Drawing.Size(1138, 679);
+            this.panel2.TabIndex = 137;
+            // 
+            // skinSplitContainer1
+            // 
+            this.skinSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.skinSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.skinSplitContainer1.IsSplitterFixed = true;
+            this.skinSplitContainer1.Location = new System.Drawing.Point(0, 15);
+            this.skinSplitContainer1.Name = "skinSplitContainer1";
+            // 
+            // skinSplitContainer1.Panel1
+            // 
+            this.skinSplitContainer1.Panel1.Controls.Add(this.Content_panel);
+            // 
+            // skinSplitContainer1.Panel2
+            // 
+            this.skinSplitContainer1.Panel2.Controls.Add(this.btnReload);
+            this.skinSplitContainer1.Panel2.Controls.Add(this.chatBox_history);
+            this.skinSplitContainer1.Panel2.Controls.Add(this.skinToolStrip2);
+            this.skinSplitContainer1.Panel2.Controls.Add(this.chatBoxSend);
+            this.skinSplitContainer1.Size = new System.Drawing.Size(1138, 664);
+            this.skinSplitContainer1.SplitterDistance = 301;
+            this.skinSplitContainer1.SplitterWidth = 10;
+            this.skinSplitContainer1.TabIndex = 2;
+            // 
+            // Content_panel
+            // 
+            this.Content_panel.AutoScroll = true;
+            this.Content_panel.AutoSize = true;
+            this.Content_panel.BackColor = System.Drawing.Color.DodgerBlue;
+            this.Content_panel.Controls.Add(this.Chanel3_Info);
+            this.Content_panel.Controls.Add(this.Chanel2_Info);
+            this.Content_panel.Controls.Add(this.Chanel_panel2);
+            this.Content_panel.Controls.Add(this.Chanel1_Info);
+            this.Content_panel.Controls.Add(this.Chanel_panel1);
+            this.Content_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Content_panel.Location = new System.Drawing.Point(0, 0);
+            this.Content_panel.Name = "Content_panel";
+            this.Content_panel.Size = new System.Drawing.Size(301, 664);
+            this.Content_panel.TabIndex = 5;
+            // 
+            // Chanel3_Info
+            // 
+            this.Chanel3_Info.AutoSize = true;
+            this.Chanel3_Info.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Chanel3_Info.Location = new System.Drawing.Point(0, 141);
+            this.Chanel3_Info.Name = "Chanel3_Info";
+            this.Chanel3_Info.Size = new System.Drawing.Size(301, 0);
+            this.Chanel3_Info.TabIndex = 0;
+            this.Chanel3_Info.Visible = false;
+            // 
+            // Chanel2_Info
+            // 
+            this.Chanel2_Info.BackColor = System.Drawing.Color.White;
+            this.Chanel2_Info.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Chanel2_Info.Location = new System.Drawing.Point(0, 126);
+            this.Chanel2_Info.Name = "Chanel2_Info";
+            this.Chanel2_Info.Size = new System.Drawing.Size(301, 15);
+            this.Chanel2_Info.TabIndex = 0;
+            this.Chanel2_Info.Visible = false;
+            // 
+            // Chanel_panel2
+            // 
+            this.Chanel_panel2.BackColor = System.Drawing.Color.White;
+            this.Chanel_panel2.Controls.Add(this.CNum2);
+            this.Chanel_panel2.Controls.Add(this.Chn_2);
+            this.Chanel_panel2.Controls.Add(this.cp2);
+            this.Chanel_panel2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Chanel_panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Chanel_panel2.Location = new System.Drawing.Point(0, 70);
+            this.Chanel_panel2.Name = "Chanel_panel2";
+            this.Chanel_panel2.Size = new System.Drawing.Size(301, 56);
+            this.Chanel_panel2.TabIndex = 0;
+            this.Chanel_panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Chanel_panel2_Paint);
+            this.Chanel_panel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Chanel_panel2_MouseClick);
+            // 
+            // CNum2
+            // 
+            this.CNum2.AutoSize = true;
+            this.CNum2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CNum2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.CNum2.Location = new System.Drawing.Point(103, 22);
+            this.CNum2.Name = "CNum2";
+            this.CNum2.Size = new System.Drawing.Size(44, 20);
+            this.CNum2.TabIndex = 3;
+            this.CNum2.Text = "[ 7.. ]";
+            this.CNum2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Chanel_panel2_MouseClick);
+            // 
+            // Chn_2
+            // 
+            this.Chn_2.AutoSize = true;
+            this.Chn_2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Chn_2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.Chn_2.Location = new System.Drawing.Point(47, 23);
+            this.Chn_2.Name = "Chn_2";
+            this.Chn_2.Size = new System.Drawing.Size(69, 20);
+            this.Chn_2.TabIndex = 2;
+            this.Chn_2.Text = "当前聊天";
+            this.Chn_2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Chanel_panel2_MouseClick);
+            // 
+            // cp2
+            // 
+            this.cp2.Image = ((System.Drawing.Image)(resources.GetObject("cp2.Image")));
+            this.cp2.Location = new System.Drawing.Point(9, 13);
+            this.cp2.Name = "cp2";
+            this.cp2.Size = new System.Drawing.Size(32, 32);
+            this.cp2.TabIndex = 1;
+            this.cp2.TabStop = false;
+            // 
+            // Chanel1_Info
+            // 
+            this.Chanel1_Info.BackColor = System.Drawing.Color.White;
+            this.Chanel1_Info.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Chanel1_Info.Location = new System.Drawing.Point(0, 56);
+            this.Chanel1_Info.Name = "Chanel1_Info";
+            this.Chanel1_Info.Size = new System.Drawing.Size(301, 14);
+            this.Chanel1_Info.TabIndex = 0;
+            this.Chanel1_Info.Visible = false;
+            // 
+            // Chanel_panel1
+            // 
+            this.Chanel_panel1.BackColor = System.Drawing.Color.White;
+            this.Chanel_panel1.Controls.Add(this.CNum1);
+            this.Chanel_panel1.Controls.Add(this.Chn_1);
+            this.Chanel_panel1.Controls.Add(this.cp1);
+            this.Chanel_panel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Chanel_panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Chanel_panel1.Location = new System.Drawing.Point(0, 0);
+            this.Chanel_panel1.Name = "Chanel_panel1";
+            this.Chanel_panel1.Size = new System.Drawing.Size(301, 56);
+            this.Chanel_panel1.TabIndex = 0;
+            // 
+            // CNum1
+            // 
+            this.CNum1.AutoSize = true;
+            this.CNum1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CNum1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.CNum1.Location = new System.Drawing.Point(127, 23);
+            this.CNum1.Name = "CNum1";
+            this.CNum1.Size = new System.Drawing.Size(44, 20);
+            this.CNum1.TabIndex = 2;
+            this.CNum1.Text = "[ 3.. ]";
+            // 
+            // Chn_1
+            // 
+            this.Chn_1.AutoSize = true;
+            this.Chn_1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Chn_1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.Chn_1.Location = new System.Drawing.Point(47, 24);
+            this.Chn_1.Name = "Chn_1";
+            this.Chn_1.Size = new System.Drawing.Size(99, 20);
+            this.Chn_1.TabIndex = 1;
+            this.Chn_1.Text = "全部群聊频道";
+            // 
+            // cp1
+            // 
+            this.cp1.Image = ((System.Drawing.Image)(resources.GetObject("cp1.Image")));
+            this.cp1.Location = new System.Drawing.Point(9, 13);
+            this.cp1.Name = "cp1";
+            this.cp1.Size = new System.Drawing.Size(32, 32);
+            this.cp1.TabIndex = 0;
+            this.cp1.TabStop = false;
+            // 
+            // btnReload
+            // 
+            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReload.BackColor = System.Drawing.Color.Transparent;
+            this.btnReload.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(21)))), ((int)(((byte)(26)))));
+            this.btnReload.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btnReload.DownBack = global::TeacherUser.Properties.Resources.btn_Down;
+            this.btnReload.DrawType = CCWin.SkinControl.DrawStyle.Img;
+            this.btnReload.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnReload.ForeColor = System.Drawing.Color.White;
+            this.btnReload.Location = new System.Drawing.Point(733, 617);
+            this.btnReload.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReload.MouseBack = global::TeacherUser.Properties.Resources.btn_Mouse;
+            this.btnReload.MouseBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnReload.Name = "btnReload";
+            this.btnReload.NormlBack = global::TeacherUser.Properties.Resources.btn_norml;
+            this.btnReload.Palace = true;
+            this.btnReload.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.btnReload.Size = new System.Drawing.Size(61, 31);
+            this.btnReload.TabIndex = 134;
+            this.btnReload.Text = "发 送";
+            this.btnReload.UseVisualStyleBackColor = false;
+            // 
             // MyChatForm
             // 
             this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Back = global::TeacherUser.Properties.Resources.main_1;
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(183)))), ((int)(((byte)(183)))), ((int)(((byte)(183)))));
-            this.ClientSize = new System.Drawing.Size(667, 606);
+            this.ClientSize = new System.Drawing.Size(1146, 711);
             this.CloseBoxSize = new System.Drawing.Size(30, 27);
             this.CloseDownBack = global::TeacherUser.Properties.Resources.sysbtn_close_down;
             this.CloseMouseBack = global::TeacherUser.Properties.Resources.sysbtn_close_hover;
             this.CloseNormlBack = global::TeacherUser.Properties.Resources.sysbtn_close_normal;
             this.ControlBoxOffset = new System.Drawing.Point(0, 0);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.skinToolStrip2);
-            this.Controls.Add(this.chatBoxSend);
-            this.Controls.Add(this.chatBox_history);
-            this.Controls.Add(this.lblChatName);
             this.DropBack = false;
             this.EffectCaption = CCWin.TitleType.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -876,13 +883,26 @@ namespace TeacherUser
             this.skinToolStrip2.PerformLayout();
             this.SendMenu.ResumeLayout(false);
             this.SysMenu.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.skinSplitContainer1.Panel1.ResumeLayout(false);
+            this.skinSplitContainer1.Panel1.PerformLayout();
+            this.skinSplitContainer1.Panel2.ResumeLayout(false);
+            this.skinSplitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).EndInit();
+            this.skinSplitContainer1.ResumeLayout(false);
+            this.Content_panel.ResumeLayout(false);
+            this.Content_panel.PerformLayout();
+            this.Chanel_panel2.ResumeLayout(false);
+            this.Chanel_panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cp2)).EndInit();
+            this.Chanel_panel1.ResumeLayout(false);
+            this.Chanel_panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cp1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private CCWin.SkinControl.SkinLabel lblChatName;
         private CCWin.SkinControl.SkinChatRichTextBox chatBox_history;
         private CCWin.SkinControl.SkinToolStrip skinToolStrip2;
         private System.Windows.Forms.ToolStripSplitButton toolStripDropDownButton1;
@@ -901,29 +921,6 @@ namespace TeacherUser
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem19;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem27;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem28;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem29;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem30;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem31;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem35;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem37;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem38;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem39;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem40;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem41;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem42;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem43;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem44;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem45;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem46;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem47;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem48;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem49;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem20;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem21;
@@ -953,5 +950,20 @@ namespace TeacherUser
         private System.Windows.Forms.ToolStripMenuItem 气泡设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem51;
         private System.Windows.Forms.ToolStripMenuItem 更多设置ToolStripMenuItem;
+        private System.Windows.Forms.Panel panel2;
+        private CCWin.SkinControl.SkinSplitContainer skinSplitContainer1;
+        private System.Windows.Forms.Panel Content_panel;
+        private System.Windows.Forms.Panel Chanel3_Info;
+        private System.Windows.Forms.Panel Chanel2_Info;
+        private System.Windows.Forms.Panel Chanel_panel2;
+        private System.Windows.Forms.Label CNum2;
+        private System.Windows.Forms.Label Chn_2;
+        private System.Windows.Forms.PictureBox cp2;
+        private System.Windows.Forms.Panel Chanel1_Info;
+        private System.Windows.Forms.Panel Chanel_panel1;
+        private System.Windows.Forms.Label CNum1;
+        private System.Windows.Forms.Label Chn_1;
+        private System.Windows.Forms.PictureBox cp1;
+        private CCWin.SkinControl.SkinButton btnReload;
     }
 }

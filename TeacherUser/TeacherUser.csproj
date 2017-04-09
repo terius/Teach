@@ -47,69 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\CSkin.dll</HintPath>
     </Reference>
-    <Reference Include="DMSkin">
-      <HintPath>..\..\..\..\dll\DMSkin.dll</HintPath>
-    </Reference>
-    <Reference Include="Media, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Codec, Version=1.0.7.41643, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Codec.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Codecs.Image, Version=1.0.7.41646, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Codecs.Image.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Codecs.Video.H264, Version=1.0.7.41646, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Codecs.Video.H264.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Common, Version=1.0.7.41642, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Compression, Version=1.0.7.41643, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Compression.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Container, Version=1.0.7.41643, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Container.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Containers.Mpeg, Version=1.0.7.41645, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Containers.Mpeg.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Ntp, Version=1.0.7.41643, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Ntp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Rtmp, Version=1.0.7.41644, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Rtmp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Rtp, Version=1.0.7.41643, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Rtp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.RtpTools, Version=1.0.7.41644, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.RtpTools.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Rtsp, Version=1.0.7.41644, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Rtsp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.RtspServer, Version=1.0.7.41647, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.RtspServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Media.Sdp, Version=1.0.7.41643, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net7mma.0.111192.1\lib\net452\Media.Sdp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\DLL\Microsoft.DirectX.dll</HintPath>
@@ -166,12 +103,6 @@
     </Compile>
     <Compile Include="CskinForm.Designer.cs">
       <DependentUpon>CskinForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DMForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DMForm.Designer.cs">
-      <DependentUpon>DMForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -323,9 +254,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CskinForm.resx">
       <DependentUpon>CskinForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DMForm.resx">
-      <DependentUpon>DMForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>

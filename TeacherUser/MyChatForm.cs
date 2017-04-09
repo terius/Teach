@@ -4,11 +4,9 @@ using CCWin;
 using CCWin.SkinClass;
 using CCWin.SkinControl;
 using Model;
-using QQMetro.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -37,7 +35,7 @@ namespace TeacherUser
                 if (qqUser != value)
                 {
                     qqUser = value;
-                    lblChatName.Tag = lblChatName.Text = string.IsNullOrEmpty(qqUser.DisplayName) ? qqUser.NicName : qqUser.DisplayName;
+                 //   lblChatName.Tag = lblChatName.Text = string.IsNullOrEmpty(qqUser.DisplayName) ? qqUser.NicName : qqUser.DisplayName;
                     // lblChatQm.Text = qqUser.PersonalMsg;
                     //    pnlImgTx.BackgroundImage = qqUser.HeadImage;
                     //  imgQQShow.Image = qqUser.QQShow;
@@ -48,7 +46,7 @@ namespace TeacherUser
 
         string _displayName;
         string _userName;
-        string _myName = GlobalVariable.LoginUserInfo.DisplayName;
+        string _myName = "测试u测";// GlobalVariable.LoginUserInfo.DisplayName;
         #endregion
 
         #region 无参构造
@@ -60,7 +58,7 @@ namespace TeacherUser
             this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
             _displayName = displayName;
             _userName = userName;
-            lblChatName.Text = "与（" + _displayName + "）的聊天";
+          //  lblChatName.Text = "与（" + _displayName + "）的聊天";
         }
         #endregion
 
@@ -78,14 +76,15 @@ namespace TeacherUser
         #region 窗体重绘时
         private void ChatForm_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.None;
-            //全屏蒙浓遮罩层
-            g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, 0, this.Width, this.chatBox_history.Top));
-            g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, this.chatBox_history.Top, this.chatBox_history.Width + this.chatBox_history.Left, this.Height - this.chatBox_history.Top));
+          //  Graphics g = e.Graphics;
+          // g.SmoothingMode = SmoothingMode.HighQuality;
+            ////全屏蒙浓遮罩层
+            //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, 0, this.Width, this.chatBox_history.Top));
+            //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, this.chatBox_history.Top, this.chatBox_history.Width + this.chatBox_history.Left, this.Height - this.chatBox_history.Top));
+
             //线条
-            g.DrawLine(new Pen(Color.FromArgb(180, 198, 221)), new Point(0, this.chatBox_history.Top - 1), new Point(chatBox_history.Right, this.chatBox_history.Top - 1));
-            g.DrawLine(new Pen(Color.FromArgb(180, 198, 221)), new Point(0, this.chatBox_history.Bottom), new Point(chatBox_history.Right, this.chatBox_history.Bottom));
+            // g.DrawLine(new Pen(Color.FromArgb(180, 198, 221)), new Point(0, this.chatBox_history.Top - 1), new Point(chatBox_history.Right, this.chatBox_history.Top - 1));
+            //   g.DrawLine(new Pen(Color.FromArgb(180, 198, 221)), new Point(0, this.chatBox_history.Bottom), new Point(chatBox_history.Right, this.chatBox_history.Bottom));
         }
         #endregion
 
@@ -153,7 +152,7 @@ namespace TeacherUser
         #region 接收信息封装
         private void OnReceivedMsg(ChatBoxContent content, DateTime? originTime)
         {
-            this.AppendChatBoxContent(lblChatName.Tag == null ? "小黄鸡" : lblChatName.Tag.ToString(), originTime, content, Color.Blue, false);
+           // this.AppendChatBoxContent(lblChatName.Tag == null ? "小黄鸡" : lblChatName.Tag.ToString(), originTime, content, Color.Blue, false);
         }
 
         public void AddReceivedMsg(PrivateChatRequest response)
@@ -445,6 +444,29 @@ namespace TeacherUser
         private void MyChatForm_FormClosed(object sender, FormClosedEventArgs e)
         {
           //  this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void Chanel_panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Chanel_panel2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (Chanel2_Info.Visible)
+            {
+                Chanel2_Info.Visible = false;
+            }
+            else
+            {
+                Chanel2_Info.Height = 1080;
+                Chanel2_Info.Visible = true;
+            }
+        }
+
+        private void chatBoxSend_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

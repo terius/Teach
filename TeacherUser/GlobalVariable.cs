@@ -3,6 +3,7 @@ using Model;
 using MyTCP;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TeacherUser
 {
@@ -13,20 +14,24 @@ namespace TeacherUser
 
         public static List<ChatStore> ChatList { get; set; }
 
-        public static void AddPrivateChatToChatList(string receivename,string sendname,string msg)
+        public static void AddNewChat(AddChatRequest request)
         {
             if (ChatList == null)
             {
                 ChatList = new List<ChatStore>();
-            }
-            var store = new ChatStore();
-            store.ChatType = ChatType.PrivateChat;
-            store.Message = msg;
-            store.ReceieveName = receivename;
-            store.SendName = sendname;
-            store.SendTime = DateTime.Now;
-            ChatList.Add(store);
 
+            }
+
+            if (!ChatList.Any(d => d.ChatUserName == request.ChatUserName))
+            {
+                ChatStore info = new ChatStore();
+                info.ChatDisplatName = request.ChatDisplatName;
+                info.ChatStartTime = DateTime.Now;
+                info.ChatType = request.ChatType;
+                info.ChatUserName = request.ChatUserName;
+                info.MessageList = new List<ChatMessage>();
+                ChatList.Add(info);
+            }
         }
     }
 }

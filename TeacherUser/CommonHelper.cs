@@ -1,4 +1,5 @@
-﻿using DMSkin.Metro.Controls;
+﻿
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -15,15 +16,27 @@ namespace TeacherUser
             }
         }
 
-        public static void SetMetroTileHoverLeave(MetroTile control)
+    
+
+
+       
+
+
+    }
+
+    public static class ControlExtensions
+    {
+        public static void InvokeOnUiThreadIfRequired(this Control control, Action action)
         {
-            if (control.GetType() == typeof(MetroTile))
+            if (control.InvokeRequired)
             {
-                control.MouseEnter += (sender, e) => ((MetroTile)sender).BackColor = Color.SteelBlue;
-                control.MouseLeave += (sender, e) => ((MetroTile)sender).BackColor = Color.Transparent;
+                control.BeginInvoke(action);
+            }
+            else
+            {
+                action.Invoke();
             }
         }
-
 
     }
 }

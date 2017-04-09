@@ -63,7 +63,7 @@ namespace TeacherUser
                 request.sendname = GlobalVariable.LoginUserInfo.DisplayName;
                
                 GlobalVariable.client.Send_PrivateChat(request);
-                GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
+              //  GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
                 PrivateContentRtb.Text = "";
                 PrivateHistRtb.AppendText(request.sendname + " "
                     + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n" + request.msg + "\r\n\r\n");

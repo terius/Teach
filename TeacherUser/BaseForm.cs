@@ -1,5 +1,4 @@
 ﻿using Common;
-using DMSkin.Controls;
 using Helpers;
 using Model;
 using System;
@@ -17,6 +16,7 @@ namespace TeacherUser
         private static bool beingWatching = false;//正在查看学生端
         private string rtspAddress = null;
         public List<MyChatForm> chatFormList = new List<MyChatForm>();
+        private MyChatForm chatForm;
         #endregion
 
         public BaseForm()
@@ -36,30 +36,24 @@ namespace TeacherUser
 
         private void Client_OnReveieveData(ReceieveMessage message)
         {
-
+            messageList.InvokeOnUiThreadIfRequired(() => messageList.AppendText(message.DataStr));
             switch (message.Action)
             {
                 case (int)CommandType.OnlineList:
                     IList<OnlineListResult> infos = JsonHelper.DeserializeObj<List<OnlineListResult>>(message.DataStr);
-                    this.Invoke(new Action(() =>
-                    {
-                        this.messageList.AppendText(message.DataStr);
-                        userListShow(infos);
-                    }));
+                    this.InvokeOnUiThreadIfRequired(() => userListShow(infos));
+                    //this.Invoke(new Action(() =>
+                    //{
+                    //    userListShow(infos);
+                    //}));
                     break;
                 case (int)CommandType.PrivateChat:
                     var PrivateChatResponse = JsonHelper.DeserializeObj<PrivateChatRequest>(message.DataStr);
-                    this.Invoke(new Action(() =>
-                    {
-                        this.messageList.AppendText(message.DataStr);
-
-                    }));
                     AppendToPrivateForm(PrivateChatResponse);
                     break;
                 default:
                     break;
             }
-            // this.Invoke(new Action(() => this.messageList.AppendText(message.DataStr)));
         }
 
         private void AppendToPrivateForm(PrivateChatRequest privateChatResponse)
@@ -69,18 +63,20 @@ namespace TeacherUser
             {
                 return;
             }
-            if (f.InvokeRequired)
-            {
-                f.BeginInvoke(new Action(() =>
-                {
-                    f.AddReceivedMsg(privateChatResponse);
 
-                }));
-            }
-            else
-            {
-                f.AddReceivedMsg(privateChatResponse);
-            }
+            f.InvokeOnUiThreadIfRequired(() => f.AddReceivedMsg(privateChatResponse));
+            //if (f.InvokeRequired)
+            //{
+            //    f.BeginInvoke(new Action(() =>
+            //    {
+            //        f.AddReceivedMsg(privateChatResponse);
+
+            //    }));
+            //}
+            //else
+            //{
+            //    f.AddReceivedMsg(privateChatResponse);
+            //}
 
         }
 
@@ -179,35 +175,7 @@ namespace TeacherUser
 
 
 
-        private void listView1_MouseDown(object sender, MouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Right)
-            //{
-            //    var hitTestInfo = listView1.HitTest(e.X, e.Y);
-            //    if (hitTestInfo.Item != null)
-            //    {
-            //        var loc = e.Location;
-            //        loc.Offset(listView1.Location);
-
-            //        // Adjust context menu (or it's contents) based on hitTestInfo details
-            //        this.contextMenuStrip1.Show(this, loc);
-            //    }
-            //}
-
-            if (e.Button == MouseButtons.Right)
-            {
-                ListViewItem lvi = onlineList.GetItemAt(e.X, e.Y);
-                if (lvi != null)
-                {
-                    onlineList.ContextMenuStrip = contextMenuStrip1;
-                }
-                else
-                {
-                    onlineList.ContextMenuStrip = null;
-                }
-                return;
-            }
-        }
+      
 
         private void ScreenLockToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -225,8 +193,18 @@ namespace TeacherUser
         {
             string userName = this.onlineList.SelectedItems[0].SubItems[1].Text;
             string displayName = this.onlineList.SelectedItems[0].Text;
+            AddChatRequest request = new AddChatRequest();
+            request.ChatDisplatName = displayName;
+            request.ChatType = ChatType.PrivateChat;
+            request.ChatUserName = userName;
+            GlobalVariable.AddNewChat(request);
+            if (chatForm == null)
+            {
+                chatForm = new MyChatForm()
+            }
+
             //  PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);
-            openChatForm(displayName, userName);
+          //  openChatForm(request);
             //  f = new MyChatForm(displayName, userName);
             //  f.Show();
 
@@ -270,6 +248,23 @@ namespace TeacherUser
         private void btnReload_Click(object sender, EventArgs e)
         {
             GlobalVariable.client.Send_OnlineList();
+        }
+
+        private void onlineList_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewItem lvi = onlineList.GetItemAt(e.X, e.Y);
+                if (lvi != null)
+                {
+                    onlineList.ContextMenuStrip = contextMenuStrip1;
+                }
+                else
+                {
+                    onlineList.ContextMenuStrip = null;
+                }
+                return;
+            }
         }
     }
 
