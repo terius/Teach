@@ -200,8 +200,9 @@ namespace TeacherUser
             GlobalVariable.AddNewChat(request);
             if (chatForm == null)
             {
-                chatForm = new MyChatForm()
+                chatForm = new MyChatForm(request);
             }
+            chatForm.Show();
 
             //  PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);
           //  openChatForm(request);
@@ -217,12 +218,12 @@ namespace TeacherUser
 
         }
 
-        private void openChatForm(string displayName, string userName)
+        private void openChatForm(AddChatRequest request)
         {
             bool isDue = false;
             foreach (var form in chatFormList)
             {
-                if (form.Name == userName)
+                if (form.Name == request.ChatUserName)
                 {
                     isDue = true;
                     form.BringToFront();
@@ -232,9 +233,9 @@ namespace TeacherUser
             }
             if (!isDue)
             {
-                MyChatForm chatForm = new MyChatForm(displayName, userName);
+                MyChatForm chatForm = new MyChatForm(request);
                 chatForm.FormClosed += ChatForm_FormClosed;
-                chatForm.Name = userName;
+                chatForm.Name = request.ChatUserName;
                 chatFormList.Add(chatForm);
                 chatForm.Show();
             }

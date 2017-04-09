@@ -127,7 +127,7 @@ namespace TeacherUser
             // 
             // chatBox_history
             // 
-            this.chatBox_history.BackColor = System.Drawing.Color.Gainsboro;
+            this.chatBox_history.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chatBox_history.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatBox_history.ContextMenuMode = CCWin.SkinControl.ChatBoxContextMenuMode.None;
             this.chatBox_history.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -694,7 +694,7 @@ namespace TeacherUser
             // 
             this.Chanel3_Info.AutoSize = true;
             this.Chanel3_Info.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Chanel3_Info.Location = new System.Drawing.Point(0, 141);
+            this.Chanel3_Info.Location = new System.Drawing.Point(0, 480);
             this.Chanel3_Info.Name = "Chanel3_Info";
             this.Chanel3_Info.Size = new System.Drawing.Size(301, 0);
             this.Chanel3_Info.TabIndex = 0;
@@ -706,7 +706,7 @@ namespace TeacherUser
             this.Chanel2_Info.Dock = System.Windows.Forms.DockStyle.Top;
             this.Chanel2_Info.Location = new System.Drawing.Point(0, 126);
             this.Chanel2_Info.Name = "Chanel2_Info";
-            this.Chanel2_Info.Size = new System.Drawing.Size(301, 15);
+            this.Chanel2_Info.Size = new System.Drawing.Size(301, 354);
             this.Chanel2_Info.TabIndex = 0;
             this.Chanel2_Info.Visible = false;
             // 
@@ -822,7 +822,7 @@ namespace TeacherUser
             this.btnReload.DrawType = CCWin.SkinControl.DrawStyle.Img;
             this.btnReload.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReload.ForeColor = System.Drawing.Color.White;
-            this.btnReload.Location = new System.Drawing.Point(733, 617);
+            this.btnReload.Location = new System.Drawing.Point(721, 617);
             this.btnReload.Margin = new System.Windows.Forms.Padding(4);
             this.btnReload.MouseBack = global::TeacherUser.Properties.Resources.btn_Mouse;
             this.btnReload.MouseBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));

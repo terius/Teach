@@ -12,6 +12,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using TeacherUser.controls;
 
 namespace TeacherUser
 {
@@ -35,7 +36,7 @@ namespace TeacherUser
                 if (qqUser != value)
                 {
                     qqUser = value;
-                 //   lblChatName.Tag = lblChatName.Text = string.IsNullOrEmpty(qqUser.DisplayName) ? qqUser.NicName : qqUser.DisplayName;
+                    //   lblChatName.Tag = lblChatName.Text = string.IsNullOrEmpty(qqUser.DisplayName) ? qqUser.NicName : qqUser.DisplayName;
                     // lblChatQm.Text = qqUser.PersonalMsg;
                     //    pnlImgTx.BackgroundImage = qqUser.HeadImage;
                     //  imgQQShow.Image = qqUser.QQShow;
@@ -50,15 +51,30 @@ namespace TeacherUser
         #endregion
 
         #region 无参构造
-        public MyChatForm(string displayName, string userName)
+        public MyChatForm(AddChatRequest request)
         {
             InitializeComponent();
             //加载表情到文本框
             this.chatBoxSend.Initialize(GlobalResourceManager.EmotionDictionary);
             this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
-            _displayName = displayName;
-            _userName = userName;
-          //  lblChatName.Text = "与（" + _displayName + "）的聊天";
+            _displayName = request.ChatDisplatName;
+            _userName = request.ChatUserName;
+            AddChatItems();
+            //  lblChatName.Text = "与（" + _displayName + "）的聊天";
+        }
+
+        private void AddChatItems()
+        {
+            ChatItem item;
+            for (int i = 0; i < 10; i++)
+            {
+                item = new ChatItem("user" + i, "用户" + i);
+                this.Chanel2_Info.Controls.Add(item);
+                item.Dock = DockStyle.Top;
+                item.BringToFront();
+             
+            }
+
         }
         #endregion
 
@@ -76,8 +92,8 @@ namespace TeacherUser
         #region 窗体重绘时
         private void ChatForm_Paint(object sender, PaintEventArgs e)
         {
-          //  Graphics g = e.Graphics;
-          // g.SmoothingMode = SmoothingMode.HighQuality;
+            //  Graphics g = e.Graphics;
+            // g.SmoothingMode = SmoothingMode.HighQuality;
             ////全屏蒙浓遮罩层
             //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, 0, this.Width, this.chatBox_history.Top));
             //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, this.chatBox_history.Top, this.chatBox_history.Width + this.chatBox_history.Left, this.Height - this.chatBox_history.Top));
@@ -152,7 +168,7 @@ namespace TeacherUser
         #region 接收信息封装
         private void OnReceivedMsg(ChatBoxContent content, DateTime? originTime)
         {
-           // this.AppendChatBoxContent(lblChatName.Tag == null ? "小黄鸡" : lblChatName.Tag.ToString(), originTime, content, Color.Blue, false);
+            // this.AppendChatBoxContent(lblChatName.Tag == null ? "小黄鸡" : lblChatName.Tag.ToString(), originTime, content, Color.Blue, false);
         }
 
         public void AddReceivedMsg(PrivateChatRequest response)
@@ -443,7 +459,7 @@ namespace TeacherUser
 
         private void MyChatForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-          //  this.DialogResult = DialogResult.Cancel;
+            //  this.DialogResult = DialogResult.Cancel;
         }
 
         private void Chanel_panel2_Paint(object sender, PaintEventArgs e)

@@ -98,6 +98,12 @@
     <Compile Include="BaseForm.designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="controls\ChatItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\ChatItem.Designer.cs">
+      <DependentUpon>ChatItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="CskinForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="controls\ChatItem.resx">
+      <DependentUpon>ChatItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CskinForm.resx">
       <DependentUpon>CskinForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,7 +354,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="controls\" />
     <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>

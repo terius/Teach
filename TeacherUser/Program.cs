@@ -31,7 +31,7 @@ namespace TeacherUser
                     //    Application.Run(new BaseForm());
                     //}
 
-                   Application.Run(new MyChatForm("测试","user1"));
+                    Application.Run(new MyChatForm(new Model.AddChatRequest()));
                 }
                 else
                 {
