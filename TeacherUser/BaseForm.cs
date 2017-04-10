@@ -202,6 +202,11 @@ namespace TeacherUser
             {
                 chatForm = new MyChatForm(request);
             }
+            else
+            {
+                chatForm.BringToFront();
+                chatForm.CreateChatItems(request,false);
+            }
             chatForm.Show();
 
             //  PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);

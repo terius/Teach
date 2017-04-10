@@ -3,6 +3,7 @@
 using CCWin;
 using CCWin.SkinClass;
 using CCWin.SkinControl;
+using Common;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -59,22 +60,74 @@ namespace TeacherUser
             this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
             _displayName = request.ChatDisplatName;
             _userName = request.ChatUserName;
-            AddChatItems();
+            CreateChatItems(request);
             //  lblChatName.Text = "与（" + _displayName + "）的聊天";
         }
 
-        private void AddChatItems()
+        public void CreateChatItems(AddChatRequest request, bool isCreate = true)
+        {
+            if (CheckItemExist(request.ChatUserName))
+            {
+                return;
+            }
+            if (isCreate)
+            {
+                foreach (ChatStore chat in GlobalVariable.ChatList)
+                {
+                    AddNewChatItem(chat.ChatType, chat.ChatUserName, chat.ChatDisplatName);
+                }
+            }
+            else
+            {
+                AddNewChatItem(request.ChatType, request.ChatUserName, request.ChatDisplatName);
+            }
+        }
+
+
+
+        private void AddNewChatItem(ChatType type, string userName, string displayName)
+        {
+            ChatItem item = new ChatItem(userName, displayName);
+            if (type == Common.ChatType.GroupChat || type == Common.ChatType.TeamChat)
+            {
+                Chanel1_Info.Show();
+                this.Chanel1_Info.Controls.Add(item);
+            }
+            else
+            {
+                Chanel2_Info.Show();
+                this.Chanel2_Info.Controls.Add(item);
+            }
+            item.Dock = DockStyle.Top;
+            item.BringToFront();
+        }
+
+        private bool CheckItemExist(string chatUserName)
         {
             ChatItem item;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < Chanel1_Info.Controls.Count; i++)
             {
-                item = new ChatItem("user" + i, "用户" + i);
-                this.Chanel2_Info.Controls.Add(item);
-                item.Dock = DockStyle.Top;
-                item.BringToFront();
-             
+                item = (ChatItem)Chanel1_Info.Controls[i];
+                if (item.UserName == chatUserName)
+                {
+                    Chanel1_Info.Show();
+
+                 //   item.ChatItem_Click(item, null);
+                    return true;
+                }
             }
 
+            for (int i = 0; i < Chanel2_Info.Controls.Count; i++)
+            {
+                item = (ChatItem)Chanel2_Info.Controls[i];
+                if (item.UserName == chatUserName)
+                {
+                    Chanel2_Info.Show();
+                  //  item.ChatItem_Click(item, null);
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 
