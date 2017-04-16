@@ -25,13 +25,36 @@ namespace TeacherUser
             if (!ChatList.Any(d => d.ChatUserName == request.ChatUserName))
             {
                 ChatStore info = new ChatStore();
-                info.ChatDisplatName = request.ChatDisplatName;
+                info.ChatDisplayName = request.ChatDisplayName;
                 info.ChatStartTime = DateTime.Now;
                 info.ChatType = request.ChatType;
                 info.ChatUserName = request.ChatUserName;
                 info.MessageList = new List<ChatMessage>();
                 ChatList.Add(info);
             }
+        }
+
+        public static ChatStore GetChatStore(string userName)
+        {
+            return ChatList.FirstOrDefault(d => d.ChatUserName == userName);
+        }
+        public static void SaveChatMessage(ChatMessage message)
+        {
+            if (ChatList == null)
+            {
+                return;
+
+            }
+            var chat = ChatList.FirstOrDefault(d => d.ChatUserName == message.ReceieveUserName);
+            if (chat == null)
+            {
+                return;
+            }
+            if (chat.MessageList == null)
+            {
+                chat.MessageList = new List<ChatMessage>();
+            }
+            chat.MessageList.Add(message);
         }
     }
 }

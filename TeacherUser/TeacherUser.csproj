@@ -297,6 +297,9 @@
     <EmbeddedResource Include="ConfServerIP.resx">
       <DependentUpon>ConfServerIP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="showTipForm.resx">
+      <DependentUpon>showTipForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>

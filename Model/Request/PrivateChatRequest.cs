@@ -20,6 +20,6 @@ namespace Model
         public ChatType ChatType { get; set; }
         public string ChatUserName { get; set; }
 
-        public string ChatDisplatName { get; set; }
+        public string ChatDisplayName { get; set; }
     }
 }

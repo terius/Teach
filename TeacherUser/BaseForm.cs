@@ -189,15 +189,27 @@ namespace TeacherUser
             GlobalVariable.client.Send_StopLockScreen(username);
         }
 
+
+        showTipForm testForm;
         private void PrivateChatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string userName = this.onlineList.SelectedItems[0].SubItems[1].Text;
             string displayName = this.onlineList.SelectedItems[0].Text;
             AddChatRequest request = new AddChatRequest();
-            request.ChatDisplatName = displayName;
+            request.ChatDisplayName = displayName;
             request.ChatType = ChatType.PrivateChat;
             request.ChatUserName = userName;
             GlobalVariable.AddNewChat(request);
+
+            //if (testForm == null)
+            //{
+            //    testForm = new showTipForm();
+            //}
+            //else
+            //{
+            //    testForm.BringToFront();
+            //}
+            //testForm.Show();
             if (chatForm == null)
             {
                 chatForm = new MyChatForm(request);
@@ -205,12 +217,12 @@ namespace TeacherUser
             else
             {
                 chatForm.BringToFront();
-                chatForm.CreateChatItems(request,false);
+                chatForm.CreateChatItems(request, false);
             }
             chatForm.Show();
 
             //  PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);
-          //  openChatForm(request);
+            //  openChatForm(request);
             //  f = new MyChatForm(displayName, userName);
             //  f.Show();
 
