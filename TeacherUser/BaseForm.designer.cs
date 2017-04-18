@@ -183,13 +183,13 @@
             this.StudentInteractToolStripMenuItem,
             this.StopStudentInteractToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(195, 172);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(167, 160);
             // 
             // PrivateChatToolStripMenuItem
             // 
             this.PrivateChatToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("PrivateChatToolStripMenuItem.Image")));
             this.PrivateChatToolStripMenuItem.Name = "PrivateChatToolStripMenuItem";
-            this.PrivateChatToolStripMenuItem.Size = new System.Drawing.Size(194, 28);
+            this.PrivateChatToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.PrivateChatToolStripMenuItem.Text = "私聊";
             this.PrivateChatToolStripMenuItem.Click += new System.EventHandler(this.PrivateChatToolStripMenuItem_Click);
             // 
@@ -197,14 +197,14 @@
             // 
             this.ScreenLockToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("ScreenLockToolStripMenuItem1.Image")));
             this.ScreenLockToolStripMenuItem1.Name = "ScreenLockToolStripMenuItem1";
-            this.ScreenLockToolStripMenuItem1.Size = new System.Drawing.Size(194, 28);
+            this.ScreenLockToolStripMenuItem1.Size = new System.Drawing.Size(166, 26);
             this.ScreenLockToolStripMenuItem1.Text = "锁屏";
             this.ScreenLockToolStripMenuItem1.Click += new System.EventHandler(this.ScreenLockToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(194, 28);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(166, 26);
             this.toolStripMenuItem4.Text = "解锁";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
@@ -216,51 +216,52 @@
             this.允许私聊ToolStripMenuItem,
             this.允许群聊ToolStripMenuItem});
             this.权限管理ToolStripMenuItem.Name = "权限管理ToolStripMenuItem";
-            this.权限管理ToolStripMenuItem.Size = new System.Drawing.Size(194, 28);
+            this.权限管理ToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.权限管理ToolStripMenuItem.Text = "权限管理";
             // 
             // forbidPrivateChatToolStripMenuItem
             // 
             this.forbidPrivateChatToolStripMenuItem.Name = "forbidPrivateChatToolStripMenuItem";
-            this.forbidPrivateChatToolStripMenuItem.Size = new System.Drawing.Size(158, 28);
+            this.forbidPrivateChatToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
             this.forbidPrivateChatToolStripMenuItem.Text = "禁止私聊";
             // 
             // forbidGroupChatToolStripMenuItem
             // 
             this.forbidGroupChatToolStripMenuItem.Name = "forbidGroupChatToolStripMenuItem";
-            this.forbidGroupChatToolStripMenuItem.Size = new System.Drawing.Size(158, 28);
+            this.forbidGroupChatToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
             this.forbidGroupChatToolStripMenuItem.Text = "禁止群聊";
             // 
             // 允许私聊ToolStripMenuItem
             // 
             this.允许私聊ToolStripMenuItem.Name = "允许私聊ToolStripMenuItem";
-            this.允许私聊ToolStripMenuItem.Size = new System.Drawing.Size(158, 28);
+            this.允许私聊ToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
             this.允许私聊ToolStripMenuItem.Text = "允许私聊";
             // 
             // 允许群聊ToolStripMenuItem
             // 
             this.允许群聊ToolStripMenuItem.Name = "允许群聊ToolStripMenuItem";
-            this.允许群聊ToolStripMenuItem.Size = new System.Drawing.Size(158, 28);
+            this.允许群聊ToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
             this.允许群聊ToolStripMenuItem.Text = "允许群聊";
             // 
             // StudentInteractToolStripMenuItem
             // 
             this.StudentInteractToolStripMenuItem.Name = "StudentInteractToolStripMenuItem";
-            this.StudentInteractToolStripMenuItem.Size = new System.Drawing.Size(194, 28);
+            this.StudentInteractToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.StudentInteractToolStripMenuItem.Text = "学生演示";
             // 
             // StopStudentInteractToolStripMenuItem
             // 
             this.StopStudentInteractToolStripMenuItem.Name = "StopStudentInteractToolStripMenuItem";
-            this.StopStudentInteractToolStripMenuItem.Size = new System.Drawing.Size(194, 28);
+            this.StopStudentInteractToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.StopStudentInteractToolStripMenuItem.Text = "停止学生演示";
             // 
             // messageList
             // 
             this.messageList.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.messageList.Location = new System.Drawing.Point(0, 241);
+            this.messageList.Location = new System.Drawing.Point(0, 185);
+            this.messageList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.messageList.Name = "messageList";
-            this.messageList.Size = new System.Drawing.Size(1384, 309);
+            this.messageList.Size = new System.Drawing.Size(1036, 248);
             this.messageList.TabIndex = 5;
             this.messageList.Text = "";
             // 
@@ -270,18 +271,20 @@
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.skinPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(4, 165);
+            this.panel2.Location = new System.Drawing.Point(4, 138);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1588, 550);
+            this.panel2.Size = new System.Drawing.Size(1189, 433);
             this.panel2.TabIndex = 14;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.messageList);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(204, 0);
+            this.panel1.Location = new System.Drawing.Point(153, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1384, 550);
+            this.panel1.Size = new System.Drawing.Size(1036, 433);
             this.panel1.TabIndex = 9;
             // 
             // skinPanel1
@@ -294,11 +297,12 @@
             this.skinPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.skinPanel1.DownBack = null;
             this.skinPanel1.Location = new System.Drawing.Point(0, 0);
+            this.skinPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.skinPanel1.MouseBack = null;
             this.skinPanel1.Name = "skinPanel1";
             this.skinPanel1.NormlBack = null;
             this.skinPanel1.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
-            this.skinPanel1.Size = new System.Drawing.Size(204, 550);
+            this.skinPanel1.Size = new System.Drawing.Size(153, 433);
             this.skinPanel1.TabIndex = 8;
             // 
             // btnReload
@@ -309,13 +313,12 @@
             this.btnReload.DownBack = ((System.Drawing.Image)(resources.GetObject("btnReload.DownBack")));
             this.btnReload.DrawType = CCWin.SkinControl.DrawStyle.Img;
             this.btnReload.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnReload.Location = new System.Drawing.Point(117, 5);
-            this.btnReload.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReload.Location = new System.Drawing.Point(88, 4);
             this.btnReload.MouseBack = ((System.Drawing.Image)(resources.GetObject("btnReload.MouseBack")));
             this.btnReload.Name = "btnReload";
             this.btnReload.NormlBack = ((System.Drawing.Image)(resources.GetObject("btnReload.NormlBack")));
             this.btnReload.Palace = true;
-            this.btnReload.Size = new System.Drawing.Size(61, 31);
+            this.btnReload.Size = new System.Drawing.Size(46, 25);
             this.btnReload.TabIndex = 39;
             this.btnReload.Text = "刷 新";
             this.btnReload.UseVisualStyleBackColor = false;
@@ -327,11 +330,12 @@
             this.onlineList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.onlineList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.onlineList.LargeImageList = this.MenuImageList;
-            this.onlineList.Location = new System.Drawing.Point(1, 41);
+            this.onlineList.Location = new System.Drawing.Point(1, 33);
+            this.onlineList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.onlineList.Name = "onlineList";
             this.onlineList.OwnerDraw = true;
             this.onlineList.RowBackColor2 = System.Drawing.Color.White;
-            this.onlineList.Size = new System.Drawing.Size(202, 508);
+            this.onlineList.Size = new System.Drawing.Size(151, 399);
             this.onlineList.SmallImageList = this.MenuImageList;
             this.onlineList.TabIndex = 7;
             this.onlineList.UseCompatibleStateImageBehavior = false;
@@ -349,8 +353,8 @@
             this.skinLabel2.Location = new System.Drawing.Point(1, 0);
             this.skinLabel2.Margin = new System.Windows.Forms.Padding(0);
             this.skinLabel2.Name = "skinLabel2";
-            this.skinLabel2.Padding = new System.Windows.Forms.Padding(10, 5, 0, 5);
-            this.skinLabel2.Size = new System.Drawing.Size(202, 41);
+            this.skinLabel2.Padding = new System.Windows.Forms.Padding(8, 4, 0, 4);
+            this.skinLabel2.Size = new System.Drawing.Size(151, 33);
             this.skinLabel2.TabIndex = 23;
             this.skinLabel2.Text = "在线列表";
             // 
@@ -365,9 +369,10 @@
             this.panel3.Controls.Add(this.toolStripContainer1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(4, 28);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 5, 1);
-            this.panel3.Size = new System.Drawing.Size(1588, 137);
+            this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 4, 1);
+            this.panel3.Size = new System.Drawing.Size(1189, 110);
             this.panel3.TabIndex = 15;
             // 
             // toolStripContainer6
@@ -376,16 +381,17 @@
             // toolStripContainer6.ContentPanel
             // 
             this.toolStripContainer6.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStripContainer6.ContentPanel.Size = new System.Drawing.Size(16, 107);
+            this.toolStripContainer6.ContentPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.toolStripContainer6.ContentPanel.Size = new System.Drawing.Size(0, 84);
             this.toolStripContainer6.Dock = System.Windows.Forms.DockStyle.Left;
             // 
             // toolStripContainer6.LeftToolStripPanel
             // 
             this.toolStripContainer6.LeftToolStripPanel.Controls.Add(this.menuStrip7);
-            this.toolStripContainer6.Location = new System.Drawing.Point(1113, 0);
+            this.toolStripContainer6.Location = new System.Drawing.Point(834, 0);
             this.toolStripContainer6.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripContainer6.Name = "toolStripContainer6";
-            this.toolStripContainer6.Size = new System.Drawing.Size(160, 136);
+            this.toolStripContainer6.Size = new System.Drawing.Size(120, 109);
             this.toolStripContainer6.TabIndex = 9;
             this.toolStripContainer6.Text = "toolStripContainer6";
             // 
@@ -404,7 +410,7 @@
             this.menuStrip7.Location = new System.Drawing.Point(0, 0);
             this.menuStrip7.Name = "menuStrip7";
             this.menuStrip7.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.menuStrip7.Size = new System.Drawing.Size(144, 107);
+            this.menuStrip7.Size = new System.Drawing.Size(127, 84);
             this.menuStrip7.TabIndex = 0;
             this.menuStrip7.Text = "menuStrip7";
             // 
@@ -415,7 +421,7 @@
             this.UserManageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("UserManageToolStripMenuItem.Image")));
             this.UserManageToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.UserManageToolStripMenuItem.Name = "UserManageToolStripMenuItem";
-            this.UserManageToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.UserManageToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.UserManageToolStripMenuItem.Text = "账号管理";
             // 
             // ScreenRecordToolStripMenuItem
@@ -425,7 +431,7 @@
             this.ScreenRecordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ScreenRecordToolStripMenuItem.Image")));
             this.ScreenRecordToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.ScreenRecordToolStripMenuItem.Name = "ScreenRecordToolStripMenuItem";
-            this.ScreenRecordToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.ScreenRecordToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.ScreenRecordToolStripMenuItem.Text = "屏幕录制";
             // 
             // statusStrip7
@@ -439,7 +445,7 @@
             this.statusStrip7.Location = new System.Drawing.Point(0, 0);
             this.statusStrip7.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.statusStrip7.Name = "statusStrip7";
-            this.statusStrip7.Size = new System.Drawing.Size(160, 29);
+            this.statusStrip7.Size = new System.Drawing.Size(120, 25);
             this.statusStrip7.SizingGrip = false;
             this.statusStrip7.TabIndex = 0;
             // 
@@ -449,7 +455,7 @@
             this.toolStripStatusLabel9.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel9.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
-            this.toolStripStatusLabel9.Size = new System.Drawing.Size(125, 24);
+            this.toolStripStatusLabel9.Size = new System.Drawing.Size(85, 20);
             this.toolStripStatusLabel9.Spring = true;
             this.toolStripStatusLabel9.Text = "其他";
             // 
@@ -463,15 +469,17 @@
             // toolStripContainer5.ContentPanel
             // 
             this.toolStripContainer5.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStripContainer5.ContentPanel.Size = new System.Drawing.Size(16, 107);
+            this.toolStripContainer5.ContentPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.toolStripContainer5.ContentPanel.Size = new System.Drawing.Size(0, 84);
             this.toolStripContainer5.Dock = System.Windows.Forms.DockStyle.Left;
             // 
             // toolStripContainer5.LeftToolStripPanel
             // 
             this.toolStripContainer5.LeftToolStripPanel.Controls.Add(this.menuStrip5);
-            this.toolStripContainer5.Location = new System.Drawing.Point(953, 0);
+            this.toolStripContainer5.Location = new System.Drawing.Point(714, 0);
+            this.toolStripContainer5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.toolStripContainer5.Name = "toolStripContainer5";
-            this.toolStripContainer5.Size = new System.Drawing.Size(160, 136);
+            this.toolStripContainer5.Size = new System.Drawing.Size(120, 109);
             this.toolStripContainer5.TabIndex = 8;
             this.toolStripContainer5.Text = "toolStripContainer5";
             // 
@@ -489,7 +497,7 @@
             this.menuStrip5.Location = new System.Drawing.Point(0, 0);
             this.menuStrip5.Name = "menuStrip5";
             this.menuStrip5.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.menuStrip5.Size = new System.Drawing.Size(144, 107);
+            this.menuStrip5.Size = new System.Drawing.Size(127, 84);
             this.menuStrip5.TabIndex = 1;
             this.menuStrip5.Text = "menuStrip5";
             // 
@@ -501,7 +509,7 @@
             this.FileDispatchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FileDispatchToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.FileDispatchToolStripMenuItem.Name = "FileDispatchToolStripMenuItem";
-            this.FileDispatchToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.FileDispatchToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.FileDispatchToolStripMenuItem.Text = "文件分发";
             // 
             // statusStrip6
@@ -513,7 +521,7 @@
             this.toolStripStatusLabel8});
             this.statusStrip6.Location = new System.Drawing.Point(0, 0);
             this.statusStrip6.Name = "statusStrip6";
-            this.statusStrip6.Size = new System.Drawing.Size(160, 29);
+            this.statusStrip6.Size = new System.Drawing.Size(120, 25);
             this.statusStrip6.SizingGrip = false;
             this.statusStrip6.TabIndex = 0;
             // 
@@ -523,7 +531,7 @@
             this.toolStripStatusLabel8.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel8.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
-            this.toolStripStatusLabel8.Size = new System.Drawing.Size(125, 24);
+            this.toolStripStatusLabel8.Size = new System.Drawing.Size(85, 20);
             this.toolStripStatusLabel8.Spring = true;
             this.toolStripStatusLabel8.Text = "文件";
             // 
@@ -538,12 +546,11 @@
             // 
             this.toolStripContainer2.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStripContainer2.ContentPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(446, 43);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(334, 24);
             this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.toolStripContainer2.Location = new System.Drawing.Point(507, 0);
-            this.toolStripContainer2.Margin = new System.Windows.Forms.Padding(4);
+            this.toolStripContainer2.Location = new System.Drawing.Point(380, 0);
             this.toolStripContainer2.Name = "toolStripContainer2";
-            this.toolStripContainer2.Size = new System.Drawing.Size(446, 136);
+            this.toolStripContainer2.Size = new System.Drawing.Size(334, 109);
             this.toolStripContainer2.TabIndex = 7;
             this.toolStripContainer2.Text = "toolStripContainer2";
             // 
@@ -563,7 +570,7 @@
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.menuStrip2.Size = new System.Drawing.Size(446, 64);
+            this.menuStrip2.Size = new System.Drawing.Size(334, 60);
             this.menuStrip2.TabIndex = 0;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -576,7 +583,7 @@
             this.ScreenBroadcastToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ScreenBroadcastToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.ScreenBroadcastToolStripMenuItem.Name = "ScreenBroadcastToolStripMenuItem";
-            this.ScreenBroadcastToolStripMenuItem.Size = new System.Drawing.Size(94, 60);
+            this.ScreenBroadcastToolStripMenuItem.Size = new System.Drawing.Size(77, 56);
             this.ScreenBroadcastToolStripMenuItem.Text = "屏幕广播";
             this.ScreenBroadcastToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -589,7 +596,7 @@
             this.StudentOperateToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.StudentOperateToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.StudentOperateToolStripMenuItem.Name = "StudentOperateToolStripMenuItem";
-            this.StudentOperateToolStripMenuItem.Size = new System.Drawing.Size(94, 60);
+            this.StudentOperateToolStripMenuItem.Size = new System.Drawing.Size(77, 56);
             this.StudentOperateToolStripMenuItem.Text = "学生演示";
             this.StudentOperateToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -602,7 +609,7 @@
             this.VideoPlayToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.VideoPlayToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.VideoPlayToolStripMenuItem.Name = "VideoPlayToolStripMenuItem";
-            this.VideoPlayToolStripMenuItem.Size = new System.Drawing.Size(94, 60);
+            this.VideoPlayToolStripMenuItem.Size = new System.Drawing.Size(77, 56);
             this.VideoPlayToolStripMenuItem.Text = "视频直播";
             this.VideoPlayToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -615,7 +622,7 @@
             this.toolStripStatusLabel5});
             this.statusStrip3.Location = new System.Drawing.Point(0, 0);
             this.statusStrip3.Name = "statusStrip3";
-            this.statusStrip3.Size = new System.Drawing.Size(446, 29);
+            this.statusStrip3.Size = new System.Drawing.Size(334, 25);
             this.statusStrip3.SizingGrip = false;
             this.statusStrip3.TabIndex = 0;
             // 
@@ -625,7 +632,7 @@
             this.toolStripStatusLabel5.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel5.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(411, 24);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(299, 20);
             this.toolStripStatusLabel5.Spring = true;
             this.toolStripStatusLabel5.Text = "演播室";
             // 
@@ -636,15 +643,17 @@
             // 
             this.toolStripContainer3.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStripContainer3.ContentPanel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(16, 107);
+            this.toolStripContainer3.ContentPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(0, 84);
             this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Left;
             // 
             // toolStripContainer3.LeftToolStripPanel
             // 
             this.toolStripContainer3.LeftToolStripPanel.Controls.Add(this.menuStrip3);
-            this.toolStripContainer3.Location = new System.Drawing.Point(347, 0);
+            this.toolStripContainer3.Location = new System.Drawing.Point(260, 0);
+            this.toolStripContainer3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.toolStripContainer3.Name = "toolStripContainer3";
-            this.toolStripContainer3.Size = new System.Drawing.Size(160, 136);
+            this.toolStripContainer3.Size = new System.Drawing.Size(120, 109);
             this.toolStripContainer3.TabIndex = 6;
             this.toolStripContainer3.Text = "toolStripContainer3";
             // 
@@ -663,7 +672,7 @@
             this.menuStrip3.Location = new System.Drawing.Point(0, 0);
             this.menuStrip3.Name = "menuStrip3";
             this.menuStrip3.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.menuStrip3.Size = new System.Drawing.Size(144, 107);
+            this.menuStrip3.Size = new System.Drawing.Size(127, 84);
             this.menuStrip3.TabIndex = 0;
             this.menuStrip3.Text = "menuStrip3";
             // 
@@ -676,7 +685,7 @@
             this.ScreenSlientToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ScreenSlientToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.ScreenSlientToolStripMenuItem.Name = "ScreenSlientToolStripMenuItem";
-            this.ScreenSlientToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.ScreenSlientToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.ScreenSlientToolStripMenuItem.Text = "屏幕肃静";
             // 
             // RemoteControlToolStripMenuItem
@@ -690,13 +699,13 @@
             this.RemoteControlToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.RemoteControlToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.RemoteControlToolStripMenuItem.Name = "RemoteControlToolStripMenuItem";
-            this.RemoteControlToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.RemoteControlToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.RemoteControlToolStripMenuItem.Text = "远程控制";
             // 
             // MouseKeyboardMenuItem
             // 
             this.MouseKeyboardMenuItem.Name = "MouseKeyboardMenuItem";
-            this.MouseKeyboardMenuItem.Size = new System.Drawing.Size(194, 28);
+            this.MouseKeyboardMenuItem.Size = new System.Drawing.Size(162, 24);
             this.MouseKeyboardMenuItem.Text = "禁用鼠标键盘";
             // 
             // statusStrip4
@@ -708,7 +717,7 @@
             this.toolStripStatusLabel6});
             this.statusStrip4.Location = new System.Drawing.Point(0, 0);
             this.statusStrip4.Name = "statusStrip4";
-            this.statusStrip4.Size = new System.Drawing.Size(160, 29);
+            this.statusStrip4.Size = new System.Drawing.Size(120, 25);
             this.statusStrip4.SizingGrip = false;
             this.statusStrip4.TabIndex = 0;
             // 
@@ -718,7 +727,7 @@
             this.toolStripStatusLabel6.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel6.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(125, 24);
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(85, 20);
             this.toolStripStatusLabel6.Spring = true;
             this.toolStripStatusLabel6.Text = "控制";
             // 
@@ -732,15 +741,17 @@
             // toolStripContainer4.ContentPanel
             // 
             this.toolStripContainer4.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStripContainer4.ContentPanel.Size = new System.Drawing.Size(26, 107);
+            this.toolStripContainer4.ContentPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.toolStripContainer4.ContentPanel.Size = new System.Drawing.Size(3, 84);
             this.toolStripContainer4.Dock = System.Windows.Forms.DockStyle.Left;
             // 
             // toolStripContainer4.LeftToolStripPanel
             // 
             this.toolStripContainer4.LeftToolStripPanel.Controls.Add(this.menuStrip4);
-            this.toolStripContainer4.Location = new System.Drawing.Point(187, 0);
+            this.toolStripContainer4.Location = new System.Drawing.Point(140, 0);
+            this.toolStripContainer4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.toolStripContainer4.Name = "toolStripContainer4";
-            this.toolStripContainer4.Size = new System.Drawing.Size(160, 136);
+            this.toolStripContainer4.Size = new System.Drawing.Size(120, 109);
             this.toolStripContainer4.TabIndex = 5;
             this.toolStripContainer4.Text = "toolStripContainer4";
             // 
@@ -759,7 +770,7 @@
             this.menuStrip4.Location = new System.Drawing.Point(0, 0);
             this.menuStrip4.Name = "menuStrip4";
             this.menuStrip4.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.menuStrip4.Size = new System.Drawing.Size(134, 107);
+            this.menuStrip4.Size = new System.Drawing.Size(117, 84);
             this.menuStrip4.TabIndex = 0;
             this.menuStrip4.Text = "menuStrip4";
             // 
@@ -772,7 +783,7 @@
             this.TeamDiscussToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.TeamDiscussToolStripMenuItem.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.TeamDiscussToolStripMenuItem.Name = "TeamDiscussToolStripMenuItem";
-            this.TeamDiscussToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.TeamDiscussToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.TeamDiscussToolStripMenuItem.Text = "分组讨论";
             // 
             // TeamViewToolStripMenuItem
@@ -784,7 +795,7 @@
             this.TeamViewToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.TeamViewToolStripMenuItem.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.TeamViewToolStripMenuItem.Name = "TeamViewToolStripMenuItem";
-            this.TeamViewToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.TeamViewToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.TeamViewToolStripMenuItem.Text = "查看分组";
             // 
             // statusStrip5
@@ -796,7 +807,7 @@
             this.toolStripStatusLabel7});
             this.statusStrip5.Location = new System.Drawing.Point(0, 0);
             this.statusStrip5.Name = "statusStrip5";
-            this.statusStrip5.Size = new System.Drawing.Size(160, 29);
+            this.statusStrip5.Size = new System.Drawing.Size(120, 25);
             this.statusStrip5.SizingGrip = false;
             this.statusStrip5.TabIndex = 0;
             // 
@@ -806,7 +817,7 @@
             this.toolStripStatusLabel7.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel7.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
-            this.toolStripStatusLabel7.Size = new System.Drawing.Size(125, 24);
+            this.toolStripStatusLabel7.Size = new System.Drawing.Size(85, 20);
             this.toolStripStatusLabel7.Spring = true;
             this.toolStripStatusLabel7.Text = "分组";
             // 
@@ -816,8 +827,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(43, 107);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(13, 84);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Left;
             // 
             // toolStripContainer1.LeftToolStripPanel
@@ -825,13 +835,12 @@
             this.toolStripContainer1.LeftToolStripPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.menuStrip1);
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.toolStripContainer1.Name = "toolStripContainer1";
             // 
             // toolStripContainer1.RightToolStripPanel
             // 
             this.toolStripContainer1.RightToolStripPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripContainer1.Size = new System.Drawing.Size(187, 136);
+            this.toolStripContainer1.Size = new System.Drawing.Size(140, 109);
             this.toolStripContainer1.TabIndex = 2;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -851,7 +860,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(144, 107);
+            this.menuStrip1.Size = new System.Drawing.Size(127, 84);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -862,7 +871,7 @@
             this.SaveSignToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("SaveSignToolStripMenuItem.Image")));
             this.SaveSignToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.SaveSignToolStripMenuItem.Name = "SaveSignToolStripMenuItem";
-            this.SaveSignToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.SaveSignToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.SaveSignToolStripMenuItem.Text = "导出签到";
             // 
             // CallTheRollToolStripMenuItem
@@ -874,7 +883,7 @@
             this.CallTheRollToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.CallTheRollToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.CallTheRollToolStripMenuItem.Name = "CallTheRollToolStripMenuItem";
-            this.CallTheRollToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.CallTheRollToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.CallTheRollToolStripMenuItem.Text = "课堂点名";
             // 
             // GroupChatToolStripMenuItem
@@ -884,7 +893,7 @@
             this.GroupChatToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("GroupChatToolStripMenuItem.Image")));
             this.GroupChatToolStripMenuItem.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.GroupChatToolStripMenuItem.Name = "GroupChatToolStripMenuItem";
-            this.GroupChatToolStripMenuItem.Size = new System.Drawing.Size(113, 28);
+            this.GroupChatToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.GroupChatToolStripMenuItem.Text = "班级群聊";
             // 
             // statusStrip2
@@ -896,7 +905,7 @@
             this.toolStripStatusLabel4});
             this.statusStrip2.Location = new System.Drawing.Point(0, 0);
             this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(187, 29);
+            this.statusStrip2.Size = new System.Drawing.Size(140, 25);
             this.statusStrip2.SizingGrip = false;
             this.statusStrip2.TabIndex = 0;
             // 
@@ -907,7 +916,7 @@
             this.toolStripStatusLabel4.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel4.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(152, 24);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(105, 20);
             this.toolStripStatusLabel4.Spring = true;
             this.toolStripStatusLabel4.Text = "班级";
             // 
@@ -917,22 +926,24 @@
             this.skinLine1.Dock = System.Windows.Forms.DockStyle.Top;
             this.skinLine1.LineColor = System.Drawing.Color.White;
             this.skinLine1.LineHeight = 1;
-            this.skinLine1.Location = new System.Drawing.Point(4, 165);
+            this.skinLine1.Location = new System.Drawing.Point(4, 138);
+            this.skinLine1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.skinLine1.Name = "skinLine1";
-            this.skinLine1.Size = new System.Drawing.Size(1588, 10);
+            this.skinLine1.Size = new System.Drawing.Size(1189, 8);
             this.skinLine1.TabIndex = 16;
             this.skinLine1.Text = "skinLine1";
             // 
             // BaseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1596, 719);
+            this.ClientSize = new System.Drawing.Size(1197, 575);
             this.Controls.Add(this.skinLine1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(439, 406);
             this.Name = "BaseForm";
             this.ShowIcon = false;
             this.Tag = "";

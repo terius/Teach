@@ -1,4 +1,5 @@
 ﻿using Common;
+using Helper;
 using Helpers;
 using Model;
 using MyTCP;
@@ -23,8 +24,8 @@ namespace TeacherUser
         {
             this.rbTeacher.Checked = true;
             this.ContextMenuStrip = contextMenuStrip1;
-            CommonHelper.SetButtonHoverLeave(this.Login_Btn);
-            CommonHelper.SetButtonHoverLeave(this.btnExit);
+            Login_Btn.SetButtonHoverLeave();
+            btnExit.SetButtonHoverLeave();
             GlobalVariable.client = new MyTcpClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             this.textBox1.Text = "tech1";

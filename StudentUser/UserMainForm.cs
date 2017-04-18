@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using CCWin;
+using Common;
 using Helpers;
 using Model;
 using System;
@@ -6,7 +7,7 @@ using System.Windows.Forms;
 
 namespace StudentUser
 {
-    public partial class UserMainForm : Form
+    public partial class UserMainForm : CSkinBaseForm
     {
 
         Cls.UserActivityHook actHook;
@@ -17,13 +18,17 @@ namespace StudentUser
         public UserMainForm()
         {
             InitializeComponent();
+       
         }
+
+     
 
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
+        
             Text = GlobalVariable.LoginUserInfo.DisplayName;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-
+         
 
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
@@ -149,5 +154,19 @@ namespace StudentUser
         {
             StopLockScreen();
         }
+
+      
+
+        private void UserMainForm_Shown(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("ok");
+        }
+
+      
     }
 }

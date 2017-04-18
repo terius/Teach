@@ -1,13 +1,14 @@
-﻿
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace TeacherUser
+
+namespace Helper
 {
-    public class CommonHelper
+    public static class ControlExtensions
     {
-        public static void SetButtonHoverLeave(Control control)
+
+        public static void SetButtonHoverLeave(this Control control)
         {
             if (control.GetType() == typeof(Button))
             {
@@ -16,16 +17,6 @@ namespace TeacherUser
             }
         }
 
-    
-
-
-       
-
-
-    }
-
-    public static class ControlExtensions
-    {
         public static void InvokeOnUiThreadIfRequired(this Control control, Action action)
         {
             if (control.InvokeRequired)
@@ -37,6 +28,5 @@ namespace TeacherUser
                 action.Invoke();
             }
         }
-
     }
 }

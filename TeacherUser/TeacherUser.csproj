@@ -115,7 +115,6 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommonHelper.cs" />
     <Compile Include="DoSomething.cs" />
     <Compile Include="FrmCountenance.cs">
       <SubType>Form</SubType>

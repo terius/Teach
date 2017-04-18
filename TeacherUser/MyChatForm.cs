@@ -36,14 +36,18 @@ namespace TeacherUser
         {
             InitializeComponent();
             //加载表情到文本框
-        //    this.chatBoxSend.Initialize(GlobalResourceManager.EmotionDictionary);
-        //    this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
+            this.chatBoxSend.Initialize(GlobalResourceManager.EmotionDictionary);
+            this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
             _displayName = request.ChatDisplayName;
             _userName = request.ChatUserName;
             CreateChatItems(request);
-            //  lblChatName.Text = "与（" + _displayName + "）的聊天";
         }
 
+        /// <summary>
+        /// 创建聊天对象
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="isCreate"></param>
         public void CreateChatItems(AddChatRequest request, bool isCreate = true)
         {
             if (CheckItemExist(request.ChatUserName))
@@ -68,7 +72,7 @@ namespace TeacherUser
         private void AddNewChatItem(ChatType type, string userName, string displayName)
         {
             ChatItem item = new ChatItem(userName, displayName);
-            if (type == Common.ChatType.GroupChat || type == Common.ChatType.TeamChat)
+            if (type == ChatType.GroupChat || type == Common.ChatType.TeamChat)
             {
                 Chanel1_Info.Show();
                 this.Chanel1_Info.Controls.Add(item);
@@ -92,9 +96,12 @@ namespace TeacherUser
             LoadChatMessage();
         }
 
+        /// <summary>
+        /// 加载聊天历史记录
+        /// </summary>
         private void LoadChatMessage()
         {
-            chatBox_history.Text= "";
+            chatBox_history.Text = "";
             var chatStore = GlobalVariable.GetChatStore(_userName);
             if (chatStore == null)
             {
@@ -106,6 +113,11 @@ namespace TeacherUser
             }
         }
 
+        /// <summary>
+        /// 检查当前聊天对象是否存在
+        /// </summary>
+        /// <param name="chatUserName"></param>
+        /// <returns></returns>
         private bool CheckItemExist(string chatUserName)
         {
             ChatItem item;
@@ -116,7 +128,7 @@ namespace TeacherUser
                 {
                     Chanel1_Info.Show();
 
-                 //   item.ChatItem_Click(item, null);
+                    //   item.ChatItem_Click(item, null);
                     return true;
                 }
             }
@@ -128,7 +140,7 @@ namespace TeacherUser
                 {
                     Chanel2_Info.Show();
                     item.SetSelect();
-                  //  item.ChatItem_Click(item, null);
+                    //  item.ChatItem_Click(item, null);
                     return true;
                 }
             }
@@ -136,14 +148,14 @@ namespace TeacherUser
         }
         #endregion
 
-     
+
 
         #region 窗体重绘时
         private void ChatForm_Paint(object sender, PaintEventArgs e)
         {
-              Graphics g = e.Graphics;
-             g.SmoothingMode = SmoothingMode.HighQuality;
-          //  this.chatBox_history.BackColor = Color.WhiteSmoke;
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            //  this.chatBox_history.BackColor = Color.WhiteSmoke;
             ////全屏蒙浓遮罩层
             //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, 0, this.Width, this.chatBox_history.Top));
             //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, this.chatBox_history.Top, this.chatBox_history.Width + this.chatBox_history.Left, this.Height - this.chatBox_history.Top));
@@ -155,9 +167,6 @@ namespace TeacherUser
         #endregion
 
         #region 发送信息
-    
-
-
         private void SendMessage(string msg)
         {
 
@@ -174,7 +183,7 @@ namespace TeacherUser
         }
 
 
-     
+
 
         #endregion
 
@@ -201,7 +210,7 @@ namespace TeacherUser
             var color = message.SendUserName == _myUserName ? Color.SeaGreen : Color.Blue;
             this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", message.SendDisplayName, message.SendTime),
                 new Font(this.messageFont, FontStyle.Regular), color);
-           // message.Content.Text = "    " + message.Content.Text.Replace("\n", "\n    ");
+            // message.Content.Text = "    " + message.Content.Text.Replace("\n", "\n    ");
             this.chatBox_history.AppendChatBoxContent(message.Content);
             this.chatBox_history.AppendText("\n");
             this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
@@ -317,35 +326,7 @@ namespace TeacherUser
         }
         #endregion
 
-        #region 请求小黄鸡回复
-        /// <summary>
-        /// 请求小黄鸡回复
-        /// </summary>
-        /// <param name="msg"></param>
-        private void GoChat(string msg)
-        {
-            string s = string.Empty;
-            try
-            {
-                //设置Post的Data值
-                Dictionary<string, string> dr = new Dictionary<string, string>();
-                dr.Add("para", msg);
-                //请求回复-10秒超时
-                HttpWebResponse hp = HttpHelper.CreatePostHttpResponse("http://www.xiaohuangji.com/ajax.php", dr, 10000, null, Encoding.UTF8, null);
-                //输出文本
-                StreamReader sr = new StreamReader(hp.GetResponseStream(), Encoding.UTF8);
-                s = sr.ReadToEnd();
-            }
-            catch (Exception)
-            {
-                s = "AI智能回复挂了！现在时间是：" + DateTime.Now;
-            }
-            this.Invoke(new MethodInvoker(delegate
-            {
-                OnReceivedMsg(new ChatBoxContent(s, messageFont, Color.Black), null);
-            }));
-        }
-        #endregion
+
 
         #region 截图
         /// <summary>
@@ -489,9 +470,9 @@ namespace TeacherUser
         }
         #endregion
 
-    
 
-      
+
+
 
         private void Chanel_panel2_MouseClick(object sender, MouseEventArgs e)
         {
@@ -505,7 +486,7 @@ namespace TeacherUser
             }
         }
 
-       
+
 
         private void MyChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -528,10 +509,10 @@ namespace TeacherUser
             }
             SendMessage(content.Text);
             AddMessageToHistory(content);
-            var message = new ChatMessage(_myUserName,_myDisplayName, _userName, content);
+            var message = new ChatMessage(_myUserName, _myDisplayName, _userName, content);
             GlobalVariable.SaveChatMessage(message);
         }
 
-       
+
     }
 }

@@ -20,6 +20,9 @@ namespace TeacherUser.controls
             this.cp2.MouseEnter += ChatItem_MouseEnter;
             this.cp2.MouseLeave += ChatItem_MouseLeave;
             this.cp2.MouseClick += ChatItem_MouseClick;
+            this.labNewMsg.MouseEnter += ChatItem_MouseEnter;
+            this.labNewMsg.MouseLeave += ChatItem_MouseLeave;
+            this.labNewMsg.MouseClick += ChatItem_MouseClick;
         }
 
 
