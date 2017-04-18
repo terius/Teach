@@ -491,15 +491,7 @@ namespace TeacherUser
 
     
 
-        private void MyChatForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //  this.DialogResult = DialogResult.Cancel;
-        }
-
-        private void Chanel_panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+      
 
         private void Chanel_panel2_MouseClick(object sender, MouseEventArgs e)
         {
@@ -509,15 +501,11 @@ namespace TeacherUser
             }
             else
             {
-                Chanel2_Info.Height = 1080;
                 Chanel2_Info.Visible = true;
             }
         }
 
-        private void chatBoxSend_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void MyChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {

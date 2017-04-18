@@ -164,7 +164,6 @@ namespace TeacherUser
             this.chatBoxSend.Size = new System.Drawing.Size(913, 116);
             this.chatBoxSend.TabIndex = 0;
             this.chatBoxSend.Text = "";
-            this.chatBoxSend.TextChanged += new System.EventHandler(this.chatBoxSend_TextChanged);
             // 
             // skinToolStrip2
             // 
@@ -666,7 +665,6 @@ namespace TeacherUser
             this.Chanel_panel2.Name = "Chanel_panel2";
             this.Chanel_panel2.Size = new System.Drawing.Size(330, 56);
             this.Chanel_panel2.TabIndex = 0;
-            this.Chanel_panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Chanel_panel2_Paint);
             this.Chanel_panel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Chanel_panel2_MouseClick);
             // 
             // CNum2
@@ -848,7 +846,6 @@ namespace TeacherUser
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "聊天窗口";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MyChatForm_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyChatForm_FormClosed);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ChatForm_Paint);
             this.skinToolStrip2.ResumeLayout(false);
             this.skinToolStrip2.PerformLayout();
