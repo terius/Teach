@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{831C8A10-697E-4E81-9189-838DA096322A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NewTeacher</RootNamespace>
+    <AssemblyName>NewTeacher</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSkin">
+      <HintPath>..\..\..\..\dll\CSkin 4.0\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForm.designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSkinBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSkinBaseForm.designer.cs">
+      <DependentUpon>CSkinBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSkinBaseForm.resx">
+      <DependentUpon>CSkinBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{a272ae5d-90b2-4574-b479-dc37060a8862}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{eec6c97f-af42-4773-be8a-e110309f66c5}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{2e25ae3c-9dce-4cec-81f5-8b853350ab4c}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyTCP\MyTCP.csproj">
+      <Project>{ad4cd22f-e3b9-4a1f-bea6-dc373524b896}</Project>
+      <Name>MyTCP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharedForms\SharedForms.csproj">
+      <Project>{56b28b98-487b-450f-8b3a-654b668db221}</Project>
+      <Name>SharedForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_restore_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_restore_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_restore_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_min_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_min_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_min_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_max_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_max_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_max_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_close_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_close_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sysbtn_close_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShadowPalace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\set_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\night.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\morning.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_btn_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_btn_highlight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main_7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main_6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main_5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main_4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_close_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_close_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_close_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Full_close_normal.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Full_close_hover.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Full_close_down.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_norml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Mouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackPalace1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackPalace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AxInterop.AXVLC.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\allbtn_highlight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\allbtn_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aio_setting_white_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aio_setting_white_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aio_setting_white_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aio_setting_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aio_setting_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aio_setting_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aio_head_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\afternoon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -3,12 +3,13 @@ using Helper;
 using Helpers;
 using Model;
 using MyTCP;
+using SharedForms;
 using System;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TeacherUser
+namespace NewTeacher
 {
     public partial class Login : Form
     {
@@ -159,11 +160,7 @@ namespace TeacherUser
 
 
 
-        private void 服务器IPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfServerIP form = new ConfServerIP();
-            form.ShowDialog();
-        }
+       
 
         private void btnExit_Click(object sender, EventArgs e)
         {

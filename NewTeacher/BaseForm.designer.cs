@@ -1,4 +1,4 @@
-﻿namespace TeacherUser
+﻿namespace NewTeacher
 {
     partial class BaseForm
     {

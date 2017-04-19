@@ -26,7 +26,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
-namespace QQMetro.Helpers
+namespace Helpers
 {
     /// <summary>
     /// 工具类定义

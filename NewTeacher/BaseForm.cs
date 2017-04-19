@@ -2,12 +2,13 @@
 using Helper;
 using Helpers;
 using Model;
+using SharedForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace TeacherUser
+namespace NewTeacher
 {
     public partial class BaseForm : CSkinBaseForm
     {
@@ -16,8 +17,8 @@ namespace TeacherUser
         private static bool beingScreenBroadcast = false;//正在屏幕广播
         private static bool beingWatching = false;//正在查看学生端
         private string rtspAddress = null;
-        public List<MyChatForm> chatFormList = new List<MyChatForm>();
-        private MyChatForm chatForm;
+        public List<ChatForm> chatFormList = new List<ChatForm>();
+        private ChatForm chatForm;
         #endregion
 
         public BaseForm()
@@ -191,7 +192,7 @@ namespace TeacherUser
         }
 
 
-        showTipForm testForm;
+     
         private void PrivateChatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string userName = this.onlineList.SelectedItems[0].SubItems[1].Text;
@@ -213,7 +214,7 @@ namespace TeacherUser
             //testForm.Show();
             if (chatForm == null)
             {
-                chatForm = new MyChatForm(request);
+                chatForm = new ChatForm(request);
             }
             else
             {
@@ -224,7 +225,7 @@ namespace TeacherUser
 
             //  PrivateChatForm f = new PrivateChatForm(displayName, userName, GlobalVariable.client);
             //  openChatForm(request);
-            //  f = new MyChatForm(displayName, userName);
+            //  f = new ChatForm(displayName, userName);
             //  f.Show();
 
 
@@ -251,7 +252,7 @@ namespace TeacherUser
             }
             if (!isDue)
             {
-                MyChatForm chatForm = new MyChatForm(request);
+                ChatForm chatForm = new ChatForm(request);
                 chatForm.FormClosed += ChatForm_FormClosed;
                 chatForm.Name = request.ChatUserName;
                 chatFormList.Add(chatForm);
@@ -261,7 +262,7 @@ namespace TeacherUser
 
         private void ChatForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            chatFormList.Remove((MyChatForm)sender);
+            chatFormList.Remove((ChatForm)sender);
         }
 
         private void btnReload_Click(object sender, EventArgs e)

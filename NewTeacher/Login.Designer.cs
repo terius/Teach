@@ -1,4 +1,4 @@
-﻿namespace TeacherUser
+﻿namespace NewTeacher
 {
     partial class Login
     {
@@ -156,7 +156,6 @@
             this.ServerIPConf_ToolStripMenuItem.Name = "ServerIPConf_ToolStripMenuItem";
             this.ServerIPConf_ToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.ServerIPConf_ToolStripMenuItem.Text = "设置服务器IP";
-            this.ServerIPConf_ToolStripMenuItem.Click += new System.EventHandler(this.服务器IPToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
