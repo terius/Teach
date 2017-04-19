@@ -2,6 +2,7 @@
 using Helpers;
 using Model;
 using MyTCP;
+using SharedForms;
 using System;
 using System.Windows.Forms;
 
@@ -19,14 +20,14 @@ namespace StudentUser
         //  private messageListCallback messageCallback;
         private void Form2_Load(object sender, EventArgs e)
         {
-            CommonHelper.SetButtonHoverLeave(this.Login_Btn);
-            CommonHelper.SetButtonHoverLeave(this.btnExit);
+            Login_Btn.SetButtonHoverLeave();
+            btnExit.SetButtonHoverLeave();
             GlobalVariable.client = new MyTcpClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
             this.textBox1.Text = "stu" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "110";
-
+         
 
             //TestAES();
         }
@@ -109,6 +110,12 @@ namespace StudentUser
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            GlobalVariable.Num++;
+            MessageBox.Show(GlobalVariable.Num.ToString());
         }
     }
 }

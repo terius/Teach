@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 
-namespace Helper
+namespace SharedForms
 {
     public static class ControlExtensions
     {

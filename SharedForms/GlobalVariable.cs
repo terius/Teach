@@ -14,6 +14,8 @@ namespace SharedForms
 
         public static List<ChatStore> ChatList { get; set; }
 
+        public static int Num { get; set; }
+
         public static void AddNewChat(AddChatRequest request)
         {
             if (ChatList == null)

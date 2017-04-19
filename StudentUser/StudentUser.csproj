@@ -65,7 +65,6 @@
     <Compile Include="CSkinBaseForm.designer.cs">
       <DependentUpon>CSkinBaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalVariable.cs" />
     <Compile Include="UserActivityHook.cs" />
     <Compile Include="ViewRtsp.cs">
       <SubType>Form</SubType>
@@ -74,7 +73,6 @@
       <DependentUpon>ViewRtsp.cs</DependentUpon>
     </Compile>
     <Compile Include="VlcPlayerBase.cs" />
-    <Compile Include="CommonHelper.cs" />
     <Compile Include="UserMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +143,10 @@
     <ProjectReference Include="..\MyTCP\MyTCP.csproj">
       <Project>{ad4cd22f-e3b9-4a1f-bea6-dc373524b896}</Project>
       <Name>MyTCP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharedForms\SharedForms.csproj">
+      <Project>{56b28b98-487b-450f-8b3a-654b668db221}</Project>
+      <Name>SharedForms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
