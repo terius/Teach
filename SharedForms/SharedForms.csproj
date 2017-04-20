@@ -59,6 +59,7 @@
       <DependentUpon>ChatItem.cs</DependentUpon>
     </Compile>
     <Compile Include="ControlExtensions.cs" />
+    <Compile Include="FormHelper.cs" />
     <Compile Include="FrmCountenance.cs">
       <SubType>Form</SubType>
     </Compile>
