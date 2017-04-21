@@ -6,11 +6,13 @@ namespace Model
     {
         public string receivename { get; set; }
 
-        public string sendname { get; set; }
+        public string SendUserName { get; set; }
 
         public string msg { get; set; }
 
         public string guid { get; set; }
+
+        public string SendDisplayName { get; set; }
     }
 
 

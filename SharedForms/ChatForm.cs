@@ -70,26 +70,7 @@ namespace SharedForms
 
         private void AddNewChatItem(ChatType type, string userName, string displayName)
         {
-            for (int i = 0; i < 20; i++)
-            {
-
-
-                ChatItem item = new ChatItem(userName, displayName);
-                if (type == ChatType.GroupChat || type == Common.ChatType.TeamChat)
-                {
-                    Chanel1_Info.Show();
-                    this.Chanel1_Info.Controls.Add(item);
-                }
-                else
-                {
-                    Chanel2_Info.Show();
-                    this.Chanel2_Info.Controls.Add(item);
-                }
-                item.Dock = DockStyle.Top;
-                item.BringToFront();
-                item.ChatItemSelect += Item_ChatItemSelect;
-                item.SetSelect();
-            }
+        
         }
 
         private void Item_ChatItemSelect(object sender, ChatItemSelectEventArgs e)
@@ -124,30 +105,30 @@ namespace SharedForms
         /// <returns></returns>
         private bool CheckItemExist(string chatUserName)
         {
-            ChatItem item;
-            for (int i = 0; i < Chanel1_Info.Controls.Count; i++)
-            {
-                item = (ChatItem)Chanel1_Info.Controls[i];
-                if (item.UserName == chatUserName)
-                {
-                    Chanel1_Info.Show();
+            //ChatItem item;
+            //for (int i = 0; i < Chanel1_Info.Controls.Count; i++)
+            //{
+            //    item = (ChatItem)Chanel1_Info.Controls[i];
+            //    if (item.UserName == chatUserName)
+            //    {
+            //        Chanel1_Info.Show();
 
-                    //   item.ChatItem_Click(item, null);
-                    return true;
-                }
-            }
+            //        //   item.ChatItem_Click(item, null);
+            //        return true;
+            //    }
+            //}
 
-            for (int i = 0; i < Chanel2_Info.Controls.Count; i++)
-            {
-                item = (ChatItem)Chanel2_Info.Controls[i];
-                if (item.UserName == chatUserName)
-                {
-                    Chanel2_Info.Show();
-                    item.SetSelect();
-                    //  item.ChatItem_Click(item, null);
-                    return true;
-                }
-            }
+            //for (int i = 0; i < Chanel2_Info.Controls.Count; i++)
+            //{
+            //    item = (ChatItem)Chanel2_Info.Controls[i];
+            //    if (item.UserName == chatUserName)
+            //    {
+            //        Chanel2_Info.Show();
+            //        item.SetSelect();
+            //        //  item.ChatItem_Click(item, null);
+            //        return true;
+            //    }
+            //}
             return false;
         }
         #endregion
@@ -178,8 +159,8 @@ namespace SharedForms
             request.guid = Guid.NewGuid().ToString();
             request.msg = msg;
             request.receivename = _userName;
-            request.sendname = GlobalVariable.LoginUserInfo.DisplayName;
-
+            request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
+            request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
             GlobalVariable.client.Send_PrivateChat(request);
             //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
 
@@ -201,7 +182,7 @@ namespace SharedForms
         {
             ChatBoxContent content = new ChatBoxContent(response.msg, messageFont, Color.Black);
             var showTime = DateTime.Now.ToLongTimeString();
-            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", response.sendname, showTime),
+            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", response.SendDisplayName, showTime),
                 new Font(this.messageFont, FontStyle.Regular), Color.Blue);
             content.Text = "    " + content.Text.Replace("\n", "\n    ");
             this.chatBox_history.AppendChatBoxContent(content);
@@ -478,17 +459,7 @@ namespace SharedForms
 
 
 
-        private void Chanel_panel2_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (Chanel2_Info.Visible)
-            {
-                Chanel2_Info.Visible = false;
-            }
-            else
-            {
-                Chanel2_Info.Visible = true;
-            }
-        }
+       
 
 
 
@@ -520,6 +491,11 @@ namespace SharedForms
         private void chatListBox1_ClickSubItem(object sender, ChatListClickEventArgs e, MouseEventArgs es)
         {
             this.labChatTitle.Text = "与" + DateTime.Now.ToLongTimeString() +  "的对话：";
+        }
+
+        private void chatListBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

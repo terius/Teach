@@ -60,12 +60,12 @@ namespace TeacherUser
                 request.guid = Guid.NewGuid().ToString();
                 request.msg = msg;
                 request.receivename = _userName;
-                request.sendname = GlobalVariable.LoginUserInfo.DisplayName;
-               
+                request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
+                request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
                 GlobalVariable.client.Send_PrivateChat(request);
               //  GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
                 PrivateContentRtb.Text = "";
-                PrivateHistRtb.AppendText(request.sendname + " "
+                PrivateHistRtb.AppendText(request.SendDisplayName + " "
                     + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n" + request.msg + "\r\n\r\n");
             }
         }

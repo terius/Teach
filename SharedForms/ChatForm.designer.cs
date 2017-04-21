@@ -50,8 +50,10 @@ namespace SharedForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             CCWin.SkinControl.ChatListItem chatListItem1 = new CCWin.SkinControl.ChatListItem();
             CCWin.SkinControl.ChatListSubItem chatListSubItem1 = new CCWin.SkinControl.ChatListSubItem();
-            CCWin.SkinControl.ChatListSubItem chatListSubItem2 = new CCWin.SkinControl.ChatListSubItem();
             CCWin.SkinControl.ChatListItem chatListItem2 = new CCWin.SkinControl.ChatListItem();
+            CCWin.SkinControl.ChatListSubItem chatListSubItem2 = new CCWin.SkinControl.ChatListSubItem();
+            CCWin.SkinControl.ChatListSubItem chatListSubItem3 = new CCWin.SkinControl.ChatListSubItem();
+            CCWin.SkinControl.ChatListSubItem chatListSubItem4 = new CCWin.SkinControl.ChatListSubItem();
             CCWin.SkinControl.ChatListItem chatListItem3 = new CCWin.SkinControl.ChatListItem();
             this.chatBox_history = new CCWin.SkinControl.SkinChatRichTextBox();
             this.chatBoxSend = new CCWin.SkinControl.SkinChatRichTextBox();
@@ -100,26 +102,11 @@ namespace SharedForms
             this.更多设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinSplitContainer1 = new CCWin.SkinControl.SkinSplitContainer();
             this.Content_panel = new System.Windows.Forms.Panel();
-            this.Chanel3_Info = new System.Windows.Forms.Panel();
-            this.Chanel2_Info = new System.Windows.Forms.Panel();
-            this.panPrivateChat = new System.Windows.Forms.Panel();
-            this.CNum2 = new System.Windows.Forms.Label();
-            this.Chn_2 = new System.Windows.Forms.Label();
-            this.cp2 = new System.Windows.Forms.PictureBox();
-            this.Chanel1_Info = new System.Windows.Forms.Panel();
-            this.panGroupChat = new System.Windows.Forms.Panel();
-            this.CNum1 = new System.Windows.Forms.Label();
-            this.Chn_1 = new System.Windows.Forms.Label();
-            this.cp1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSend = new CCWin.SkinControl.SkinButton();
             this.btnClose = new CCWin.SkinControl.SkinButton();
             this.labChatTitle = new CCWin.SkinControl.SkinLabel();
-            this.panAllChat = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.chatListBox1 = new CCWin.SkinControl.ChatListBox();
             this.skinToolStrip2.SuspendLayout();
             this.SendMenu.SuspendLayout();
@@ -129,14 +116,8 @@ namespace SharedForms
             this.skinSplitContainer1.Panel2.SuspendLayout();
             this.skinSplitContainer1.SuspendLayout();
             this.Content_panel.SuspendLayout();
-            this.panPrivateChat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cp2)).BeginInit();
-            this.panGroupChat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cp1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panAllChat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // chatBox_history
@@ -637,156 +618,12 @@ namespace SharedForms
             this.Content_panel.AutoSize = true;
             this.Content_panel.BackColor = System.Drawing.Color.DodgerBlue;
             this.Content_panel.Controls.Add(this.chatListBox1);
-            this.Content_panel.Controls.Add(this.Chanel3_Info);
-            this.Content_panel.Controls.Add(this.Chanel2_Info);
-            this.Content_panel.Controls.Add(this.panPrivateChat);
-            this.Content_panel.Controls.Add(this.Chanel1_Info);
-            this.Content_panel.Controls.Add(this.panGroupChat);
-            this.Content_panel.Controls.Add(this.panel4);
-            this.Content_panel.Controls.Add(this.panAllChat);
             this.Content_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Content_panel.Location = new System.Drawing.Point(0, 0);
             this.Content_panel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Content_panel.Name = "Content_panel";
             this.Content_panel.Size = new System.Drawing.Size(247, 602);
             this.Content_panel.TabIndex = 5;
-            // 
-            // Chanel3_Info
-            // 
-            this.Chanel3_Info.AutoSize = true;
-            this.Chanel3_Info.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Chanel3_Info.Location = new System.Drawing.Point(0, 250);
-            this.Chanel3_Info.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Chanel3_Info.Name = "Chanel3_Info";
-            this.Chanel3_Info.Size = new System.Drawing.Size(247, 0);
-            this.Chanel3_Info.TabIndex = 0;
-            this.Chanel3_Info.Visible = false;
-            // 
-            // Chanel2_Info
-            // 
-            this.Chanel2_Info.AutoScroll = true;
-            this.Chanel2_Info.BackColor = System.Drawing.Color.White;
-            this.Chanel2_Info.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Chanel2_Info.Location = new System.Drawing.Point(0, 157);
-            this.Chanel2_Info.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Chanel2_Info.Name = "Chanel2_Info";
-            this.Chanel2_Info.Size = new System.Drawing.Size(247, 93);
-            this.Chanel2_Info.TabIndex = 0;
-            this.Chanel2_Info.Visible = false;
-            // 
-            // panPrivateChat
-            // 
-            this.panPrivateChat.BackColor = System.Drawing.Color.White;
-            this.panPrivateChat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panPrivateChat.Controls.Add(this.CNum2);
-            this.panPrivateChat.Controls.Add(this.Chn_2);
-            this.panPrivateChat.Controls.Add(this.cp2);
-            this.panPrivateChat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panPrivateChat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panPrivateChat.Location = new System.Drawing.Point(0, 112);
-            this.panPrivateChat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panPrivateChat.Name = "panPrivateChat";
-            this.panPrivateChat.Size = new System.Drawing.Size(247, 45);
-            this.panPrivateChat.TabIndex = 0;
-            this.panPrivateChat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Chanel_panel2_MouseClick);
-            // 
-            // CNum2
-            // 
-            this.CNum2.AutoSize = true;
-            this.CNum2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CNum2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.CNum2.Location = new System.Drawing.Point(94, 14);
-            this.CNum2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.CNum2.Name = "CNum2";
-            this.CNum2.Size = new System.Drawing.Size(37, 17);
-            this.CNum2.TabIndex = 3;
-            this.CNum2.Text = "[ 7.. ]";
-            this.CNum2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Chanel_panel2_MouseClick);
-            // 
-            // Chn_2
-            // 
-            this.Chn_2.AutoSize = true;
-            this.Chn_2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Chn_2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.Chn_2.Location = new System.Drawing.Point(58, 14);
-            this.Chn_2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Chn_2.Name = "Chn_2";
-            this.Chn_2.Size = new System.Drawing.Size(32, 17);
-            this.Chn_2.TabIndex = 2;
-            this.Chn_2.Text = "私聊";
-            this.Chn_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Chn_2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Chanel_panel2_MouseClick);
-            // 
-            // cp2
-            // 
-            this.cp2.Image = ((System.Drawing.Image)(resources.GetObject("cp2.Image")));
-            this.cp2.Location = new System.Drawing.Point(7, 6);
-            this.cp2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cp2.Name = "cp2";
-            this.cp2.Size = new System.Drawing.Size(47, 32);
-            this.cp2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.cp2.TabIndex = 1;
-            this.cp2.TabStop = false;
-            // 
-            // Chanel1_Info
-            // 
-            this.Chanel1_Info.BackColor = System.Drawing.Color.White;
-            this.Chanel1_Info.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Chanel1_Info.Location = new System.Drawing.Point(0, 101);
-            this.Chanel1_Info.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Chanel1_Info.Name = "Chanel1_Info";
-            this.Chanel1_Info.Size = new System.Drawing.Size(247, 11);
-            this.Chanel1_Info.TabIndex = 0;
-            // 
-            // panGroupChat
-            // 
-            this.panGroupChat.BackColor = System.Drawing.Color.White;
-            this.panGroupChat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panGroupChat.Controls.Add(this.CNum1);
-            this.panGroupChat.Controls.Add(this.Chn_1);
-            this.panGroupChat.Controls.Add(this.cp1);
-            this.panGroupChat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panGroupChat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panGroupChat.Location = new System.Drawing.Point(0, 56);
-            this.panGroupChat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panGroupChat.Name = "panGroupChat";
-            this.panGroupChat.Size = new System.Drawing.Size(247, 45);
-            this.panGroupChat.TabIndex = 0;
-            // 
-            // CNum1
-            // 
-            this.CNum1.AutoSize = true;
-            this.CNum1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CNum1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.CNum1.Location = new System.Drawing.Point(117, 14);
-            this.CNum1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.CNum1.Name = "CNum1";
-            this.CNum1.Size = new System.Drawing.Size(31, 17);
-            this.CNum1.TabIndex = 2;
-            this.CNum1.Text = "[ 3 ]";
-            // 
-            // Chn_1
-            // 
-            this.Chn_1.AutoSize = true;
-            this.Chn_1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Chn_1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.Chn_1.Location = new System.Drawing.Point(59, 14);
-            this.Chn_1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Chn_1.Name = "Chn_1";
-            this.Chn_1.Size = new System.Drawing.Size(56, 17);
-            this.Chn_1.TabIndex = 1;
-            this.Chn_1.Text = "分组讨论";
-            // 
-            // cp1
-            // 
-            this.cp1.Image = ((System.Drawing.Image)(resources.GetObject("cp1.Image")));
-            this.cp1.Location = new System.Drawing.Point(7, 7);
-            this.cp1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cp1.Name = "cp1";
-            this.cp1.Size = new System.Drawing.Size(48, 31);
-            this.cp1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.cp1.TabIndex = 0;
-            this.cp1.TabStop = false;
             // 
             // panel2
             // 
@@ -871,67 +708,20 @@ namespace SharedForms
             this.labChatTitle.TabIndex = 136;
             this.labChatTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panAllChat
-            // 
-            this.panAllChat.BackColor = System.Drawing.Color.White;
-            this.panAllChat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panAllChat.Controls.Add(this.label2);
-            this.panAllChat.Controls.Add(this.pictureBox1);
-            this.panAllChat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panAllChat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panAllChat.Location = new System.Drawing.Point(0, 0);
-            this.panAllChat.Margin = new System.Windows.Forms.Padding(2);
-            this.panAllChat.Name = "panAllChat";
-            this.panAllChat.Size = new System.Drawing.Size(247, 45);
-            this.panAllChat.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(59, 15);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "所有人";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 33);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 45);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(247, 11);
-            this.panel4.TabIndex = 2;
-            this.panel4.Visible = false;
-            // 
             // chatListBox1
             // 
             this.chatListBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.chatListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chatListBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chatListBox1.ForeColor = System.Drawing.Color.Black;
             this.chatListBox1.FriendsMobile = true;
             this.chatListBox1.ItemColor = System.Drawing.Color.White;
-            chatListItem1.Bounds = new System.Drawing.Rectangle(0, 1, 215, 133);
+            chatListItem1.Bounds = new System.Drawing.Rectangle(0, 1, 247, 79);
             chatListItem1.IsOpen = true;
             chatListItem1.IsTwinkleHide = false;
             chatListItem1.OwnerChatListBox = this.chatListBox1;
-            chatListSubItem1.Bounds = new System.Drawing.Rectangle(0, 27, 215, 53);
-            chatListSubItem1.DisplayName = "displayName";
+            chatListSubItem1.Bounds = new System.Drawing.Rectangle(0, 27, 247, 53);
+            chatListSubItem1.DisplayName = "所有人";
             chatListSubItem1.HeadImage = ((System.Drawing.Image)(resources.GetObject("chatListSubItem1.HeadImage")));
             chatListSubItem1.HeadRect = new System.Drawing.Rectangle(5, 33, 40, 40);
             chatListSubItem1.ID = ((uint)(0u));
@@ -939,65 +729,105 @@ namespace SharedForms
             chatListSubItem1.IsTwinkle = false;
             chatListSubItem1.IsTwinkleHide = false;
             chatListSubItem1.IsVip = false;
-            chatListSubItem1.NicName = "nicName";
+            chatListSubItem1.NicName = "";
             chatListSubItem1.OwnerListItem = chatListItem1;
-            chatListSubItem1.PersonalMsg = "Personal Message ...";
+            chatListSubItem1.PersonalMsg = "";
             chatListSubItem1.PlatformTypes = CCWin.SkinControl.PlatformType.PC;
             chatListSubItem1.QQShow = null;
             chatListSubItem1.Status = CCWin.SkinControl.ChatListSubItem.UserStatus.Online;
             chatListSubItem1.Tag = null;
             chatListSubItem1.TcpPort = 0;
             chatListSubItem1.UpdPort = 0;
-            chatListSubItem2.Bounds = new System.Drawing.Rectangle(0, 81, 215, 53);
-            chatListSubItem2.DisplayName = "displayName";
+            chatListItem1.SubItems.AddRange(new CCWin.SkinControl.ChatListSubItem[] {
+            chatListSubItem1});
+            chatListItem1.Tag = null;
+            chatListItem1.Text = "所有人";
+            chatListItem1.TwinkleSubItemNumber = 0;
+            chatListItem2.Bounds = new System.Drawing.Rectangle(0, 81, 247, 25);
+            chatListItem2.IsTwinkleHide = false;
+            chatListItem2.OwnerChatListBox = this.chatListBox1;
+            chatListSubItem2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            chatListSubItem2.DisplayName = "分组1";
             chatListSubItem2.HeadImage = ((System.Drawing.Image)(resources.GetObject("chatListSubItem2.HeadImage")));
-            chatListSubItem2.HeadRect = new System.Drawing.Rectangle(5, 87, 40, 40);
+            chatListSubItem2.HeadRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             chatListSubItem2.ID = ((uint)(0u));
-            chatListSubItem2.IpAddress = "192.168.1.1";
+            chatListSubItem2.IpAddress = null;
             chatListSubItem2.IsTwinkle = false;
             chatListSubItem2.IsTwinkleHide = false;
             chatListSubItem2.IsVip = false;
-            chatListSubItem2.NicName = "nicName";
-            chatListSubItem2.OwnerListItem = chatListItem1;
-            chatListSubItem2.PersonalMsg = "sdffff";
+            chatListSubItem2.NicName = "";
+            chatListSubItem2.OwnerListItem = chatListItem2;
+            chatListSubItem2.PersonalMsg = "";
             chatListSubItem2.PlatformTypes = CCWin.SkinControl.PlatformType.PC;
             chatListSubItem2.QQShow = null;
             chatListSubItem2.Status = CCWin.SkinControl.ChatListSubItem.UserStatus.Online;
             chatListSubItem2.Tag = null;
             chatListSubItem2.TcpPort = 0;
             chatListSubItem2.UpdPort = 0;
-            chatListItem1.SubItems.AddRange(new CCWin.SkinControl.ChatListSubItem[] {
-            chatListSubItem1,
-            chatListSubItem2});
-            chatListItem1.Tag = null;
-            chatListItem1.Text = "Item";
-            chatListItem1.TwinkleSubItemNumber = 0;
-            chatListItem2.Bounds = new System.Drawing.Rectangle(0, 135, 215, 25);
-            chatListItem2.IsTwinkleHide = false;
-            chatListItem2.OwnerChatListBox = this.chatListBox1;
+            chatListSubItem3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            chatListSubItem3.DisplayName = "分组2";
+            chatListSubItem3.HeadImage = ((System.Drawing.Image)(resources.GetObject("chatListSubItem3.HeadImage")));
+            chatListSubItem3.HeadRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            chatListSubItem3.ID = ((uint)(0u));
+            chatListSubItem3.IpAddress = null;
+            chatListSubItem3.IsTwinkle = false;
+            chatListSubItem3.IsTwinkleHide = false;
+            chatListSubItem3.IsVip = false;
+            chatListSubItem3.NicName = "";
+            chatListSubItem3.OwnerListItem = chatListItem2;
+            chatListSubItem3.PersonalMsg = "";
+            chatListSubItem3.PlatformTypes = CCWin.SkinControl.PlatformType.PC;
+            chatListSubItem3.QQShow = null;
+            chatListSubItem3.Status = CCWin.SkinControl.ChatListSubItem.UserStatus.Online;
+            chatListSubItem3.Tag = null;
+            chatListSubItem3.TcpPort = 0;
+            chatListSubItem3.UpdPort = 0;
+            chatListSubItem4.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            chatListSubItem4.DisplayName = "分组3";
+            chatListSubItem4.HeadImage = ((System.Drawing.Image)(resources.GetObject("chatListSubItem4.HeadImage")));
+            chatListSubItem4.HeadRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            chatListSubItem4.ID = ((uint)(0u));
+            chatListSubItem4.IpAddress = null;
+            chatListSubItem4.IsTwinkle = false;
+            chatListSubItem4.IsTwinkleHide = false;
+            chatListSubItem4.IsVip = false;
+            chatListSubItem4.NicName = "";
+            chatListSubItem4.OwnerListItem = chatListItem2;
+            chatListSubItem4.PersonalMsg = "";
+            chatListSubItem4.PlatformTypes = CCWin.SkinControl.PlatformType.PC;
+            chatListSubItem4.QQShow = null;
+            chatListSubItem4.Status = CCWin.SkinControl.ChatListSubItem.UserStatus.Online;
+            chatListSubItem4.Tag = null;
+            chatListSubItem4.TcpPort = 0;
+            chatListSubItem4.UpdPort = 0;
+            chatListItem2.SubItems.AddRange(new CCWin.SkinControl.ChatListSubItem[] {
+            chatListSubItem2,
+            chatListSubItem3,
+            chatListSubItem4});
             chatListItem2.Tag = null;
-            chatListItem2.Text = "Item";
+            chatListItem2.Text = "分组聊天";
             chatListItem2.TwinkleSubItemNumber = 0;
-            chatListItem3.Bounds = new System.Drawing.Rectangle(0, 161, 215, 25);
+            chatListItem3.Bounds = new System.Drawing.Rectangle(0, 107, 247, 25);
             chatListItem3.IsTwinkleHide = false;
             chatListItem3.OwnerChatListBox = this.chatListBox1;
             chatListItem3.Tag = null;
-            chatListItem3.Text = "Item";
+            chatListItem3.Text = "私聊";
             chatListItem3.TwinkleSubItemNumber = 0;
             this.chatListBox1.Items.AddRange(new CCWin.SkinControl.ChatListItem[] {
             chatListItem1,
             chatListItem2,
             chatListItem3});
             this.chatListBox1.ListSubItemMenu = null;
-            this.chatListBox1.Location = new System.Drawing.Point(12, 274);
+            this.chatListBox1.Location = new System.Drawing.Point(0, 0);
             this.chatListBox1.Name = "chatListBox1";
             this.chatListBox1.SelectSubItem = null;
-            this.chatListBox1.Size = new System.Drawing.Size(215, 304);
+            this.chatListBox1.Size = new System.Drawing.Size(247, 602);
             this.chatListBox1.SubItemColor = System.Drawing.Color.White;
             this.chatListBox1.SubItemMenu = null;
             this.chatListBox1.TabIndex = 3;
             this.chatListBox1.Text = "chatListBox1";
             this.chatListBox1.ClickSubItem += new CCWin.SkinControl.ChatListBox.ChatListClickEventHandler(this.chatListBox1_ClickSubItem);
+            this.chatListBox1.Click += new System.EventHandler(this.chatListBox1_Click);
             // 
             // ChatForm
             // 
@@ -1025,19 +855,9 @@ namespace SharedForms
             ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).EndInit();
             this.skinSplitContainer1.ResumeLayout(false);
             this.Content_panel.ResumeLayout(false);
-            this.Content_panel.PerformLayout();
-            this.panPrivateChat.ResumeLayout(false);
-            this.panPrivateChat.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cp2)).EndInit();
-            this.panGroupChat.ResumeLayout(false);
-            this.panGroupChat.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cp1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panAllChat.ResumeLayout(false);
-            this.panAllChat.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1090,26 +910,11 @@ namespace SharedForms
         private System.Windows.Forms.ToolStripMenuItem 更多设置ToolStripMenuItem;
         private CCWin.SkinControl.SkinSplitContainer skinSplitContainer1;
         private System.Windows.Forms.Panel Content_panel;
-        private System.Windows.Forms.Panel Chanel3_Info;
-        private System.Windows.Forms.Panel Chanel2_Info;
-        private System.Windows.Forms.Panel panPrivateChat;
-        private System.Windows.Forms.Label CNum2;
-        private System.Windows.Forms.Label Chn_2;
-        private System.Windows.Forms.PictureBox cp2;
-        private System.Windows.Forms.Panel Chanel1_Info;
-        private System.Windows.Forms.Panel panGroupChat;
-        private System.Windows.Forms.Label CNum1;
-        private System.Windows.Forms.Label Chn_1;
-        private System.Windows.Forms.PictureBox cp1;
         private CCWin.SkinControl.SkinLabel labChatTitle;
         private CCWin.SkinControl.SkinButton btnClose;
         private CCWin.SkinControl.SkinButton btnSend;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panAllChat;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private CCWin.SkinControl.ChatListBox chatListBox1;
     }
 }

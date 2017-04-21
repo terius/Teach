@@ -17,7 +17,7 @@ namespace StudentUser
         // MyTcpClient client;
         ViewRtsp videoPlayer;
         ChatForm chatForm = new ChatForm();
-        Form1 tform;
+
 
         public UserMainForm()
         {
@@ -32,7 +32,7 @@ namespace StudentUser
 
             Text = GlobalVariable.LoginUserInfo.DisplayName;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-            tform = new Form1();
+
             //  chatForm.Show();
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
@@ -78,20 +78,15 @@ namespace StudentUser
         private void AddChat(PrivateChatRequest chatResponse)
         {
             AddChatRequest request = new AddChatRequest();
-            request.ChatDisplayName = chatResponse.sendname;
+            request.ChatDisplayName = chatResponse.SendDisplayName;
             request.ChatType = ChatType.PrivateChat;
-            request.ChatUserName = chatResponse.sendname;
+            request.ChatUserName = chatResponse.SendUserName;
             GlobalVariable.AddNewChat(request);
+            chatForm.BringToFront();
+            chatForm.CreateChatItems(request, false);
+            chatForm.Show();
 
 
-            // tform.InvokeOnUiThreadIfRequired(() =>
-            //  {
-            tform.Show();
-            //chatForm.BringToFront();
-            //chatForm.CreateChatItems(request, false);
-            //chatForm.Show();
-
-            //  });
 
 
 
@@ -191,7 +186,7 @@ namespace StudentUser
 
         private void UserMainForm_Shown(object sender, EventArgs e)
         {
-         //   this.Hide();
+            //   this.Hide();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
