@@ -37,23 +37,27 @@
             // 
             // labName
             // 
-            this.labName.AutoSize = true;
+            this.labName.Dock = System.Windows.Forms.DockStyle.Left;
             this.labName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labName.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.labName.Location = new System.Drawing.Point(79, 12);
+            this.labName.ForeColor = System.Drawing.Color.Black;
+            this.labName.Location = new System.Drawing.Point(62, 0);
             this.labName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labName.Name = "labName";
-            this.labName.Size = new System.Drawing.Size(56, 17);
+            this.labName.Size = new System.Drawing.Size(83, 38);
             this.labName.TabIndex = 4;
             this.labName.Text = "当前聊天";
+            this.labName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cp2
             // 
+            this.cp2.Dock = System.Windows.Forms.DockStyle.Left;
             this.cp2.Image = ((System.Drawing.Image)(resources.GetObject("cp2.Image")));
-            this.cp2.Location = new System.Drawing.Point(38, 8);
-            this.cp2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cp2.Location = new System.Drawing.Point(0, 0);
+            this.cp2.Margin = new System.Windows.Forms.Padding(2);
             this.cp2.Name = "cp2";
-            this.cp2.Size = new System.Drawing.Size(24, 26);
+            this.cp2.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.cp2.Size = new System.Drawing.Size(62, 38);
+            this.cp2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.cp2.TabIndex = 3;
             this.cp2.TabStop = false;
             // 
@@ -61,14 +65,15 @@
             // 
             this.labNewMsg.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.Anamorphosis;
             this.labNewMsg.AutoSize = true;
-            this.labNewMsg.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.labNewMsg.BackColor = System.Drawing.Color.Red;
             this.labNewMsg.BorderColor = System.Drawing.Color.White;
-            this.labNewMsg.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labNewMsg.ForeColor = System.Drawing.Color.Red;
-            this.labNewMsg.Location = new System.Drawing.Point(175, 12);
+            this.labNewMsg.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labNewMsg.ForeColor = System.Drawing.Color.White;
+            this.labNewMsg.Location = new System.Drawing.Point(150, 9);
             this.labNewMsg.Name = "labNewMsg";
-            this.labNewMsg.Size = new System.Drawing.Size(0, 21);
+            this.labNewMsg.Size = new System.Drawing.Size(73, 20);
             this.labNewMsg.TabIndex = 5;
+            this.labNewMsg.Text = "1条新消息";
             // 
             // ChatItem
             // 
@@ -78,9 +83,9 @@
             this.Controls.Add(this.labName);
             this.Controls.Add(this.cp2);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ChatItem";
-            this.Size = new System.Drawing.Size(386, 42);
+            this.Size = new System.Drawing.Size(272, 38);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ChatItem_MouseClick);
             this.MouseEnter += new System.EventHandler(this.ChatItem_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.ChatItem_MouseLeave);

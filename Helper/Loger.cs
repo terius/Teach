@@ -39,7 +39,24 @@ namespace Helpers
         }
 
 
-
+        public static void Error(string message, Exception ex)
+        {
+            LogMessage(string.Format("\r\n【错误信息:{0}】\r\n【内部错误信息:{1}】\r\n", message, ex.ToString()),3);
+        }
+        public static void WarnFormat(string message, params object[] args)
+        {
+            LogMessage(string.Format("\r\n【错误信息:{0}】\r\n【内部错误信息:{1}】\r\n", args), 2);
+        }
+        public static void ErrorFormat(string message, params object[] args)
+        {
+            LogMessage(string.Format("\r\n【错误信息:{0}】\r\n【内部错误信息:{1}】\r\n", args), 3);
+        }
+        
+        public static void DebugFormat(string message, params object[] args)
+        {
+            LogMessage(string.Format("\r\n【错误信息:{0}】\r\n【内部错误信息:{1}】\r\n", args), 1);
+        }
+        
 
         public static void LogMessage(Exception ex, string requestString)
         {

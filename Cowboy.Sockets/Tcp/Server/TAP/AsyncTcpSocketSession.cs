@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using Cowboy.Buffer;
-using Logrila.Logging;
+using Helpers;
 
 namespace Cowboy.Sockets
 {
@@ -15,7 +15,7 @@ namespace Cowboy.Sockets
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<AsyncTcpSocketSession>();
+     //   private static readonly ILog Logger = Loger.Get<AsyncTcpSocketSession>();
         private TcpClient _tcpClient;
         private readonly AsyncTcpSocketServerConfiguration _configuration;
         private readonly ISegmentBufferManager _bufferManager;
@@ -150,7 +150,7 @@ namespace Cowboy.Sockets
                     throw new ObjectDisposedException("This tcp socket session has been disposed after connected.");
                 }
 
-                _log.DebugFormat("Session started for [{0}] on [{1}] in dispatcher [{2}] with session count [{3}].",
+                Loger.DebugFormat("Session started for [{0}] on [{1}] in dispatcher [{2}] with session count [{3}].",
                     this.RemoteEndPoint,
                     this.StartTime.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"),
                     _dispatcher.GetType().Name,
@@ -178,7 +178,7 @@ namespace Cowboy.Sockets
             catch (Exception ex)
             when (ex is TimeoutException)
             {
-                _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
                 await Close();
             }
         }
@@ -289,7 +289,7 @@ namespace Cowboy.Sockets
                     if (_configuration.SslPolicyErrorsBypassed)
                         return true;
                     else
-                        _log.ErrorFormat("Session [{0}] error occurred when validating remote certificate: [{1}], [{2}].",
+                        Loger.ErrorFormat("Session [{0}] error occurred when validating remote certificate: [{1}], [{2}].",
                             this, this.RemoteEndPoint, sslPolicyErrors);
 
                     return false;
@@ -319,7 +319,7 @@ namespace Cowboy.Sockets
             // When authentication succeeds, you must check the IsEncrypted and IsSigned properties 
             // to determine what security services are used by the SslStream. 
             // Check the IsMutuallyAuthenticated property to determine whether mutual authentication occurred.
-            _log.DebugFormat(
+            Loger.DebugFormat(
                 "Ssl Stream: SslProtocol[{0}], IsServer[{1}], IsAuthenticated[{2}], IsEncrypted[{3}], IsSigned[{4}], IsMutuallyAuthenticated[{5}], "
                 + "HashAlgorithm[{6}], HashStrength[{7}], KeyExchangeAlgorithm[{8}], KeyExchangeStrength[{9}], CipherAlgorithm[{10}], CipherStrength[{11}].",
                 sslStream.SslProtocol,
@@ -351,7 +351,7 @@ namespace Cowboy.Sockets
 
             Clean();
 
-            _log.DebugFormat("Session closed for [{0}] on [{1}] in dispatcher [{2}] with session count [{3}].",
+            Loger.DebugFormat("Session closed for [{0}] on [{1}] in dispatcher [{2}] with session count [{3}].",
                 this.RemoteEndPoint,
                 DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"),
                 _dispatcher.GetType().Name,
@@ -416,7 +416,7 @@ namespace Cowboy.Sockets
         {
             if (IsSocketTimeOut(ex))
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
                 return false;
             }
 
@@ -428,18 +428,18 @@ namespace Cowboy.Sockets
                 )
             {
                 if (ex is SocketException)
-                    _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                    Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
 
                 return false;
             }
 
-            _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
             return true;
         }
 
         private void HandleUserSideError(Exception ex)
         {
-            _log.Error(string.Format("Session [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Session [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
         }
 
         #endregion

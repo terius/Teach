@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using Cowboy.Buffer;
-using Logrila.Logging;
+using Helpers;
 
 namespace Cowboy.Sockets
 {
@@ -15,7 +15,7 @@ namespace Cowboy.Sockets
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<AsyncTcpSocketClient>();
+      //  private static readonly ILog Logger = Loger.Get<AsyncTcpSocketClient>();
         private TcpClient _tcpClient;
         private readonly IAsyncTcpSocketClientMessageDispatcher _dispatcher;
         private readonly AsyncTcpSocketClientConfiguration _configuration;
@@ -209,7 +209,7 @@ namespace Cowboy.Sockets
                     throw new InvalidOperationException("This tcp socket client is in invalid state when connected.");
                 }
 
-                _log.DebugFormat("Connected to server [{0}] with dispatcher [{1}] on [{2}].",
+                Loger.DebugFormat("Connected to server [{0}] with dispatcher [{1}] on [{2}].",
                     this.RemoteEndPoint,
                     _dispatcher.GetType().Name,
                     DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"));
@@ -240,7 +240,7 @@ namespace Cowboy.Sockets
             }
             catch (Exception ex)
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
                 throw;
             }
         }
@@ -351,7 +351,7 @@ namespace Cowboy.Sockets
                     if (_configuration.SslPolicyErrorsBypassed)
                         return true;
                     else
-                        _log.ErrorFormat("Error occurred when validating remote certificate: [{0}], [{1}].",
+                        Loger.ErrorFormat("Error occurred when validating remote certificate: [{0}], [{1}].",
                             this.RemoteEndPoint, sslPolicyErrors);
 
                     return false;
@@ -381,7 +381,8 @@ namespace Cowboy.Sockets
             // When authentication succeeds, you must check the IsEncrypted and IsSigned properties 
             // to determine what security services are used by the SslStream. 
             // Check the IsMutuallyAuthenticated property to determine whether mutual authentication occurred.
-            _log.DebugFormat(
+            //terius del 2017/04/21
+            Loger.DebugFormat(
                 "Ssl Stream: SslProtocol[{0}], IsServer[{1}], IsAuthenticated[{2}], IsEncrypted[{3}], IsSigned[{4}], IsMutuallyAuthenticated[{5}], "
                 + "HashAlgorithm[{6}], HashStrength[{7}], KeyExchangeAlgorithm[{8}], KeyExchangeStrength[{9}], CipherAlgorithm[{10}], CipherStrength[{11}].",
                 sslStream.SslProtocol,
@@ -420,7 +421,7 @@ namespace Cowboy.Sockets
 
             if (shallNotifyUserSide)
             {
-                _log.DebugFormat("Disconnected from server [{0}] with dispatcher [{1}] on [{2}].",
+                Loger.DebugFormat("Disconnected from server [{0}] with dispatcher [{1}] on [{2}].",
                     this.RemoteEndPoint,
                     _dispatcher.GetType().Name,
                     DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"));
@@ -485,7 +486,7 @@ namespace Cowboy.Sockets
         {
             if (IsSocketTimeOut(ex))
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
                 return false;
             }
 
@@ -497,18 +498,18 @@ namespace Cowboy.Sockets
                 )
             {
                 if (ex is SocketException)
-                    _log.Error(string.Format("Client [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                    Loger.Error(string.Format("Client [{0}] exception occurred, [{1}].", this, ex.Message), ex);
 
                 return false;
             }
 
-            _log.Error(string.Format("Client [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Client [{0}] exception occurred, [{1}].", this, ex.Message), ex);
             return true;
         }
 
         private void HandleUserSideError(Exception ex)
         {
-            _log.Error(string.Format("Client [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Client [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
         }
 
         #endregion

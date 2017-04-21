@@ -5,8 +5,9 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Cowboy.Buffer;
-using Logrila.Logging;
+
 using RioSharp;
+using Helpers;
 
 namespace Cowboy.Sockets.Experimental
 {
@@ -14,7 +15,7 @@ namespace Cowboy.Sockets.Experimental
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<TcpSocketRioSession>();
+      //  private static readonly ILog Logger = Loger.Get<TcpSocketRioSession>();
         private readonly object _opsLock = new object();
         private readonly TcpSocketRioServerConfiguration _configuration;
         private readonly ISegmentBufferManager _bufferManager;
@@ -135,7 +136,7 @@ namespace Cowboy.Sockets.Experimental
                     throw new ObjectDisposedException("This tcp socket session has been disposed after connected.");
                 }
 
-                _log.DebugFormat("Session started on [{0}] in dispatcher [{1}] with session count [{2}].",
+                Loger.DebugFormat("Session started on [{0}] in dispatcher [{1}] with session count [{2}].",
                     this.StartTime.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"),
                     _dispatcher.GetType().Name,
                     this.Server.SessionCount);
@@ -162,7 +163,7 @@ namespace Cowboy.Sockets.Experimental
             catch (Exception ex)
             when (ex is TimeoutException)
             {
-                _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
                 await Close();
             }
         }
@@ -241,7 +242,7 @@ namespace Cowboy.Sockets.Experimental
 
             Clean();
 
-            _log.DebugFormat("Session closed on [{0}] in dispatcher [{1}] with session count [{2}].",
+            Loger.DebugFormat("Session closed on [{0}] in dispatcher [{1}] with session count [{2}].",
                 DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"),
                 _dispatcher.GetType().Name,
                 this.Server.SessionCount - 1);
@@ -305,7 +306,7 @@ namespace Cowboy.Sockets.Experimental
         {
             if (IsSocketTimeOut(ex))
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
                 return false;
             }
 
@@ -317,18 +318,18 @@ namespace Cowboy.Sockets.Experimental
                 )
             {
                 if (ex is SocketException)
-                    _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                    Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
 
                 return false;
             }
 
-            _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
             return true;
         }
 
         private void HandleUserSideError(Exception ex)
         {
-            _log.Error(string.Format("Session [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Session [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
         }
 
         #endregion
@@ -382,7 +383,7 @@ namespace Cowboy.Sockets.Experimental
                 }
                 catch (Exception ex)
                 {
-                    _log.Error(ex.Message, ex);
+                    Loger.Error(ex.Message, ex);
                 }
             }
         }

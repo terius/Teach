@@ -9,6 +9,7 @@ namespace SharedForms
         public string UserName { get; set; }
         public delegate void ChatItemSelectHandle(object sender, ChatItemSelectEventArgs e);
         public event ChatItemSelectHandle ChatItemSelect;
+        private int newChatNumber;
         public ChatItem(string userName, string displayName)
         {
             InitializeComponent();
@@ -23,9 +24,20 @@ namespace SharedForms
             this.labNewMsg.MouseEnter += ChatItem_MouseEnter;
             this.labNewMsg.MouseLeave += ChatItem_MouseLeave;
             this.labNewMsg.MouseClick += ChatItem_MouseClick;
+            this.labNewMsg.Text = "";
         }
 
-
+        private void CheckNewChat()
+        {
+            if (this.newChatNumber <=0)
+            {
+                labNewMsg.Text = "";
+            }
+            else
+            {
+                labNewMsg.Text = newChatNumber +"新消息";
+            }
+        }
 
 
 
@@ -36,8 +48,8 @@ namespace SharedForms
             {
                 return;
             }
-            this.BackColor = System.Drawing.Color.LightGray;
-            this.labName.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(211, 219, 206);
+            // this.labName.ForeColor = System.Drawing.Color.DodgerBlue;
         }
 
         private void ChatItem_MouseLeave(object sender, System.EventArgs e)
@@ -47,6 +59,7 @@ namespace SharedForms
                 return;
             }
             this.BackColor = System.Drawing.Color.White;
+            // this.labName.ForeColor = System.Drawing.Color.DodgerBlue;
         }
 
         private void ChatItem_MouseClick(object sender, MouseEventArgs e)
@@ -67,11 +80,11 @@ namespace SharedForms
                 }
             }
 
-            this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.labName.ForeColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(211, 219, 206);
+
             this.Tag = "selected";
-
-
+            this.newChatNumber = 0;
+            CheckNewChat();
             ChatItemSelect.Invoke(this, new ChatItemSelectEventArgs(this.labName.Text, UserName));
         }
     }

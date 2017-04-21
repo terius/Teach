@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Cowboy.Buffer;
-using Logrila.Logging;
+using Helpers;
 
 namespace Cowboy.Sockets
 {
@@ -13,7 +13,7 @@ namespace Cowboy.Sockets
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<TcpSocketSaeaSession>();
+       // private static readonly ILog Logger = Loger.Get<TcpSocketSaeaSession>();
         private readonly object _opsLock = new object();
         private readonly TcpSocketSaeaServerConfiguration _configuration;
         private readonly ISegmentBufferManager _bufferManager;
@@ -186,7 +186,7 @@ namespace Cowboy.Sockets
                     throw new ObjectDisposedException("This tcp socket session has been disposed after connected.");
                 }
 
-                _log.DebugFormat("Session started for [{0}] on [{1}] in dispatcher [{2}] with session count [{3}].",
+                Loger.DebugFormat("Session started for [{0}] on [{1}] in dispatcher [{2}] with session count [{3}].",
                     this.RemoteEndPoint,
                     this.StartTime.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"),
                     _dispatcher.GetType().Name,
@@ -214,7 +214,7 @@ namespace Cowboy.Sockets
             catch (Exception ex)
             when (ex is TimeoutException)
             {
-                _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
                 await Close();
             }
         }
@@ -302,7 +302,7 @@ namespace Cowboy.Sockets
 
             Clean();
 
-            _log.DebugFormat("Session closed for [{0}] on [{1}] in dispatcher [{2}] with session count [{3}].",
+            Loger.DebugFormat("Session closed for [{0}] on [{1}] in dispatcher [{2}] with session count [{3}].",
                 this.RemoteEndPoint,
                 DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"),
                 _dispatcher.GetType().Name,
@@ -358,7 +358,7 @@ namespace Cowboy.Sockets
         {
             if (IsSocketTimeOut(ex))
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
                 return false;
             }
 
@@ -370,18 +370,18 @@ namespace Cowboy.Sockets
                 )
             {
                 if (ex is SocketException)
-                    _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                    Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
 
                 return false;
             }
 
-            _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
             return true;
         }
 
         private void HandleUserSideError(Exception ex)
         {
-            _log.Error(string.Format("Session [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Session [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
         }
 
         #endregion

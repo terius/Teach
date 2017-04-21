@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Cowboy.Buffer;
-using Logrila.Logging;
+using Helpers;
 
 namespace Cowboy.Sockets
 {
@@ -14,7 +14,7 @@ namespace Cowboy.Sockets
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<TcpSocketSession>();
+        //private static readonly ILog Logger = Loger.Get<TcpSocketSession>();
         private TcpClient _tcpClient;
         private readonly TcpSocketServerConfiguration _configuration;
         private readonly ISegmentBufferManager _bufferManager;
@@ -159,7 +159,7 @@ namespace Cowboy.Sockets
             }
             catch (Exception ex)
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
                 Close();
             }
         }
@@ -255,7 +255,7 @@ namespace Cowboy.Sockets
                     if (_configuration.SslPolicyErrorsBypassed)
                         return true;
                     else
-                        _log.ErrorFormat("Session [{0}] error occurred when validating remote certificate: [{1}], [{2}].",
+                        Loger.ErrorFormat("Session [{0}] error occurred when validating remote certificate: [{1}], [{2}].",
                             this, this.RemoteEndPoint, sslPolicyErrors);
 
                     return false;
@@ -294,7 +294,7 @@ namespace Cowboy.Sockets
             // When authentication succeeds, you must check the IsEncrypted and IsSigned properties 
             // to determine what security services are used by the SslStream. 
             // Check the IsMutuallyAuthenticated property to determine whether mutual authentication occurred.
-            _log.DebugFormat(
+            Loger.DebugFormat(
                 "Ssl Stream: SslProtocol[{0}], IsServer[{1}], IsAuthenticated[{2}], IsEncrypted[{3}], IsSigned[{4}], IsMutuallyAuthenticated[{5}], "
                 + "HashAlgorithm[{6}], HashStrength[{7}], KeyExchangeAlgorithm[{8}], KeyExchangeStrength[{9}], CipherAlgorithm[{10}], CipherStrength[{11}].",
                 sslStream.SslProtocol,
@@ -463,7 +463,7 @@ namespace Cowboy.Sockets
                 )
             {
                 if (ex is SocketException)
-                    _log.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                    Loger.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
 
                 // connection has been closed
                 Close();
@@ -476,7 +476,7 @@ namespace Cowboy.Sockets
 
         private void HandleUserSideError(Exception ex)
         {
-            _log.Error(string.Format("Session [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Session [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
         }
 
         #endregion
@@ -513,7 +513,7 @@ namespace Cowboy.Sockets
             {
                 if (IsSocketTimeOut(ex))
                 {
-                    _log.Error(ex.Message, ex);
+                    Loger.Error(ex.Message, ex);
                 }
                 else
                 {
@@ -553,7 +553,7 @@ namespace Cowboy.Sockets
             {
                 if (IsSocketTimeOut(ex))
                 {
-                    _log.Error(ex.Message, ex);
+                    Loger.Error(ex.Message, ex);
                 }
                 else
                 {
@@ -606,7 +606,7 @@ namespace Cowboy.Sockets
             {
                 if (IsSocketTimeOut(ex))
                 {
-                    _log.Error(ex.Message, ex);
+                    Loger.Error(ex.Message, ex);
                 }
                 else
                 {

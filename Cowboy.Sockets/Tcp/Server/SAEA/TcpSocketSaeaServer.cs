@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Cowboy.Buffer;
-using Logrila.Logging;
+using Helpers;
 
 namespace Cowboy.Sockets
 {
@@ -14,7 +14,7 @@ namespace Cowboy.Sockets
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<TcpSocketSaeaServer>();
+    //    private static readonly ILog Logger = Loger.Get<TcpSocketSaeaServer>();
         private static readonly byte[] EmptyArray = new byte[0];
         private readonly ConcurrentDictionary<string, TcpSocketSaeaSession> _sessions = new ConcurrentDictionary<string, TcpSocketSaeaSession>();
         private readonly TcpSocketSaeaServerConfiguration _configuration;
@@ -114,7 +114,7 @@ namespace Cowboy.Sockets
                     }
                     catch (Exception ex)
                     {
-                        _log.Error(ex.Message, ex);
+                        Loger.Error(ex.Message, ex);
                     }
                 });
             _handleSaeaPool = new SaeaPool(1024, int.MaxValue,
@@ -134,7 +134,7 @@ namespace Cowboy.Sockets
                     }
                     catch (Exception ex)
                     {
-                        _log.Error(ex.Message, ex);
+                        Loger.Error(ex.Message, ex);
                     }
                 });
             _sessionPool = new SessionPool(1024, int.MaxValue,
@@ -151,7 +151,7 @@ namespace Cowboy.Sockets
                     }
                     catch (Exception ex)
                     {
-                        _log.Error(ex.Message, ex);
+                        Loger.Error(ex.Message, ex);
                     }
                 });
         }
@@ -274,7 +274,7 @@ namespace Cowboy.Sockets
                     }
                     else
                     {
-                        _log.ErrorFormat("Error occurred when accept incoming socket [{0}].", socketError);
+                        Loger.ErrorFormat("Error occurred when accept incoming socket [{0}].", socketError);
                     }
 
                     _acceptSaeaPool.Return(saea);
@@ -283,7 +283,7 @@ namespace Cowboy.Sockets
             catch (Exception ex) when (!ShouldThrow(ex)) { }
             catch (Exception ex)
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
             }
         }
 
@@ -294,7 +294,7 @@ namespace Cowboy.Sockets
 
             if (_sessions.TryAdd(session.SessionKey, session))
             {
-                _log.DebugFormat("New session [{0}].", session);
+                Loger.DebugFormat("New session [{0}].", session);
                 try
                 {
                     await session.Start();
@@ -304,7 +304,7 @@ namespace Cowboy.Sockets
                     TcpSocketSaeaSession recycle;
                     if (_sessions.TryRemove(session.SessionKey, out recycle))
                     {
-                        _log.DebugFormat("Close session [{0}].", recycle);
+                        Loger.DebugFormat("Close session [{0}].", recycle);
                     }
                 }
             }
@@ -330,7 +330,7 @@ namespace Cowboy.Sockets
             }
             else
             {
-                _log.WarnFormat("Cannot find session [{0}].", sessionKey);
+                Loger.WarnFormat("Cannot find session [{0}].", sessionKey);
             }
         }
 
@@ -348,7 +348,7 @@ namespace Cowboy.Sockets
             }
             else
             {
-                _log.WarnFormat("Cannot find session [{0}].", session);
+                Loger.WarnFormat("Cannot find session [{0}].", session);
             }
         }
 
@@ -410,7 +410,7 @@ namespace Cowboy.Sockets
                 }
                 catch (Exception ex)
                 {
-                    _log.Error(ex.Message, ex);
+                    Loger.Error(ex.Message, ex);
                 }
             }
         }

@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Cowboy.Buffer;
-using Logrila.Logging;
+using Helpers;
 
 namespace Cowboy.Sockets
 {
@@ -13,7 +13,7 @@ namespace Cowboy.Sockets
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<TcpSocketSaeaClient>();
+        //rivate static readonly ILog Logger = Loger.Get<TcpSocketSaeaClient>();
         private static readonly byte[] EmptyArray = new byte[0];
         private readonly ITcpSocketSaeaClientMessageDispatcher _dispatcher;
         private readonly TcpSocketSaeaClientConfiguration _configuration;
@@ -144,7 +144,7 @@ namespace Cowboy.Sockets
                     }
                     catch (Exception ex)
                     {
-                        _log.Error(ex.Message, ex);
+                        Loger.Error(ex.Message, ex);
                     }
                 });
         }
@@ -227,7 +227,7 @@ namespace Cowboy.Sockets
                     throw new InvalidOperationException("This tcp socket client is in invalid state when connected.");
                 }
 
-                _log.DebugFormat("Connected to server [{0}] with dispatcher [{1}] on [{2}].",
+                Loger.DebugFormat("Connected to server [{0}] with dispatcher [{1}] on [{2}].",
                     this.RemoteEndPoint,
                     _dispatcher.GetType().Name,
                     DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"));
@@ -258,7 +258,7 @@ namespace Cowboy.Sockets
             }
             catch (Exception ex)
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
                 throw;
             }
         }
@@ -374,7 +374,7 @@ namespace Cowboy.Sockets
 
             if (shallNotifyUserSide)
             {
-                _log.DebugFormat("Disconnected from server [{0}] with dispatcher [{1}] on [{2}].",
+                Loger.DebugFormat("Disconnected from server [{0}] with dispatcher [{1}] on [{2}].",
                     this.RemoteEndPoint,
                     _dispatcher.GetType().Name,
                     DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"));
@@ -426,7 +426,7 @@ namespace Cowboy.Sockets
         {
             if (IsSocketTimeOut(ex))
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
                 return false;
             }
 
@@ -438,18 +438,18 @@ namespace Cowboy.Sockets
                 )
             {
                 if (ex is SocketException)
-                    _log.Error(string.Format("Client [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                    Loger.Error(string.Format("Client [{0}] exception occurred, [{1}].", this, ex.Message), ex);
 
                 return false;
             }
 
-            _log.Error(string.Format("Client [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Client [{0}] exception occurred, [{1}].", this, ex.Message), ex);
             return true;
         }
 
         private void HandleUserSideError(Exception ex)
         {
-            _log.Error(string.Format("Client [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
+            Loger.Error(string.Format("Client [{0}] error occurred in user side [{1}].", this, ex.Message), ex);
         }
 
         #endregion

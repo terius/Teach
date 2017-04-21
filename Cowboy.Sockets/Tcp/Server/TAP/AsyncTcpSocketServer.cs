@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Cowboy.Buffer;
-using Logrila.Logging;
+using Helpers;
 
 namespace Cowboy.Sockets
 {
@@ -14,7 +14,7 @@ namespace Cowboy.Sockets
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<AsyncTcpSocketServer>();
+      //  private static readonly ILog Logger = Loger.Get<AsyncTcpSocketServer>();
         private TcpListener _listener;
         private readonly ConcurrentDictionary<string, AsyncTcpSocketSession> _sessions = new ConcurrentDictionary<string, AsyncTcpSocketSession>();
         private readonly IAsyncTcpSocketServerMessageDispatcher _dispatcher;
@@ -191,7 +191,7 @@ namespace Cowboy.Sockets
             catch (Exception ex) when (!ShouldThrow(ex)) { }
             catch (Exception ex)
             {
-                _log.Error(ex.Message, ex);
+                Loger.Error(ex.Message, ex);
             }
         }
 
@@ -201,21 +201,21 @@ namespace Cowboy.Sockets
 
             if (_sessions.TryAdd(session.SessionKey, session))
             {
-                _log.DebugFormat("New session [{0}].", session);
+                Loger.DebugFormat("New session [{0}].", session);
                 try
                 {
                     await session.Start();
                 }
                 catch (TimeoutException ex)
                 {
-                    _log.Error(ex.Message, ex);
+                    Loger.Error(ex.Message, ex);
                 }
                 finally
                 {
                     AsyncTcpSocketSession throwAway;
                     if (_sessions.TryRemove(session.SessionKey, out throwAway))
                     {
-                        _log.DebugFormat("Close session [{0}].", throwAway);
+                        Loger.DebugFormat("Close session [{0}].", throwAway);
                     }
                 }
             }
@@ -251,7 +251,7 @@ namespace Cowboy.Sockets
             }
             else
             {
-                _log.WarnFormat("Cannot find session [{0}].", sessionKey);
+                Loger.WarnFormat("Cannot find session [{0}].", sessionKey);
             }
         }
 
@@ -269,7 +269,7 @@ namespace Cowboy.Sockets
             }
             else
             {
-                _log.WarnFormat("Cannot find session [{0}].", session);
+                Loger.WarnFormat("Cannot find session [{0}].", session);
             }
         }
 

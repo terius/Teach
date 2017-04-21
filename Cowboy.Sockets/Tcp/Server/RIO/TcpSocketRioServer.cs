@@ -7,8 +7,9 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Cowboy.Buffer;
-using Logrila.Logging;
+
 using RioSharp;
+using Helpers;
 
 namespace Cowboy.Sockets.Experimental
 {
@@ -16,7 +17,7 @@ namespace Cowboy.Sockets.Experimental
     {
         #region Fields
 
-        private static readonly ILog _log = Logger.Get<TcpSocketRioServer>();
+    //    private static readonly ILog Logger = Loger.Get<TcpSocketRioServer>();
         private static readonly byte[] EmptyArray = new byte[0];
         private readonly ConcurrentDictionary<string, TcpSocketRioSession> _sessions = new ConcurrentDictionary<string, TcpSocketRioSession>();
         private readonly TcpSocketRioServerConfiguration _configuration;
@@ -200,7 +201,7 @@ namespace Cowboy.Sockets.Experimental
 
             if (_sessions.TryAdd(session.SessionKey, session))
             {
-                _log.DebugFormat("New session [{0}].", session);
+                Loger.DebugFormat("New session [{0}].", session);
                 try
                 {
                     await session.Start();
@@ -210,7 +211,7 @@ namespace Cowboy.Sockets.Experimental
                     TcpSocketRioSession recycle;
                     if (_sessions.TryRemove(session.SessionKey, out recycle))
                     {
-                        _log.DebugFormat("Close session [{0}].", recycle);
+                        Loger.DebugFormat("Close session [{0}].", recycle);
                     }
                 }
             }
@@ -234,7 +235,7 @@ namespace Cowboy.Sockets.Experimental
             }
             else
             {
-                _log.WarnFormat("Cannot find session [{0}].", sessionKey);
+                Loger.WarnFormat("Cannot find session [{0}].", sessionKey);
             }
         }
 
@@ -252,7 +253,7 @@ namespace Cowboy.Sockets.Experimental
             }
             else
             {
-                _log.WarnFormat("Cannot find session [{0}].", session);
+                Loger.WarnFormat("Cannot find session [{0}].", session);
             }
         }
 
@@ -316,7 +317,7 @@ namespace Cowboy.Sockets.Experimental
                 }
                 catch (Exception ex)
                 {
-                    _log.Error(ex.Message, ex);
+                    Loger.Error(ex.Message, ex);
                 }
             }
         }

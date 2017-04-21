@@ -16,24 +16,24 @@ namespace StudentUser
         private delegate void DoSomething();
         // MyTcpClient client;
         ViewRtsp videoPlayer;
-        ChatForm chatForm;
-
+        ChatForm chatForm = new ChatForm();
+        Form1 tform;
 
         public UserMainForm()
         {
             InitializeComponent();
-       
+
         }
 
-     
+
 
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
-        
+
             Text = GlobalVariable.LoginUserInfo.DisplayName;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-         
-
+            tform = new Form1();
+            //  chatForm.Show();
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
             //player.SetRenderWindow((int)this.Handle);//panel
@@ -64,7 +64,11 @@ namespace StudentUser
 
                 case (int)CommandType.PrivateChat:
                     var chatResponse = JsonHelper.DeserializeObj<PrivateChatRequest>(message.DataStr);
-                    AddChat(chatResponse);
+
+                    this.InvokeOnUiThreadIfRequired(() =>
+                    {
+                        AddChat(chatResponse);
+                    });
                     break;
                 default:
                     break;
@@ -78,16 +82,21 @@ namespace StudentUser
             request.ChatType = ChatType.PrivateChat;
             request.ChatUserName = chatResponse.sendname;
             GlobalVariable.AddNewChat(request);
-            if (chatForm == null)
-            {
-                chatForm = new ChatForm(request);
-            }
-            else
-            {
-                chatForm.BringToFront();
-                chatForm.CreateChatItems(request, false);
-            }
-            chatForm.Show();
+
+
+            // tform.InvokeOnUiThreadIfRequired(() =>
+            //  {
+            tform.Show();
+            //chatForm.BringToFront();
+            //chatForm.CreateChatItems(request, false);
+            //chatForm.Show();
+
+            //  });
+
+
+
+
+
         }
 
         private void appendMsg(string msg)
@@ -96,7 +105,7 @@ namespace StudentUser
             {
                 this.Invoke(new Action(() =>
                 {
-                    this.richTextBox1.AppendText(msg+"\r\n");
+                    this.richTextBox1.AppendText(msg + "\r\n");
 
                 }));
             }
@@ -178,11 +187,11 @@ namespace StudentUser
             StopLockScreen();
         }
 
-      
+
 
         private void UserMainForm_Shown(object sender, EventArgs e)
         {
-            this.Hide();
+         //   this.Hide();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -215,9 +224,9 @@ namespace StudentUser
 
         }
 
-       private void OpenChatForm()
+        private void OpenChatForm()
         {
-            if (chatForm==null)
+            if (chatForm == null)
             {
                 MessageBox.Show("当前未有聊天对象");
                 return;
