@@ -20,6 +20,7 @@
 ********************************************************************/
 
 using CCWin;
+using SharedForms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -28,7 +29,10 @@ namespace NewTeacher
 {
     public partial class CSkinBaseForm : CCSkinMain
     {
-        
+        public bool IsMySelf(string userName)
+        {
+            return userName == GlobalVariable.LoginUserInfo.UserName;
+        }
 
         #region 无参构造
         public CSkinBaseForm() {

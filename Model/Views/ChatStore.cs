@@ -18,6 +18,8 @@ namespace Model
 
         public DateTime ChatStartTime { get; set; }
 
+        public ClientRole UserType { get; set; }
+
 
         public IList<ChatMessage> MessageList { get; set; }
     }

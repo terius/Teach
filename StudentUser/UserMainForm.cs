@@ -40,18 +40,27 @@ namespace StudentUser
             //player.LoadFile("d:\\1.mkv");//视频文件路径
         }
 
-
+        private void DoAction(Action action)
+        {
+            this.InvokeOnUiThreadIfRequired(action);
+        }
 
 
 
         private void Client_OnReveieveData(ReceieveMessage message)
         {
-            appendMsg(JsonHelper.SerializeObj(message));
+            //DoAction(() => {
+            //    this.richTextBox1.AppendText(JsonHelper.SerializeObj(message) + "\r\n");
+            //});
+           // appendMsg(JsonHelper.SerializeObj(message));
             switch (message.Action)
             {
                 case (int)CommandType.ScreenInteract:
                     ScreenInteract_Response resp = JsonHelper.DeserializeObj<ScreenInteract_Response>(message.DataStr);
-                    showViewRtsp(resp.url);
+                    ShowViewRtsp(resp.url);
+                    break;
+                case (int)CommandType.StopScreenInteract:
+                    StopRtsp();
                     break;
                 case (int)CommandType.LockScreen:
                     // LockScreenReponse lsresp = JsonHelper.DeserializeObj<LockScreenReponse>(message.DataStr);
@@ -77,55 +86,34 @@ namespace StudentUser
 
         private void AddChat(PrivateChatRequest chatResponse)
         {
-            AddChatRequest request = new AddChatRequest();
-            request.ChatDisplayName = chatResponse.SendDisplayName;
-            request.ChatType = ChatType.PrivateChat;
-            request.ChatUserName = chatResponse.SendUserName;
+            AddChatRequest request = chatResponse.ToAddChatRequest();
             GlobalVariable.AddNewChat(request);
             chatForm.BringToFront();
             chatForm.CreateChatItems(request, false);
             chatForm.Show();
-
-
-
-
-
-
-
         }
 
-        private void appendMsg(string msg)
+       
+        private void ShowViewRtsp(string rtsp)
         {
-            if (this.richTextBox1.InvokeRequired)
-            {
-                this.Invoke(new Action(() =>
-                {
-                    this.richTextBox1.AppendText(msg + "\r\n");
-
-                }));
-            }
-            else
-            {
-                this.richTextBox1.AppendText(msg + "\r\n");
-
-            }
-        }
-
-
-
-
-
-
-        private void showViewRtsp(string rtsp)
-        {
-            // throw new NotImplementedException();
-            this.Invoke(new Action(() =>
-            {
+            DoAction(() => {
                 videoPlayer = new ViewRtsp(rtsp);
                 videoPlayer.Show();
                 //  videoPlayer = f;
                 videoPlayer.startPlay();
-            }));
+            });
+        }
+
+        private void StopRtsp()
+        {
+            DoAction(() =>
+            {
+                if (videoPlayer  != null)
+                {
+                    videoPlayer.Close();
+                    videoPlayer = null;
+                }
+            });
         }
 
         /// <summary>
@@ -186,7 +174,7 @@ namespace StudentUser
 
         private void UserMainForm_Shown(object sender, EventArgs e)
         {
-            //   this.Hide();
+               this.Hide();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -196,6 +184,7 @@ namespace StudentUser
 
         private void mCloseForm_Click(object sender, EventArgs e)
         {
+          //  this.tuopan.Dispose();
             Environment.Exit(0);
         }
 

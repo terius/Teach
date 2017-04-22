@@ -22,13 +22,13 @@ namespace TeacherUser
 
             }
 
-            if (!ChatList.Any(d => d.ChatUserName == request.ChatUserName))
+            if (!ChatList.Any(d => d.ChatUserName == request.UserName))
             {
                 ChatStore info = new ChatStore();
-                info.ChatDisplayName = request.ChatDisplayName;
+                info.ChatDisplayName = request.DisplayName;
                 info.ChatStartTime = DateTime.Now;
                 info.ChatType = request.ChatType;
-                info.ChatUserName = request.ChatUserName;
+                info.ChatUserName = request.UserName;
                 info.MessageList = new List<ChatMessage>();
                 ChatList.Add(info);
             }

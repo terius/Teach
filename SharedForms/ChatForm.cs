@@ -15,25 +15,25 @@ namespace SharedForms
         /// <summary>
         /// 文本格式
         /// </summary>
-        private Font messageFont = new Font("微软雅黑", 9);
-        string _displayName;
-        string _userName;
+        Font messageFont = new Font("微软雅黑", 9);
+        Color messageColor = Color.FromArgb(255, 32, 32, 32);
         string _myDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
         string _myUserName = GlobalVariable.LoginUserInfo.UserName;
+        ChatListSubItem selectedSubItem;
         #endregion
 
         #region 无参构造
-        public ChatForm(AddChatRequest request)
-        {
-            InitializeComponent();
-            //加载表情到文本框
-            this.chatBoxSend.Initialize(GlobalResourceManager.EmotionDictionary);
-            this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
-            _displayName = request.ChatDisplayName;
-            _userName = request.ChatUserName;
-            CreateChatItems(request);
-          
-        }
+        //public ChatForm(AddChatRequest request)
+        //{
+        //    InitializeComponent();
+        //    //加载表情到文本框
+        //    this.chatBoxSend.Initialize(GlobalResourceManager.EmotionDictionary);
+        //    this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
+        //    //  _displayName = request.ChatDisplayName;
+        //    //  _userName = request.ChatUserName;
+        //    CreateChatItems(request);
+
+        //}
 
         public ChatForm()
         {
@@ -49,53 +49,21 @@ namespace SharedForms
         /// <param name="isCreate"></param>
         public void CreateChatItems(AddChatRequest request, bool isCreate = true)
         {
-            if (CheckItemExist(request.ChatUserName))
+            if (CheckItemExist(request))
             {
                 return;
             }
-            if (isCreate)
-            {
-                foreach (ChatStore chat in GlobalVariable.ChatList)
-                {
-                    AddNewChatItem(chat.ChatType, chat.ChatUserName, chat.ChatDisplayName);
-                }
-            }
-            else
-            {
-                AddNewChatItem(request.ChatType, request.ChatUserName, request.ChatDisplayName);
-            }
-        }
-
-
-
-        private void AddNewChatItem(ChatType type, string userName, string displayName)
-        {
-        
-        }
-
-        private void Item_ChatItemSelect(object sender, ChatItemSelectEventArgs e)
-        {
-            _displayName = e.DisplayName;
-            _userName = e.UserName;
-            this.labChatTitle.Text = "与" + e.DisplayName + "的对话：";
-            LoadChatMessage();
-        }
-
-        /// <summary>
-        /// 加载聊天历史记录
-        /// </summary>
-        private void LoadChatMessage()
-        {
-            chatBox_history.Text = "";
-            var chatStore = GlobalVariable.GetChatStore(_userName);
-            if (chatStore == null)
-            {
-                return;
-            }
-            foreach (ChatMessage message in chatStore.MessageList)
-            {
-                AppendHistoryMessage(message);
-            }
+            //if (isCreate)
+            //{
+            //    foreach (ChatStore chat in GlobalVariable.ChatList)
+            //    {
+            //        AddNewChatItem(request);
+            //    }
+            //}
+            //else
+            //{
+            AddNewChatItem(request);
+            // }
         }
 
         /// <summary>
@@ -103,33 +71,101 @@ namespace SharedForms
         /// </summary>
         /// <param name="chatUserName"></param>
         /// <returns></returns>
-        private bool CheckItemExist(string chatUserName)
+        private bool CheckItemExist(AddChatRequest request)
         {
-            //ChatItem item;
-            //for (int i = 0; i < Chanel1_Info.Controls.Count; i++)
-            //{
-            //    item = (ChatItem)Chanel1_Info.Controls[i];
-            //    if (item.UserName == chatUserName)
-            //    {
-            //        Chanel1_Info.Show();
+            ChatListItem item = GetChatItem(request.ChatType);
+            if (item != null)
+            {
+                foreach (ChatListSubItem subItem in item.SubItems)
+                {
+                    if (subItem.Tag.ToString() == request.UserName)
+                    {
+                        DoSubItemSelectedEvent(subItem);
+                        AppendReceieveMessage(request);
+                        return true;
+                    }
+                }
+            }
 
-            //        //   item.ChatItem_Click(item, null);
-            //        return true;
-            //    }
-            //}
-
-            //for (int i = 0; i < Chanel2_Info.Controls.Count; i++)
-            //{
-            //    item = (ChatItem)Chanel2_Info.Controls[i];
-            //    if (item.UserName == chatUserName)
-            //    {
-            //        Chanel2_Info.Show();
-            //        item.SetSelect();
-            //        //  item.ChatItem_Click(item, null);
-            //        return true;
-            //    }
-            //}
             return false;
+        }
+
+        /// <summary>
+        ///新增收到信息
+        /// </summary>
+        /// <param name="request"></param>
+        private void AppendReceieveMessage(AddChatRequest request)
+        {
+            
+        }
+
+        private void AddNewChatItem(AddChatRequest request)
+        {
+            ChatListItem item = GetChatItem(request.ChatType);
+
+            ChatItem2 subItem = new ChatItem2(item, request);
+            DoSubItemSelectedEvent(subItem);
+        }
+
+        private ChatListItem GetChatItem(ChatType type)
+        {
+            ChatListItem item = null;
+            switch (type)
+            {
+                case ChatType.PrivateChat:
+                    item = chatListBox1.Items[2];
+                    break;
+                case ChatType.GroupChat:
+                    item = chatListBox1.Items[0];
+                    break;
+                case ChatType.TeamChat:
+                    item = chatListBox1.Items[1];
+                    break;
+                default:
+                    break;
+            }
+            return item;
+        }
+
+
+
+      
+
+
+
+
+        private void DoSubItemSelectedEvent(ChatListSubItem subItem)
+        {
+            selectedSubItem = subItem;
+            subItem.OwnerListItem.IsOpen = true;
+            ChatListClickEventArgs ce = new ChatListClickEventArgs(subItem);
+
+            MouseEventArgs ms = new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1);
+            chatListBox1_ClickSubItem(chatListBox1, ce, ms);
+            chatListBox1.SelectSubItem = subItem;
+           
+        }
+
+        /// <summary>
+        /// 加载聊天历史记录
+        /// </summary>
+        private void LoadChatMessage(string userName)
+        {
+
+            chatBox_history.Text = "";
+            var chatStore = GlobalVariable.GetChatStore(userName);
+            if (chatStore == null)
+            {
+                return;
+            }
+            chatBox_history.Text = "";
+            foreach (ChatMessage message in chatStore.MessageList)
+            {
+                AppendMessage(message, false);
+            }
+
+            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+            this.chatBox_history.ScrollToCaret();
         }
         #endregion
 
@@ -152,13 +188,13 @@ namespace SharedForms
         #endregion
 
         #region 发送信息
-        private void SendMessage(string msg)
+        private void SendMessageCommand(string receieveUserName, string msg)
         {
 
             PrivateChatRequest request = new PrivateChatRequest();
             request.guid = Guid.NewGuid().ToString();
             request.msg = msg;
-            request.receivename = _userName;
+            request.receivename = receieveUserName;
             request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
             request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
             GlobalVariable.client.Send_PrivateChat(request);
@@ -190,36 +226,20 @@ namespace SharedForms
             this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
             this.chatBox_history.ScrollToCaret();
         }
-        public void AppendHistoryMessage(ChatMessage message)
-        {
-            var color = message.SendUserName == _myUserName ? Color.SeaGreen : Color.Blue;
-            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", message.SendDisplayName, message.SendTime),
-                new Font(this.messageFont, FontStyle.Regular), color);
-            // message.Content.Text = "    " + message.Content.Text.Replace("\n", "\n    ");
-            this.chatBox_history.AppendChatBoxContent(message.Content);
-            this.chatBox_history.AppendText("\n");
-            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            this.chatBox_history.ScrollToCaret();
-        }
+        //public void AppendHistoryMessage(ChatMessage message)
+        //{
+        //    var color = message.SendUserName == _myUserName ? Color.SeaGreen : Color.Blue;
+        //    this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", message.SendDisplayName, message.SendTime),
+        //        new Font(this.messageFont, FontStyle.Regular), color);
+        //    // message.Content.Text = "    " + message.Content.Text.Replace("\n", "\n    ");
+        //    this.chatBox_history.AppendChatBoxContent(message.Content);
+        //    this.chatBox_history.AppendText("\n");
+        //    this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+        //    this.chatBox_history.ScrollToCaret();
+        //}
 
 
-        private void AddMessageToHistory(ChatBoxContent content)
-        {
 
-            var showTime = DateTime.Now.ToLongTimeString();
-            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", _myDisplayName, showTime),
-                new Font(this.messageFont, FontStyle.Regular), Color.SeaGreen);
-
-            content.Text = "    " + content.Text.Replace("\n", "\n    ");
-            this.chatBox_history.AppendChatBoxContent(content);
-            this.chatBox_history.AppendText("\n");
-            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            this.chatBox_history.ScrollToCaret();
-
-            //清空发送输入框
-            this.chatBoxSend.Text = string.Empty;
-            this.chatBoxSend.Focus();
-        }
 
         #endregion
 
@@ -276,32 +296,32 @@ namespace SharedForms
             this.chatBox_history.ScrollToCaret();
         }
 
-        /// <summary>
-        /// 发送信息文本到内容框
-        /// </summary>
-        /// <param name="userName">名称</param>
-        /// <param name="color">字体颜色</param>
-        /// <param name="msg">信息</param>
-        private void AppendMessage(string userName, Color color, string msg)
-        {
-            DateTime showTime = DateTime.Now;
-            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", userName, showTime.ToLongTimeString()), new Font(this.messageFont, FontStyle.Regular), color);
-            this.chatBox_history.AppendText("    ");
+        ///// <summary>
+        ///// 发送信息文本到内容框
+        ///// </summary>
+        ///// <param name="userName">名称</param>
+        ///// <param name="color">字体颜色</param>
+        ///// <param name="msg">信息</param>
+        //private void AppendMessage(string userName, Color color, string msg)
+        //{
+        //    DateTime showTime = DateTime.Now;
+        //    this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", userName, showTime.ToLongTimeString()), new Font(this.messageFont, FontStyle.Regular), color);
+        //    this.chatBox_history.AppendText("    ");
 
-            this.chatBox_history.AppendText(msg);
-            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            this.chatBox_history.ScrollToCaret();
-        }
+        //    this.chatBox_history.AppendText(msg);
+        //    this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+        //    this.chatBox_history.ScrollToCaret();
+        //}
 
-        /// <summary>
-        /// 发送系统消息
-        /// </summary>
-        /// <param name="msg">信息</param>
-        public void AppendSysMessage(string msg)
-        {
-            this.AppendMessage("系统", Color.Gray, msg);
-            this.chatBox_history.AppendText("\n");
-        }
+        ///// <summary>
+        ///// 发送系统消息
+        ///// </summary>
+        ///// <param name="msg">信息</param>
+        //public void AppendSysMessage(string msg)
+        //{
+        //    this.AppendMessage("系统", Color.Gray, msg);
+        //    this.chatBox_history.AppendText("\n");
+        //}
         #endregion
 
         #region 退出当前聊天
@@ -384,14 +404,6 @@ namespace SharedForms
         }
         #endregion
 
-        #region 震动按钮事件
-        private void toolZhenDong_Click(object sender, EventArgs e)
-        {
-            this.AppendMessage("乔克斯", Color.Green, "您发送了一个抖动提醒。\n");
-            this.chatBoxSend.Focus();
-            Vibration();
-        }
-        #endregion
 
         #region 震动方法
         //震动方法
@@ -459,7 +471,7 @@ namespace SharedForms
 
 
 
-       
+
 
 
 
@@ -482,15 +494,44 @@ namespace SharedForms
             {
                 return;
             }
-            SendMessage(content.Text);
-            AddMessageToHistory(content);
-            var message = new ChatMessage(_myUserName, _myDisplayName, _userName, content);
-            GlobalVariable.SaveChatMessage(message);
+         
+            string userName = chatListBox1.SelectSubItem.Tag.ToString();
+            SendMessageCommand(userName, content.Text);
+            var message = new ChatMessage(_myUserName, _myDisplayName, userName, content);
+            AppendMessage(message, true);
+            GlobalVariable.SaveChatMessage(message,true);
+        }
+
+
+      
+
+        private void AppendMessage(ChatMessage chatMessage, bool isInput)
+        {
+            var color = chatMessage.SendUserName == _myUserName ? Color.SeaGreen : Color.Blue;
+            var showTime = chatMessage.SendTime.ToString("yyyy-MM-dd HH:mm:ss");
+            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n",
+                chatMessage.SendDisplayName, showTime),
+                new Font(this.messageFont, FontStyle.Regular), color);
+            this.chatBox_history.AppendChatBoxContent(chatMessage.Content);
+            this.chatBox_history.AppendText("\n");
+         
+
+            if (isInput)
+            {
+                this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+                this.chatBox_history.ScrollToCaret();
+                //清空发送输入框
+                this.chatBoxSend.Text = string.Empty;
+                this.chatBoxSend.Focus();
+            }
         }
 
         private void chatListBox1_ClickSubItem(object sender, ChatListClickEventArgs e, MouseEventArgs es)
         {
-            this.labChatTitle.Text = "与" + DateTime.Now.ToLongTimeString() +  "的对话：";
+           
+            // MessageBox.Show(e.SelectSubItem.DisplayName);
+            this.labChatTitle.Text = "与" + e.SelectSubItem.DisplayName + "的对话：";
+            LoadChatMessage(e.SelectSubItem.Tag.ToString());
         }
 
         private void chatListBox1_Click(object sender, EventArgs e)

@@ -6,10 +6,12 @@
         UserLoginRes = 2,
         OnlineList = 3,
         ScreenInteract = 7,
+        StopScreenInteract = 8,
         LockScreen = 11,
         StopLockScreen = 12,
         PrivateChat = 13,
-        GroupChat = 14
+        GroupChat = 14,
+        OneUserLogIn = 17
     }
 
     /// <summary>

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using MyTCP;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading;
-using MyTCP;
 
 namespace StudentUser
 {
@@ -16,10 +10,10 @@ namespace StudentUser
         private VlcPlayer player = null;
         //private string playAddress = null;
         public string playAddress = null;
-       // private TcpConnectJson.ScreenMonitor screenmonitor;
+        // private TcpConnectJson.ScreenMonitor screenmonitor;
         private string ip = "";
         private int port = 0;
-       
+
 
         //public ViewRtsp(string IP,int Port)
         //{
@@ -35,14 +29,14 @@ namespace StudentUser
             InitializeComponent();
             this.playAddress = rtspAddress;
             player = new VlcPlayer(this.axVLCPlugin21);
-           //this.MaximumSize = new Size(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height); 
-  
-       }
+            this.MaximumSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+
+        }
 
         private void ViewRtsp_Load(object sender, EventArgs e)
         {
-           // this.timer1.Enabled = true;
-           // this.timer1.Enabled = true
+            // this.timer1.Enabled = true;
+            // this.timer1.Enabled = true
             /*
             if (this.player != null && playAddress != null)
             {
@@ -67,7 +61,7 @@ namespace StudentUser
                 if (m.WParam.ToInt32() == SC_MAXIMIZE) //是否点击最大化
                 {
                     //MessageBox.Show("最大化");
-                   this.FormBorderStyle = FormBorderStyle.None;
+                    this.FormBorderStyle = FormBorderStyle.None;
 
                     this.WindowState = FormWindowState.Maximized;
                 }
@@ -102,7 +96,7 @@ namespace StudentUser
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Normal||this.WindowState==FormWindowState.Maximized)
+            if (this.WindowState == FormWindowState.Normal || this.WindowState == FormWindowState.Maximized)
             {
                 if (this.player != null && playAddress != null)
                 {
@@ -110,7 +104,7 @@ namespace StudentUser
                 }
             }
         }
-//按下ESC键，退出全屏
+        //按下ESC键，退出全屏
         private void ViewRtsp_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -120,6 +114,6 @@ namespace StudentUser
             }
         }
 
-       
+
     }
 }

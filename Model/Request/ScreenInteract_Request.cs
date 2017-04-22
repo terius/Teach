@@ -5,5 +5,8 @@
         public string url { get; set; }
     }
 
-   
+    public class StopScreenInteractRequest
+    {
+      
+    }
 }

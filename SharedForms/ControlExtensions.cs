@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common;
+using Model;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -29,7 +31,16 @@ namespace SharedForms
             }
         }
 
+        public static AddChatRequest ToAddChatRequest(this PrivateChatRequest response)
+        {
+            AddChatRequest request = new AddChatRequest();
+            request.UserName = response.SendUserName;
+            request.DisplayName = response.SendDisplayName;
+            request.ChatType = ChatType.PrivateChat;
+            request.Message = response.msg;
+            request.UserType = response.clientRole;
+            return request;
+        }
 
-      
     }
 }

@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="afternoon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\afternoon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="aio_head_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\aio_head_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,12 +148,6 @@
   <data name="AxInterop_AXVLC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\AxInterop.AXVLC.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="BackPalace" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\BackPalace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BackPalace1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\BackPalace1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btn_Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\btn_Down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -165,15 +156,6 @@
   </data>
   <data name="btn_norml" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\btn_norml.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Full_close_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Full_close_down.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Full_close_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Full_close_hover.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Full_close_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Full_close_normal.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_close_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\icon_close_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,41 +175,11 @@
   <data name="lt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\lt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="main_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\main_1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="main_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\main_2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="main_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\main_3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="main_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\main_4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="main_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\main_5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="main_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\main_6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="main_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\main_7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="menu_btn_highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\menu_btn_highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="menu_btn_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\menu_btn_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="morning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\morning.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="night" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\night.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="noon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\noon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\rb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -280,7 +232,16 @@
   <data name="sysbtn_restore_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\sysbtn_restore_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="学生" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\学生.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="所有人" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\所有人.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="群聊__3_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\群聊 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="老师" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\老师.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

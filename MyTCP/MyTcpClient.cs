@@ -47,6 +47,16 @@ namespace MyTCP
             _screenInteract = new ScreenInteract(serverIP, localIP, localPort);
         }
 
+        public void StopScreenInteract()
+        {
+            if (_screenInteract == null)
+            {
+                return;
+            }
+            _screenInteract.stopScreenInteract();
+        }
+
+
         public async Task SendMessage<T>(SendMessage<T> message) where T : class, new()
         {
 
@@ -113,6 +123,19 @@ namespace MyTCP
             SendMessage<ScreenInteract_Request> message = new SendMessage<ScreenInteract_Request>();
             message.Action = (int)CommandType.ScreenInteract;
             message.Data = new ScreenInteract_Request { url = rtspAddress };
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
+
+        public void Send_StopScreenInteract()
+        {
+           
+            SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
+            message.Action = (int)CommandType.StopScreenInteract;
+            message.Data = new StopLockScreenRequest();
             Task.Run(async () =>
             {
                 await this.SendMessage(message);

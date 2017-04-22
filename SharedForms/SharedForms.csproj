@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin">
-      <HintPath>..\..\..\..\dll\CSkin 4.0\CSkin.dll</HintPath>
+      <HintPath>..\..\..\..\dll\CSkin 16.1.14.2\CSkin 4.0\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,6 +59,7 @@
     <Compile Include="ChatItem.Designer.cs">
       <DependentUpon>ChatItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChatItem2.cs" />
     <Compile Include="ControlExtensions.cs" />
     <Compile Include="FormHelper.cs" />
     <Compile Include="FrmCountenance.cs">
@@ -272,6 +274,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\main_7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\群聊 %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\所有人.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\学生.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\老师.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
