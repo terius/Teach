@@ -47,7 +47,9 @@
     <Compile Include="Request\LockScreenRequest.cs" />
     <Compile Include="Request\GroupChatRequest.cs" />
     <Compile Include="Request\PrivateChatRequest.cs" />
+    <Compile Include="Request\QuietRequest.cs" />
     <Compile Include="Response\LockScreenReponse.cs" />
+    <Compile Include="Response\QuietResponse.cs" />
     <Compile Include="Response\ScreenInteract_Response.cs" />
     <Compile Include="Response\OnlineListResult.cs" />
     <Compile Include="Request\ScreenInteract_Request.cs" />

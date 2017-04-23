@@ -2,16 +2,13 @@
 using Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
     public class ChatStore
     {
         public ChatType ChatType { get; set; }
-      
+
         public string ChatUserName { get; set; }
 
         public string ChatDisplayName { get; set; }
@@ -19,9 +16,41 @@ namespace Model
         public DateTime ChatStartTime { get; set; }
 
         public ClientRole UserType { get; set; }
+        private IList<TeamMember> teamMembers;
+
+
 
 
         public IList<ChatMessage> MessageList { get; set; }
+
+
+        public IList<ChatMessage> NewMessageList { get; set; }
+
+        public ChatBoxContent HistoryContent { get; set; }
+
+        public IList<TeamMember> TeamMembers
+        {
+            get
+            {
+                if (teamMembers == null)
+                {
+                    teamMembers = new List<TeamMember>();
+                }
+                return teamMembers;
+            }
+
+            set
+            {
+                teamMembers = value;
+            }
+        }
+    }
+
+
+    public class TeamMember
+    {
+        public string DisplayName { get; set; }
+        public string UserName { get; set; }
     }
 
     public class ChatMessage
@@ -36,7 +65,7 @@ namespace Model
 
         public string Message { get; set; }
 
-        public  ChatBoxContent Content { get; set; }
+        public ChatBoxContent Content { get; set; }
 
 
         public ChatMessage(string _sendUserName,

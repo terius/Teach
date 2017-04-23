@@ -35,7 +35,7 @@ namespace NewTeacher
                         Application.Run(new BaseForm());
                     }
 
-                   // Application.Run(new CskinForm());
+                    //   Application.Run(new Form1());
                 }
                 else
                 {

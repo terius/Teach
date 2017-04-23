@@ -1,9 +1,11 @@
 ﻿using Common;
 using Cowboy.Sockets;
+using DirectShowLib;
 using Helpers;
 using Model;
 using System;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MyTCP
@@ -32,6 +34,34 @@ namespace MyTCP
 
 
 
+        }
+
+        public async Task Close()
+        {
+            StopScreenInteract();
+            if (_client == null)
+            {
+                await Task.CompletedTask;
+            }
+            if (_client.State == TcpSocketConnectionState.Connected || _client.State == TcpSocketConnectionState.Connecting)
+            {
+                await _client.Close();
+            }
+
+
+
+        }
+
+
+        public string GetAudioName()
+        {
+            DsDevice[] audioRenderers;
+            audioRenderers = DsDevice.GetDevicesOfCat(FilterCategory.AudioRendererCategory);
+            foreach (DsDevice device in audioRenderers)
+            {
+                Loger.LogMessage(JsonHelper.SerializeObj(device));
+            }
+            return "";
         }
 
         private void MessageDue_OnReceieveMessage(ReceieveMessage message)
@@ -80,7 +110,7 @@ namespace MyTCP
         //    return _instance;
         //}
         #region 发送命令
-        public async Task Send_UserLogin(string userName,string nickName, string password, ClientRole clientRole)
+        public async Task Send_UserLogin(string userName, string nickName, string password, ClientRole clientRole)
         {
             var loginInfo = new LoginInfo();
             if (clientRole == ClientRole.Teacher || clientRole == ClientRole.Assistant)
@@ -113,6 +143,7 @@ namespace MyTCP
             message.Action = (int)CommandType.OnlineList;
             Task.Run(async () =>
             {
+
                 await this.SendMessage(message);
             });
         }
@@ -132,7 +163,7 @@ namespace MyTCP
 
         public void Send_StopScreenInteract()
         {
-           
+
             SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
             message.Action = (int)CommandType.StopScreenInteract;
             message.Data = new StopLockScreenRequest();
@@ -168,6 +199,31 @@ namespace MyTCP
         }
 
 
+        public void Send_Quiet()
+        {
+
+            SendMessage<QuietRequest> message = new SendMessage<QuietRequest>();
+            message.Action = (int)CommandType.Quiet;
+            message.Data = new QuietRequest();
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
+
+        public void Send_StopQuiet()
+        {
+            SendMessage<StopQuietRequest> message = new SendMessage<StopQuietRequest>();
+            message.Action = (int)CommandType.StopQuiet;
+            message.Data = new StopQuietRequest();
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
+
         public void Send_PrivateChat(PrivateChatRequest request)
         {
 
@@ -181,7 +237,7 @@ namespace MyTCP
         }
 
 
-        public void Send_GroupChat( string sendName, string msg)
+        public void Send_GroupChat(string sendName, string msg)
         {
             SendMessage<GroupChatRequest> message = new SendMessage<GroupChatRequest>();
             message.Action = (int)CommandType.GroupChat;

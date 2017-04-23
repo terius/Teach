@@ -19,7 +19,9 @@ namespace SharedForms
         Color messageColor = Color.FromArgb(255, 32, 32, 32);
         string _myDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
         string _myUserName = GlobalVariable.LoginUserInfo.UserName;
-        ChatListSubItem selectedSubItem;
+        //  ChatListSubItem selectedSubItem;
+
+        public bool IsHide { get; set; }
         #endregion
 
         #region 无参构造
@@ -66,6 +68,20 @@ namespace SharedForms
             // }
         }
 
+        public void ReflashTeamChat()
+        {
+            if (GlobalVariable.IsTeamChatChanged)
+            {
+                GlobalVariable.IsTeamChatChanged = false;
+                var list = GlobalVariable.GetTeamChatList();
+                this.chatListBox1.Items[1].SubItems.Clear();
+                foreach (ChatStore item in list)
+                {
+                    ChatItem2 subItem = new ChatItem2(chatListBox1.Items[1], item);
+                }
+            }
+        }
+
         /// <summary>
         /// 检查当前聊天对象是否存在
         /// </summary>
@@ -80,7 +96,7 @@ namespace SharedForms
                 {
                     if (subItem.Tag.ToString() == request.UserName)
                     {
-                        DoSubItemSelectedEvent(subItem);
+                        SubItemSelected(subItem);
                         AppendReceieveMessage(request);
                         return true;
                     }
@@ -96,7 +112,19 @@ namespace SharedForms
         /// <param name="request"></param>
         private void AppendReceieveMessage(AddChatRequest request)
         {
-            
+
+        }
+
+
+        private void RefreshChatList()
+        {
+            ReflashTeamChat();
+            ReflashPrivateChatList();
+        }
+
+        private void ReflashPrivateChatList()
+        {
+            throw new NotImplementedException();
         }
 
         private void AddNewChatItem(AddChatRequest request)
@@ -104,7 +132,7 @@ namespace SharedForms
             ChatListItem item = GetChatItem(request.ChatType);
 
             ChatItem2 subItem = new ChatItem2(item, request);
-            DoSubItemSelectedEvent(subItem);
+            SubItemSelected(subItem);
         }
 
         private ChatListItem GetChatItem(ChatType type)
@@ -129,46 +157,59 @@ namespace SharedForms
 
 
 
-      
 
 
 
 
-        private void DoSubItemSelectedEvent(ChatListSubItem subItem)
+
+        private void SubItemSelected(ChatListSubItem subItem)
         {
-            selectedSubItem = subItem;
+            this.labChatTitle.Text = "与" + subItem.DisplayName + "的对话：";
+            // selectedSubItem = subItem;
             subItem.OwnerListItem.IsOpen = true;
-            ChatListClickEventArgs ce = new ChatListClickEventArgs(subItem);
+            LoadChatMessage(subItem);
+            //ChatListClickEventArgs ce = new ChatListClickEventArgs(subItem);
 
-            MouseEventArgs ms = new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1);
-            chatListBox1_ClickSubItem(chatListBox1, ce, ms);
-            chatListBox1.SelectSubItem = subItem;
-           
+            //MouseEventArgs ms = new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1);
+            //chatListBox1_ClickSubItem(chatListBox1, ce, ms);
+            //chatListBox1.SelectSubItem = subItem;
+
+            
+
         }
 
         /// <summary>
         /// 加载聊天历史记录
         /// </summary>
-        private void LoadChatMessage(string userName)
+        private void LoadChatMessage(ChatListSubItem subItem)
         {
-
-            chatBox_history.Text = "";
-            var chatStore = GlobalVariable.GetChatStore(userName);
-            if (chatStore == null)
+            if (chatListBox1.SelectSubItem != subItem)
             {
-                return;
+                chatListBox1.SelectSubItem = subItem;
+                chatBox_history.Text = "";
+                var chatStore = GlobalVariable.GetChatStore(subItem.Tag.ToString());
+                if (chatStore == null)
+                {
+                    return;
+                }
+                chatBox_history.Text = "";
+                //foreach (ChatMessage message in chatStore.MessageList)
+                //{
+                //    AppendMessage(message, false);
+                //}
+                AddContentToHistoryBox(chatStore.HistoryContent);
             }
-            chatBox_history.Text = "";
-            foreach (ChatMessage message in chatStore.MessageList)
-            {
-                AppendMessage(message, false);
-            }
-
-            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            this.chatBox_history.ScrollToCaret();
         }
         #endregion
 
+
+        private void AddContentToHistoryBox(ChatBoxContent content)
+        {
+            chatBox_history.AppendChatBoxContent(content);
+            this.chatBox_history.AppendText("\n");
+            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+            this.chatBox_history.ScrollToCaret();
+        }
 
 
         #region 窗体重绘时
@@ -477,12 +518,14 @@ namespace SharedForms
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            this.IsHide = true;
             this.Hide();
             e.Cancel = true;
         }
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
+            this.IsHide = true;
             this.Hide();
         }
 
@@ -494,16 +537,17 @@ namespace SharedForms
             {
                 return;
             }
-         
+
             string userName = chatListBox1.SelectSubItem.Tag.ToString();
             SendMessageCommand(userName, content.Text);
             var message = new ChatMessage(_myUserName, _myDisplayName, userName, content);
             AppendMessage(message, true);
-            GlobalVariable.SaveChatMessage(message,true);
+            GlobalVariable.SaveChatMessage(chatBox_history.GetContent(), userName);
+            //  GlobalVariable.SaveChatMessage(message, true);
         }
 
 
-      
+
 
         private void AppendMessage(ChatMessage chatMessage, bool isInput)
         {
@@ -514,7 +558,7 @@ namespace SharedForms
                 new Font(this.messageFont, FontStyle.Regular), color);
             this.chatBox_history.AppendChatBoxContent(chatMessage.Content);
             this.chatBox_history.AppendText("\n");
-         
+
 
             if (isInput)
             {
@@ -528,10 +572,10 @@ namespace SharedForms
 
         private void chatListBox1_ClickSubItem(object sender, ChatListClickEventArgs e, MouseEventArgs es)
         {
-           
+
             // MessageBox.Show(e.SelectSubItem.DisplayName);
-            this.labChatTitle.Text = "与" + e.SelectSubItem.DisplayName + "的对话：";
-            LoadChatMessage(e.SelectSubItem.Tag.ToString());
+
+
         }
 
         private void chatListBox1_Click(object sender, EventArgs e)

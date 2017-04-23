@@ -30,33 +30,30 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamDiscuss));
-            this.onlineListGroup = new CCWin.SkinControl.SkinGroupBox();
             this.onLineListView = new System.Windows.Forms.ListView();
-            this.skinPanel1 = new CCWin.SkinControl.SkinPanel();
-            this.skinListBox1 = new CCWin.SkinControl.SkinListBox();
             this.MenuImageList = new System.Windows.Forms.ImageList(this.components);
-            this.onlineListGroup.SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.teamMemList = new System.Windows.Forms.ListView();
+            this.cboxTeam = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.picAddMem = new System.Windows.Forms.PictureBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.txtCreate = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.memberMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.memDel = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddMem)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.memberMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // onlineListGroup
-            // 
-            this.onlineListGroup.BackColor = System.Drawing.Color.Transparent;
-            this.onlineListGroup.BorderColor = System.Drawing.Color.Red;
-            this.onlineListGroup.Controls.Add(this.onLineListView);
-            this.onlineListGroup.Dock = System.Windows.Forms.DockStyle.Left;
-            this.onlineListGroup.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.onlineListGroup.ForeColor = System.Drawing.Color.Blue;
-            this.onlineListGroup.Location = new System.Drawing.Point(4, 28);
-            this.onlineListGroup.Name = "onlineListGroup";
-            this.onlineListGroup.RectBackColor = System.Drawing.Color.White;
-            this.onlineListGroup.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.onlineListGroup.Size = new System.Drawing.Size(287, 557);
-            this.onlineListGroup.TabIndex = 0;
-            this.onlineListGroup.TabStop = false;
-            this.onlineListGroup.Text = "在线学生列表";
-            this.onlineListGroup.TitleBorderColor = System.Drawing.Color.Red;
-            this.onlineListGroup.TitleRectBackColor = System.Drawing.Color.White;
-            this.onlineListGroup.TitleRoundStyle = CCWin.SkinClass.RoundStyle.All;
             // 
             // onLineListView
             // 
@@ -64,37 +61,13 @@
             this.onLineListView.CheckBoxes = true;
             this.onLineListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.onLineListView.LargeImageList = this.MenuImageList;
-            this.onLineListView.Location = new System.Drawing.Point(3, 26);
+            this.onLineListView.Location = new System.Drawing.Point(20, 28);
             this.onLineListView.Name = "onLineListView";
-            this.onLineListView.Size = new System.Drawing.Size(281, 528);
+            this.onLineListView.Size = new System.Drawing.Size(279, 593);
             this.onLineListView.SmallImageList = this.MenuImageList;
             this.onLineListView.TabIndex = 0;
             this.onLineListView.UseCompatibleStateImageBehavior = false;
             this.onLineListView.View = System.Windows.Forms.View.List;
-            // 
-            // skinPanel1
-            // 
-            this.skinPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.skinPanel1.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.skinPanel1.DownBack = null;
-            this.skinPanel1.Location = new System.Drawing.Point(291, 28);
-            this.skinPanel1.MouseBack = null;
-            this.skinPanel1.Name = "skinPanel1";
-            this.skinPanel1.NormlBack = null;
-            this.skinPanel1.Size = new System.Drawing.Size(402, 557);
-            this.skinPanel1.TabIndex = 1;
-            // 
-            // skinListBox1
-            // 
-            this.skinListBox1.Back = null;
-            this.skinListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.skinListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.skinListBox1.FormattingEnabled = true;
-            this.skinListBox1.Location = new System.Drawing.Point(693, 28);
-            this.skinListBox1.Name = "skinListBox1";
-            this.skinListBox1.Size = new System.Drawing.Size(280, 557);
-            this.skinListBox1.TabIndex = 2;
             // 
             // MenuImageList
             // 
@@ -141,30 +114,200 @@
             this.MenuImageList.Images.SetKeyName(38, "icon_xiao.png");
             this.MenuImageList.Images.SetKeyName(39, "icon_teacher.png");
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.onLineListView);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(4, 28);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(20, 10, 3, 3);
+            this.groupBox1.Size = new System.Drawing.Size(302, 624);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "在线学生";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.teamMemList);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(637, 28);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(20, 10, 3, 3);
+            this.groupBox2.Size = new System.Drawing.Size(486, 624);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "分组信息";
+            // 
+            // teamMemList
+            // 
+            this.teamMemList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.teamMemList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.teamMemList.LargeImageList = this.MenuImageList;
+            this.teamMemList.Location = new System.Drawing.Point(20, 28);
+            this.teamMemList.Name = "teamMemList";
+            this.teamMemList.Size = new System.Drawing.Size(463, 593);
+            this.teamMemList.SmallImageList = this.MenuImageList;
+            this.teamMemList.TabIndex = 0;
+            this.teamMemList.UseCompatibleStateImageBehavior = false;
+            this.teamMemList.View = System.Windows.Forms.View.List;
+            this.teamMemList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.teamMemList_MouseDown);
+            // 
+            // cboxTeam
+            // 
+            this.cboxTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxTeam.FormattingEnabled = true;
+            this.cboxTeam.Location = new System.Drawing.Point(17, 24);
+            this.cboxTeam.Name = "cboxTeam";
+            this.cboxTeam.Size = new System.Drawing.Size(203, 23);
+            this.cboxTeam.TabIndex = 0;
+            this.cboxTeam.SelectedIndexChanged += new System.EventHandler(this.cboxTeam_SelectedIndexChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.picAddMem);
+            this.groupBox3.Controls.Add(this.btnDelete);
+            this.groupBox3.Controls.Add(this.btnEdit);
+            this.groupBox3.Controls.Add(this.cboxTeam);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 92);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(331, 532);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "选择分组";
+            // 
+            // picAddMem
+            // 
+            this.picAddMem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picAddMem.Image = ((System.Drawing.Image)(resources.GetObject("picAddMem.Image")));
+            this.picAddMem.Location = new System.Drawing.Point(17, 242);
+            this.picAddMem.Name = "picAddMem";
+            this.picAddMem.Size = new System.Drawing.Size(120, 50);
+            this.picAddMem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picAddMem.TabIndex = 5;
+            this.picAddMem.TabStop = false;
+            this.picAddMem.Click += new System.EventHandler(this.picAddMem_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(17, 153);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(173, 27);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "删除选择的分组";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(17, 120);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(173, 27);
+            this.btnEdit.TabIndex = 3;
+            this.btnEdit.Text = "修改选择的分组名";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(163, 32);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(81, 27);
+            this.btnCreate.TabIndex = 2;
+            this.btnCreate.Text = "创建";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // txtCreate
+            // 
+            this.txtCreate.Location = new System.Drawing.Point(6, 33);
+            this.txtCreate.Name = "txtCreate";
+            this.txtCreate.Size = new System.Drawing.Size(141, 25);
+            this.txtCreate.TabIndex = 1;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.txtCreate);
+            this.groupBox4.Controls.Add(this.btnCreate);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(331, 92);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "创建分组";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox4);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(306, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(331, 624);
+            this.panel1.TabIndex = 5;
+            // 
+            // memberMenu
+            // 
+            this.memberMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.memberMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.memDel});
+            this.memberMenu.Name = "memberMenu";
+            this.memberMenu.Size = new System.Drawing.Size(145, 30);
+            // 
+            // memDel
+            // 
+            this.memDel.Name = "memDel";
+            this.memDel.Size = new System.Drawing.Size(144, 26);
+            this.memDel.Text = "删除成员";
+            this.memDel.Click += new System.EventHandler(this.memDel_Click);
+            // 
             // TeamDiscuss
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 589);
-            this.Controls.Add(this.skinListBox1);
-            this.Controls.Add(this.skinPanel1);
-            this.Controls.Add(this.onlineListGroup);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1127, 656);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "TeamDiscuss";
+            this.ShadowPalace = null;
             this.ShowInTaskbar = false;
             this.Text = "建立分组";
             this.Load += new System.EventHandler(this.TeamDiscuss_Load);
-            this.onlineListGroup.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picAddMem)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.memberMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private CCWin.SkinControl.SkinGroupBox onlineListGroup;
-        private CCWin.SkinControl.SkinPanel skinPanel1;
-        private CCWin.SkinControl.SkinListBox skinListBox1;
         private System.Windows.Forms.ListView onLineListView;
         private System.Windows.Forms.ImageList MenuImageList;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListView teamMemList;
+        private System.Windows.Forms.ComboBox cboxTeam;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.TextBox txtCreate;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.PictureBox picAddMem;
+        private System.Windows.Forms.ContextMenuStrip memberMenu;
+        private System.Windows.Forms.ToolStripMenuItem memDel;
     }
 }

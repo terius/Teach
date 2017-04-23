@@ -31,16 +31,12 @@ namespace StudentUser
             {
                 Application.Run(new UserMainForm());
             }
-
-            // Application.Run(new Login());
             //    }
             //    else
             //    {
             //        MessageBox.Show("该程序己启动");
             //    }
             //}
-
-
         }
 
         /// <summary>

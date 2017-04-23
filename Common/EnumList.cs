@@ -7,11 +7,14 @@
         OnlineList = 3,
         ScreenInteract = 7,
         StopScreenInteract = 8,
+        Quiet = 9,
+        StopQuiet = 10,
         LockScreen = 11,
         StopLockScreen = 12,
         PrivateChat = 13,
         GroupChat = 14,
-        OneUserLogIn = 17
+        OneUserLogIn = 17,
+        UserLoginOut = 18
     }
 
     /// <summary>

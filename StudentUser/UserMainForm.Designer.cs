@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserMainForm));
             this.btnLockScreen = new System.Windows.Forms.Button();
             this.btnStopLockScreen = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.tuopan = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tuopan = new System.Windows.Forms.NotifyIcon();
             this.MinMenu = new CCWin.SkinControl.SkinContextMenuStrip();
             this.mSignIn = new System.Windows.Forms.ToolStripMenuItem();
             this.mChat = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,9 +50,10 @@
             // 
             // btnLockScreen
             // 
-            this.btnLockScreen.Location = new System.Drawing.Point(3, 3);
+            this.btnLockScreen.Location = new System.Drawing.Point(4, 4);
+            this.btnLockScreen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLockScreen.Name = "btnLockScreen";
-            this.btnLockScreen.Size = new System.Drawing.Size(75, 23);
+            this.btnLockScreen.Size = new System.Drawing.Size(100, 29);
             this.btnLockScreen.TabIndex = 0;
             this.btnLockScreen.Text = "显示黑屏";
             this.btnLockScreen.UseVisualStyleBackColor = true;
@@ -61,9 +61,10 @@
             // 
             // btnStopLockScreen
             // 
-            this.btnStopLockScreen.Location = new System.Drawing.Point(3, 32);
+            this.btnStopLockScreen.Location = new System.Drawing.Point(4, 40);
+            this.btnStopLockScreen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStopLockScreen.Name = "btnStopLockScreen";
-            this.btnStopLockScreen.Size = new System.Drawing.Size(75, 23);
+            this.btnStopLockScreen.Size = new System.Drawing.Size(100, 29);
             this.btnStopLockScreen.TabIndex = 1;
             this.btnStopLockScreen.Text = "关闭黑屏";
             this.btnStopLockScreen.UseVisualStyleBackColor = true;
@@ -75,28 +76,28 @@
             this.panel1.Controls.Add(this.btnStopLockScreen);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(4, 28);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(752, 63);
+            this.panel1.Size = new System.Drawing.Size(1005, 79);
             this.panel1.TabIndex = 2;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.richTextBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(4, 91);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(4, 107);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(752, 421);
+            this.panel2.Size = new System.Drawing.Size(1005, 534);
             this.panel2.TabIndex = 3;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(752, 421);
+            this.richTextBox1.Size = new System.Drawing.Size(1005, 534);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -115,6 +116,7 @@
             this.MinMenu.DropDownImageSeparator = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
             this.MinMenu.Fore = System.Drawing.Color.Black;
             this.MinMenu.HoverFore = System.Drawing.Color.White;
+            this.MinMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MinMenu.ItemAnamorphosis = true;
             this.MinMenu.ItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
             this.MinMenu.ItemBorderShow = true;
@@ -133,7 +135,7 @@
             this.MinMenu.ItemSplitter = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
             this.MinMenu.Name = "MinMenu";
             this.MinMenu.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.MinMenu.Size = new System.Drawing.Size(153, 164);
+            this.MinMenu.Size = new System.Drawing.Size(145, 166);
             this.MinMenu.SkinAllColor = true;
             this.MinMenu.TitleAnamorphosis = true;
             this.MinMenu.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
@@ -144,7 +146,7 @@
             // 
             this.mSignIn.Image = ((System.Drawing.Image)(resources.GetObject("mSignIn.Image")));
             this.mSignIn.Name = "mSignIn";
-            this.mSignIn.Size = new System.Drawing.Size(152, 22);
+            this.mSignIn.Size = new System.Drawing.Size(144, 26);
             this.mSignIn.Text = "签到";
             this.mSignIn.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -152,7 +154,7 @@
             // 
             this.mChat.Image = ((System.Drawing.Image)(resources.GetObject("mChat.Image")));
             this.mChat.Name = "mChat";
-            this.mChat.Size = new System.Drawing.Size(152, 22);
+            this.mChat.Size = new System.Drawing.Size(144, 26);
             this.mChat.Text = "聊天";
             this.mChat.Click += new System.EventHandler(this.mChat_Click);
             // 
@@ -160,7 +162,7 @@
             // 
             this.mHandUp.Image = ((System.Drawing.Image)(resources.GetObject("mHandUp.Image")));
             this.mHandUp.Name = "mHandUp";
-            this.mHandUp.Size = new System.Drawing.Size(152, 22);
+            this.mHandUp.Size = new System.Drawing.Size(144, 26);
             this.mHandUp.Text = "举手";
             this.mHandUp.Click += new System.EventHandler(this.mHandUp_Click);
             // 
@@ -168,7 +170,7 @@
             // 
             this.mFileShare.Image = ((System.Drawing.Image)(resources.GetObject("mFileShare.Image")));
             this.mFileShare.Name = "mFileShare";
-            this.mFileShare.Size = new System.Drawing.Size(152, 22);
+            this.mFileShare.Size = new System.Drawing.Size(144, 26);
             this.mFileShare.Text = "文件共享";
             this.mFileShare.Click += new System.EventHandler(this.mFileShare_Click);
             // 
@@ -176,32 +178,31 @@
             // 
             this.mLetter.Image = ((System.Drawing.Image)(resources.GetObject("mLetter.Image")));
             this.mLetter.Name = "mLetter";
-            this.mLetter.Size = new System.Drawing.Size(152, 22);
+            this.mLetter.Size = new System.Drawing.Size(144, 26);
             this.mLetter.Text = "私信";
             this.mLetter.Click += new System.EventHandler(this.mLetter_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
             // 
             // mCloseForm
             // 
             this.mCloseForm.Image = ((System.Drawing.Image)(resources.GetObject("mCloseForm.Image")));
             this.mCloseForm.Name = "mCloseForm";
-            this.mCloseForm.Size = new System.Drawing.Size(152, 22);
+            this.mCloseForm.Size = new System.Drawing.Size(144, 26);
             this.mCloseForm.Text = "退出";
             this.mCloseForm.Click += new System.EventHandler(this.mCloseForm_Click);
             // 
             // UserMainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 516);
+            this.ClientSize = new System.Drawing.Size(1013, 645);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(439, 406);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UserMainForm";
             this.ShowInTaskbar = false;
             this.Text = "Student";

@@ -609,5 +609,15 @@ namespace NewTeacher.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon ter16 {
+            get {
+                object obj = ResourceManager.GetObject("ter16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

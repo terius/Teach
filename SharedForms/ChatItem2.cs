@@ -1,4 +1,5 @@
 ﻿using CCWin.SkinControl;
+using Common;
 using Model;
 
 namespace SharedForms
@@ -7,33 +8,49 @@ namespace SharedForms
     {
         public ChatItem2(ChatListItem ParentItem, AddChatRequest ChatRequest)
         {
-           // this.Bounds = new System.Drawing.Rectangle(0, 27, 247, 53);
-            this.DisplayName = ChatRequest.DisplayName;
-            switch (ChatRequest.ChatType)
+            CreateChatItem(ParentItem, ChatRequest.UserName,
+                ChatRequest.DisplayName, ChatRequest.ChatType, ChatRequest.UserType);
+        }
+
+
+        public ChatItem2(ChatListItem ParentItem, ChatStore chatStore)
+        {
+            CreateChatItem(ParentItem, chatStore.ChatUserName,
+                chatStore.ChatDisplayName, chatStore.ChatType, chatStore.UserType);
+        }
+
+
+        private void CreateChatItem(ChatListItem ParentItem,
+            string userName,string displayName, ChatType type,ClientRole userType )
+        {
+            this.DisplayName = displayName;
+            switch (type)
             {
-                case Common.ChatType.PrivateChat:
-                    switch (ChatRequest.UserType)
+                case ChatType.PrivateChat:
+                    switch (userType)
                     {
-                        case Common.ClientRole.Teacher:
-                        case Common.ClientRole.Assistant:
+                        case ClientRole.Teacher:
+                        case ClientRole.Assistant:
                             this.HeadImage = Resource1.老师;
                             break;
-                        case Common.ClientRole.Student:
+                        case ClientRole.Student:
                             this.HeadImage = Resource1.学生;
                             break;
                         default:
                             break;
                     }
-                 
+
                     break;
-                case Common.ChatType.GroupChat:
+                case ChatType.GroupChat:
+                    this.HeadImage = Resource1.所有人;
                     break;
-                case Common.ChatType.TeamChat:
+                case ChatType.TeamChat:
+                    this.HeadImage = Resource1.群聊;
                     break;
                 default:
                     break;
             }
-           
+
             //   this.HeadRect = new System.Drawing.Rectangle(5, 33, 40, 40);
             this.ID = 1;
             this.IpAddress = null;
@@ -46,11 +63,10 @@ namespace SharedForms
             //  this.PlatformTypes = CCWin.SkinControl.PlatformType.PC;
             // this.QQShow = null;
             //  this.Status = CCWin.SkinControl.ChatListSubItem.UserStatus.Online;
-            this.Tag = ChatRequest.UserName;
+            this.Tag = userName;
             ParentItem.SubItems.Add(this);
             // this.TcpPort = 0;
             // this.UpdPort = 0;
-           
         }
     }
 }

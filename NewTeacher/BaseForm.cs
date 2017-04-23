@@ -4,22 +4,34 @@ using Model;
 using SharedForms;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace NewTeacher
 {
     public partial class BaseForm : CSkinBaseForm
     {
         #region 自定义字段
-        private static bool beingCallTheRoll = false;//
-        private static bool beingScreenBroadcast = false;//正在屏幕广播
+        //  private static bool beingCallTheRoll = false;//
+        private bool beingScreenBroadcast = false;//正在屏幕广播
         private static bool beingWatching = false;//正在查看学生端
-        private string rtspAddress = null;
+                                                  // private string rtspAddress = null;
         private ChatForm chatForm;
         //  IList<OnlineListResult> userOnlineList;
         OnlineInfo onlineInfo;
         #endregion
+
+
+        [DllImport("bin\\SceRecordSDK.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern UInt32 SceRecStartRecordV(string path);
+
+        [DllImport("bin\\SceRecordSDK.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern UInt32 SceRecStopRecordV();
+
+        string savePath;
 
         public BaseForm()
         {
@@ -27,6 +39,7 @@ namespace NewTeacher
             onlineInfo = new OnlineInfo();
             onlineInfo.OnLineChange += OnlineInfo_OnLineChange1;
             onlineInfo.AddOnLine += OnlineInfo_AddOnLine;
+          
         }
 
         private void OnlineInfo_AddOnLine(object sender, OnlineEventArgs e)
@@ -39,14 +52,22 @@ namespace NewTeacher
             this.InvokeOnUiThreadIfRequired(() => userListShow(e.OnLines));
         }
 
-
-
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
+            //  this.Icon = Resources.ter16;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
+        }
+
+        private bool CheckChatFormIsOpen()
+        {
+            if (chatForm==null)
+            {
+                return false;
+            }
+
+            return !chatForm.IsHide;
+          //  return Application.OpenForms.OfType<ChatForm>().Any();
         }
 
         private void Client_OnReveieveData(ReceieveMessage message)
@@ -74,6 +95,20 @@ namespace NewTeacher
         }
 
 
+        public void startRecord()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"\\Videos\\";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            savePath = path + "record_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
+            // savePath = @"d:\video\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".mp4";
+            SceRecStartRecordV(savePath);
+
+        }
+
+
         /// <summary>
         /// 接收到私聊信息
         /// </summary>
@@ -81,16 +116,25 @@ namespace NewTeacher
         private void AppendToPrivateForm(PrivateChatRequest privateChatResponse)
         {
             AddChatRequest request = privateChatResponse.ToAddChatRequest();
-            OpenOrCreateChatForm(request);
+            GlobalVariable.AddNewChat(request);
+            if (CheckChatFormIsOpen())
+            {
+                OpenOrCreateChatForm(request);
+            }
+            else
+            {
+                ShowNotify(request);
+            }
+          
         }
 
         /// <summary>
         /// 打开或创建聊天窗口
         /// </summary>
         /// <param name="request"></param>
-        private void OpenOrCreateChatForm(AddChatRequest request)
+        public void OpenOrCreateChatForm(AddChatRequest request)
         {
-            GlobalVariable.AddNewChat(request);
+         
             if (chatForm == null)
             {
                 chatForm = new ChatForm();
@@ -99,6 +143,16 @@ namespace NewTeacher
             chatForm.BringToFront();
             chatForm.CreateChatItems(request, false);
             chatForm.Show();
+        }
+
+
+        private void ShowNotify(AddChatRequest request)
+        {
+            //上次登录历史窗体
+            frmNotify frm = new frmNotify(request);
+            frm.Show(this);
+            //获取屏幕宽高与调节最大大小
+           // this.MaximumSize = new Size(543, Screen.GetWorkingArea(this).Height);
         }
 
 
@@ -148,6 +202,16 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void control_slient_Click(object sender, EventArgs e)
         {
+            if (this.control_slient.Text == "屏幕肃静")
+            {
+                GlobalVariable.client.Send_Quiet();
+                control_slient.Text = "解除屏幕肃静";
+            }
+            else
+            {
+                GlobalVariable.client.Send_StopQuiet();
+                control_slient.Text = "屏幕肃静";
+            }
 
         }
         /// <summary>
@@ -156,6 +220,16 @@ namespace NewTeacher
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void control_remoteControl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 禁止鼠标和键盘（等同于锁屏）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MouseKeyboardMenuItem_Click(object sender, EventArgs e)
         {
 
         }
@@ -187,13 +261,13 @@ namespace NewTeacher
                 GlobalVariable.client.StopScreenInteract();
                 GlobalVariable.client.Send_StopScreenInteract();
                 this.video_Broadcast.Text = "屏幕广播";
-                rtspAddress = null;
+
                 beingScreenBroadcast = false;
             }
         }
 
 
-     
+
         /// <summary>
         /// 学生演示
         /// </summary>
@@ -237,6 +311,26 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void other_screenRecord_Click(object sender, EventArgs e)
         {
+            if (this.other_screenRecord.Text == "屏幕录制")
+            {
+                startRecord();
+                this.other_screenRecord.Text = "停止录制";
+            }
+            else
+            {
+                endRecord();
+                this.other_screenRecord.Text = "屏幕录制";
+                if (MessageBox.Show("录像已保存到" + savePath + ",是否要直接播放录像？", "已保存录像", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(savePath);
+                }
+
+            }
+        }
+
+        public void endRecord()
+        {
+            var i = SceRecStopRecordV();
 
         }
 
@@ -256,6 +350,7 @@ namespace NewTeacher
             request.ChatType = ChatType.PrivateChat;
             request.UserName = userName;
             request.UserType = ClientRole.Student;
+            GlobalVariable.AddNewChat(request);
             OpenOrCreateChatForm(request);
         }
         /// <summary>
@@ -438,11 +533,48 @@ namespace NewTeacher
         }
 
 
+
+
+
         #endregion
 
+        private void BaseForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (this.video_Broadcast.Text == "关闭广播")
+                {
+                    DialogResult r = MessageBox.Show("屏幕广播尚未关闭，确定要退出程序?", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (r != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        GlobalVariable.client.Close().Wait();
+                        System.Environment.Exit(0);
+                    }
+                }
+                else
+                {
+                    DialogResult r = MessageBox.Show("确定要退出程序?", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (r != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        GlobalVariable.client.Close().Wait();
+                        System.Environment.Exit(0);
+                    }
+                }
+            }
+        }
 
-
-
+        private void class_groupChat_Click(object sender, EventArgs e)
+        {
+         
+        }
     }
 
 }

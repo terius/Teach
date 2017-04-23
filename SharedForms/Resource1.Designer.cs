@@ -463,9 +463,9 @@ namespace SharedForms {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 群聊__3_ {
+        internal static System.Drawing.Bitmap 群聊 {
             get {
-                object obj = ResourceManager.GetObject("群聊__3_", resourceCulture);
+                object obj = ResourceManager.GetObject("群聊", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -114,8 +114,7 @@ namespace StudentUser
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            GlobalVariable.Num++;
-            MessageBox.Show(GlobalVariable.Num.ToString());
+         
         }
     }
 }

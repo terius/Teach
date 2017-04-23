@@ -222,28 +222,28 @@
             // userList_P_forbidPrivateChat
             // 
             this.userList_P_forbidPrivateChat.Name = "userList_P_forbidPrivateChat";
-            this.userList_P_forbidPrivateChat.Size = new System.Drawing.Size(181, 28);
+            this.userList_P_forbidPrivateChat.Size = new System.Drawing.Size(158, 28);
             this.userList_P_forbidPrivateChat.Text = "禁止私聊";
             this.userList_P_forbidPrivateChat.Click += new System.EventHandler(this.userList_P_forbidPrivateChat_Click);
             // 
             // userList_P_forbidGroupChat
             // 
             this.userList_P_forbidGroupChat.Name = "userList_P_forbidGroupChat";
-            this.userList_P_forbidGroupChat.Size = new System.Drawing.Size(181, 28);
+            this.userList_P_forbidGroupChat.Size = new System.Drawing.Size(158, 28);
             this.userList_P_forbidGroupChat.Text = "禁止群聊";
             this.userList_P_forbidGroupChat.Click += new System.EventHandler(this.userList_P_forbidGroupChat_Click);
             // 
             // userList_P_allowPrivateChat
             // 
             this.userList_P_allowPrivateChat.Name = "userList_P_allowPrivateChat";
-            this.userList_P_allowPrivateChat.Size = new System.Drawing.Size(181, 28);
+            this.userList_P_allowPrivateChat.Size = new System.Drawing.Size(158, 28);
             this.userList_P_allowPrivateChat.Text = "允许私聊";
             this.userList_P_allowPrivateChat.Click += new System.EventHandler(this.userList_P_allowPrivateChat_Click);
             // 
             // userList_P_allowGroupChat
             // 
             this.userList_P_allowGroupChat.Name = "userList_P_allowGroupChat";
-            this.userList_P_allowGroupChat.Size = new System.Drawing.Size(181, 28);
+            this.userList_P_allowGroupChat.Size = new System.Drawing.Size(158, 28);
             this.userList_P_allowGroupChat.Text = "允许群聊";
             this.userList_P_allowGroupChat.Click += new System.EventHandler(this.userList_P_allowGroupChat_Click);
             // 
@@ -264,10 +264,10 @@
             // messageList
             // 
             this.messageList.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.messageList.Location = new System.Drawing.Point(0, 240);
+            this.messageList.Location = new System.Drawing.Point(0, 378);
             this.messageList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.messageList.Name = "messageList";
-            this.messageList.Size = new System.Drawing.Size(1384, 309);
+            this.messageList.Size = new System.Drawing.Size(1384, 171);
             this.messageList.TabIndex = 5;
             this.messageList.Text = "";
             // 
@@ -320,7 +320,7 @@
             this.btnReload.DrawType = CCWin.SkinControl.DrawStyle.Img;
             this.btnReload.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReload.Location = new System.Drawing.Point(117, 5);
-            this.btnReload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReload.Margin = new System.Windows.Forms.Padding(4);
             this.btnReload.MouseBack = ((System.Drawing.Image)(resources.GetObject("btnReload.MouseBack")));
             this.btnReload.Name = "btnReload";
             this.btnReload.NormlBack = ((System.Drawing.Image)(resources.GetObject("btnReload.NormlBack")));
@@ -541,7 +541,7 @@
             this.toolStripStatusLabel8.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel8.Margin = new System.Windows.Forms.Padding(20, 3, 0, 2);
             this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
-            this.toolStripStatusLabel8.Size = new System.Drawing.Size(86, 24);
+            this.toolStripStatusLabel8.Size = new System.Drawing.Size(125, 24);
             this.toolStripStatusLabel8.Spring = true;
             this.toolStripStatusLabel8.Text = "文件";
             // 
@@ -559,7 +559,7 @@
             this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(445, 44);
             this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Left;
             this.toolStripContainer2.Location = new System.Drawing.Point(507, 0);
-            this.toolStripContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.toolStripContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.toolStripContainer2.Name = "toolStripContainer2";
             this.toolStripContainer2.Size = new System.Drawing.Size(445, 137);
             this.toolStripContainer2.TabIndex = 7;
@@ -723,6 +723,7 @@
             this.MouseKeyboardMenuItem.Name = "MouseKeyboardMenuItem";
             this.MouseKeyboardMenuItem.Size = new System.Drawing.Size(194, 28);
             this.MouseKeyboardMenuItem.Text = "禁用鼠标键盘";
+            this.MouseKeyboardMenuItem.Click += new System.EventHandler(this.MouseKeyboardMenuItem_Click);
             // 
             // statusStrip4
             // 
@@ -845,7 +846,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(4);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(43, 108);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Left;
             // 
@@ -854,7 +855,7 @@
             this.toolStripContainer1.LeftToolStripPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.MenuClass);
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.toolStripContainer1.Name = "toolStripContainer1";
             // 
             // toolStripContainer1.RightToolStripPanel
@@ -917,6 +918,7 @@
             this.class_groupChat.Name = "class_groupChat";
             this.class_groupChat.Size = new System.Drawing.Size(113, 28);
             this.class_groupChat.Text = "班级群聊";
+            this.class_groupChat.Click += new System.EventHandler(this.class_groupChat_Click);
             // 
             // statusStrip2
             // 
@@ -966,9 +968,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BaseForm";
-            this.ShowIcon = false;
             this.Tag = "";
             this.Text = "远程教育系统";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BaseForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.UserListMenu.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

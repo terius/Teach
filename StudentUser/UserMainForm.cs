@@ -37,7 +37,7 @@ namespace StudentUser
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
             //player.SetRenderWindow((int)this.Handle);//panel
-            //player.LoadFile("d:\\1.mkv");//视频文件路径
+            // player.LoadFile("d:\\1.mkv");//视频文件路径
         }
 
         private void DoAction(Action action)
@@ -52,7 +52,7 @@ namespace StudentUser
             //DoAction(() => {
             //    this.richTextBox1.AppendText(JsonHelper.SerializeObj(message) + "\r\n");
             //});
-           // appendMsg(JsonHelper.SerializeObj(message));
+            // appendMsg(JsonHelper.SerializeObj(message));
             switch (message.Action)
             {
                 case (int)CommandType.ScreenInteract:
@@ -65,9 +65,15 @@ namespace StudentUser
                 case (int)CommandType.LockScreen:
                     // LockScreenReponse lsresp = JsonHelper.DeserializeObj<LockScreenReponse>(message.DataStr);
                     // BlockInput(true);
-                    LockScreen();
+                    LockScreen(false);
                     break;
                 case (int)CommandType.StopLockScreen:
+                    StopLockScreen();
+                    break;
+                case (int)CommandType.Quiet:
+                    LockScreen(true);
+                    break;
+                case (int)CommandType.StopQuiet:
                     StopLockScreen();
                     break;
 
@@ -93,10 +99,11 @@ namespace StudentUser
             chatForm.Show();
         }
 
-       
+
         private void ShowViewRtsp(string rtsp)
         {
-            DoAction(() => {
+            DoAction(() =>
+            {
                 videoPlayer = new ViewRtsp(rtsp);
                 videoPlayer.Show();
                 //  videoPlayer = f;
@@ -108,7 +115,7 @@ namespace StudentUser
         {
             DoAction(() =>
             {
-                if (videoPlayer  != null)
+                if (videoPlayer != null)
                 {
                     videoPlayer.Close();
                     videoPlayer = null;
@@ -119,21 +126,21 @@ namespace StudentUser
         /// <summary>
         /// 锁屏（禁止鼠标和键盘)
         /// </summary>
-        private void LockScreen()
+        private void LockScreen(bool isSlient)
         {
-            //  actHook = new Cls.UserActivityHook();
-            //actHook.OnMouseActivity += new MouseEventHandler(MouseMoved);
-            //actHook.KeyDown += new KeyEventHandler(MyKeyDown);
-            //actHook.KeyPress += new KeyPressEventHandler(MyKeyPress);
-            //actHook.KeyUp += new KeyEventHandler(MyKeyUp);
-            //    actHook.Start();
-
-            this.BeginInvoke(new Action(() =>
+            actHook = new Cls.UserActivityHook();
+            //actHook.OnMouseActivity += ActHook_OnMouseActivity;
+            //actHook.KeyDown += ActHook_KeyDown;
+            //actHook.KeyPress += ActHook_KeyPress;
+            //actHook.KeyUp += ActHook_KeyUp;
+            actHook.Start();
+            DoAction(() =>
             {
-                BlackScreen frm = new BlackScreen();
+                BlackScreen frm = new BlackScreen(isSlient);
                 frm.Show();
                 bsForm = frm;
-            }));
+            });
+
 
         }
 
@@ -146,7 +153,7 @@ namespace StudentUser
             {
                 actHook.Stop();
             }
-            this.BeginInvoke(new Action(() =>
+            DoAction(() =>
             {
                 FormCollection fc = Application.OpenForms;
                 foreach (Form frm in fc)
@@ -157,24 +164,49 @@ namespace StudentUser
                         break;
                     }
                 }
-            }));
+
+            });
         }
+
+        private void ActHook_KeyUp(object sender, KeyEventArgs e)
+        {
+            actHook.Start();
+        }
+
+        private void ActHook_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            actHook.Start();
+        }
+
+        private void ActHook_KeyDown(object sender, KeyEventArgs e)
+        {
+            actHook.Start();
+        }
+
+        private void ActHook_OnMouseActivity(object sender, MouseEventArgs e)
+        {
+            actHook.Start();
+        }
+
+      
+
+      
 
         private void btnLockScreen_Click(object sender, EventArgs e)
         {
-            LockScreen();
+            
         }
 
         private void btnStopLockScreen_Click(object sender, EventArgs e)
         {
-            StopLockScreen();
+          
         }
 
 
 
         private void UserMainForm_Shown(object sender, EventArgs e)
         {
-               this.Hide();
+            this.Hide();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -184,7 +216,7 @@ namespace StudentUser
 
         private void mCloseForm_Click(object sender, EventArgs e)
         {
-          //  this.tuopan.Dispose();
+            //  this.tuopan.Dispose();
             Environment.Exit(0);
         }
 
