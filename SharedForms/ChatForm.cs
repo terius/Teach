@@ -19,6 +19,9 @@ namespace SharedForms
         Color messageColor = Color.FromArgb(255, 32, 32, 32);
         string _myDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
         string _myUserName = GlobalVariable.LoginUserInfo.UserName;
+        bool _formIsOpen;
+        ChatStore selectChatStore;
+        string selectUserName;
         //  ChatListSubItem selectedSubItem;
 
         public bool IsHide { get; set; }
@@ -49,23 +52,19 @@ namespace SharedForms
         /// </summary>
         /// <param name="request"></param>
         /// <param name="isCreate"></param>
-        public void CreateChatItems(AddChatRequest request, bool isCreate = true)
+        public void CreateChatItems(AddChatRequest request, bool isOpen)
         {
-            if (CheckItemExist(request))
+            _formIsOpen = isOpen;
+            IsHide = false;
+            ReflashTeamChat();
+            ChatItem2 chatItem = GetItemInChatListBox(request);
+            if (chatItem == null)
             {
-                return;
+                ChatListItem item = GetChatItem(request.ChatType);
+                chatItem = new ChatItem2(item, request);
+
             }
-            //if (isCreate)
-            //{
-            //    foreach (ChatStore chat in GlobalVariable.ChatList)
-            //    {
-            //        AddNewChatItem(request);
-            //    }
-            //}
-            //else
-            //{
-            AddNewChatItem(request);
-            // }
+            SubItemSelected(chatItem);
         }
 
         public void ReflashTeamChat()
@@ -87,52 +86,40 @@ namespace SharedForms
         /// </summary>
         /// <param name="chatUserName"></param>
         /// <returns></returns>
-        private bool CheckItemExist(AddChatRequest request)
+        private ChatItem2 GetItemInChatListBox(AddChatRequest request)
         {
             ChatListItem item = GetChatItem(request.ChatType);
             if (item != null)
             {
-                foreach (ChatListSubItem subItem in item.SubItems)
+                foreach (ChatItem2 subItem in item.SubItems)
                 {
                     if (subItem.Tag.ToString() == request.UserName)
                     {
-                        SubItemSelected(subItem);
-                        AppendReceieveMessage(request);
-                        return true;
+                        return subItem;
                     }
                 }
             }
 
-            return false;
+            return null;
         }
 
-        /// <summary>
-        ///新增收到信息
-        /// </summary>
-        /// <param name="request"></param>
-        private void AppendReceieveMessage(AddChatRequest request)
-        {
-
-        }
+      
 
 
-        private void RefreshChatList()
-        {
-            ReflashTeamChat();
-            ReflashPrivateChatList();
-        }
+        //private void RefreshChatList()
+        //{
+        //    ReflashTeamChat();
+        //    ReflashPrivateChatList();
+        //}
 
-        private void ReflashPrivateChatList()
-        {
-            throw new NotImplementedException();
-        }
+        //private void ReflashPrivateChatList()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         private void AddNewChatItem(AddChatRequest request)
         {
-            ChatListItem item = GetChatItem(request.ChatType);
 
-            ChatItem2 subItem = new ChatItem2(item, request);
-            SubItemSelected(subItem);
         }
 
         private ChatListItem GetChatItem(ChatType type)
@@ -162,43 +149,69 @@ namespace SharedForms
 
 
 
-        private void SubItemSelected(ChatListSubItem subItem)
+        private void SubItemSelected(ChatItem2 subItem, bool isFromClick = false)
         {
+
             this.labChatTitle.Text = "与" + subItem.DisplayName + "的对话：";
+            if (isFromClick)
+            {
+                if (selectUserName == subItem.Tag.ToString())
+                {
+                    return;
+                }
+            }
             // selectedSubItem = subItem;
             subItem.OwnerListItem.IsOpen = true;
-            LoadChatMessage(subItem);
+            if (chatListBox1.SelectSubItem != subItem)
+            {
+                LoadChatMessage(subItem);
+            }
+            AppendNewMessage(subItem);
             //ChatListClickEventArgs ce = new ChatListClickEventArgs(subItem);
 
             //MouseEventArgs ms = new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1);
             //chatListBox1_ClickSubItem(chatListBox1, ce, ms);
             //chatListBox1.SelectSubItem = subItem;
+            chatListBox1.SelectSubItem = subItem;
+            selectUserName = subItem.Tag.ToString();
 
-            
+        }
 
+        private void AppendNewMessage(ChatItem2 subItem)
+        {
+            selectChatStore = subItem.GetChatStore();
+            if (selectChatStore != null)
+            {
+                if (selectChatStore.NewMessageList != null)
+                {
+                    foreach (ChatMessage item in selectChatStore.NewMessageList)
+                    {
+                        AppendMessage(item, false);
+                    }
+                    GlobalVariable.SaveChatMessage(chatBox_history.GetContent(), subItem.UserName);
+                    this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+                    this.chatBox_history.ScrollToCaret();
+                }
+            }
+            // GlobalVariable.GetNewMessageList(subItem.);
         }
 
         /// <summary>
         /// 加载聊天历史记录
         /// </summary>
-        private void LoadChatMessage(ChatListSubItem subItem)
+        private void LoadChatMessage(ChatItem2 subItem)
         {
-            if (chatListBox1.SelectSubItem != subItem)
+            // if (chatListBox1.SelectSubItem != subItem)
+            // {
+            //  chatListBox1.SelectSubItem = subItem;
+            chatBox_history.Text = "";
+            var chatStore = subItem.GetChatStore();
+            if (chatStore == null)
             {
-                chatListBox1.SelectSubItem = subItem;
-                chatBox_history.Text = "";
-                var chatStore = GlobalVariable.GetChatStore(subItem.Tag.ToString());
-                if (chatStore == null)
-                {
-                    return;
-                }
-                chatBox_history.Text = "";
-                //foreach (ChatMessage message in chatStore.MessageList)
-                //{
-                //    AppendMessage(message, false);
-                //}
-                AddContentToHistoryBox(chatStore.HistoryContent);
+                return;
             }
+            AddContentToHistoryBox(chatStore.HistoryContent);
+
         }
         #endregion
 
@@ -538,6 +551,12 @@ namespace SharedForms
                 return;
             }
 
+            if (chatListBox1.SelectSubItem == null)
+            {
+                GlobalVariable.ShowWarnning("请先选择聊天对象");
+                return;
+            }
+
             string userName = chatListBox1.SelectSubItem.Tag.ToString();
             SendMessageCommand(userName, content.Text);
             var message = new ChatMessage(_myUserName, _myDisplayName, userName, content);
@@ -572,7 +591,7 @@ namespace SharedForms
 
         private void chatListBox1_ClickSubItem(object sender, ChatListClickEventArgs e, MouseEventArgs es)
         {
-
+            SubItemSelected(e.SelectSubItem as ChatItem2);
             // MessageBox.Show(e.SelectSubItem.DisplayName);
 
 

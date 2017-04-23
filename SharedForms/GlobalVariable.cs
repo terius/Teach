@@ -81,10 +81,10 @@ namespace SharedForms
         //    }
         //}
 
-        public static ChatStore GetChatStore(string userName)
-        {
-            return ChatList.FirstOrDefault(d => d.ChatUserName == userName);
-        }
+        //public static ChatStore GetChatStore(string userName)
+        //{
+        //    return ChatList.FirstOrDefault(d => d.ChatUserName == userName);
+        //}
         //public static void SaveNewChatMessage(ChatMessage message, bool isSend)
         //{
         //    string userName = isSend ? message.ReceieveUserName : message.SendUserName;
@@ -107,6 +107,7 @@ namespace SharedForms
             if (chatstore !=null)
             {
                 chatstore.HistoryContent = content;
+                chatstore.NewMessageList = null;
             }
         }
 
@@ -130,6 +131,16 @@ namespace SharedForms
         {
             return ChatList.Where(d => d.ChatType == ChatType.TeamChat).ToList();
         }
+
+        //public static IList<ChatMessage> GetNewMessageList(string userName)
+        //{
+        //    var chat = ChatList.FirstOrDefault(d => d.ChatUserName == userName);
+        //    if (chat != null)
+        //    {
+        //        return chat.NewMessageList;
+        //    }
+        //    return null;
+        //}
 
 
         public static void CreateTeamChat(string teamName)

@@ -52,7 +52,6 @@ namespace NewTeacher
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNotify));
             this.timShow = new System.Windows.Forms.Timer(this.components);
-            this.labMessage = new CCWin.SkinControl.SkinLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -62,28 +61,17 @@ namespace NewTeacher
             this.timShow.Interval = 3000;
             this.timShow.Tick += new System.EventHandler(this.timShow_Tick);
             // 
-            // labMessage
-            // 
-            this.labMessage.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
-            this.labMessage.BackColor = System.Drawing.Color.Transparent;
-            this.labMessage.BorderColor = System.Drawing.Color.White;
-            this.labMessage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labMessage.Location = new System.Drawing.Point(32, 114);
-            this.labMessage.Margin = new System.Windows.Forms.Padding(0);
-            this.labMessage.Name = "labMessage";
-            this.labMessage.Size = new System.Drawing.Size(110, 25);
-            this.labMessage.TabIndex = 22;
-            this.labMessage.Text = "ffff";
-            // 
             // linkLabel1
             // 
             this.linkLabel1.BackColor = System.Drawing.Color.White;
+            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel1.Location = new System.Drawing.Point(21, 41);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(204, 58);
             this.linkLabel1.TabIndex = 23;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "linkLabel1";
+            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // frmNotify
@@ -102,7 +90,6 @@ namespace NewTeacher
             this.CloseNormlBack = ((System.Drawing.Image)(resources.GetObject("$this.CloseNormlBack")));
             this.ControlBoxOffset = new System.Drawing.Point(0, -1);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.labMessage);
             this.DropBack = false;
             this.EffectWidth = 2;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -123,7 +110,6 @@ namespace NewTeacher
         #endregion
 
         private System.Windows.Forms.Timer timShow;
-        private CCWin.SkinControl.SkinLabel labMessage;
         private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

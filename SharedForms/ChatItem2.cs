@@ -1,11 +1,18 @@
 ﻿using CCWin.SkinControl;
 using Common;
 using Model;
+using System.Linq;
 
 namespace SharedForms
 {
     public class ChatItem2 : ChatListSubItem
     {
+
+        public string UserName { get { return Tag.ToString(); } }
+        public ChatStore GetChatStore()
+        {
+            return GlobalVariable.ChatList.FirstOrDefault(d => d.ChatUserName == this.Tag.ToString());
+        }
         public ChatItem2(ChatListItem ParentItem, AddChatRequest ChatRequest)
         {
             CreateChatItem(ParentItem, ChatRequest.UserName,
@@ -21,7 +28,7 @@ namespace SharedForms
 
 
         private void CreateChatItem(ChatListItem ParentItem,
-            string userName,string displayName, ChatType type,ClientRole userType )
+            string userName, string displayName, ChatType type, ClientRole userType)
         {
             this.DisplayName = displayName;
             switch (type)

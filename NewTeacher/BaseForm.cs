@@ -4,9 +4,7 @@ using Model;
 using SharedForms;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -39,7 +37,7 @@ namespace NewTeacher
             onlineInfo = new OnlineInfo();
             onlineInfo.OnLineChange += OnlineInfo_OnLineChange1;
             onlineInfo.AddOnLine += OnlineInfo_AddOnLine;
-          
+
         }
 
         private void OnlineInfo_AddOnLine(object sender, OnlineEventArgs e)
@@ -61,13 +59,13 @@ namespace NewTeacher
 
         private bool CheckChatFormIsOpen()
         {
-            if (chatForm==null)
+            if (chatForm == null)
             {
                 return false;
             }
 
             return !chatForm.IsHide;
-          //  return Application.OpenForms.OfType<ChatForm>().Any();
+            //  return Application.OpenForms.OfType<ChatForm>().Any();
         }
 
         private void Client_OnReveieveData(ReceieveMessage message)
@@ -125,7 +123,7 @@ namespace NewTeacher
             {
                 ShowNotify(request);
             }
-          
+
         }
 
         /// <summary>
@@ -134,14 +132,15 @@ namespace NewTeacher
         /// <param name="request"></param>
         public void OpenOrCreateChatForm(AddChatRequest request)
         {
-         
+            bool isOpen = CheckChatFormIsOpen();
             if (chatForm == null)
             {
                 chatForm = new ChatForm();
+                isOpen = false;
             }
 
             chatForm.BringToFront();
-            chatForm.CreateChatItems(request, false);
+            chatForm.CreateChatItems(request, isOpen);
             chatForm.Show();
         }
 
@@ -152,7 +151,7 @@ namespace NewTeacher
             frmNotify frm = new frmNotify(request);
             frm.Show(this);
             //获取屏幕宽高与调节最大大小
-           // this.MaximumSize = new Size(543, Screen.GetWorkingArea(this).Height);
+            // this.MaximumSize = new Size(543, Screen.GetWorkingArea(this).Height);
         }
 
 
@@ -573,7 +572,7 @@ namespace NewTeacher
 
         private void class_groupChat_Click(object sender, EventArgs e)
         {
-         
+
         }
     }
 

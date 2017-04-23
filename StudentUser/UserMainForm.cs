@@ -90,12 +90,24 @@ namespace StudentUser
             }
         }
 
+        private bool CheckChatFormIsOpen()
+        {
+            if (chatForm == null)
+            {
+                return false;
+            }
+
+            return !chatForm.IsHide;
+            //  return Application.OpenForms.OfType<ChatForm>().Any();
+        }
+
         private void AddChat(PrivateChatRequest chatResponse)
         {
+            bool isOpen = CheckChatFormIsOpen();
             AddChatRequest request = chatResponse.ToAddChatRequest();
             GlobalVariable.AddNewChat(request);
             chatForm.BringToFront();
-            chatForm.CreateChatItems(request, false);
+            chatForm.CreateChatItems(request, isOpen);
             chatForm.Show();
         }
 
