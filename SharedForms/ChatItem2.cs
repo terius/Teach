@@ -1,6 +1,7 @@
 ﻿using CCWin.SkinControl;
 using Common;
 using Model;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SharedForms
@@ -9,10 +10,23 @@ namespace SharedForms
     {
 
         public string UserName { get { return Tag.ToString(); } }
+
+        public IList<ChatMessage> NewMessageList { get; set; }
         public ChatStore GetChatStore()
         {
             return GlobalVariable.ChatList.FirstOrDefault(d => d.ChatUserName == this.Tag.ToString());
         }
+
+        public void AddNewMessage(ChatMessage message)
+        {
+            if (NewMessageList == null)
+            {
+                NewMessageList = new List<ChatMessage>();
+            }
+            NewMessageList.Add(message);
+        }
+
+
         public ChatItem2(ChatListItem ParentItem, AddChatRequest ChatRequest)
         {
             CreateChatItem(ParentItem, ChatRequest.UserName,

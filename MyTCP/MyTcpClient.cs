@@ -1,6 +1,5 @@
 ﻿using Common;
 using Cowboy.Sockets;
-using DirectShowLib;
 using Helpers;
 using Model;
 using System;
@@ -53,16 +52,16 @@ namespace MyTCP
         }
 
 
-        public string GetAudioName()
-        {
-            DsDevice[] audioRenderers;
-            audioRenderers = DsDevice.GetDevicesOfCat(FilterCategory.AudioRendererCategory);
-            foreach (DsDevice device in audioRenderers)
-            {
-                Loger.LogMessage(JsonHelper.SerializeObj(device));
-            }
-            return "";
-        }
+        //public string GetAudioName()
+        //{
+        //    DsDevice[] audioRenderers;
+        //    audioRenderers = DsDevice.GetDevicesOfCat(FilterCategory.AudioRendererCategory);
+        //    foreach (DsDevice device in audioRenderers)
+        //    {
+        //        Loger.LogMessage(JsonHelper.SerializeObj(device));
+        //    }
+        //    return "";
+        //}
 
         private void MessageDue_OnReceieveMessage(ReceieveMessage message)
         {

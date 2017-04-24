@@ -42,5 +42,43 @@ namespace SharedForms
             return request;
         }
 
+        public static ChatItem3 CreateItem(this MyListView source,AddChatRequest request)
+        {
+            ChatItem3 item = new ChatItem3();
+            item.Text = request.DisplayName;
+            switch (request.ChatType)
+            {
+                case ChatType.PrivateChat:
+                    switch (request.UserType)
+                    {
+                        case ClientRole.Teacher:
+                        case ClientRole.Assistant:
+                            item.ImageIndex = 3;
+                            break;
+                        case ClientRole.Student:
+                            item.ImageIndex = 2;
+                            break;
+                        default:
+                            break;
+                    }
+                    item.Group = source.Groups[2];
+
+                    break;
+                case ChatType.GroupChat:
+                    item.ImageIndex = 0;
+                    item.Group = source.Groups[0];
+                    break;
+                case ChatType.TeamChat:
+                    item.ImageIndex = 1;
+                    item.Group = source.Groups[1];
+                    break;
+                default:
+                    break;
+            }
+            item.UserName = request.UserName;
+            source.Items.Add(item);
+            return item;
+        }
+
     }
 }

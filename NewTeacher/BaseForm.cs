@@ -20,6 +20,7 @@ namespace NewTeacher
         private ChatForm chatForm;
         //  IList<OnlineListResult> userOnlineList;
         OnlineInfo onlineInfo;
+        bool chatFormIsShow;
         #endregion
 
 
@@ -52,6 +53,7 @@ namespace NewTeacher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            chatForm = new ChatForm();
             //  this.Icon = Resources.ter16;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
@@ -117,7 +119,8 @@ namespace NewTeacher
             GlobalVariable.AddNewChat(request);
             if (CheckChatFormIsOpen())
             {
-                OpenOrCreateChatForm(request);
+                chatForm.DoReveieveMessage(request);
+              //  OpenOrCreateChatForm(request);
             }
             else
             {
@@ -132,15 +135,15 @@ namespace NewTeacher
         /// <param name="request"></param>
         public void OpenOrCreateChatForm(AddChatRequest request)
         {
-            bool isOpen = CheckChatFormIsOpen();
-            if (chatForm == null)
-            {
-                chatForm = new ChatForm();
-                isOpen = false;
-            }
+            chatFormIsShow = CheckChatFormIsOpen();
+            //if (chatForm == null)
+            //{
+            //    chatForm = new ChatForm();
+            //    isOpen = false;
+            //}
 
             chatForm.BringToFront();
-            chatForm.CreateChatItems(request, isOpen);
+            chatForm.CreateChatItems(request, chatFormIsShow);
             chatForm.Show();
         }
 

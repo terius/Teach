@@ -22,10 +22,30 @@ namespace SharedForms
         bool _formIsOpen;
         ChatStore selectChatStore;
         string selectUserName;
+        public delegate void ReveieveMessageHandle(object sender, ReceieveMessageEventArgs e);
+        public event ReveieveMessageHandle ReveieveMessage;
         //  ChatListSubItem selectedSubItem;
 
         public bool IsHide { get; set; }
+        public AddChatRequest newMessage;
         #endregion
+
+
+        #region 事件
+
+        public void DoReveieveMessage(AddChatRequest message)
+        {
+            BringToFront();
+            //     newMessage = message;
+            ReceieveMessageEventArgs e = new ReceieveMessageEventArgs(message);
+            ReveieveMessage(this, e);
+        }
+
+
+
+        #endregion
+
+
 
         #region 无参构造
         //public ChatForm(AddChatRequest request)
@@ -45,7 +65,33 @@ namespace SharedForms
             InitializeComponent();
             this.chatBoxSend.Initialize(GlobalResourceManager.EmotionDictionary);
             this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
+            ReveieveMessage += ChatForm_ReveieveMessage; ;
         }
+
+        private void ChatForm_ReveieveMessage(object sender, ReceieveMessageEventArgs e)
+        {
+            ChatMessage message = e.Message.ToChatMessage();
+            ChatItem2 chatItem = GetItemInChatListBox(e.Message);
+            if (chatItem == null)
+            {
+                ChatListItem item = GetChatItem(e.Message.ChatType);
+                chatItem = new ChatItem2(item, e.Message);
+
+            }
+
+            if (chatListBox1.SelectSubItem == chatItem)
+            {
+                AppendMessageAndSave(message);
+            }
+            else
+            {
+                chatItem.IsTwinkle = true;
+                chatItem.AddNewMessage(message);
+            }
+
+        }
+
+
 
         /// <summary>
         /// 创建聊天对象
@@ -65,6 +111,38 @@ namespace SharedForms
 
             }
             SubItemSelected(chatItem);
+        }
+
+        private void SubItemSelected(ChatItem2 subItem, bool isFromClick = false)
+        {
+
+            this.labChatTitle.Text = "与" + subItem.DisplayName + "的对话：";
+            if (isFromClick)
+            {
+                if (selectUserName == subItem.UserName)
+                {
+                    return;
+                }
+            }
+            else
+            {
+
+            }
+            // selectedSubItem = subItem;
+            subItem.OwnerListItem.IsOpen = true;
+            if (chatListBox1.SelectSubItem != subItem)
+            {
+                LoadChatMessage(subItem);
+            }
+            AppendNewMessage(subItem);
+            //ChatListClickEventArgs ce = new ChatListClickEventArgs(subItem);
+
+            //MouseEventArgs ms = new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1);
+            //chatListBox1_ClickSubItem(chatListBox1, ce, ms);
+            //chatListBox1.SelectSubItem = subItem;
+            chatListBox1.SelectSubItem = subItem;
+            selectUserName = subItem.Tag.ToString();
+
         }
 
         public void ReflashTeamChat()
@@ -103,7 +181,7 @@ namespace SharedForms
             return null;
         }
 
-      
+
 
 
         //private void RefreshChatList()
@@ -149,33 +227,7 @@ namespace SharedForms
 
 
 
-        private void SubItemSelected(ChatItem2 subItem, bool isFromClick = false)
-        {
-
-            this.labChatTitle.Text = "与" + subItem.DisplayName + "的对话：";
-            if (isFromClick)
-            {
-                if (selectUserName == subItem.Tag.ToString())
-                {
-                    return;
-                }
-            }
-            // selectedSubItem = subItem;
-            subItem.OwnerListItem.IsOpen = true;
-            if (chatListBox1.SelectSubItem != subItem)
-            {
-                LoadChatMessage(subItem);
-            }
-            AppendNewMessage(subItem);
-            //ChatListClickEventArgs ce = new ChatListClickEventArgs(subItem);
-
-            //MouseEventArgs ms = new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1);
-            //chatListBox1_ClickSubItem(chatListBox1, ce, ms);
-            //chatListBox1.SelectSubItem = subItem;
-            chatListBox1.SelectSubItem = subItem;
-            selectUserName = subItem.Tag.ToString();
-
-        }
+    
 
         private void AppendNewMessage(ChatItem2 subItem)
         {
@@ -194,6 +246,14 @@ namespace SharedForms
                 }
             }
             // GlobalVariable.GetNewMessageList(subItem.);
+        }
+
+        private void AppendMessageAndSave(ChatMessage message)
+        {
+            AppendMessage(message, false);
+            GlobalVariable.SaveChatMessage(chatBox_history.GetContent(), message.SendUserName);
+            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+            this.chatBox_history.ScrollToCaret();
         }
 
         /// <summary>
@@ -262,128 +322,11 @@ namespace SharedForms
 
         #endregion
 
-        #region 接收信息封装
-        private void OnReceivedMsg(ChatBoxContent content, DateTime? originTime)
-        {
-            // this.AppendChatBoxContent(lblChatName.Tag == null ? "小黄鸡" : lblChatName.Tag.ToString(), originTime, content, Color.Blue, false);
-        }
+      
 
-        public void AddReceivedMsg(PrivateChatRequest response)
-        {
-            ChatBoxContent content = new ChatBoxContent(response.msg, messageFont, Color.Black);
-            var showTime = DateTime.Now.ToLongTimeString();
-            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", response.SendDisplayName, showTime),
-                new Font(this.messageFont, FontStyle.Regular), Color.Blue);
-            content.Text = "    " + content.Text.Replace("\n", "\n    ");
-            this.chatBox_history.AppendChatBoxContent(content);
-            this.chatBox_history.AppendText("\n");
-            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            this.chatBox_history.ScrollToCaret();
-        }
-        //public void AppendHistoryMessage(ChatMessage message)
-        //{
-        //    var color = message.SendUserName == _myUserName ? Color.SeaGreen : Color.Blue;
-        //    this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", message.SendDisplayName, message.SendTime),
-        //        new Font(this.messageFont, FontStyle.Regular), color);
-        //    // message.Content.Text = "    " + message.Content.Text.Replace("\n", "\n    ");
-        //    this.chatBox_history.AppendChatBoxContent(message.Content);
-        //    this.chatBox_history.AppendText("\n");
-        //    this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-        //    this.chatBox_history.ScrollToCaret();
-        //}
+     
 
-
-
-
-        #endregion
-
-        #region 发送消息封装
-        /// <summary>
-        /// 发送信息文本到内容框
-        /// </summary>
-        /// <param name="userName">名字</param>
-        /// <param name="originTime">时间</param>
-        /// <param name="content">发送内容</param>
-        /// <param name="color">字体颜色</param>
-        /// <param name="followingWords">是否有用户名</param>
-        private void AppendChatBoxContent(string userName, DateTime? originTime, ChatBoxContent content, Color color, bool followingWords)
-        {
-            this.AppendChatBoxContent(userName, originTime, content, color, followingWords, originTime != null);
-        }
-
-        /// <summary>
-        /// 发送信息文本到内容框
-        /// </summary>
-        /// <param name="userName">名字</param>
-        /// <param name="originTime">时间</param>
-        /// <param name="content">发送内容</param>
-        /// <param name="color">字体颜色</param>
-        /// <param name="followingWords">是否有用户名</param>
-        /// <param name="offlineMessage">是否在线消息</param>
-        private void AppendChatBoxContent(string userName, DateTime? originTime, ChatBoxContent content, Color color, bool followingWords, bool offlineMessage)
-        {
-            if (!followingWords)
-            {
-                string showTime = DateTime.Now.ToLongTimeString();
-                if (!offlineMessage && originTime != null)
-                {
-                    showTime = originTime.Value.ToString();
-                }
-                this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", userName, showTime), new Font(this.messageFont, FontStyle.Regular), color);
-                if (originTime != null && offlineMessage)
-                {
-                    this.chatBox_history.AppendText(string.Format("    [{0} 离线消息] ", originTime.Value.ToString()));
-                }
-                else
-                {
-                    this.chatBox_history.AppendText("    ");
-                }
-            }
-            else
-            {
-                this.chatBox_history.AppendText("   .");
-            }
-
-            this.chatBox_history.AppendChatBoxContent(content);
-            this.chatBox_history.AppendText("\n");
-            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            this.chatBox_history.ScrollToCaret();
-        }
-
-        ///// <summary>
-        ///// 发送信息文本到内容框
-        ///// </summary>
-        ///// <param name="userName">名称</param>
-        ///// <param name="color">字体颜色</param>
-        ///// <param name="msg">信息</param>
-        //private void AppendMessage(string userName, Color color, string msg)
-        //{
-        //    DateTime showTime = DateTime.Now;
-        //    this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n", userName, showTime.ToLongTimeString()), new Font(this.messageFont, FontStyle.Regular), color);
-        //    this.chatBox_history.AppendText("    ");
-
-        //    this.chatBox_history.AppendText(msg);
-        //    this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-        //    this.chatBox_history.ScrollToCaret();
-        //}
-
-        ///// <summary>
-        ///// 发送系统消息
-        ///// </summary>
-        ///// <param name="msg">信息</param>
-        //public void AppendSysMessage(string msg)
-        //{
-        //    this.AppendMessage("系统", Color.Gray, msg);
-        //    this.chatBox_history.AppendText("\n");
-        //}
-        #endregion
-
-        #region 退出当前聊天
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        #endregion
+     
 
 
 
@@ -459,53 +402,9 @@ namespace SharedForms
         #endregion
 
 
-        #region 震动方法
-        //震动方法
-        private void Vibration()
-        {
-            Point pOld = this.Location;//原来的位置
-            int radius = 3;//半径
-            for (int n = 0; n < 3; n++) //旋转圈数
-            {
-                //右半圆逆时针
-                for (int i = -radius; i <= radius; i++)
-                {
-                    int x = Convert.ToInt32(Math.Sqrt(radius * radius - i * i));
-                    int y = -i;
+     
 
-                    this.Location = new Point(pOld.X + x, pOld.Y + y);
-                    Thread.Sleep(10);
-                }
-                //左半圆逆时针
-                for (int j = radius; j >= -radius; j--)
-                {
-                    int x = -Convert.ToInt32(Math.Sqrt(radius * radius - j * j));
-                    int y = -j;
-
-                    this.Location = new Point(pOld.X + x, pOld.Y + y);
-                    Thread.Sleep(10);
-                }
-            }
-            //抖动完成，恢复原来位置
-            this.Location = pOld;
-        }
-        #endregion
-
-        #region 发送键更多选择 及 发送键更多选择菜单关闭时
-        //发送键更多选择
-        private void btnSendMenu_Click(object sender, EventArgs e)
-        {
-            //btnSendMenu.StopState = StopStates.Pressed;
-            //  SendMenu.Show(btnSendMenu, new Point(0, btnSendMenu.Height + 5));
-        }
-
-        //发送键更多选择菜单关闭时
-        private void SendMenu_Closing(object sender, ToolStripDropDownClosingEventArgs e)
-        {
-            //  btnSendMenu.StopState = StopStates.NoStop;
-            //  btnSendMenu.ControlState = ControlState.Normal;
-        }
-        #endregion
+   
 
         #region 字体
         //显示字体对话框
@@ -521,14 +420,6 @@ namespace SharedForms
         }
         #endregion
 
-
-
-
-
-
-
-
-
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.IsHide = true;
@@ -538,8 +429,11 @@ namespace SharedForms
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
-            this.IsHide = true;
-            this.Hide();
+            listView1.Items[0].Selected = true;
+            listView1.Select();
+            this.Text = listView1.Items[0].Text;
+            //this.IsHide = true;
+            //   this.Hide();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -601,5 +495,38 @@ namespace SharedForms
         {
 
         }
+
+        private void listView1_ItemActivate(object sender, EventArgs e)
+        {
+           // MessageBox.Show("aaaa");
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+         //   MessageBox.Show(e.Item.Text);
+        }
+
+        private void listView1_Click(object sender, EventArgs e)
+        {
+          //  var selectItem = my.SelectedItems[0];
+        //    this.Text = selectItem.Text;
+        }
+    }
+
+    public class ReceieveMessageEventArgs : EventArgs
+
+    {
+        private AddChatRequest _message;
+
+        public ReceieveMessageEventArgs(AddChatRequest message)
+        {
+            this._message = message;
+        }
+        public AddChatRequest Message
+        {
+            get { return _message; }
+        }
+
+
     }
 }

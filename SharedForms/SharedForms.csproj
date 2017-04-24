@@ -61,7 +61,6 @@
     </Compile>
     <Compile Include="ChatItem2.cs" />
     <Compile Include="ControlExtensions.cs" />
-    <Compile Include="FormHelper.cs" />
     <Compile Include="FrmCountenance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +69,12 @@
     </Compile>
     <Compile Include="GlobalResourceManager.cs" />
     <Compile Include="GlobalVariable.cs" />
+    <Compile Include="MyListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyListView.Designer.cs">
+      <DependentUpon>MyListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>

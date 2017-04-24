@@ -57,9 +57,10 @@ namespace SharedForms
 
             if (!string.IsNullOrWhiteSpace(request.Message))
             {
-                ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
-                var message = new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, content);
-                if (info.NewMessageList==null)
+                //ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
+                var message = request.ToChatMessage();// new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, content);
+
+                if (info.NewMessageList == null)
                 {
                     info.NewMessageList = new List<ChatMessage>();
 
@@ -67,6 +68,15 @@ namespace SharedForms
                 info.NewMessageList.Add(message);
             }
 
+        }
+
+     
+
+
+        public static ChatMessage ToChatMessage(this AddChatRequest request)
+        {
+            ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
+            return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, content);
         }
 
         static Font messageFont = new Font("微软雅黑", 9);
@@ -88,7 +98,7 @@ namespace SharedForms
         //public static void SaveNewChatMessage(ChatMessage message, bool isSend)
         //{
         //    string userName = isSend ? message.ReceieveUserName : message.SendUserName;
-         
+
         //    var chat = ChatList.FirstOrDefault(d => d.ChatUserName == userName);
         //    if (chat == null)
         //    {
@@ -101,10 +111,10 @@ namespace SharedForms
         //    chat.MessageList.Add(message);
         //}
 
-        public static void SaveChatMessage(ChatBoxContent content,string userName)
+        public static void SaveChatMessage(ChatBoxContent content, string userName)
         {
             var chatstore = ChatList.FirstOrDefault(d => d.ChatUserName == userName);
-            if (chatstore !=null)
+            if (chatstore != null)
             {
                 chatstore.HistoryContent = content;
                 chatstore.NewMessageList = null;
