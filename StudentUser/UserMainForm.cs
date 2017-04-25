@@ -31,6 +31,7 @@ namespace StudentUser
         {
 
             Text = GlobalVariable.LoginUserInfo.DisplayName;
+            tuopan.Text = Text;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
 
             //  chatForm.Show();

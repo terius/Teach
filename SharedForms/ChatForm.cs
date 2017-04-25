@@ -21,7 +21,7 @@ namespace SharedForms
         string _myUserName = GlobalVariable.LoginUserInfo.UserName;
         bool _formIsOpen;
         ChatStore selectChatStore;
-        string selectUserName;
+        string selectUserName = "";
         public delegate void ReveieveMessageHandle(object sender, ReceieveMessageEventArgs e);
         public event ReveieveMessageHandle ReveieveMessage;
         //  ChatListSubItem selectedSubItem;
@@ -65,31 +65,39 @@ namespace SharedForms
             InitializeComponent();
             this.chatBoxSend.Initialize(GlobalResourceManager.EmotionDictionary);
             this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
-            ReveieveMessage += ChatForm_ReveieveMessage; ;
+            ChatItem3 item = new ChatItem3();
+            item.Group = chatList.Groups[0];
+            item.ImageIndex = 0;
+            item.Text = "所有人";
+            item.UserName = "allpeople";
+            item.ChatType = ChatType.GroupChat;
+            item.DisplayName = "所有人";
+            chatList.Items.Add(item);
+            // ReveieveMessage += ChatForm_ReveieveMessage; ;
         }
 
-        private void ChatForm_ReveieveMessage(object sender, ReceieveMessageEventArgs e)
-        {
-            ChatMessage message = e.Message.ToChatMessage();
-            ChatItem2 chatItem = GetItemInChatListBox(e.Message);
-            if (chatItem == null)
-            {
-                ChatListItem item = GetChatItem(e.Message.ChatType);
-                chatItem = new ChatItem2(item, e.Message);
+        //private void ChatForm_ReveieveMessage(object sender, ReceieveMessageEventArgs e)
+        //{
+        //    ChatMessage message = e.Message.ToChatMessage();
+        //    ChatItem2 chatItem = GetItemInChatListBox(e.Message);
+        //    if (chatItem == null)
+        //    {
+        //        ChatListItem item = GetChatItem(e.Message.ChatType);
+        //        chatItem = new ChatItem2(item, e.Message);
 
-            }
+        //    }
 
-            if (chatListBox1.SelectSubItem == chatItem)
-            {
-                AppendMessageAndSave(message);
-            }
-            else
-            {
-                chatItem.IsTwinkle = true;
-                chatItem.AddNewMessage(message);
-            }
+        //    if (chatListBox1.SelectSubItem == chatItem)
+        //    {
+        //        AppendMessageAndSave(message);
+        //    }
+        //    else
+        //    {
+        //        chatItem.IsTwinkle = true;
+        //        chatItem.AddNewMessage(message);
+        //    }
 
-        }
+        //}
 
 
 
@@ -98,51 +106,60 @@ namespace SharedForms
         /// </summary>
         /// <param name="request"></param>
         /// <param name="isCreate"></param>
-        public void CreateChatItems(AddChatRequest request, bool isOpen)
+        public void CreateChatItems(AddChatRequest request, bool fromReceieveMessage)
         {
-            _formIsOpen = isOpen;
+            //    _formIsOpen = formIsOpend;
             IsHide = false;
             ReflashTeamChat();
-            ChatItem2 chatItem = GetItemInChatListBox(request);
+            ChatItem3 chatItem = GetItemInChatListBox(request);
             if (chatItem == null)
             {
-                ChatListItem item = GetChatItem(request.ChatType);
-                chatItem = new ChatItem2(item, request);
+                chatItem = chatList.CreateItem(request);
 
             }
-            SubItemSelected(chatItem);
-        }
 
-        private void SubItemSelected(ChatItem2 subItem, bool isFromClick = false)
-        {
-
-            this.labChatTitle.Text = "与" + subItem.DisplayName + "的对话：";
-            if (isFromClick)
+            if (fromReceieveMessage)
             {
-                if (selectUserName == subItem.UserName)
+                if (chatItem.UserName != selectUserName)
                 {
-                    return;
+                    chatItem.Text = chatItem.DisplayName + " 有新消息！";
+                }
+                else
+                {
+                    ChatItemSelected(chatItem, false);
                 }
             }
             else
             {
-
+                ChatItemSelected(chatItem, false);
             }
-            // selectedSubItem = subItem;
-            subItem.OwnerListItem.IsOpen = true;
-            if (chatListBox1.SelectSubItem != subItem)
+        }
+
+        private void ChatItemSelected(ChatItem3 chatItem, bool fromClick)
+        {
+            chatItem.Text = chatItem.DisplayName;
+            this.labChatTitle.Text = "与" + chatItem.Text + "的对话：";
+            if (fromClick && chatItem.UserName == selectUserName)
             {
-                LoadChatMessage(subItem);
+                return;
             }
-            AppendNewMessage(subItem);
-            //ChatListClickEventArgs ce = new ChatListClickEventArgs(subItem);
+            if (chatItem.UserName != selectUserName)
+            {
+                LoadChatMessage(chatItem);
+                ClearSelect();
+            }
+            AppendNewMessage(chatItem);
+            selectUserName = chatItem.UserName;
+            chatItem.Selected = true;
+            chatList.Select();
+        }
 
-            //MouseEventArgs ms = new MouseEventArgs(MouseButtons.Left, 1, 1, 1, 1);
-            //chatListBox1_ClickSubItem(chatListBox1, ce, ms);
-            //chatListBox1.SelectSubItem = subItem;
-            chatListBox1.SelectSubItem = subItem;
-            selectUserName = subItem.Tag.ToString();
-
+        private void ClearSelect()
+        {
+            foreach (ChatItem3 item in chatList.SelectedItems)
+            {
+                item.Selected = false;
+            }
         }
 
         public void ReflashTeamChat()
@@ -151,10 +168,10 @@ namespace SharedForms
             {
                 GlobalVariable.IsTeamChatChanged = false;
                 var list = GlobalVariable.GetTeamChatList();
-                this.chatListBox1.Items[1].SubItems.Clear();
+                this.chatList.Groups[1].Items.Clear();
                 foreach (ChatStore item in list)
                 {
-                    ChatItem2 subItem = new ChatItem2(chatListBox1.Items[1], item);
+                    chatList.CreateItem(item);
                 }
             }
         }
@@ -164,14 +181,14 @@ namespace SharedForms
         /// </summary>
         /// <param name="chatUserName"></param>
         /// <returns></returns>
-        private ChatItem2 GetItemInChatListBox(AddChatRequest request)
+        private ChatItem3 GetItemInChatListBox(AddChatRequest request)
         {
-            ChatListItem item = GetChatItem(request.ChatType);
+            ListViewGroup item = GetGroup(request.ChatType);
             if (item != null)
             {
-                foreach (ChatItem2 subItem in item.SubItems)
+                foreach (ChatItem3 subItem in item.Items)
                 {
-                    if (subItem.Tag.ToString() == request.UserName)
+                    if (subItem.UserName == request.UserName)
                     {
                         return subItem;
                     }
@@ -200,19 +217,19 @@ namespace SharedForms
 
         }
 
-        private ChatListItem GetChatItem(ChatType type)
+        private ListViewGroup GetGroup(ChatType type)
         {
-            ChatListItem item = null;
+            ListViewGroup item = null;
             switch (type)
             {
                 case ChatType.PrivateChat:
-                    item = chatListBox1.Items[2];
+                    item = chatList.Groups[2];
                     break;
                 case ChatType.GroupChat:
-                    item = chatListBox1.Items[0];
+                    item = chatList.Groups[0];
                     break;
                 case ChatType.TeamChat:
-                    item = chatListBox1.Items[1];
+                    item = chatList.Groups[1];
                     break;
                 default:
                     break;
@@ -227,9 +244,9 @@ namespace SharedForms
 
 
 
-    
 
-        private void AppendNewMessage(ChatItem2 subItem)
+
+        private void AppendNewMessage(ChatItem3 subItem)
         {
             selectChatStore = subItem.GetChatStore();
             if (selectChatStore != null)
@@ -259,7 +276,7 @@ namespace SharedForms
         /// <summary>
         /// 加载聊天历史记录
         /// </summary>
-        private void LoadChatMessage(ChatItem2 subItem)
+        private void LoadChatMessage(ChatItem3 subItem)
         {
             // if (chatListBox1.SelectSubItem != subItem)
             // {
@@ -316,109 +333,9 @@ namespace SharedForms
 
 
         }
-
-
-
-
         #endregion
 
-      
-
-     
-
-     
-
-
-
-        #region 截图
-        /// <summary>
-        /// 截图
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void toolPrintScreen_ButtonClick(object sender, EventArgs e)
-        {
-            this.StartCapture();
-        }
-
-        //截图方法
-        private void StartCapture()
-        {
-            FrmCapture imageCapturer = new FrmCapture();
-            if (imageCapturer.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                System.Windows.Forms.IDataObject iData = Clipboard.GetDataObject();
-                if (iData.GetDataPresent(DataFormats.Bitmap))
-                {//如果剪贴板中的数据是文本格式
-                    GifBox gif = this.chatBoxSend.InsertImage((Bitmap)iData.GetData(DataFormats.Bitmap));
-                    this.chatBoxSend.Focus();
-                    this.chatBoxSend.ScrollToCaret();
-                    imageCapturer.Close();
-                    imageCapturer = null;
-                }
-            }
-        }
-        #endregion
-
-        #region 表情窗体与事件
-        public FrmCountenance _faceForm = null;
-        public FrmCountenance FaceForm
-        {
-            get
-            {
-                if (this._faceForm == null)
-                {
-                    this._faceForm = new FrmCountenance(this)
-                    {
-                        ImagePath = "Face\\",
-                        CustomImagePath = "Face\\Custom\\",
-                        CanManage = true,
-                        ShowDemo = true,
-                    };
-
-                    this._faceForm.Init(24, 24, 8, 8, 12, 8);
-                    this._faceForm.Selected += this._faceForm_AddFace;
-
-                }
-
-                return this._faceForm;
-            }
-        }
-
-        string imgName = "";
-        void _faceForm_AddFace(object sender, SelectFaceArgs e)
-        {
-            this.imgName = e.Img.FullName.Replace(Application.StartupPath + "\\", "");
-            this.chatBoxSend.InsertDefaultEmotion((uint)e.ImageIndex);
-        }
-        #endregion
-
-        #region 表情按钮事件
-        private void toolCountenance_Click(object sender, EventArgs e)
-        {
-            //  Point pt = this.PointToScreen(new Point(skToolMenu.Left + 30 - this.FaceForm.Width / 2, (skToolMenu.Top - this.FaceForm.Height)));
-            // this.FaceForm.Show(pt.X, pt.Y, skToolMenu.Height);
-        }
-        #endregion
-
-
-     
-
-   
-
-        #region 字体
-        //显示字体对话框
-        private void toolFont_Click(object sender, EventArgs e)
-        {
-            this.fontDialog.Font = this.chatBoxSend.Font;
-            this.fontDialog.Color = this.chatBoxSend.ForeColor;
-            if (DialogResult.OK == this.fontDialog.ShowDialog())
-            {
-                this.chatBoxSend.Font = this.fontDialog.Font;
-                this.chatBoxSend.ForeColor = this.fontDialog.Color;
-            }
-        }
-        #endregion
+        
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -429,11 +346,9 @@ namespace SharedForms
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
-            listView1.Items[0].Selected = true;
-            listView1.Select();
-            this.Text = listView1.Items[0].Text;
-            //this.IsHide = true;
-            //   this.Hide();
+
+            this.IsHide = true;
+            this.Hide();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -445,17 +360,17 @@ namespace SharedForms
                 return;
             }
 
-            if (chatListBox1.SelectSubItem == null)
+            if (chatList.SelectedItems == null)
             {
                 GlobalVariable.ShowWarnning("请先选择聊天对象");
                 return;
             }
 
-            string userName = chatListBox1.SelectSubItem.Tag.ToString();
-            SendMessageCommand(userName, content.Text);
-            var message = new ChatMessage(_myUserName, _myDisplayName, userName, content);
+            //  string userName = chatListBox1.SelectSubItem.Tag.ToString();
+            SendMessageCommand(selectUserName, content.Text);
+            var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content);
             AppendMessage(message, true);
-            GlobalVariable.SaveChatMessage(chatBox_history.GetContent(), userName);
+            GlobalVariable.SaveChatMessage(chatBox_history.GetContent(), selectUserName);
             //  GlobalVariable.SaveChatMessage(message, true);
         }
 
@@ -483,34 +398,16 @@ namespace SharedForms
             }
         }
 
-        private void chatListBox1_ClickSubItem(object sender, ChatListClickEventArgs e, MouseEventArgs es)
+
+
+
+        private void chatList_Click(object sender, EventArgs e)
         {
-            SubItemSelected(e.SelectSubItem as ChatItem2);
-            // MessageBox.Show(e.SelectSubItem.DisplayName);
-
-
+            var selectItem = chatList.SelectedItems[0];
+            ChatItemSelected(selectItem as ChatItem3, true);
         }
 
-        private void chatListBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_ItemActivate(object sender, EventArgs e)
-        {
-           // MessageBox.Show("aaaa");
-        }
-
-        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-         //   MessageBox.Show(e.Item.Text);
-        }
-
-        private void listView1_Click(object sender, EventArgs e)
-        {
-          //  var selectItem = my.SelectedItems[0];
-        //    this.Text = selectItem.Text;
-        }
+       
     }
 
     public class ReceieveMessageEventArgs : EventArgs
@@ -529,4 +426,6 @@ namespace SharedForms
 
 
     }
+
+
 }

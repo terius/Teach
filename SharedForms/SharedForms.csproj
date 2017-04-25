@@ -53,20 +53,7 @@
     <Compile Include="ChatForm.designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChatItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ChatItem.Designer.cs">
-      <DependentUpon>ChatItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ChatItem2.cs" />
     <Compile Include="ControlExtensions.cs" />
-    <Compile Include="FrmCountenance.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmCountenance.designer.cs">
-      <DependentUpon>FrmCountenance.cs</DependentUpon>
-    </Compile>
     <Compile Include="GlobalResourceManager.cs" />
     <Compile Include="GlobalVariable.cs" />
     <Compile Include="MyListView.cs">
@@ -85,12 +72,6 @@
   <ItemGroup>
     <EmbeddedResource Include="ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChatItem.resx">
-      <DependentUpon>ChatItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmCountenance.resx">
-      <DependentUpon>FrmCountenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>

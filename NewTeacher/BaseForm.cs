@@ -119,8 +119,8 @@ namespace NewTeacher
             GlobalVariable.AddNewChat(request);
             if (CheckChatFormIsOpen())
             {
-                chatForm.DoReveieveMessage(request);
-              //  OpenOrCreateChatForm(request);
+             //   chatForm.DoReveieveMessage(request);
+                OpenOrCreateChatForm(request,true);
             }
             else
             {
@@ -133,9 +133,9 @@ namespace NewTeacher
         /// 打开或创建聊天窗口
         /// </summary>
         /// <param name="request"></param>
-        public void OpenOrCreateChatForm(AddChatRequest request)
+        public void OpenOrCreateChatForm(AddChatRequest request,bool fromReceMsg)
         {
-            chatFormIsShow = CheckChatFormIsOpen();
+            //chatFormIsShow = CheckChatFormIsOpen();
             //if (chatForm == null)
             //{
             //    chatForm = new ChatForm();
@@ -143,7 +143,7 @@ namespace NewTeacher
             //}
 
             chatForm.BringToFront();
-            chatForm.CreateChatItems(request, chatFormIsShow);
+            chatForm.CreateChatItems(request, fromReceMsg);
             chatForm.Show();
         }
 
@@ -353,7 +353,7 @@ namespace NewTeacher
             request.UserName = userName;
             request.UserType = ClientRole.Student;
             GlobalVariable.AddNewChat(request);
-            OpenOrCreateChatForm(request);
+            OpenOrCreateChatForm(request,false);
         }
         /// <summary>
         /// 锁屏

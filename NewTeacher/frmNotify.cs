@@ -44,7 +44,7 @@ namespace NewTeacher
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var frm = (BaseForm)Owner;
-            frm.OpenOrCreateChatForm(_request);
+            frm.OpenOrCreateChatForm(_request,true);
             this.Close();
         }
     }

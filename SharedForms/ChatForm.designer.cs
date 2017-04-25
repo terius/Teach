@@ -47,33 +47,15 @@ namespace SharedForms
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            CCWin.SkinControl.ChatListItem chatListItem1 = new CCWin.SkinControl.ChatListItem();
-            CCWin.SkinControl.ChatListSubItem chatListSubItem1 = new CCWin.SkinControl.ChatListSubItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
-            CCWin.SkinControl.ChatListItem chatListItem2 = new CCWin.SkinControl.ChatListItem();
-            CCWin.SkinControl.ChatListItem chatListItem3 = new CCWin.SkinControl.ChatListItem();
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("所有人", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("分组", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("私聊", System.Windows.Forms.HorizontalAlignment.Left);
-            this.chatListBox1 = new CCWin.SkinControl.ChatListBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.chatBox_history = new CCWin.SkinControl.SkinChatRichTextBox();
             this.chatBoxSend = new CCWin.SkinControl.SkinChatRichTextBox();
-            this.SendMenu = new CCWin.SkinControl.SkinContextMenuStrip();
-            this.toolStripMenuItem36 = new System.Windows.Forms.ToolStripMenuItem();
-            this.按CtrlEnter键发送消息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fontDialog = new System.Windows.Forms.FontDialog();
-            this.SysMenu = new CCWin.SkinControl.SkinContextMenuStrip();
-            this.toolQQShow = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem50 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem33 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem26 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.气泡设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem51 = new System.Windows.Forms.ToolStripSeparator();
-            this.更多设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinSplitContainer1 = new CCWin.SkinControl.SkinSplitContainer();
             this.Content_panel = new System.Windows.Forms.Panel();
+            this.chatList = new SharedForms.MyListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -81,9 +63,6 @@ namespace SharedForms
             this.btnSend = new CCWin.SkinControl.SkinButton();
             this.btnClose = new CCWin.SkinControl.SkinButton();
             this.labChatTitle = new CCWin.SkinControl.SkinLabel();
-            this.myListView1 = new SharedForms.MyListView();
-            this.SendMenu.SuspendLayout();
-            this.SysMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).BeginInit();
             this.skinSplitContainer1.Panel1.SuspendLayout();
             this.skinSplitContainer1.Panel2.SuspendLayout();
@@ -92,68 +71,6 @@ namespace SharedForms
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // chatListBox1
-            // 
-            this.chatListBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.chatListBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chatListBox1.ForeColor = System.Drawing.Color.Black;
-            this.chatListBox1.FriendsMobile = true;
-            this.chatListBox1.ItemColor = System.Drawing.Color.White;
-            chatListItem1.Bounds = new System.Drawing.Rectangle(0, 1, 238, 79);
-            chatListItem1.IsOpen = true;
-            chatListItem1.IsTwinkleHide = false;
-            chatListItem1.OwnerChatListBox = this.chatListBox1;
-            chatListSubItem1.Bounds = new System.Drawing.Rectangle(0, 27, 238, 53);
-            chatListSubItem1.DisplayName = "所有人";
-            chatListSubItem1.HeadImage = ((System.Drawing.Image)(resources.GetObject("chatListSubItem1.HeadImage")));
-            chatListSubItem1.HeadRect = new System.Drawing.Rectangle(5, 33, 40, 40);
-            chatListSubItem1.ID = ((uint)(0u));
-            chatListSubItem1.IpAddress = null;
-            chatListSubItem1.IsTwinkle = false;
-            chatListSubItem1.IsTwinkleHide = false;
-            chatListSubItem1.IsVip = false;
-            chatListSubItem1.NicName = "";
-            chatListSubItem1.OwnerListItem = chatListItem1;
-            chatListSubItem1.PersonalMsg = "";
-            chatListSubItem1.PlatformTypes = CCWin.SkinControl.PlatformType.PC;
-            chatListSubItem1.QQShow = null;
-            chatListSubItem1.Status = CCWin.SkinControl.ChatListSubItem.UserStatus.Online;
-            chatListSubItem1.Tag = null;
-            chatListSubItem1.TcpPort = 0;
-            chatListSubItem1.UpdPort = 0;
-            chatListItem1.SubItems.AddRange(new CCWin.SkinControl.ChatListSubItem[] {
-            chatListSubItem1});
-            chatListItem1.Tag = null;
-            chatListItem1.Text = "所有人";
-            chatListItem1.TwinkleSubItemNumber = 0;
-            chatListItem2.Bounds = new System.Drawing.Rectangle(0, 81, 238, 25);
-            chatListItem2.IsTwinkleHide = false;
-            chatListItem2.OwnerChatListBox = this.chatListBox1;
-            chatListItem2.Tag = null;
-            chatListItem2.Text = "分组聊天";
-            chatListItem2.TwinkleSubItemNumber = 0;
-            chatListItem3.Bounds = new System.Drawing.Rectangle(0, 107, 238, 25);
-            chatListItem3.IsTwinkleHide = false;
-            chatListItem3.OwnerChatListBox = this.chatListBox1;
-            chatListItem3.Tag = null;
-            chatListItem3.Text = "私聊";
-            chatListItem3.TwinkleSubItemNumber = 0;
-            this.chatListBox1.Items.AddRange(new CCWin.SkinControl.ChatListItem[] {
-            chatListItem1,
-            chatListItem2,
-            chatListItem3});
-            this.chatListBox1.ListSubItemMenu = null;
-            this.chatListBox1.Location = new System.Drawing.Point(99, 167);
-            this.chatListBox1.Name = "chatListBox1";
-            this.chatListBox1.SelectSubItem = null;
-            this.chatListBox1.Size = new System.Drawing.Size(247, 128);
-            this.chatListBox1.SubItemColor = System.Drawing.Color.White;
-            this.chatListBox1.SubItemMenu = null;
-            this.chatListBox1.TabIndex = 3;
-            this.chatListBox1.Text = "chatListBox1";
-            this.chatListBox1.ClickSubItem += new CCWin.SkinControl.ChatListBox.ChatListClickEventHandler(this.chatListBox1_ClickSubItem);
-            this.chatListBox1.Click += new System.EventHandler(this.chatListBox1_Click);
             // 
             // chatBox_history
             // 
@@ -194,149 +111,6 @@ namespace SharedForms
             this.chatBoxSend.TabIndex = 0;
             this.chatBoxSend.Text = "";
             // 
-            // SendMenu
-            // 
-            this.SendMenu.Arrow = System.Drawing.Color.Black;
-            this.SendMenu.Back = System.Drawing.Color.White;
-            this.SendMenu.BackRadius = 2;
-            this.SendMenu.Base = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
-            this.SendMenu.DropDownImageSeparator = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.SendMenu.Fore = System.Drawing.Color.Black;
-            this.SendMenu.HoverFore = System.Drawing.Color.White;
-            this.SendMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.SendMenu.ItemAnamorphosis = false;
-            this.SendMenu.ItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(136)))), ((int)(((byte)(200)))));
-            this.SendMenu.ItemBorderShow = false;
-            this.SendMenu.ItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(136)))), ((int)(((byte)(200)))));
-            this.SendMenu.ItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(136)))), ((int)(((byte)(200)))));
-            this.SendMenu.ItemRadius = 4;
-            this.SendMenu.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.None;
-            this.SendMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem36,
-            this.按CtrlEnter键发送消息ToolStripMenuItem});
-            this.SendMenu.ItemSplitter = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.SendMenu.Name = "MenuState";
-            this.SendMenu.RadiusStyle = CCWin.SkinClass.RoundStyle.None;
-            this.SendMenu.Size = new System.Drawing.Size(208, 48);
-            this.SendMenu.SkinAllColor = true;
-            this.SendMenu.TitleAnamorphosis = false;
-            this.SendMenu.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(236)))));
-            this.SendMenu.TitleRadius = 4;
-            this.SendMenu.TitleRadiusStyle = CCWin.SkinClass.RoundStyle.None;
-            // 
-            // toolStripMenuItem36
-            // 
-            this.toolStripMenuItem36.Checked = true;
-            this.toolStripMenuItem36.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripMenuItem36.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItem36.Name = "toolStripMenuItem36";
-            this.toolStripMenuItem36.Size = new System.Drawing.Size(207, 22);
-            this.toolStripMenuItem36.Text = "按Enter键发送消息";
-            // 
-            // 按CtrlEnter键发送消息ToolStripMenuItem
-            // 
-            this.按CtrlEnter键发送消息ToolStripMenuItem.Name = "按CtrlEnter键发送消息ToolStripMenuItem";
-            this.按CtrlEnter键发送消息ToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.按CtrlEnter键发送消息ToolStripMenuItem.Text = "按Ctrl+Enter键发送消息";
-            // 
-            // fontDialog
-            // 
-            this.fontDialog.Color = System.Drawing.SystemColors.ControlText;
-            this.fontDialog.ShowColor = true;
-            // 
-            // SysMenu
-            // 
-            this.SysMenu.Arrow = System.Drawing.Color.Black;
-            this.SysMenu.Back = System.Drawing.Color.White;
-            this.SysMenu.BackRadius = 2;
-            this.SysMenu.Base = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
-            this.SysMenu.DropDownImageSeparator = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.SysMenu.Fore = System.Drawing.Color.Black;
-            this.SysMenu.HoverFore = System.Drawing.Color.White;
-            this.SysMenu.ImageScalingSize = new System.Drawing.Size(11, 11);
-            this.SysMenu.ItemAnamorphosis = false;
-            this.SysMenu.ItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(136)))), ((int)(((byte)(200)))));
-            this.SysMenu.ItemBorderShow = false;
-            this.SysMenu.ItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(136)))), ((int)(((byte)(200)))));
-            this.SysMenu.ItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(136)))), ((int)(((byte)(200)))));
-            this.SysMenu.ItemRadius = 4;
-            this.SysMenu.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.None;
-            this.SysMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolQQShow,
-            this.toolStripMenuItem50,
-            this.toolStripSeparator4,
-            this.toolStripMenuItem33,
-            this.toolStripMenuItem26,
-            this.toolExit,
-            this.气泡设置ToolStripMenuItem,
-            this.toolStripMenuItem51,
-            this.更多设置ToolStripMenuItem});
-            this.SysMenu.ItemSplitter = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.SysMenu.Name = "MenuState";
-            this.SysMenu.RadiusStyle = CCWin.SkinClass.RoundStyle.None;
-            this.SysMenu.Size = new System.Drawing.Size(161, 170);
-            this.SysMenu.SkinAllColor = true;
-            this.SysMenu.TitleAnamorphosis = false;
-            this.SysMenu.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(236)))));
-            this.SysMenu.TitleRadius = 4;
-            this.SysMenu.TitleRadiusStyle = CCWin.SkinClass.RoundStyle.None;
-            // 
-            // toolQQShow
-            // 
-            this.toolQQShow.Name = "toolQQShow";
-            this.toolQQShow.Size = new System.Drawing.Size(160, 22);
-            this.toolQQShow.Text = "保持窗口最前";
-            // 
-            // toolStripMenuItem50
-            // 
-            this.toolStripMenuItem50.Checked = true;
-            this.toolStripMenuItem50.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripMenuItem50.Name = "toolStripMenuItem50";
-            this.toolStripMenuItem50.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItem50.Text = "合并会话窗口";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(157, 6);
-            // 
-            // toolStripMenuItem33
-            // 
-            this.toolStripMenuItem33.Name = "toolStripMenuItem33";
-            this.toolStripMenuItem33.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItem33.Text = "显示自己的皮肤";
-            // 
-            // toolStripMenuItem26
-            // 
-            this.toolStripMenuItem26.Checked = true;
-            this.toolStripMenuItem26.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripMenuItem26.Name = "toolStripMenuItem26";
-            this.toolStripMenuItem26.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItem26.Text = "启用场景秀模式";
-            // 
-            // toolExit
-            // 
-            this.toolExit.Name = "toolExit";
-            this.toolExit.Size = new System.Drawing.Size(160, 22);
-            this.toolExit.Text = "场景秀设置";
-            // 
-            // 气泡设置ToolStripMenuItem
-            // 
-            this.气泡设置ToolStripMenuItem.Name = "气泡设置ToolStripMenuItem";
-            this.气泡设置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.气泡设置ToolStripMenuItem.Text = "气泡设置";
-            // 
-            // toolStripMenuItem51
-            // 
-            this.toolStripMenuItem51.Name = "toolStripMenuItem51";
-            this.toolStripMenuItem51.Size = new System.Drawing.Size(157, 6);
-            // 
-            // 更多设置ToolStripMenuItem
-            // 
-            this.更多设置ToolStripMenuItem.Name = "更多设置ToolStripMenuItem";
-            this.更多设置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.更多设置ToolStripMenuItem.Text = "更多设置";
-            // 
             // skinSplitContainer1
             // 
             this.skinSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
@@ -353,7 +127,6 @@ namespace SharedForms
             // skinSplitContainer1.Panel2
             // 
             this.skinSplitContainer1.Panel2.Controls.Add(this.chatBox_history);
-            this.skinSplitContainer1.Panel2.Controls.Add(this.chatListBox1);
             this.skinSplitContainer1.Panel2.Controls.Add(this.panel2);
             this.skinSplitContainer1.Panel2.Controls.Add(this.labChatTitle);
             this.skinSplitContainer1.Size = new System.Drawing.Size(940, 602);
@@ -366,13 +139,37 @@ namespace SharedForms
             this.Content_panel.AutoScroll = true;
             this.Content_panel.AutoSize = true;
             this.Content_panel.BackColor = System.Drawing.Color.DodgerBlue;
-            this.Content_panel.Controls.Add(this.myListView1);
+            this.Content_panel.Controls.Add(this.chatList);
             this.Content_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Content_panel.Location = new System.Drawing.Point(0, 0);
             this.Content_panel.Margin = new System.Windows.Forms.Padding(2);
             this.Content_panel.Name = "Content_panel";
             this.Content_panel.Size = new System.Drawing.Size(246, 602);
             this.Content_panel.TabIndex = 5;
+            // 
+            // chatList
+            // 
+            this.chatList.Dock = System.Windows.Forms.DockStyle.Fill;
+            listViewGroup1.Header = "所有人";
+            listViewGroup1.Name = "groupAll";
+            listViewGroup2.Header = "分组";
+            listViewGroup2.Name = "groupTeam";
+            listViewGroup3.Header = "私聊";
+            listViewGroup3.Name = "groupPrivate";
+            this.chatList.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3});
+            this.chatList.HideSelection = false;
+            this.chatList.LargeImageList = this.imageList1;
+            this.chatList.Location = new System.Drawing.Point(0, 0);
+            this.chatList.Name = "chatList";
+            this.chatList.Size = new System.Drawing.Size(246, 602);
+            this.chatList.SmallImageList = this.imageList1;
+            this.chatList.TabIndex = 5;
+            this.chatList.UseCompatibleStateImageBehavior = false;
+            this.chatList.View = System.Windows.Forms.View.SmallIcon;
+            this.chatList.Click += new System.EventHandler(this.chatList_Click);
             // 
             // imageList1
             // 
@@ -474,28 +271,6 @@ namespace SharedForms
             this.labChatTitle.TabIndex = 136;
             this.labChatTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // myListView1
-            // 
-            this.myListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewGroup1.Header = "所有人";
-            listViewGroup1.Name = "groupAll";
-            listViewGroup2.Header = "分组";
-            listViewGroup2.Name = "groupTeam";
-            listViewGroup3.Header = "私聊";
-            listViewGroup3.Name = "groupPrivate";
-            this.myListView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3});
-            this.myListView1.LargeImageList = this.imageList1;
-            this.myListView1.Location = new System.Drawing.Point(0, 0);
-            this.myListView1.Name = "myListView1";
-            this.myListView1.Size = new System.Drawing.Size(246, 602);
-            this.myListView1.SmallImageList = this.imageList1;
-            this.myListView1.TabIndex = 5;
-            this.myListView1.UseCompatibleStateImageBehavior = false;
-            this.myListView1.View = System.Windows.Forms.View.SmallIcon;
-            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -511,8 +286,6 @@ namespace SharedForms
             this.Text = "聊天窗口";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ChatForm_Paint);
-            this.SendMenu.ResumeLayout(false);
-            this.SysMenu.ResumeLayout(false);
             this.skinSplitContainer1.Panel1.ResumeLayout(false);
             this.skinSplitContainer1.Panel1.PerformLayout();
             this.skinSplitContainer1.Panel2.ResumeLayout(false);
@@ -528,20 +301,6 @@ namespace SharedForms
         #endregion
         private CCWin.SkinControl.SkinChatRichTextBox chatBox_history;
         public CCWin.SkinControl.SkinChatRichTextBox chatBoxSend;
-        private CCWin.SkinControl.SkinContextMenuStrip SendMenu;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem36;
-        private System.Windows.Forms.ToolStripMenuItem 按CtrlEnter键发送消息ToolStripMenuItem;
-        private System.Windows.Forms.FontDialog fontDialog;
-        private CCWin.SkinControl.SkinContextMenuStrip SysMenu;
-        private System.Windows.Forms.ToolStripMenuItem toolQQShow;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem toolExit;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem50;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem33;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem26;
-        private System.Windows.Forms.ToolStripMenuItem 气泡设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem51;
-        private System.Windows.Forms.ToolStripMenuItem 更多设置ToolStripMenuItem;
         private CCWin.SkinControl.SkinSplitContainer skinSplitContainer1;
         private System.Windows.Forms.Panel Content_panel;
         private CCWin.SkinControl.SkinLabel labChatTitle;
@@ -549,9 +308,8 @@ namespace SharedForms
         private CCWin.SkinControl.SkinButton btnSend;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private CCWin.SkinControl.ChatListBox chatListBox1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ImageList imageList1;
-        private MyListView myListView1;
+        private MyListView chatList;
     }
 }
