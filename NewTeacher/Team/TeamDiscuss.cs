@@ -163,6 +163,15 @@ namespace NewTeacher
 
                     this.teamMemList.Items.Add(listItem);
                 }
+                CreateTeamRequest request = new CreateTeamRequest();
+                request.groupguid = selectTeam.ChatUserName;
+                request.groupname = selectTeam.ChatDisplayName;
+                request.groupuserList = selectTeam.TeamMembers.Select(d => d.UserName).ToArray();
+                request.nickname = GlobalVariable.LoginUserInfo.DisplayName;
+                request.username = GlobalVariable.LoginUserInfo.UserName;
+                GlobalVariable.client.Send_CreateTeam(request);
+
+
             }
         }
 

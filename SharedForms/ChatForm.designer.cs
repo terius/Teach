@@ -47,15 +47,14 @@ namespace SharedForms
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("所有人", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("分组", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("私聊", System.Windows.Forms.HorizontalAlignment.Left);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.chatBox_history = new CCWin.SkinControl.SkinChatRichTextBox();
             this.chatBoxSend = new CCWin.SkinControl.SkinChatRichTextBox();
             this.skinSplitContainer1 = new CCWin.SkinControl.SkinSplitContainer();
             this.Content_panel = new System.Windows.Forms.Panel();
-            this.chatList = new SharedForms.MyListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -63,6 +62,7 @@ namespace SharedForms
             this.btnSend = new CCWin.SkinControl.SkinButton();
             this.btnClose = new CCWin.SkinControl.SkinButton();
             this.labChatTitle = new CCWin.SkinControl.SkinLabel();
+            this.chatList = new SharedForms.MyListView();
             ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).BeginInit();
             this.skinSplitContainer1.Panel1.SuspendLayout();
             this.skinSplitContainer1.Panel2.SuspendLayout();
@@ -146,30 +146,6 @@ namespace SharedForms
             this.Content_panel.Name = "Content_panel";
             this.Content_panel.Size = new System.Drawing.Size(246, 602);
             this.Content_panel.TabIndex = 5;
-            // 
-            // chatList
-            // 
-            this.chatList.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewGroup1.Header = "所有人";
-            listViewGroup1.Name = "groupAll";
-            listViewGroup2.Header = "分组";
-            listViewGroup2.Name = "groupTeam";
-            listViewGroup3.Header = "私聊";
-            listViewGroup3.Name = "groupPrivate";
-            this.chatList.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3});
-            this.chatList.HideSelection = false;
-            this.chatList.LargeImageList = this.imageList1;
-            this.chatList.Location = new System.Drawing.Point(0, 0);
-            this.chatList.Name = "chatList";
-            this.chatList.Size = new System.Drawing.Size(246, 602);
-            this.chatList.SmallImageList = this.imageList1;
-            this.chatList.TabIndex = 5;
-            this.chatList.UseCompatibleStateImageBehavior = false;
-            this.chatList.View = System.Windows.Forms.View.SmallIcon;
-            this.chatList.Click += new System.EventHandler(this.chatList_Click);
             // 
             // imageList1
             // 
@@ -270,6 +246,31 @@ namespace SharedForms
             this.labChatTitle.Size = new System.Drawing.Size(686, 36);
             this.labChatTitle.TabIndex = 136;
             this.labChatTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // chatList
+            // 
+            this.chatList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatList.FullRowSelect = true;
+            listViewGroup1.Header = "所有人";
+            listViewGroup1.Name = "groupAll";
+            listViewGroup2.Header = "分组";
+            listViewGroup2.Name = "groupTeam";
+            listViewGroup3.Header = "私聊";
+            listViewGroup3.Name = "groupPrivate";
+            this.chatList.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3});
+            this.chatList.HideSelection = false;
+            this.chatList.LargeImageList = this.imageList1;
+            this.chatList.Location = new System.Drawing.Point(0, 0);
+            this.chatList.Name = "chatList";
+            this.chatList.Size = new System.Drawing.Size(246, 602);
+            this.chatList.SmallImageList = this.imageList1;
+            this.chatList.TabIndex = 5;
+            this.chatList.UseCompatibleStateImageBehavior = false;
+            this.chatList.View = System.Windows.Forms.View.SmallIcon;
+            this.chatList.Click += new System.EventHandler(this.chatList_Click);
             // 
             // ChatForm
             // 

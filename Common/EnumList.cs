@@ -13,6 +13,7 @@
         StopLockScreen = 12,
         PrivateChat = 13,
         GroupChat = 14,
+        CreateTeam = 15,
         OneUserLogIn = 17,
         UserLoginOut = 18
     }

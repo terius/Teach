@@ -252,6 +252,18 @@ namespace MyTCP
             });
         }
 
+        public void Send_CreateTeam(CreateTeamRequest request)
+        {
+            SendMessage<CreateTeamRequest> message = new SendMessage<CreateTeamRequest>();
+            message.Action = (int)CommandType.CreateTeam;
+            message.Data = request;
+
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
 
         #endregion
     }
