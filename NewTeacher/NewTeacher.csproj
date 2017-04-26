@@ -38,7 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin">
-      <HintPath>..\..\..\..\dll\CSkin 16.1.14.2\CSkin 4.0\CSkin.dll</HintPath>
+      <HintPath>..\..\..\..\..\DLL\CSkin\CSkin 4.0\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

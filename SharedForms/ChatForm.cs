@@ -63,8 +63,6 @@ namespace SharedForms
         public ChatForm()
         {
             InitializeComponent();
-            this.chatBoxSend.Initialize(GlobalResourceManager.EmotionDictionary);
-            this.chatBox_history.Initialize(GlobalResourceManager.EmotionDictionary);
             ChatItem3 item = new ChatItem3();
             item.Group = chatList.Groups[0];
             item.ImageIndex = 0;
