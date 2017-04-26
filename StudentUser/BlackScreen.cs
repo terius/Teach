@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -14,18 +15,25 @@ namespace StudentUser
             _isSlient = isSlient;
         }
 
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern void BlockInput([In, MarshalAs(UnmanagedType.Bool)]bool fBlockIt);
+
         private void BlackScreen_Load(object sender, EventArgs e)
         {
             this.SetVisibleCore(false);//***********   加上这两句可以实现窗口全屏，并隐藏任务栏
             this.FormBorderStyle = FormBorderStyle.None;
-            this.BackColor = _isSlient ? Color.Black : Color.White;
+          //  this.BackColor = _isSlient ? Color.Black : Color.White;
             //if (!_isSlient)
             //{
             //    this.Opacity = 0;
             //}
             this.ShowInTaskbar = false;
             this.SetVisibleCore(true);//************
-            NativeMethods.BlockInput(TimeSpan.FromSeconds(20));
+            BlockInput(true);
+            var actHook = new Cls.UserActivityHook();
+            actHook.Start();
+            // NativeMethods.BlockInput(TimeSpan.FromSeconds(20));
         }
 
 
@@ -68,12 +76,12 @@ namespace StudentUser
         {
             try
             {
-                NativeMethods.BlockInput(true);
+                BlockInput(true);
                 Thread.Sleep(span);
             }
             finally
             {
-                NativeMethods.BlockInput(false);
+                BlockInput(false);
             }
         }
 
