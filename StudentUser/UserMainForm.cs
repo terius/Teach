@@ -143,12 +143,12 @@ namespace StudentUser
         /// </summary>
         private void LockScreen(bool isSlient)
         {
-            actHook = new Cls.UserActivityHook();
+           // actHook = new Cls.UserActivityHook();
             //actHook.OnMouseActivity += ActHook_OnMouseActivity;
             //actHook.KeyDown += ActHook_KeyDown;
             //actHook.KeyPress += ActHook_KeyPress;
             //actHook.KeyUp += ActHook_KeyUp;
-            actHook.Start();
+       //     actHook.Start();
             DoAction(() =>
             {
                 BlackScreen frm = new BlackScreen(isSlient);
