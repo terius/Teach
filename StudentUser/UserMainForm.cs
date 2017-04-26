@@ -4,6 +4,8 @@ using Helpers;
 using Model;
 using SharedForms;
 using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace StudentUser
@@ -203,11 +205,14 @@ namespace StudentUser
 
       
 
-      
+        [DllImport("user32.dll")]
+        static extern int ShowCursor(bool bShow);
+
+
 
         private void btnLockScreen_Click(object sender, EventArgs e)
         {
-            
+            LockScreen(true);
         }
 
         private void btnStopLockScreen_Click(object sender, EventArgs e)
@@ -219,7 +224,7 @@ namespace StudentUser
 
         private void UserMainForm_Shown(object sender, EventArgs e)
         {
-            this.Hide();
+           // this.Hide();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
