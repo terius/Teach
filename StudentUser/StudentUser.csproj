@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>stu.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxInterop.AXVLC">
       <HintPath>..\lib\AxInterop.AXVLC.dll</HintPath>
@@ -104,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CSkinBaseForm.resx">
       <DependentUpon>CSkinBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserMainForm.resx">
       <DependentUpon>UserMainForm.cs</DependentUpon>
@@ -325,6 +331,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="stu.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -337,7 +337,7 @@ namespace NewTeacher
         }
 
         #endregion
-        #region 用户列表菜单方法
+        #region 在线列表右键菜单
         /// <summary>
         /// 私聊
         /// </summary>

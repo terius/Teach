@@ -1,42 +1,30 @@
-﻿using CCWin;
-using Common;
+﻿using Common;
 using Helpers;
 using Model;
 using SharedForms;
 using System;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace StudentUser
 {
-    public partial class UserMainForm : CSkinBaseForm
+    public partial class UserMainForm : Form
     {
-
-        Cls.UserActivityHook actHook;
         private BlackScreen bsForm = null;
-        private delegate void DoSomething();
-        // MyTcpClient client;
         ViewRtsp videoPlayer;
         ChatForm chatForm = new ChatForm();
-
-
         public UserMainForm()
         {
             InitializeComponent();
-
-        }
-
-
-
-        private void UserMainForm_Load(object sender, System.EventArgs e)
-        {
-
             Text = GlobalVariable.LoginUserInfo.DisplayName;
             tuopan.Text = Text;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
 
-            //  chatForm.Show();
+        }
+        private void UserMainForm_Load(object sender, System.EventArgs e)
+        {
+
+          
+
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
             //player.SetRenderWindow((int)this.Handle);//panel
@@ -55,7 +43,6 @@ namespace StudentUser
             //DoAction(() => {
             //    this.richTextBox1.AppendText(JsonHelper.SerializeObj(message) + "\r\n");
             //});
-            // appendMsg(JsonHelper.SerializeObj(message));
             switch (message.Action)
             {
                 case (int)CommandType.ScreenInteract:
@@ -66,8 +53,6 @@ namespace StudentUser
                     StopRtsp();
                     break;
                 case (int)CommandType.LockScreen:
-                    // LockScreenReponse lsresp = JsonHelper.DeserializeObj<LockScreenReponse>(message.DataStr);
-                    // BlockInput(true);
                     LockScreen(false);
                     break;
                 case (int)CommandType.StopLockScreen:
@@ -115,6 +100,27 @@ namespace StudentUser
         }
 
 
+        ///// <summary>
+        ///// 窗体隐藏（重载此方法后onload事件不会执行)
+        ///// </summary>
+        ///// <param name="value"></param>
+        //protected override void SetVisibleCore(bool value)
+        //{
+        //    base.SetVisibleCore(false);
+        //}
+        private bool windowCreate = true;
+        protected override void OnActivated(EventArgs e)
+        {
+            if (windowCreate)
+            {
+                base.Visible = false;
+                windowCreate = false;
+            }
+
+            base.OnActivated(e);
+        }
+
+
         private void ShowViewRtsp(string rtsp)
         {
             DoAction(() =>
@@ -143,12 +149,13 @@ namespace StudentUser
         /// </summary>
         private void LockScreen(bool isSlient)
         {
-           // actHook = new Cls.UserActivityHook();
+            // BlockInput(true);
+            // actHook = new Cls.UserActivityHook();
             //actHook.OnMouseActivity += ActHook_OnMouseActivity;
             //actHook.KeyDown += ActHook_KeyDown;
             //actHook.KeyPress += ActHook_KeyPress;
             //actHook.KeyUp += ActHook_KeyUp;
-       //     actHook.Start();
+            //     actHook.Start();
             DoAction(() =>
             {
                 BlackScreen frm = new BlackScreen(isSlient);
@@ -164,60 +171,43 @@ namespace StudentUser
         /// </summary>
         private void StopLockScreen()
         {
-            if (actHook != null)
-            {
-                actHook.Stop();
-            }
+            //   BlockInput(false);
+            //if (actHook != null)
+            //{
+            //    actHook.Stop();
+            //}
             DoAction(() =>
             {
-                FormCollection fc = Application.OpenForms;
-                foreach (Form frm in fc)
+                if (bsForm != null)
                 {
-                    if (frm.Name == "BlackScreen")
-                    {
-                        frm.Close();
-                        break;
-                    }
+                    bsForm.EnableMouseAndKeyboard();
+                    bsForm.Close();
+                    bsForm = null;
                 }
+                //FormCollection fc = Application.OpenForms;
+                //foreach (Form frm in fc)
+                //{
+                //    if (frm.Name == "BlackScreen")
+                //    {
+                //        frm
+                //        frm.Close();
+                //        break;
+                //    }
+                //}
 
             });
         }
-
-        private void ActHook_KeyUp(object sender, KeyEventArgs e)
-        {
-            actHook.Start();
-        }
-
-        private void ActHook_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            actHook.Start();
-        }
-
-        private void ActHook_KeyDown(object sender, KeyEventArgs e)
-        {
-            actHook.Start();
-        }
-
-        private void ActHook_OnMouseActivity(object sender, MouseEventArgs e)
-        {
-            actHook.Start();
-        }
-
-      
-
-        [DllImport("user32.dll")]
-        static extern int ShowCursor(bool bShow);
-
-
+        
 
         private void btnLockScreen_Click(object sender, EventArgs e)
         {
+         
             LockScreen(true);
         }
 
         private void btnStopLockScreen_Click(object sender, EventArgs e)
         {
-          
+            StopLockScreen();
         }
 
 
@@ -227,27 +217,25 @@ namespace StudentUser
            // this.Hide();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("ok");
-        }
-
+       
         private void mCloseForm_Click(object sender, EventArgs e)
         {
-            //  this.tuopan.Dispose();
+            this.Close();
             Environment.Exit(0);
         }
+        #region 右键菜单
+        private void mSignIn_Click(object sender, EventArgs e)
+        {
 
+        }
         private void mChat_Click(object sender, EventArgs e)
         {
-            OpenChatForm();
-        }
 
+        }
         private void mHandUp_Click(object sender, EventArgs e)
         {
 
         }
-
         private void mFileShare_Click(object sender, EventArgs e)
         {
 
@@ -258,14 +246,8 @@ namespace StudentUser
 
         }
 
-        private void OpenChatForm()
-        {
-            if (chatForm == null)
-            {
-                MessageBox.Show("当前未有聊天对象");
-                return;
-            }
-            chatForm.Show();
-        }
+        #endregion
+
+
     }
 }

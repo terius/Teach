@@ -30,6 +30,7 @@ namespace StudentUser
             {
                 Application.Run(new UserMainForm());
             }
+            // Application.Run(new Form1());
             //    }
             //    else
             //    {

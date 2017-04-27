@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ namespace StudentUser
     public partial class BlackScreen : Form, IMessageFilter
     {
         bool _isSlient = false;
+        Cls.UserActivityHook actHook;
         public BlackScreen(bool isSlient)
         {
             InitializeComponent();
@@ -19,21 +21,44 @@ namespace StudentUser
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern void BlockInput([In, MarshalAs(UnmanagedType.Bool)]bool fBlockIt);
 
+        //[DllImport("WinLockDll.dll", CallingConvention = CallingConvention.StdCall)]
+        //public static extern int CtrlAltDel_Enable_Disable(bool bEnableDisable);
+
         private void BlackScreen_Load(object sender, EventArgs e)
         {
             this.SetVisibleCore(false);//***********   加上这两句可以实现窗口全屏，并隐藏任务栏
             this.FormBorderStyle = FormBorderStyle.None;
-          //  this.BackColor = _isSlient ? Color.Black : Color.White;
-            //if (!_isSlient)
-            //{
-            //    this.Opacity = 0;
-            //}
+            this.BackColor = _isSlient ? Color.Black : Color.White;
+            if (!_isSlient)
+            {
+                this.Opacity = 0;
+            }
             this.ShowInTaskbar = false;
-            this.SetVisibleCore(true);//************
-            BlockInput(true);
-            var actHook = new Cls.UserActivityHook();
+            this.SetVisibleCore(true);
+            DisableMouseAndKeyboard();
+          //  DisableMouse();
+          //   BlockInput(true);
+
+            //   NativeMethods.BlockInput(TimeSpan.FromSeconds(30));
+
+        }
+
+        private void DisableMouseAndKeyboard()
+        {
+            actHook = new Cls.UserActivityHook();
             actHook.Start();
-            // NativeMethods.BlockInput(TimeSpan.FromSeconds(20));
+            System.Diagnostics.Process.Start("d.bat");
+            BlockInput(true);
+        }
+
+        public void EnableMouseAndKeyboard()
+        {
+            if (actHook != null)
+            {
+                actHook.Stop();
+            }
+            BlockInput(false);
+            System.Diagnostics.Process.Start("e.bat");
         }
 
 
@@ -63,29 +88,7 @@ namespace StudentUser
         }
     }
 
-    public partial class NativeMethods
-    {
 
-        /// Return Type: BOOL->int
-        ///fBlockIt: BOOL->int
-        [System.Runtime.InteropServices.DllImportAttribute("user32.dll", EntryPoint = "BlockInput")]
-        [return: System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.Bool)]
-        public static extern bool BlockInput([System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.Bool)] bool fBlockIt);
-
-        public static void BlockInput(TimeSpan span)
-        {
-            try
-            {
-                BlockInput(true);
-                Thread.Sleep(span);
-            }
-            finally
-            {
-                BlockInput(false);
-            }
-        }
-
-    }
 
 
 }

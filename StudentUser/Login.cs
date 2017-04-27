@@ -25,9 +25,9 @@ namespace StudentUser
             GlobalVariable.client = new MyTcpClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
-            this.textBox1.Text = "stu" + DateTime.Now.ToString("MMddHHmmss");
+            this.textBox1.Text = "学生" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "110";
-         
+            LoginIn();
 
             //TestAES();
         }
@@ -80,6 +80,11 @@ namespace StudentUser
         private async void button1_Click(object sender, EventArgs e)//登录 
         {
             //string connectionString = "Database='" + ConfigurationManager.AppSettings["Database"] + "';Data Source='" + ConfigurationManager.AppSettings["serverIP"]+ "';User Id='" + ConfigurationManager.AppSettings["User ID"]+ "';Password='" + ConfigurationManager.AppSettings["Password"]+ "'";//默认端口3306 
+            LoginIn();
+        }
+
+        private  async void LoginIn()
+        {
             string nickName = this.textBox1.Text.Trim();
             string no = this.textBox2.Text.Trim();
 
@@ -96,8 +101,6 @@ namespace StudentUser
             userGuid = Guid.NewGuid().ToString();
             await GlobalVariable.client.Send_UserLogin(userGuid, nickName, no, ClientRole.Student);
         }
-
-
 
 
 
