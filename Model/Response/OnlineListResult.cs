@@ -15,5 +15,7 @@ namespace Model
         public ClientRole clientRole { get; set; }
 
         public int no { get; set; }
+
+        public bool IsCalled { get; set; }
     }
 }

@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListViewItem;
 
 namespace NewTeacher
 {
-    public partial class BaseForm : CSkinBaseForm
+    public partial class BaseForm : Form
     {
         #region 自定义字段
         //  private static bool beingCallTheRoll = false;//
@@ -38,6 +39,8 @@ namespace NewTeacher
             onlineInfo = new OnlineInfo();
             onlineInfo.OnLineChange += OnlineInfo_OnLineChange1;
             onlineInfo.AddOnLine += OnlineInfo_AddOnLine;
+
+
 
         }
 
@@ -119,8 +122,8 @@ namespace NewTeacher
             GlobalVariable.AddNewChat(request);
             if (CheckChatFormIsOpen())
             {
-             //   chatForm.DoReveieveMessage(request);
-                OpenOrCreateChatForm(request,true);
+                //   chatForm.DoReveieveMessage(request);
+                OpenOrCreateChatForm(request, true);
             }
             else
             {
@@ -133,7 +136,7 @@ namespace NewTeacher
         /// 打开或创建聊天窗口
         /// </summary>
         /// <param name="request"></param>
-        public void OpenOrCreateChatForm(AddChatRequest request,bool fromReceMsg)
+        public void OpenOrCreateChatForm(AddChatRequest request, bool fromReceMsg)
         {
             //chatFormIsShow = CheckChatFormIsOpen();
             //if (chatForm == null)
@@ -175,7 +178,8 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void class_call_Click(object sender, EventArgs e)
         {
-
+            CallForm frm = new CallForm();
+            frm.ShowDialog(this);
         }
         /// <summary>
         /// 分组讨论
@@ -353,7 +357,7 @@ namespace NewTeacher
             request.UserName = userName;
             request.UserType = ClientRole.Student;
             GlobalVariable.AddNewChat(request);
-            OpenOrCreateChatForm(request,false);
+            OpenOrCreateChatForm(request, false);
         }
         /// <summary>
         /// 锁屏
@@ -438,90 +442,35 @@ namespace NewTeacher
         /// 显示在线用户列表
         /// </summary>
         /// <param name="onLineList"></param>
-        private void userListShow(IList<OnlineListResult> onLineList)
+        private void userListShow(IList<OnlineListResult> list)
         {
-            this.onlineList.Clear();
-            foreach (OnlineListResult item in onLineList)
+            this.onlineList.Items.Clear();
+            AddOnlineUser(list);
+        }
+
+        private void AddOnlineUser(IList<OnlineListResult> list)
+        {
+            foreach (OnlineListResult item in list)
             {
                 if (!IsMySelf(item.username))
                 {
                     ListViewItem listItem = new ListViewItem();
-                    //listItem.Name = item.clientStyle == ClientStyle.PC ? "计算机" : "移动端";
                     listItem.Text = item.nickname;
                     listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 39;
-                    listItem.SubItems.Add(item.username);
-
-                    this.onlineList.Items.Add(listItem);
-                }
-            }
-
-
-            //switch (deviceType)
-            //{
-            //    case "COMPUTER":
-            //  this.listView1.Items.Add("计算机");
-            //        this.listView1.Items[userCount].SubItems.Add(role);
-            //        this.listView1.Items[userCount].SubItems.Add(ip);
-            //        this.listView1.Items[userCount].SubItems.Add(port);
-            //        this.listView1.Items[userCount].SubItems.Add("否");
-            //        this.listView1.Items[userCount].SubItems.Add("否");
-            //        this.listView1.Items[userCount].ImageIndex = 0;
-            //        userCount++;
-            //        break;
-            //    case "ANDROID":
-            //        this.listView1.Items.Add("移动端");
-            //        this.listView1.Items[userCount].SubItems.Add(role);
-            //        this.listView1.Items[userCount].SubItems.Add(ip);
-            //        this.listView1.Items[userCount].SubItems.Add(port);
-            //        this.listView1.Items[userCount].ImageIndex = 1;
-            //        this.listView1.Items[userCount].SubItems.Add("否");
-            //        this.listView1.Items[userCount].SubItems.Add("否");
-            //        userCount++;
-            //        break;
-            //}
-        }
-
-
-        private void AddUserList(IList<OnlineListResult> onLineList)
-        {
-            //  MessageBox.Show("新用户登陆");
-            foreach (OnlineListResult item in onLineList)
-            {
-                if (!IsMySelf(item.username))
-                {
-                    // if (!onlineInfo.OnLineList.Any(d => d.username == item.username))
-                    //   {
-                    ListViewItem listItem = new ListViewItem();
-                    listItem.Text = item.nickname;
-                    listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 39;
+                    listItem.SubItems.Add(item.IsCalled ? "是" : "是");
                     listItem.SubItems.Add(item.username);
                     this.onlineList.Items.Add(listItem);
-                    //  }
                 }
             }
         }
 
-        /// <summary>
-        /// 用户列表选择事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void onlineList_MouseDown(object sender, MouseEventArgs e)
+
+        private void AddUserList(IList<OnlineListResult> list)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                ListViewItem lvi = onlineList.GetItemAt(e.X, e.Y);
-                if (lvi != null)
-                {
-                    onlineList.ContextMenuStrip = UserListMenu;
-                }
-                else
-                {
-                    onlineList.ContextMenuStrip = null;
-                }
-                return;
-            }
+            AddOnlineUser(list);
         }
+
+
 
 
         /// <summary>
@@ -576,6 +525,33 @@ namespace NewTeacher
         private void class_groupChat_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public bool IsMySelf(string userName)
+        {
+            return userName == GlobalVariable.LoginUserInfo.UserName;
+        }
+
+        /// <summary>
+        /// 用户列表选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onlineList_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewItem lvi = onlineList.GetItemAt(e.X, e.Y);
+                if (lvi != null)
+                {
+                    onlineList.ContextMenuStrip = UserListMenu;
+                }
+                else
+                {
+                    onlineList.ContextMenuStrip = null;
+                }
+                return;
+            }
         }
     }
 

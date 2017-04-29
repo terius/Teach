@@ -73,9 +73,21 @@ namespace StudentUser
                         AddChat(chatResponse);
                     });
                     break;
+                case (int)CommandType.BeginCall:
+                    OpenCallForm();
+                    break;
+                case (int)CommandType.EndCall:
+                
+                    break;
                 default:
                     break;
             }
+        }
+
+        private void OpenCallForm()
+        {
+            CallForm frm = new CallForm();
+            frm.ShowDialog();
         }
 
         private bool CheckChatFormIsOpen()

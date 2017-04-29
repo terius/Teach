@@ -68,6 +68,12 @@
     <Compile Include="BlackScreen.designer.cs">
       <DependentUpon>BlackScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="CallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CallForm.Designer.cs">
+      <DependentUpon>CallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CSkinBaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BlackScreen.resx">
       <DependentUpon>BlackScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CallForm.resx">
+      <DependentUpon>CallForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CSkinBaseForm.resx">
       <DependentUpon>CSkinBaseForm.cs</DependentUpon>

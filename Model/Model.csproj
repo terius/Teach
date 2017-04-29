@@ -44,11 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Request\BaseRequest.cs" />
     <Compile Include="Request\CreateTeamRequest.cs" />
     <Compile Include="Request\LockScreenRequest.cs" />
     <Compile Include="Request\GroupChatRequest.cs" />
     <Compile Include="Request\PrivateChatRequest.cs" />
     <Compile Include="Request\QuietRequest.cs" />
+    <Compile Include="Request\StuCallRequest.cs" />
     <Compile Include="Response\LockScreenReponse.cs" />
     <Compile Include="Response\QuietResponse.cs" />
     <Compile Include="Response\ScreenInteract_Response.cs" />

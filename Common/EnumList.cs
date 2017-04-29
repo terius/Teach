@@ -5,6 +5,8 @@
         UserLogin = 1,
         UserLoginRes = 2,
         OnlineList = 3,
+        BeginCall = 5,
+        EndCall = 6,
         ScreenInteract = 7,
         StopScreenInteract = 8,
         Quiet = 9,
@@ -15,7 +17,8 @@
         GroupChat = 14,
         CreateTeam = 15,
         OneUserLogIn = 17,
-        UserLoginOut = 18
+        UserLoginOut = 18,
+        StudentCall = 19
     }
 
     /// <summary>

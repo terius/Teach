@@ -263,7 +263,55 @@ namespace MyTCP
                 await this.SendMessage(message);
             });
         }
+        /// <summary>
+        /// 课堂点名
+        /// </summary>
+        /// <param name="sendName"></param>
+        /// <param name="msg"></param>
+        public void Send_Call()
+        {
+            var message = new SendMessage<BaseRequest>();
+            message.Action = (int)CommandType.BeginCall;
+            message.Data = new BaseRequest();
 
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+
+        }
+
+        /// <summary>
+        /// 结束课堂点名
+        /// </summary>
+        public void Send_EndCall()
+        {
+            var message = new SendMessage<BaseRequest>();
+            message.Action = (int)CommandType.EndCall;
+            message.Data = new BaseRequest();
+
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+
+        }
+
+        /// <summary>
+        /// 学生提交点名信息
+        /// </summary>
+        public void Send_StudentCall(string no, string name)
+        {
+            var message = new SendMessage<StuCallRequest>();
+            message.Action = (int)CommandType.StudentCall;
+            message.Data = new StuCallRequest { name = name, no = no };
+
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+
+        }
 
         #endregion
     }
