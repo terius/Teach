@@ -17,6 +17,8 @@ namespace StudentUser
         {
             InitializeComponent();
             this.TopMost = true;
+            this.txtName.Text = GlobalVariable.LoginUserInfo.DisplayName;
+            this.txtNo.Text = GlobalVariable.LoginUserInfo.No;
         }
 
         private void start_btn_Click(object sender, EventArgs e)

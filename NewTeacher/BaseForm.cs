@@ -1,5 +1,6 @@
 ﻿using Common;
 using Helpers;
+using MaterialSkin.Controls;
 using Model;
 using SharedForms;
 using System;
@@ -7,11 +8,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using static System.Windows.Forms.ListViewItem;
 
 namespace NewTeacher
 {
-    public partial class BaseForm : Form
+    public partial class BaseForm : MaterialForm
     {
         #region 自定义字段
         //  private static bool beingCallTheRoll = false;//
@@ -92,11 +92,45 @@ namespace NewTeacher
                     onlineInfo.OnNewUserLoginIn(newUser);
                     //  OnlineInfo_AddOnLine(onlineInfo, e2);
                     break;
+                case (int)CommandType.StudentCall:
+                    var callInfo = JsonHelper.DeserializeObj<StuCallRequest>(message.DataStr);
+                    UpdateOnLineStatus(callInfo);
+                    break;
                 default:
                     break;
             }
         }
 
+        private void DoAction(Action action)
+        {
+            this.InvokeOnUiThreadIfRequired(action);
+        }
+
+        private void UpdateOnLineStatus(StuCallRequest callInfo)
+        {
+            foreach (OnlineListResult item in onlineInfo.OnLineList)
+            {
+                if (item.no.ToString() == callInfo.no)
+                {
+                    item.IsCalled = true;
+                    break;
+                }
+            }
+            DoAction(() => {
+                foreach (ListViewItem item in onlineList.Items)
+                {
+                    string nickname = item.Text;
+                    string no = item.SubItems[3].Text;
+                    if (nickname == callInfo.name && no == callInfo.no)
+                    {
+                        item.SubItems[0].Text = "是";
+                        break;
+                    }
+                }
+
+            });
+          
+        }
 
         public void startRecord()
         {
@@ -349,7 +383,7 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void userList_privateChat_Click(object sender, EventArgs e)
         {
-            string userName = this.onlineList.SelectedItems[0].SubItems[1].Text;
+            string userName = this.onlineList.SelectedItems[0].SubItems[2].Text;
             string displayName = this.onlineList.SelectedItems[0].Text;
             AddChatRequest request = new AddChatRequest();
             request.DisplayName = displayName;
@@ -366,7 +400,7 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void userList_lockScreen_Click(object sender, EventArgs e)
         {
-            string username = this.onlineList.SelectedItems[0].SubItems[1].Text;
+            string username = this.onlineList.SelectedItems[0].SubItems[2].Text;
             GlobalVariable.client.Send_LockScreen(username);
         }
 
@@ -377,7 +411,7 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void userList_stopLockScreen_Click(object sender, EventArgs e)
         {
-            string username = this.onlineList.SelectedItems[0].SubItems[1].Text;
+            string username = this.onlineList.SelectedItems[0].SubItems[2].Text;
             GlobalVariable.client.Send_StopLockScreen(username);
         }
 
@@ -457,9 +491,11 @@ namespace NewTeacher
                     ListViewItem listItem = new ListViewItem();
                     listItem.Text = item.nickname;
                     listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 39;
-                    listItem.SubItems.Add(item.IsCalled ? "是" : "是");
+                    listItem.SubItems.Add(item.IsCalled ? "是" : "");
                     listItem.SubItems.Add(item.username);
+                    listItem.SubItems.Add(item.no.ToString());
                     this.onlineList.Items.Add(listItem);
+
                 }
             }
         }
@@ -480,7 +516,7 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void btnReload_Click(object sender, EventArgs e)
         {
-            GlobalVariable.client.Send_OnlineList();
+
         }
 
 
@@ -552,6 +588,11 @@ namespace NewTeacher
                 }
                 return;
             }
+        }
+
+        private void btnReload_Click_1(object sender, EventArgs e)
+        {
+            GlobalVariable.client.Send_OnlineList();
         }
     }
 

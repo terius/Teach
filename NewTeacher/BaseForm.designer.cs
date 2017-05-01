@@ -46,8 +46,9 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gBoxOnline = new System.Windows.Forms.GroupBox();
             this.onlineList = new System.Windows.Forms.ListView();
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btnReload = new CCWin.SkinControl.SkinButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStripContainer6 = new System.Windows.Forms.ToolStripContainer();
             this.MenuOther = new System.Windows.Forms.MenuStrip();
@@ -87,8 +88,8 @@
             this.class_groupChat = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReload = new System.Windows.Forms.Button();
             this.UserListMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -127,6 +128,7 @@
             this.toolStripContainer1.SuspendLayout();
             this.MenuClass.SuspendLayout();
             this.statusStrip2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuImageList
@@ -267,10 +269,10 @@
             // messageList
             // 
             this.messageList.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.messageList.Location = new System.Drawing.Point(0, 327);
+            this.messageList.Location = new System.Drawing.Point(0, 385);
             this.messageList.Margin = new System.Windows.Forms.Padding(2);
             this.messageList.Name = "messageList";
-            this.messageList.Size = new System.Drawing.Size(989, 138);
+            this.messageList.Size = new System.Drawing.Size(1028, 138);
             this.messageList.TabIndex = 5;
             this.messageList.Text = "";
             // 
@@ -290,8 +292,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.messageList);
-            this.splitContainer1.Size = new System.Drawing.Size(1197, 465);
-            this.splitContainer1.SplitterDistance = 204;
+            this.splitContainer1.Size = new System.Drawing.Size(1272, 523);
+            this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 10;
             // 
             // gBoxOnline
@@ -300,7 +302,7 @@
             this.gBoxOnline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gBoxOnline.Location = new System.Drawing.Point(10, 10);
             this.gBoxOnline.Name = "gBoxOnline";
-            this.gBoxOnline.Size = new System.Drawing.Size(184, 406);
+            this.gBoxOnline.Size = new System.Drawing.Size(220, 459);
             this.gBoxOnline.TabIndex = 0;
             this.gBoxOnline.TabStop = false;
             this.gBoxOnline.Text = "在线学生列表";
@@ -315,40 +317,30 @@
             this.onlineList.LargeImageList = this.MenuImageList;
             this.onlineList.Location = new System.Drawing.Point(3, 17);
             this.onlineList.Name = "onlineList";
-            this.onlineList.Size = new System.Drawing.Size(178, 386);
+            this.onlineList.Size = new System.Drawing.Size(214, 439);
             this.onlineList.SmallImageList = this.MenuImageList;
             this.onlineList.TabIndex = 0;
             this.onlineList.UseCompatibleStateImageBehavior = false;
             this.onlineList.View = System.Windows.Forms.View.Details;
             this.onlineList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onlineList_MouseDown_1);
             // 
+            // colName
+            // 
+            this.colName.Text = "姓名";
+            this.colName.Width = 100;
+            // 
+            // colCall
+            // 
+            this.colCall.Text = "是否点名";
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.btnReload);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(10, 416);
+            this.panel4.Location = new System.Drawing.Point(10, 469);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(184, 39);
+            this.panel4.Size = new System.Drawing.Size(220, 44);
             this.panel4.TabIndex = 1;
-            // 
-            // btnReload
-            // 
-            this.btnReload.BackColor = System.Drawing.Color.Transparent;
-            this.btnReload.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(21)))), ((int)(((byte)(26)))));
-            this.btnReload.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btnReload.DownBack = ((System.Drawing.Image)(resources.GetObject("btnReload.DownBack")));
-            this.btnReload.DrawType = CCWin.SkinControl.DrawStyle.Img;
-            this.btnReload.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnReload.Location = new System.Drawing.Point(14, 8);
-            this.btnReload.MouseBack = ((System.Drawing.Image)(resources.GetObject("btnReload.MouseBack")));
-            this.btnReload.Name = "btnReload";
-            this.btnReload.NormlBack = ((System.Drawing.Image)(resources.GetObject("btnReload.NormlBack")));
-            this.btnReload.Palace = true;
-            this.btnReload.Size = new System.Drawing.Size(46, 25);
-            this.btnReload.TabIndex = 39;
-            this.btnReload.Text = "刷 新";
-            this.btnReload.UseVisualStyleBackColor = false;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // panel3
             // 
@@ -364,7 +356,7 @@
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 4, 1);
-            this.panel3.Size = new System.Drawing.Size(1197, 110);
+            this.panel3.Size = new System.Drawing.Size(1272, 110);
             this.panel3.TabIndex = 15;
             // 
             // toolStripContainer6
@@ -926,24 +918,44 @@
             this.toolStripStatusLabel4.Spring = true;
             this.toolStripStatusLabel4.Text = "班级";
             // 
-            // colName
+            // panel1
             // 
-            this.colName.Text = "姓名";
-            this.colName.Width = 100;
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.splitContainer1);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Location = new System.Drawing.Point(0, 62);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1272, 633);
+            this.panel1.TabIndex = 16;
             // 
-            // colCall
+            // btnReload
             // 
-            this.colCall.Text = "是否点名";
+            this.btnReload.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReload.FlatAppearance.BorderSize = 0;
+            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReload.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnReload.ForeColor = System.Drawing.Color.White;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReload.Location = new System.Drawing.Point(14, 10);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(60, 27);
+            this.btnReload.TabIndex = 40;
+            this.btnReload.Text = "刷新";
+            this.btnReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click_1);
             // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1197, 575);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(1269, 691);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(439, 406);
             this.Name = "BaseForm";
             this.Tag = "";
@@ -1018,6 +1030,7 @@
             this.MenuClass.PerformLayout();
             this.statusStrip2.ResumeLayout(false);
             this.statusStrip2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1050,7 +1063,6 @@
         private System.Windows.Forms.ToolStripMenuItem team_view;
         private System.Windows.Forms.StatusStrip statusStrip5;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel7;
-        private CCWin.SkinControl.SkinButton btnReload;
         private System.Windows.Forms.ToolStripContainer toolStripContainer3;
         private System.Windows.Forms.MenuStrip MeunControl;
         private System.Windows.Forms.ToolStripMenuItem control_slient;
@@ -1082,5 +1094,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colCall;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnReload;
     }
 }

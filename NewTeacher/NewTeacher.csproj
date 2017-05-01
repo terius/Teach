@@ -81,11 +81,11 @@
     <Compile Include="fmEditTeamName.Designer.cs">
       <DependentUpon>fmEditTeamName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="MSkin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MSkin.Designer.cs">
+      <DependentUpon>MSkin.cs</DependentUpon>
     </Compile>
     <Compile Include="frmNotify.cs">
       <SubType>Form</SubType>
@@ -120,8 +120,8 @@
     <EmbeddedResource Include="fmEditTeamName.resx">
       <DependentUpon>fmEditTeamName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MSkin.resx">
+      <DependentUpon>MSkin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNotify.resx">
       <DependentUpon>frmNotify.cs</DependentUpon>

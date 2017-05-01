@@ -47,7 +47,8 @@ namespace NewTeacher
                     {
                         DisplayName = "老师",
                         UserName = textBox1.Text.Trim(),
-                        UserType = ClientRole.Teacher
+                        UserType = ClientRole.Teacher,
+                        No = textBox2.Text.Trim()
                     };
                     this.Close();
                 }
