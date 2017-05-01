@@ -110,7 +110,7 @@ namespace NewTeacher
         {
             foreach (OnlineListResult item in onlineInfo.OnLineList)
             {
-                if (item.no.ToString() == callInfo.no)
+                if (item.username == callInfo.username)
                 {
                     item.IsCalled = true;
                     break;
@@ -119,11 +119,12 @@ namespace NewTeacher
             DoAction(() => {
                 foreach (ListViewItem item in onlineList.Items)
                 {
-                    string nickname = item.Text;
-                    string no = item.SubItems[3].Text;
-                    if (nickname == callInfo.name && no == callInfo.no)
+                    // string nickname = item.Text;
+                    //   string no = item.SubItems[3].Text;
+                    string userName = item.SubItems[2].Text;
+                    if (userName == callInfo.username)
                     {
-                        item.SubItems[0].Text = "是";
+                        item.SubItems[1].Text = "是";
                         break;
                     }
                 }

@@ -300,11 +300,11 @@ namespace MyTCP
         /// <summary>
         /// 学生提交点名信息
         /// </summary>
-        public void Send_StudentCall(string no, string name)
+        public void Send_StudentCall(string no, string name, string userName)
         {
             var message = new SendMessage<StuCallRequest>();
             message.Action = (int)CommandType.StudentCall;
-            message.Data = new StuCallRequest { name = name, no = no };
+            message.Data = new StuCallRequest { name = name, no = no, username = userName };
 
             Task.Run(async () =>
             {

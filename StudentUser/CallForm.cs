@@ -35,7 +35,7 @@ namespace StudentUser
                 GlobalVariable.ShowError("姓名不能为空！");
                 return;
             }
-            GlobalVariable.client.Send_StudentCall(no, name);
+            GlobalVariable.client.Send_StudentCall(no, name, GlobalVariable.LoginUserInfo.UserName);
             this.Close();
         }
     }
