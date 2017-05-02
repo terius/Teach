@@ -51,6 +51,8 @@ namespace Model
     {
         public string DisplayName { get; set; }
         public string UserName { get; set; }
+
+        public bool IsOnline { get; set; }
     }
 
     public class ChatMessage

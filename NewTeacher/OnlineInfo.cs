@@ -9,9 +9,10 @@ namespace NewTeacher
     {
         public IList<OnlineListResult> OnLineList { get; set; }
         public delegate void OnlineChangeHandle(object sender, OnlineEventArgs e);
+        public delegate void OnlineDelHandle(UserLogoutResponse e);
         public event OnlineChangeHandle OnLineChange;
         public event OnlineChangeHandle AddOnLine;
-        public event OnlineChangeHandle DelOnLine;
+        public event OnlineDelHandle DelOnLine;
 
         public OnlineInfo()
         {
@@ -35,11 +36,10 @@ namespace NewTeacher
         
         }
 
-        public void OnUserLoginOut(IList<OnlineListResult> onLineList)
+        public void OnUserLoginOut(UserLogoutResponse loginOutInfo)
         {
-            DeleteOnLine(onLineList[0]);
-            OnlineEventArgs e = new OnlineEventArgs(onLineList);
-            DelOnLine(this, e);
+            DeleteOnLine(loginOutInfo);
+            DelOnLine(loginOutInfo);
         }
 
 
@@ -52,9 +52,8 @@ namespace NewTeacher
         }
 
 
-        private void DeleteOnLine(OnlineListResult user)
+        private void DeleteOnLine(UserLogoutResponse user)
         {
-
             var item = OnLineList.FirstOrDefault(d => d.username == user.username);
             if (item != null)
             {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace NewTeacher
 {
@@ -38,9 +39,24 @@ namespace NewTeacher
             onlineInfo = new OnlineInfo();
             onlineInfo.OnLineChange += OnlineInfo_OnLineChange1;
             onlineInfo.AddOnLine += OnlineInfo_AddOnLine;
+            onlineInfo.DelOnLine += OnlineInfo_DelOnLine;
 
 
+        }
 
+        private void OnlineInfo_DelOnLine(UserLogoutResponse delInfo)
+        {
+            DoAction(() =>
+            {
+                foreach (ListViewItem item in this.onlineList.Items)
+                {
+                    if (item.SubItems[2].Text == delInfo.username)
+                    {
+                        item.Remove();
+                        break;
+                    }
+                }
+            });
         }
 
         private void OnlineInfo_AddOnLine(object sender, OnlineEventArgs e)
@@ -77,28 +93,34 @@ namespace NewTeacher
             messageList.InvokeOnUiThreadIfRequired(() => messageList.AppendText(message.DataStr));
             switch (message.Action)
             {
-                case (int)CommandType.OnlineList:
+                case (int)CommandType.OnlineList://在线用户
                     var userList2 = JsonHelper.DeserializeObj<List<OnlineListResult>>(message.DataStr);
                     onlineInfo.OnOnlineChange(userList2);
                     break;
-                case (int)CommandType.PrivateChat:
+                case (int)CommandType.PrivateChat://接收到学生私聊信息
                     var PrivateChatResponse = JsonHelper.DeserializeObj<PrivateChatRequest>(message.DataStr);
                     this.InvokeOnUiThreadIfRequired(() => { AppendToPrivateForm(PrivateChatResponse); });
                     break;
-                case (int)CommandType.OneUserLogIn:
+                case (int)CommandType.OneUserLogIn://某个学生登录
                     var newUser = JsonHelper.DeserializeObj<List<OnlineListResult>>(message.DataStr);
 
                     onlineInfo.OnNewUserLoginIn(newUser);
                     //  OnlineInfo_AddOnLine(onlineInfo, e2);
                     break;
-                case (int)CommandType.StudentCall:
+                case (int)CommandType.StudentCall://课堂点名
                     var callInfo = JsonHelper.DeserializeObj<StuCallRequest>(message.DataStr);
                     UpdateOnLineStatus(callInfo);
+                    break;
+                case (int)CommandType.UserLoginOut:
+                    var loginoutInfo = JsonHelper.DeserializeObj<UserLogoutResponse>(message.DataStr);
+                    onlineInfo.OnUserLoginOut(loginoutInfo);
                     break;
                 default:
                     break;
             }
         }
+
+
 
         private void DoAction(Action action)
         {
@@ -115,7 +137,8 @@ namespace NewTeacher
                     break;
                 }
             }
-            DoAction(() => {
+            DoAction(() =>
+            {
                 foreach (ListViewItem item in onlineList.Items)
                 {
                     // string nickname = item.Text;
@@ -129,7 +152,7 @@ namespace NewTeacher
                 }
 
             });
-          
+
         }
 
         public void startRecord()
@@ -233,7 +256,8 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void team_view_Click(object sender, EventArgs e)
         {
-
+            TeamView frm = new TeamView(onlineInfo);
+            frm.ShowDialog();
         }
         /// <summary>
         /// 屏幕肃静

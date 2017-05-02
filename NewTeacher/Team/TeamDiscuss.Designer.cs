@@ -131,11 +131,12 @@
             // cboxTeam
             // 
             this.cboxTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxTeam.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cboxTeam.FormattingEnabled = true;
             this.cboxTeam.Location = new System.Drawing.Point(13, 19);
             this.cboxTeam.Margin = new System.Windows.Forms.Padding(2);
             this.cboxTeam.Name = "cboxTeam";
-            this.cboxTeam.Size = new System.Drawing.Size(170, 20);
+            this.cboxTeam.Size = new System.Drawing.Size(170, 24);
             this.cboxTeam.TabIndex = 0;
             this.cboxTeam.SelectedIndexChanged += new System.EventHandler(this.cboxTeam_SelectedIndexChanged);
             // 
@@ -304,11 +305,12 @@
             // cboxTeam2
             // 
             this.cboxTeam2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxTeam2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cboxTeam2.FormattingEnabled = true;
             this.cboxTeam2.Location = new System.Drawing.Point(5, 44);
             this.cboxTeam2.Margin = new System.Windows.Forms.Padding(2);
             this.cboxTeam2.Name = "cboxTeam2";
-            this.cboxTeam2.Size = new System.Drawing.Size(170, 20);
+            this.cboxTeam2.Size = new System.Drawing.Size(170, 24);
             this.cboxTeam2.TabIndex = 6;
             this.cboxTeam2.SelectedIndexChanged += new System.EventHandler(this.cboxTeam2_SelectedIndexChanged);
             // 

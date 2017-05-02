@@ -346,7 +346,7 @@
             // 
             this.btnReload.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReload.FlatAppearance.BorderSize = 0;
+            this.btnReload.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReload.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReload.ForeColor = System.Drawing.Color.White;

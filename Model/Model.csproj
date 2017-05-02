@@ -57,6 +57,7 @@
     <Compile Include="Response\OnlineListResult.cs" />
     <Compile Include="Request\ScreenInteract_Request.cs" />
     <Compile Include="LoginInfo.cs" />
+    <Compile Include="Response\UserLogoutResponse.cs" />
     <Compile Include="SendCommand.cs" />
     <Compile Include="Response\LoginResult.cs" />
     <Compile Include="LoginUserInfo.cs" />

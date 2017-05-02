@@ -70,7 +70,7 @@ namespace SharedForms
 
         }
 
-     
+
 
 
         public static ChatMessage ToChatMessage(this AddChatRequest request)
@@ -201,7 +201,7 @@ namespace SharedForms
                 displayName = item.Text;
                 if (!info.TeamMembers.Any(d => d.UserName == userName))
                 {
-                    info.TeamMembers.Add(new TeamMember { UserName = userName, DisplayName = displayName });
+                    info.TeamMembers.Add(new TeamMember { UserName = userName, DisplayName = displayName, IsOnline = true });
                 }
             }
             IsTeamChatChanged = true;
