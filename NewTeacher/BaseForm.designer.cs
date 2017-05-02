@@ -49,6 +49,7 @@
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnReload = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStripContainer6 = new System.Windows.Forms.ToolStripContainer();
             this.MenuOther = new System.Windows.Forms.MenuStrip();
@@ -89,7 +90,6 @@
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnReload = new System.Windows.Forms.Button();
             this.UserListMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -269,10 +269,10 @@
             // messageList
             // 
             this.messageList.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.messageList.Location = new System.Drawing.Point(0, 385);
+            this.messageList.Location = new System.Drawing.Point(0, 443);
             this.messageList.Margin = new System.Windows.Forms.Padding(2);
             this.messageList.Name = "messageList";
-            this.messageList.Size = new System.Drawing.Size(1028, 138);
+            this.messageList.Size = new System.Drawing.Size(1026, 138);
             this.messageList.TabIndex = 5;
             this.messageList.Text = "";
             // 
@@ -292,8 +292,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.messageList);
-            this.splitContainer1.Size = new System.Drawing.Size(1272, 523);
-            this.splitContainer1.SplitterDistance = 240;
+            this.splitContainer1.Size = new System.Drawing.Size(1269, 581);
+            this.splitContainer1.SplitterDistance = 239;
             this.splitContainer1.TabIndex = 10;
             // 
             // gBoxOnline
@@ -302,7 +302,7 @@
             this.gBoxOnline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gBoxOnline.Location = new System.Drawing.Point(10, 10);
             this.gBoxOnline.Name = "gBoxOnline";
-            this.gBoxOnline.Size = new System.Drawing.Size(220, 459);
+            this.gBoxOnline.Size = new System.Drawing.Size(219, 517);
             this.gBoxOnline.TabIndex = 0;
             this.gBoxOnline.TabStop = false;
             this.gBoxOnline.Text = "在线学生列表";
@@ -317,7 +317,7 @@
             this.onlineList.LargeImageList = this.MenuImageList;
             this.onlineList.Location = new System.Drawing.Point(3, 17);
             this.onlineList.Name = "onlineList";
-            this.onlineList.Size = new System.Drawing.Size(214, 439);
+            this.onlineList.Size = new System.Drawing.Size(213, 497);
             this.onlineList.SmallImageList = this.MenuImageList;
             this.onlineList.TabIndex = 0;
             this.onlineList.UseCompatibleStateImageBehavior = false;
@@ -337,10 +337,29 @@
             // 
             this.panel4.Controls.Add(this.btnReload);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(10, 469);
+            this.panel4.Location = new System.Drawing.Point(10, 527);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(220, 44);
+            this.panel4.Size = new System.Drawing.Size(219, 44);
             this.panel4.TabIndex = 1;
+            // 
+            // btnReload
+            // 
+            this.btnReload.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReload.FlatAppearance.BorderSize = 0;
+            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReload.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnReload.ForeColor = System.Drawing.Color.White;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReload.Location = new System.Drawing.Point(14, 10);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(60, 27);
+            this.btnReload.TabIndex = 40;
+            this.btnReload.Text = "刷新";
+            this.btnReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click_1);
             // 
             // panel3
             // 
@@ -356,7 +375,7 @@
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 4, 1);
-            this.panel3.Size = new System.Drawing.Size(1272, 110);
+            this.panel3.Size = new System.Drawing.Size(1269, 110);
             this.panel3.TabIndex = 15;
             // 
             // toolStripContainer6
@@ -920,34 +939,13 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Location = new System.Drawing.Point(0, 62);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1272, 633);
+            this.panel1.Size = new System.Drawing.Size(1269, 691);
             this.panel1.TabIndex = 16;
-            // 
-            // btnReload
-            // 
-            this.btnReload.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReload.FlatAppearance.BorderSize = 0;
-            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReload.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnReload.ForeColor = System.Drawing.Color.White;
-            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
-            this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReload.Location = new System.Drawing.Point(14, 10);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(60, 27);
-            this.btnReload.TabIndex = 40;
-            this.btnReload.Text = "刷新";
-            this.btnReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReload.UseVisualStyleBackColor = false;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click_1);
             // 
             // BaseForm
             // 

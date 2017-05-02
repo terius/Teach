@@ -4,6 +4,7 @@ using Model;
 using MyTCP;
 using SharedForms;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StudentUser
@@ -27,7 +28,7 @@ namespace StudentUser
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
             this.textBox1.Text = "学生" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "110";
-        //    LoginIn();
+            //    LoginIn();
 
             //TestAES();
         }
@@ -81,10 +82,10 @@ namespace StudentUser
         private async void button1_Click(object sender, EventArgs e)//登录 
         {
             //string connectionString = "Database='" + ConfigurationManager.AppSettings["Database"] + "';Data Source='" + ConfigurationManager.AppSettings["serverIP"]+ "';User Id='" + ConfigurationManager.AppSettings["User ID"]+ "';Password='" + ConfigurationManager.AppSettings["Password"]+ "'";//默认端口3306 
-            LoginIn();
+            await LoginIn();
         }
 
-        private  async void LoginIn()
+        private async Task LoginIn()
         {
             string nickName = this.textBox1.Text.Trim();
             string no = this.textBox2.Text.Trim();
@@ -118,7 +119,7 @@ namespace StudentUser
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-         
+
         }
     }
 }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NewTeacher</RootNamespace>
     <AssemblyName>NewTeacher</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -39,10 +39,6 @@
   <ItemGroup>
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\..\DLL\CSkin\CSkin 4.0\CSkin.dll</HintPath>
-    </Reference>
-    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialSkin.Updated.0.2.2\lib\MaterialSkin.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -81,12 +77,6 @@
     <Compile Include="fmEditTeamName.Designer.cs">
       <DependentUpon>fmEditTeamName.cs</DependentUpon>
     </Compile>
-    <Compile Include="MSkin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MSkin.Designer.cs">
-      <DependentUpon>MSkin.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmNotify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,9 +110,6 @@
     <EmbeddedResource Include="fmEditTeamName.resx">
       <DependentUpon>fmEditTeamName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MSkin.resx">
-      <DependentUpon>MSkin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmNotify.resx">
       <DependentUpon>frmNotify.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,7 +129,6 @@
     <EmbeddedResource Include="Team\TeamDiscuss.resx">
       <DependentUpon>TeamDiscuss.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,15 +1,14 @@
 ﻿using Common;
 using Model;
-using System.Collections;
+using SharedForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using SharedForms;
-using System;
 
 namespace NewTeacher
 {
-    public partial class TeamDiscuss : CSkinBaseForm
+    public partial class TeamDiscuss : Form
     {
 
         OnlineInfo _onLineInfo;
@@ -19,7 +18,7 @@ namespace NewTeacher
             InitializeComponent();
             _onLineInfo = onLineInfo;
             _onLineInfo.AddOnLine += _onLineInfo_AddOnLine;
-            BindTeam();
+        
         }
 
         private void _onLineInfo_AddOnLine(object sender, OnlineEventArgs e)
@@ -32,20 +31,15 @@ namespace NewTeacher
 
         private void AddUserList(IList<OnlineListResult> onLineList)
         {
-
-            //  MessageBox.Show("新用户登陆");
             foreach (OnlineListResult item in onLineList)
             {
-                if (!IsMySelf(item.username))
+                if (!item.username.IsMySelf())
                 {
-                    //   if (!_onLineInfo.OnLineList.Any(d => d.username == item.username))
-                    //   {
                     ListViewItem listItem = new ListViewItem();
                     listItem.Text = item.nickname;
-                    listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 39;
+                    listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 1;
                     listItem.SubItems.Add(item.username);
                     this.onLineListView.Items.Add(listItem);
-                    //  }
                 }
             }
 
@@ -53,14 +47,20 @@ namespace NewTeacher
 
         private void TeamDiscuss_Load(object sender, System.EventArgs e)
         {
+            BindOnlineUser();
+            BindTeam();
+        }
+
+        private void BindOnlineUser()
+        {
             foreach (OnlineListResult item in _onLineInfo.OnLineList)
             {
-                if (!IsMySelf(item.username))
+                if (!item.username.IsMySelf())
                 {
                     ListViewItem listItem = new ListViewItem();
                     //listItem.Name = item.clientStyle == ClientStyle.PC ? "计算机" : "移动端";
                     listItem.Text = item.nickname;
-                    listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 39;
+                    listItem.ImageIndex = item.clientRole == ClientRole.Student ? 0 : 1;
                     listItem.SubItems.Add(item.username);
 
                     this.onLineListView.Items.Add(listItem);
@@ -70,31 +70,51 @@ namespace NewTeacher
 
         private void btnCreate_Click(object sender, System.EventArgs e)
         {
-            GlobalVariable.CreateTeamChat(this.txtCreate.Text.Trim());
-            BindTeam();
+            if (GlobalVariable.CreateTeamChat(this.txtCreate.Text.Trim()))
+            {
+                AddNewTeam();
+            }
+        }
+
+        private void AddNewTeam()
+        {
+            var newItem = GlobalVariable.GetNewTeamChat();
+            cboxTeam.Items.Add(newItem);
+            cboxTeam2.Items.Add(newItem);
+            if (cboxTeam.SelectedIndex <= 0)
+            {
+                cboxTeam.SelectedIndex = 0;
+            }
         }
 
         private void BindTeam()
         {
             cboxTeam.Items.Clear();
+            cboxTeam2.Items.Clear();
             teamMemList.Clear();
             var list = GlobalVariable.GetTeamChatList();
             foreach (ChatStore item in list)
             {
                 cboxTeam.Items.Add(item);
+                cboxTeam2.Items.Add(item);
             }
             cboxTeam.DisplayMember = "ChatDisplayName";
             cboxTeam.ValueMember = "ChatUserName";
+            cboxTeam2.DisplayMember = "ChatDisplayName";
+            cboxTeam2.ValueMember = "ChatUserName";
             if (cboxTeam.Items.Count > 0)
             {
                 cboxTeam.SelectedIndex = 0;
             }
-
+            if (cboxTeam2.Items.Count > 0)
+            {
+                cboxTeam2.SelectedIndex = 0;
+            }
         }
 
         private void cboxTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindTeamMember();
+          
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -136,21 +156,21 @@ namespace NewTeacher
                 return;
             }
 
-            if (cboxTeam.SelectedIndex < 0)
+            if (cboxTeam2.SelectedIndex < 0)
             {
                 GlobalVariable.ShowWarnning("请先选择要添加的分组");
                 return;
             }
-            selectTeam = (ChatStore)cboxTeam.SelectedItem;
+            selectTeam = (ChatStore)cboxTeam2.SelectedItem;
             GlobalVariable.AddTeamMember(onLineListView.CheckedItems, selectTeam.ChatUserName);
             BindTeamMember();
         }
 
         private void BindTeamMember()
         {
-            if (cboxTeam.SelectedIndex >= 0)
+            if (cboxTeam2.SelectedIndex >= 0)
             {
-                selectTeam = (ChatStore)cboxTeam.SelectedItem;
+                selectTeam = (ChatStore)cboxTeam2.SelectedItem;
                 groupBox2.Text = "分组：" + selectTeam.ChatDisplayName + "的成员";
                 teamMemList.Clear();
                 foreach (TeamMember mem in selectTeam.TeamMembers)
@@ -163,13 +183,15 @@ namespace NewTeacher
 
                     this.teamMemList.Items.Add(listItem);
                 }
-                CreateTeamRequest request = new CreateTeamRequest();
-                request.groupguid = selectTeam.ChatUserName;
-                request.groupname = selectTeam.ChatDisplayName;
-                request.groupuserList = selectTeam.TeamMembers.Select(d => d.UserName).ToArray();
-                request.nickname = GlobalVariable.LoginUserInfo.DisplayName;
-                request.username = GlobalVariable.LoginUserInfo.UserName;
-                GlobalVariable.client.Send_CreateTeam(request);
+
+
+                //CreateTeamRequest request = new CreateTeamRequest();
+                //request.groupguid = selectTeam.ChatUserName;
+                //request.groupname = selectTeam.ChatDisplayName;
+                //request.groupuserList = selectTeam.TeamMembers.Select(d => d.UserName).ToArray();
+                //request.nickname = GlobalVariable.LoginUserInfo.DisplayName;
+                //request.username = GlobalVariable.LoginUserInfo.UserName;
+                //GlobalVariable.client.Send_CreateTeam(request);
 
 
             }
@@ -202,6 +224,16 @@ namespace NewTeacher
                 }
                 return;
             }
+        }
+
+        private void cboxTeam2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindTeamMember();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

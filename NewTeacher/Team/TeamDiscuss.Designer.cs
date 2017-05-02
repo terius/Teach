@@ -37,22 +37,30 @@
             this.teamMemList = new System.Windows.Forms.ListView();
             this.cboxTeam = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.picAddMem = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.picAddMem = new System.Windows.Forms.PictureBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.txtCreate = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.memberMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.memDel = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.cboxTeam2 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAddMem)).BeginInit();
             this.groupBox4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.memberMenu.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // onLineListView
@@ -61,9 +69,10 @@
             this.onLineListView.CheckBoxes = true;
             this.onLineListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.onLineListView.LargeImageList = this.MenuImageList;
-            this.onLineListView.Location = new System.Drawing.Point(20, 28);
+            this.onLineListView.Location = new System.Drawing.Point(15, 22);
+            this.onLineListView.Margin = new System.Windows.Forms.Padding(2);
             this.onLineListView.Name = "onLineListView";
-            this.onLineListView.Size = new System.Drawing.Size(279, 593);
+            this.onLineListView.Size = new System.Drawing.Size(209, 469);
             this.onLineListView.SmallImageList = this.MenuImageList;
             this.onLineListView.TabIndex = 0;
             this.onLineListView.UseCompatibleStateImageBehavior = false;
@@ -73,56 +82,19 @@
             // 
             this.MenuImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("MenuImageList.ImageStream")));
             this.MenuImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.MenuImageList.Images.SetKeyName(0, "xuesheng.PNG");
-            this.MenuImageList.Images.SetKeyName(1, "guangbo3.PNG");
-            this.MenuImageList.Images.SetKeyName(2, "zhibo2.PNG");
-            this.MenuImageList.Images.SetKeyName(3, "qunliao3.PNG");
-            this.MenuImageList.Images.SetKeyName(4, "dianming2.PNG");
-            this.MenuImageList.Images.SetKeyName(5, "suoping.PNG");
-            this.MenuImageList.Images.SetKeyName(6, "sujing.PNG");
-            this.MenuImageList.Images.SetKeyName(7, "fenzutaolun.PNG");
-            this.MenuImageList.Images.SetKeyName(8, "chankan2.PNG");
-            this.MenuImageList.Images.SetKeyName(9, "wenjiangongxiang.PNG");
-            this.MenuImageList.Images.SetKeyName(10, "zuoyeshouqu.PNG");
-            this.MenuImageList.Images.SetKeyName(11, "wenjianfenfa.PNG");
-            this.MenuImageList.Images.SetKeyName(12, "luping2.png");
-            this.MenuImageList.Images.SetKeyName(13, "chakanx.PNG");
-            this.MenuImageList.Images.SetKeyName(14, "zhibocc.PNG");
-            this.MenuImageList.Images.SetKeyName(15, "zhanghu.PNG");
-            this.MenuImageList.Images.SetKeyName(16, "yuanchengkz.PNG");
-            this.MenuImageList.Images.SetKeyName(17, "baocunQD.PNG");
-            this.MenuImageList.Images.SetKeyName(18, "icon_04.png");
-            this.MenuImageList.Images.SetKeyName(19, "icon_05.png");
-            this.MenuImageList.Images.SetKeyName(20, "icon_06.png");
-            this.MenuImageList.Images.SetKeyName(21, "icon_07.png");
-            this.MenuImageList.Images.SetKeyName(22, "icon_01.png");
-            this.MenuImageList.Images.SetKeyName(23, "icon_02.png");
-            this.MenuImageList.Images.SetKeyName(24, "icon_03.png");
-            this.MenuImageList.Images.SetKeyName(25, "icon_08.png");
-            this.MenuImageList.Images.SetKeyName(26, "icon_09.png");
-            this.MenuImageList.Images.SetKeyName(27, "icon_10.png");
-            this.MenuImageList.Images.SetKeyName(28, "icon_11.png");
-            this.MenuImageList.Images.SetKeyName(29, "icon_12.png");
-            this.MenuImageList.Images.SetKeyName(30, "icon_13.png");
-            this.MenuImageList.Images.SetKeyName(31, "icon_14.png");
-            this.MenuImageList.Images.SetKeyName(32, "icon_big.png");
-            this.MenuImageList.Images.SetKeyName(33, "icon_password_nor.png");
-            this.MenuImageList.Images.SetKeyName(34, "icon_password_pre.png");
-            this.MenuImageList.Images.SetKeyName(35, "icon_shebei.png");
-            this.MenuImageList.Images.SetKeyName(36, "icon_user_nor.png");
-            this.MenuImageList.Images.SetKeyName(37, "icon_user_pre.png");
-            this.MenuImageList.Images.SetKeyName(38, "icon_xiao.png");
-            this.MenuImageList.Images.SetKeyName(39, "icon_teacher.png");
+            this.MenuImageList.Images.SetKeyName(0, "学生.png");
+            this.MenuImageList.Images.SetKeyName(1, "老师.png");
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.onLineListView);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(4, 28);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(20, 10, 3, 3);
-            this.groupBox1.Size = new System.Drawing.Size(302, 624);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(15, 8, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(226, 493);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "在线学生";
@@ -132,22 +104,24 @@
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.teamMemList);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(637, 28);
+            this.groupBox2.Location = new System.Drawing.Point(429, 3);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(20, 10, 3, 3);
-            this.groupBox2.Size = new System.Drawing.Size(486, 624);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(15, 8, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(405, 493);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "分组信息";
+            this.groupBox2.Text = "群组成员";
             // 
             // teamMemList
             // 
             this.teamMemList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.teamMemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.teamMemList.LargeImageList = this.MenuImageList;
-            this.teamMemList.Location = new System.Drawing.Point(20, 28);
+            this.teamMemList.Location = new System.Drawing.Point(15, 22);
+            this.teamMemList.Margin = new System.Windows.Forms.Padding(2);
             this.teamMemList.Name = "teamMemList";
-            this.teamMemList.Size = new System.Drawing.Size(463, 593);
+            this.teamMemList.Size = new System.Drawing.Size(388, 469);
             this.teamMemList.SmallImageList = this.MenuImageList;
             this.teamMemList.TabIndex = 0;
             this.teamMemList.UseCompatibleStateImageBehavior = false;
@@ -158,44 +132,35 @@
             // 
             this.cboxTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxTeam.FormattingEnabled = true;
-            this.cboxTeam.Location = new System.Drawing.Point(17, 24);
+            this.cboxTeam.Location = new System.Drawing.Point(13, 19);
+            this.cboxTeam.Margin = new System.Windows.Forms.Padding(2);
             this.cboxTeam.Name = "cboxTeam";
-            this.cboxTeam.Size = new System.Drawing.Size(203, 23);
+            this.cboxTeam.Size = new System.Drawing.Size(170, 20);
             this.cboxTeam.TabIndex = 0;
             this.cboxTeam.SelectedIndexChanged += new System.EventHandler(this.cboxTeam_SelectedIndexChanged);
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.picAddMem);
             this.groupBox3.Controls.Add(this.btnDelete);
             this.groupBox3.Controls.Add(this.btnEdit);
             this.groupBox3.Controls.Add(this.cboxTeam);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(0, 92);
+            this.groupBox3.Location = new System.Drawing.Point(3, 77);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(331, 532);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(831, 419);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "选择分组";
-            // 
-            // picAddMem
-            // 
-            this.picAddMem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picAddMem.Image = ((System.Drawing.Image)(resources.GetObject("picAddMem.Image")));
-            this.picAddMem.Location = new System.Drawing.Point(17, 242);
-            this.picAddMem.Name = "picAddMem";
-            this.picAddMem.Size = new System.Drawing.Size(120, 50);
-            this.picAddMem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picAddMem.TabIndex = 5;
-            this.picAddMem.TabStop = false;
-            this.picAddMem.Click += new System.EventHandler(this.picAddMem_Click);
+            this.groupBox3.Text = "编辑删除群组";
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(17, 153);
+            this.btnDelete.Location = new System.Drawing.Point(200, 45);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(173, 27);
+            this.btnDelete.Size = new System.Drawing.Size(130, 22);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "删除选择的分组";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -203,19 +168,34 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(17, 120);
+            this.btnEdit.Location = new System.Drawing.Point(200, 19);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(173, 27);
+            this.btnEdit.Size = new System.Drawing.Size(130, 22);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "修改选择的分组名";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // picAddMem
+            // 
+            this.picAddMem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picAddMem.Image = ((System.Drawing.Image)(resources.GetObject("picAddMem.Image")));
+            this.picAddMem.Location = new System.Drawing.Point(30, 181);
+            this.picAddMem.Margin = new System.Windows.Forms.Padding(2);
+            this.picAddMem.Name = "picAddMem";
+            this.picAddMem.Size = new System.Drawing.Size(90, 40);
+            this.picAddMem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picAddMem.TabIndex = 5;
+            this.picAddMem.TabStop = false;
+            this.picAddMem.Click += new System.EventHandler(this.picAddMem_Click);
+            // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(163, 32);
+            this.btnCreate.Location = new System.Drawing.Point(122, 26);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(81, 27);
+            this.btnCreate.Size = new System.Drawing.Size(61, 22);
             this.btnCreate.TabIndex = 2;
             this.btnCreate.Text = "创建";
             this.btnCreate.UseVisualStyleBackColor = true;
@@ -223,9 +203,10 @@
             // 
             // txtCreate
             // 
-            this.txtCreate.Location = new System.Drawing.Point(6, 33);
+            this.txtCreate.Location = new System.Drawing.Point(4, 26);
+            this.txtCreate.Margin = new System.Windows.Forms.Padding(2);
             this.txtCreate.Name = "txtCreate";
-            this.txtCreate.Size = new System.Drawing.Size(141, 25);
+            this.txtCreate.Size = new System.Drawing.Size(107, 21);
             this.txtCreate.TabIndex = 1;
             // 
             // groupBox4
@@ -233,22 +214,14 @@
             this.groupBox4.Controls.Add(this.txtCreate);
             this.groupBox4.Controls.Add(this.btnCreate);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(331, 92);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Size = new System.Drawing.Size(831, 74);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "创建分组";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(306, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(331, 624);
-            this.panel1.TabIndex = 5;
+            this.groupBox4.Text = "创建群组";
             // 
             // memberMenu
             // 
@@ -256,27 +229,99 @@
             this.memberMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.memDel});
             this.memberMenu.Name = "memberMenu";
-            this.memberMenu.Size = new System.Drawing.Size(145, 30);
+            this.memberMenu.Size = new System.Drawing.Size(125, 26);
             // 
             // memDel
             // 
             this.memDel.Name = "memDel";
-            this.memDel.Size = new System.Drawing.Size(144, 26);
+            this.memDel.Size = new System.Drawing.Size(124, 22);
             this.memDel.Text = "删除成员";
             this.memDel.Click += new System.EventHandler(this.memDel_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(845, 525);
+            this.tabControl1.TabIndex = 6;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(837, 499);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "群组";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox2);
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(837, 499);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "群组成员";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnSave);
+            this.groupBox5.Controls.Add(this.cboxTeam2);
+            this.groupBox5.Controls.Add(this.picAddMem);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox5.Location = new System.Drawing.Point(229, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(200, 493);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "选择群组";
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(30, 437);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(72, 32);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "保  存";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // cboxTeam2
+            // 
+            this.cboxTeam2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxTeam2.FormattingEnabled = true;
+            this.cboxTeam2.Location = new System.Drawing.Point(5, 44);
+            this.cboxTeam2.Margin = new System.Windows.Forms.Padding(2);
+            this.cboxTeam2.Name = "cboxTeam2";
+            this.cboxTeam2.Size = new System.Drawing.Size(170, 20);
+            this.cboxTeam2.TabIndex = 6;
+            this.cboxTeam2.SelectedIndexChanged += new System.EventHandler(this.cboxTeam2_SelectedIndexChanged);
+            // 
             // TeamDiscuss
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1127, 656);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(845, 525);
+            this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TeamDiscuss";
-            this.ShadowPalace = null;
             this.ShowInTaskbar = false;
             this.Text = "建立分组";
             this.Load += new System.EventHandler(this.TeamDiscuss_Load);
@@ -286,8 +331,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.picAddMem)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.memberMenu.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -303,11 +351,16 @@
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.TextBox txtCreate;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.PictureBox picAddMem;
         private System.Windows.Forms.ContextMenuStrip memberMenu;
         private System.Windows.Forms.ToolStripMenuItem memDel;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ComboBox cboxTeam2;
+        private System.Windows.Forms.Button btnSave;
     }
 }

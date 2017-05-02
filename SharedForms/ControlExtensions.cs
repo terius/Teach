@@ -57,6 +57,11 @@ namespace SharedForms
             return item;
         }
 
+        public static bool IsMySelf(this string userName)
+        {
+            return userName == GlobalVariable.LoginUserInfo.UserName;
+        }
+
 
     }
 }

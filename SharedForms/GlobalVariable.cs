@@ -141,7 +141,10 @@ namespace SharedForms
         {
             return ChatList.Where(d => d.ChatType == ChatType.TeamChat).ToList();
         }
-
+        public static ChatStore GetNewTeamChat()
+        {
+            return ChatList.Last(d => d.ChatType == ChatType.TeamChat);
+        }
         //public static IList<ChatMessage> GetNewMessageList(string userName)
         //{
         //    var chat = ChatList.FirstOrDefault(d => d.ChatUserName == userName);
@@ -153,19 +156,19 @@ namespace SharedForms
         //}
 
 
-        public static void CreateTeamChat(string teamName)
+        public static bool CreateTeamChat(string teamName)
         {
             if (string.IsNullOrWhiteSpace(teamName))
             {
                 ShowError("组名不能为空！");
-                return;
+                return false;
             }
 
 
             if (ChatList.Any(d => d.ChatDisplayName == teamName))
             {
                 ShowError("组名不能重复！");
-                return;
+                return false;
             }
 
 
@@ -179,6 +182,7 @@ namespace SharedForms
             ChatList.Add(info);
             ShowSuccess("分组建立成功");
             IsTeamChatChanged = true;
+            return true;
         }
 
         public static bool AddTeamMember(CheckedListViewItemCollection mems, string guid)

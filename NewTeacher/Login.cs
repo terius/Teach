@@ -1,12 +1,9 @@
 ﻿using Common;
-using Helper;
 using Helpers;
 using Model;
 using MyTCP;
 using SharedForms;
 using System;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NewTeacher
@@ -25,8 +22,8 @@ namespace NewTeacher
         {
             this.rbTeacher.Checked = true;
             this.ContextMenuStrip = contextMenuStrip1;
-            Login_Btn.SetButtonHoverLeave();
-            btnExit.SetButtonHoverLeave();
+        //    Login_Btn.SetButtonHoverLeave();
+        //    btnExit.SetButtonHoverLeave();
             GlobalVariable.client = new MyTcpClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             this.textBox1.Text = "tech1";

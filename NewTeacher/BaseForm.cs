@@ -1,6 +1,5 @@
 ﻿using Common;
 using Helpers;
-using MaterialSkin.Controls;
 using Model;
 using SharedForms;
 using System;
@@ -11,7 +10,7 @@ using System.Windows.Forms;
 
 namespace NewTeacher
 {
-    public partial class BaseForm : MaterialForm
+    public partial class BaseForm : Form
     {
         #region 自定义字段
         //  private static bool beingCallTheRoll = false;//
