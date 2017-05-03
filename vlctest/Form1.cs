@@ -14,9 +14,9 @@ namespace vlctest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
             vlcControl1.VlcLibDirectoryNeeded += VlcControl1_VlcLibDirectoryNeeded;
+         //   FileInfo file = new FileInfo(@"F:\1.avi");
+        //    vlcControl1.Play(file);
         }
 
         private void VlcControl1_VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
@@ -45,7 +45,12 @@ namespace vlctest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            vlcControl1.Play(new Uri("rtsp://192.168.1.103/interact19216811004971.sdp"));
+            string url = textBox1.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(url))
+            {
+                //   FileInfo file = new FileInfo(@"F:\1.avi");
+                vlcControl1.Play(new Uri(url));
+            }
         }
     }
 }

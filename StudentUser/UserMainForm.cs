@@ -137,7 +137,10 @@ namespace StudentUser
         {
             DoAction(() =>
             {
-                videoPlayer = new ViewRtsp(rtsp);
+                if (videoPlayer == null)
+                {
+                    videoPlayer = new ViewRtsp(rtsp);
+                }
                 videoPlayer.Show();
                 //  videoPlayer = f;
                 videoPlayer.startPlay();

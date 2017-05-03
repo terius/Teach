@@ -25,12 +25,12 @@ namespace StudentUser
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
             #endregion
-            //Login frm = new Login();
-            //if (frm.ShowDialog() == DialogResult.OK)
-            //{
-            //    Application.Run(new UserMainForm());
-            //}
-            Application.Run(new VLCPlayer());
+            Login frm = new Login();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new UserMainForm());
+            }
+            //  Application.Run(new VLCPlayer());
             //    }
             //    else
             //    {
