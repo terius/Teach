@@ -19,7 +19,7 @@ namespace StudentUser
 
         //   private delegate void messageListCallback(string content);
         //  private messageListCallback messageCallback;
-        private void Form2_Load(object sender, EventArgs e)
+        private async void Form2_Load(object sender, EventArgs e)
         {
             Login_Btn.SetButtonHoverLeave();
             btnExit.SetButtonHoverLeave();
@@ -28,7 +28,7 @@ namespace StudentUser
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
             this.textBox1.Text = "学生" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "110";
-            //    LoginIn();
+            await LoginIn();
 
             //TestAES();
         }

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Model;
 using SharedForms;
-using Model;
+using System;
+using System.Windows.Forms;
 
 namespace NewTeacher
 {
@@ -19,28 +12,26 @@ namespace NewTeacher
         {
             InitializeComponent();
             _onLineInfo = onLineInfo;
-            _onLineInfo.AddOnLine += _onLineInfo_AddOnLine;
         }
 
-        private void _onLineInfo_AddOnLine(object sender, OnlineEventArgs e)
-        {
-            this.InvokeOnUiThreadIfRequired(() =>
-            {
-              //  AddUserList(e.OnLines);
-            });
-        }
+       
 
         private void TeamView_Load(object sender, EventArgs e)
         {
+           // toolTip1.SetToolTip(this.treeView1, "信息提示");
             this.treeView1.Nodes.Clear();
             var list = GlobalVariable.GetTeamChatList();
-           
+            TreeNode node;
+            TreeNode childNode;
             foreach (ChatStore item in list)
             {
-                TreeNode node = new TreeNode(item.ChatDisplayName);
+                node = new TreeNode(item.ChatDisplayName);
                 foreach (TeamMember child in item.TeamMembers)
                 {
-                    node.Nodes.Add(child.DisplayName);
+                    childNode = new TreeNode(child.DisplayName);
+                    childNode.ImageIndex = childNode.SelectedImageIndex = child.IsOnline ? 2 : 3;
+                    childNode.ToolTipText = child.IsOnline ? "在线" : "离线";
+                    node.Nodes.Add(childNode);
                 }
                 this.treeView1.Nodes.Add(node);
             }

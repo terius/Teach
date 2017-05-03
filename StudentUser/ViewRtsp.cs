@@ -1,4 +1,5 @@
-﻿using MyTCP;
+﻿using Helpers;
+using MyTCP;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -90,6 +91,7 @@ namespace StudentUser
             //throw new NotImplementedException();
             if (this.player != null && playAddress != null)
             {
+                Loger.LogMessage("开始播放：" + playAddress);
                 player.startPlay(playAddress);
             }
         }

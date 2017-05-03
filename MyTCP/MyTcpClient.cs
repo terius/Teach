@@ -1,5 +1,6 @@
 ﻿using Common;
 using Cowboy.Sockets;
+using DirectShowLib;
 using Helpers;
 using Model;
 using System;
@@ -52,16 +53,16 @@ namespace MyTCP
         }
 
 
-        //public string GetAudioName()
-        //{
-        //    DsDevice[] audioRenderers;
-        //    audioRenderers = DsDevice.GetDevicesOfCat(FilterCategory.AudioRendererCategory);
-        //    foreach (DsDevice device in audioRenderers)
-        //    {
-        //        Loger.LogMessage(JsonHelper.SerializeObj(device));
-        //    }
-        //    return "";
-        //}
+        public string GetAudioName()
+        {
+            DsDevice[] audioRenderers;
+            audioRenderers = DsDevice.GetDevicesOfCat(FilterCategory.AudioRendererCategory);
+            foreach (DsDevice device in audioRenderers)
+            {
+                Loger.LogMessage(JsonHelper.SerializeObj(device));
+            }
+            return "";
+        }
 
         private void MessageDue_OnReceieveMessage(ReceieveMessage message)
         {
@@ -111,6 +112,7 @@ namespace MyTCP
         #region 发送命令
         public async Task Send_UserLogin(string userName, string nickName, string password, ClientRole clientRole)
         {
+         //   GetAudioName();
             var loginInfo = new LoginInfo();
             if (clientRole == ClientRole.Teacher || clientRole == ClientRole.Assistant)
             {
@@ -130,6 +132,7 @@ namespace MyTCP
             message.Action = (int)CommandType.UserLogin;
             message.Data = loginInfo;
             await SendMessage(message);
+            
             //Task.Run(async () =>
             //{
             //    await this.SendMessage(message);

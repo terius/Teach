@@ -17,7 +17,23 @@ namespace NewTeacher
             InitializeComponent();
             _onLineInfo = onLineInfo;
             _onLineInfo.AddOnLine += _onLineInfo_AddOnLine;
-        
+            _onLineInfo.DelOnLine += _onLineInfo_DelOnLine;
+        }
+
+        private void _onLineInfo_DelOnLine(UserLogoutResponse delInfo)
+        {
+            this.InvokeOnUiThreadIfRequired(() =>
+            {
+                foreach (ListViewItem item in this.onLineListView.Items)
+                {
+                    if (item.SubItems[1].Text == delInfo.username)
+                    {
+                        item.Remove();
+                        break;
+                    }
+                }
+            });
+         
         }
 
         private void _onLineInfo_AddOnLine(object sender, OnlineEventArgs e)

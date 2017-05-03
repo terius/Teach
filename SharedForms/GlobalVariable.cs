@@ -71,6 +71,23 @@ namespace SharedForms
         }
 
 
+        public static void RefreshTeamMember(string userName,bool isOnline)
+        {
+            var list = GetTeamChatList();
+            foreach (ChatStore item in list)
+            {
+                foreach (TeamMember mem in item.TeamMembers)
+                {
+                    if (mem.UserName== userName)
+                    {
+                        mem.IsOnline = isOnline ? true : false;
+                        break;
+                    }
+                }
+            }
+        }
+
+
 
 
         public static ChatMessage ToChatMessage(this AddChatRequest request)

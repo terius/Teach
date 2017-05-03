@@ -1,4 +1,5 @@
 ﻿using Model;
+using SharedForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace NewTeacher
         public void OnNewUserLoginIn(IList<OnlineListResult> onLineList)
         {
             AddNewOnLine(onLineList[0]);
+            GlobalVariable.RefreshTeamMember(onLineList[0].username, true);
             OnlineEventArgs e = new OnlineEventArgs(onLineList);
             AddOnLine(this, e);
         
@@ -39,6 +41,7 @@ namespace NewTeacher
         public void OnUserLoginOut(UserLogoutResponse loginOutInfo)
         {
             DeleteOnLine(loginOutInfo);
+            GlobalVariable.RefreshTeamMember(loginOutInfo.username, false);
             DelOnLine(loginOutInfo);
         }
 

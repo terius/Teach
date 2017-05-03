@@ -25,14 +25,14 @@ namespace MyTCP
         private int heightPixel;
 
 
-     
 
-      
+
+
 
 
         public ScreenInteract(string serverIP, string ipSelf, int portSelf)
         {
-        
+
             this._serverIp = serverIP;
             this._ipSelf = ipSelf;
             this._portSelf = portSelf;
@@ -66,13 +66,15 @@ namespace MyTCP
 
         private string pushRtspStream(string ipServer, string ipSelf, int portSelf)
         {
+          //  this.audio = "Default WaveOut Device";
             string nameByIpPort = this.createNameByIpPort(ipSelf, portSelf);
             string para = " -f gdigrab -i desktop -framerate 6 -g 36 -s 1000*750 -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
             if (this.audio != null)
                 para = " -f gdigrab -i desktop -i audio=\"" + this.audio + "\" -framerate 6 -g 240 -s 1024*768 -acodec mp2 -ab 128k -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
             this._ffmpeg = new Ffmpeg();
             this._ffmpeg.beginExecute(para);
-            return "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
+            var rtsp = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
+            return rtsp;
         }
 
         private string createNameByIpPort(string ip, int port)

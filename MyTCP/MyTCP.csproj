@@ -40,8 +40,9 @@
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\dll\CSkin 16.1.14.2\CSkin 4.0\CSkin.dll</HintPath>
     </Reference>
-    <Reference Include="DirectShowLib-2005">
-      <HintPath>C:\Users\teriu\Desktop\DirectShowLibV2-1\lib\DirectShowLib-2005.dll</HintPath>
+    <Reference Include="DirectShowLib, Version=2.1.0.1599, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DirectShowLib.1.0.0\lib\DirectShowLib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Interop.AXVLC">
       <HintPath>..\lib\Interop.AXVLC.dll</HintPath>
@@ -85,6 +86,9 @@
       <Project>{2e25ae3c-9dce-4cec-81f5-8b853350ab4c}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
