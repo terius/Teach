@@ -10,7 +10,7 @@ namespace StudentUser
     public partial class UserMainForm : Form
     {
         private BlackScreen bsForm = null;
-        ViewRtsp videoPlayer;
+        VLCPlayer videoPlayer;
         ChatForm chatForm = new ChatForm();
         public UserMainForm()
         {
@@ -120,17 +120,17 @@ namespace StudentUser
         //{
         //    base.SetVisibleCore(false);
         //}
-        private bool windowCreate = true;
-        protected override void OnActivated(EventArgs e)
-        {
-            if (windowCreate)
-            {
-                base.Visible = false;
-                windowCreate = false;
-            }
+        //private bool windowCreate = true;
+        //protected override void OnActivated(EventArgs e)
+        //{
+        //    if (windowCreate)
+        //    {
+        //        base.Visible = false;
+        //        windowCreate = false;
+        //    }
 
-            base.OnActivated(e);
-        }
+        //    base.OnActivated(e);
+        //}
 
 
         private void ShowViewRtsp(string rtsp)
@@ -139,11 +139,11 @@ namespace StudentUser
             {
                 if (videoPlayer == null)
                 {
-                    videoPlayer = new ViewRtsp(rtsp);
+                    videoPlayer = new VLCPlayer();
                 }
                 videoPlayer.Show();
                 //  videoPlayer = f;
-                videoPlayer.startPlay();
+                videoPlayer.StartPlay(rtsp);
             });
         }
 

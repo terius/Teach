@@ -14,12 +14,21 @@ namespace vlctest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            vlcControl1.VlcLibDirectoryNeeded += VlcControl1_VlcLibDirectoryNeeded;
-         //   FileInfo file = new FileInfo(@"F:\1.avi");
-        //    vlcControl1.Play(file);
         }
 
-        private void VlcControl1_VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
+      
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string url = textBox1.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(url))
+            {
+                //   FileInfo file = new FileInfo(@"F:\1.avi");
+                vlcControl1.Play(new Uri(url));
+            }
+        }
+
+        private void vlcControl1_VlcLibDirectoryNeeded_1(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
         {
             var currentAssembly = Assembly.GetEntryAssembly();
             var currentDirectory = new FileInfo(currentAssembly.Location).DirectoryName;
@@ -32,7 +41,7 @@ namespace vlctest
 
             if (!e.VlcLibDirectory.Exists)
             {
-                var folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+                var folderBrowserDialog = new FolderBrowserDialog();
                 folderBrowserDialog.Description = "Select Vlc libraries folder.";
                 folderBrowserDialog.RootFolder = Environment.SpecialFolder.Desktop;
                 folderBrowserDialog.ShowNewFolderButton = true;
@@ -40,16 +49,6 @@ namespace vlctest
                 {
                     e.VlcLibDirectory = new DirectoryInfo(folderBrowserDialog.SelectedPath);
                 }
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string url = textBox1.Text.Trim();
-            if (!string.IsNullOrWhiteSpace(url))
-            {
-                //   FileInfo file = new FileInfo(@"F:\1.avi");
-                vlcControl1.Play(new Uri(url));
             }
         }
     }

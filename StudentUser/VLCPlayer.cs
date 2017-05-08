@@ -50,9 +50,9 @@ namespace StudentUser
 
         public void StartPlay(string url)
         {
-         //   MessageBox.Show(url);
-          //  FileInfo fi = new FileInfo(@"F:\1.avi");
-         //   vlcControl1.Play();
+            MessageBox.Show("start play");
+            FileInfo fi = new FileInfo(@"E:\terius\hkdg.mkv");
+            vlcControl1.Play();
         }
 
         public void StopPlay(string url)
