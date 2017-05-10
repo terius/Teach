@@ -162,6 +162,12 @@ namespace SharedForms
         {
             return ChatList.Last(d => d.ChatType == ChatType.TeamChat);
         }
+
+        public static IList<string> GetTeamMembers(string userName)
+        {
+            var chatStore = ChatList.FirstOrDefault(d => d.ChatUserName == userName);
+            return chatStore.TeamMembers.Select(d => d.DisplayName).ToList();
+        }
         //public static IList<ChatMessage> GetNewMessageList(string userName)
         //{
         //    var chat = ChatList.FirstOrDefault(d => d.ChatUserName == userName);

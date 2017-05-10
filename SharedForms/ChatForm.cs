@@ -135,7 +135,7 @@ namespace SharedForms
 
         private void ChatItemSelected(ChatItem3 chatItem, bool fromClick)
         {
-            chatItem.Text = chatItem.DisplayName;
+          //  chatItem.Text = chatItem.DisplayName;
             this.labChatTitle.Text = "与" + chatItem.Text + "的对话：";
             if (fromClick && chatItem.UserName == selectUserName)
             {

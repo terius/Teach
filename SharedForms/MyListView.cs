@@ -28,7 +28,7 @@ namespace SharedForms
 
         public ChatItem3(MyListView source, string userName, string displayName, ChatType chatType, ClientRole userType)
         {
-          
+
             this.Text = displayName;
             switch (chatType)
             {
@@ -55,6 +55,9 @@ namespace SharedForms
                 case ChatType.TeamChat:
                     this.ImageIndex = 1;
                     this.Group = source.Groups[1];
+                    var childList = GlobalVariable.GetTeamMembers(userName);
+                    this.Text = displayName + " 【" + childList.Count + "】";
+                    this.ToolTipText = string.Join("\r\n", childList);
                     break;
                 default:
                     break;
@@ -62,6 +65,7 @@ namespace SharedForms
             this.UserName = userName;
             this.DisplayName = displayName;
             this.ChatType = chatType;
+        
             source.Items.Add(this);
         }
 
