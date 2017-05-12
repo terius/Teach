@@ -16,6 +16,7 @@
         PrivateChat = 13,
         GroupChat = 14,
         CreateTeam = 15,
+        TeamChat = 16,
         OneUserLogIn = 17,
         UserLoginOut = 18,
         StudentCall = 19

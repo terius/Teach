@@ -31,9 +31,6 @@ namespace MyTCP
             IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
             _client = new AsyncTcpSocketClient(remoteEP, messageDue, config);
             _client.Connect().Wait();
-
-
-
         }
 
         public async Task Close()
@@ -112,7 +109,7 @@ namespace MyTCP
         #region 发送命令
         public async Task Send_UserLogin(string userName, string nickName, string password, ClientRole clientRole)
         {
-         //   GetAudioName();
+            //   GetAudioName();
             var loginInfo = new LoginInfo();
             if (clientRole == ClientRole.Teacher || clientRole == ClientRole.Assistant)
             {
@@ -132,7 +129,7 @@ namespace MyTCP
             message.Action = (int)CommandType.UserLogin;
             message.Data = loginInfo;
             await SendMessage(message);
-            
+
             //Task.Run(async () =>
             //{
             //    await this.SendMessage(message);
@@ -231,6 +228,30 @@ namespace MyTCP
 
             SendMessage<PrivateChatRequest> message = new SendMessage<PrivateChatRequest>();
             message.Action = (int)CommandType.PrivateChat;
+            message.Data = request;
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
+
+        public void SendMessage<T>(T t, CommandType cmdType) where T : class,new()
+        {
+            SendMessage<T> message = new SendMessage<T>();
+            message.Action = (int)cmdType;
+            message.Data = t;
+            Task.Run(async () =>
+            {
+                await this.SendMessage(message);
+            });
+        }
+
+        public void Send_TeamChat(TeamChatRequest request)
+        {
+
+            SendMessage<TeamChatRequest> message = new SendMessage<TeamChatRequest>();
+            message.Action = (int)CommandType.TeamChat;
             message.Data = request;
             Task.Run(async () =>
             {

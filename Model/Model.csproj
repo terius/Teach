@@ -51,6 +51,7 @@
     <Compile Include="Request\PrivateChatRequest.cs" />
     <Compile Include="Request\QuietRequest.cs" />
     <Compile Include="Request\StuCallRequest.cs" />
+    <Compile Include="Request\TeamChatRequest.cs" />
     <Compile Include="Response\LockScreenReponse.cs" />
     <Compile Include="Response\QuietResponse.cs" />
     <Compile Include="Response\ScreenInteract_Response.cs" />

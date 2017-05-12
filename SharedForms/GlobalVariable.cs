@@ -87,7 +87,11 @@ namespace SharedForms
             }
         }
 
-
+        public static ChatType GetChatType(string userName)
+        {
+            var info = ChatList.FirstOrDefault(d => d.ChatUserName == userName);
+            return info.ChatType;
+        }
 
 
         public static ChatMessage ToChatMessage(this AddChatRequest request)
@@ -163,10 +167,15 @@ namespace SharedForms
             return ChatList.Last(d => d.ChatType == ChatType.TeamChat);
         }
 
-        public static IList<string> GetTeamMembers(string userName)
+        public static IList<string> GetTeamMemberDisplayNames(string userName)
         {
             var chatStore = ChatList.FirstOrDefault(d => d.ChatUserName == userName);
             return chatStore.TeamMembers.Select(d => d.DisplayName).ToList();
+        }
+
+        public static ChatStore GetChatStoreByUserName(string userName)
+        {
+            return ChatList.FirstOrDefault(d => d.ChatUserName == userName);
         }
         //public static IList<ChatMessage> GetNewMessageList(string userName)
         //{

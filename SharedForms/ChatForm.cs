@@ -135,7 +135,7 @@ namespace SharedForms
 
         private void ChatItemSelected(ChatItem3 chatItem, bool fromClick)
         {
-          //  chatItem.Text = chatItem.DisplayName;
+            //  chatItem.Text = chatItem.DisplayName;
             this.labChatTitle.Text = "与" + chatItem.Text + "的对话：";
             if (fromClick && chatItem.UserName == selectUserName)
             {
@@ -167,6 +167,14 @@ namespace SharedForms
                 GlobalVariable.IsTeamChatChanged = false;
                 var list = GlobalVariable.GetTeamChatList();
                 this.chatList.Groups[1].Items.Clear();
+                int len = chatList.Items.Count;
+                while (--len >= 0)
+                {
+                    if (((ChatItem3)chatList.Items[len]).ChatType == ChatType.TeamChat)
+                    {
+                        chatList.Items[len].Remove();
+                    }
+                }
                 foreach (ChatStore item in list)
                 {
                     chatList.CreateItem(item);
@@ -319,21 +327,34 @@ namespace SharedForms
         #region 发送信息
         private void SendMessageCommand(string receieveUserName, string msg)
         {
-
-            PrivateChatRequest request = new PrivateChatRequest();
-            request.guid = Guid.NewGuid().ToString();
-            request.msg = msg;
-            request.receivename = receieveUserName;
-            request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
-            request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
-            GlobalVariable.client.Send_PrivateChat(request);
+            var chatType = GlobalVariable.GetChatType(receieveUserName);
+            if (chatType == ChatType.PrivateChat)
+            {
+                PrivateChatRequest request = new PrivateChatRequest();
+                request.guid = Guid.NewGuid().ToString();
+                request.msg = msg;
+                request.receivename = receieveUserName;
+                request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
+                request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
+                GlobalVariable.client.Send_PrivateChat(request);
+            }
+            else if (chatType == ChatType.TeamChat)
+            {
+                var chat = GlobalVariable.GetChatStoreByUserName(receieveUserName);
+                TeamChatRequest request = new TeamChatRequest();
+                request.groupname = chat.ChatDisplayName;
+                request.groupuserList = chat.GetUserNames();
+                request.msg = msg;
+                request.username = GlobalVariable.LoginUserInfo.UserName;
+                GlobalVariable.client.SendMessage(request, CommandType.TeamChat);
+            }
             //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
 
 
         }
         #endregion
 
-        
+
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -405,7 +426,7 @@ namespace SharedForms
             ChatItemSelected(selectItem as ChatItem3, true);
         }
 
-       
+
     }
 
     public class ReceieveMessageEventArgs : EventArgs

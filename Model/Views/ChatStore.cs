@@ -2,6 +2,7 @@
 using Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Model
 {
@@ -43,6 +44,11 @@ namespace Model
             {
                 teamMembers = value;
             }
+        }
+
+        public string GetUserNames()
+        {
+            return string.Join(",", TeamMembers.Select(d => d.UserName));
         }
     }
 

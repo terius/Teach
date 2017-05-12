@@ -55,7 +55,7 @@ namespace SharedForms
                 case ChatType.TeamChat:
                     this.ImageIndex = 1;
                     this.Group = source.Groups[1];
-                    var childList = GlobalVariable.GetTeamMembers(userName);
+                    var childList = GlobalVariable.GetTeamMemberDisplayNames(userName);
                     this.Text = displayName + " 【" + childList.Count + "】";
                     this.ToolTipText = string.Join("\r\n", childList);
                     break;
@@ -72,6 +72,12 @@ namespace SharedForms
         public ChatStore GetChatStore()
         {
             return GlobalVariable.ChatList.FirstOrDefault(d => d.ChatUserName == UserName);
+        }
+
+        public string GetTeamMemUserNames()
+        {
+            var chat = GetChatStore();
+            return string.Join(",", chat.TeamMembers.Select(d => d.UserName));
         }
     }
 }
