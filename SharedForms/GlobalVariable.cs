@@ -71,14 +71,14 @@ namespace SharedForms
         }
 
 
-        public static void RefreshTeamMember(string userName,bool isOnline)
+        public static void RefreshTeamMember(string userName, bool isOnline)
         {
             var list = GetTeamChatList();
             foreach (ChatStore item in list)
             {
                 foreach (TeamMember mem in item.TeamMembers)
                 {
-                    if (mem.UserName== userName)
+                    if (mem.UserName == userName)
                     {
                         mem.IsOnline = isOnline ? true : false;
                         break;
@@ -289,6 +289,54 @@ namespace SharedForms
             ChatList.Remove(item);
             IsTeamChatChanged = true;
             return true;
+        }
+
+        public static void RefleshTeamList(TeamChatListRequest teamList)
+        {
+            IsTeamChatChanged = true;
+            var list = GetTeamChatList();
+            foreach (TeamInfo teamInfo in teamList.TeamInfos)
+            {
+                var chatStore = list.FirstOrDefault(d => d.ChatUserName == teamInfo.groupid);
+                if (chatStore != null)
+                {
+                    chatStore.ChatDisplayName = teamInfo.groupname;
+                    chatStore.TeamMembers = teamInfo.groupuserList;
+                }
+                else
+                {
+                    ChatStore info = new ChatStore();
+                    info.ChatDisplayName = teamInfo.groupname;
+                    info.ChatStartTime = DateTime.Now;
+                    info.ChatType = ChatType.TeamChat;
+                    info.ChatUserName = teamInfo.groupid;
+                    info.UserType = ClientRole.Teacher;
+                    info.MessageList = new List<ChatMessage>();
+                    info.TeamMembers = teamInfo.groupuserList;
+                    ChatList.Add(info);
+                }
+            }
+
+
+          
+        }
+
+
+        public static void SendCommand_TeamChatList()
+        {
+            TeamChatListRequest request = new TeamChatListRequest();
+            request.TeamInfos = new List<TeamInfo>();
+            var list = GetTeamChatList();
+            TeamInfo info;
+            foreach (ChatStore item in list)
+            {
+                info = new TeamInfo();
+                info.groupname = item.ChatDisplayName;
+                info.groupid = item.ChatUserName;
+                info.groupuserList = item.TeamMembers;
+                request.TeamInfos.Add(info);
+            }
+            client.Send_CreateTeam(request);
         }
     }
 }

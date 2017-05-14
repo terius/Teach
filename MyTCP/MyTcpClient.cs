@@ -276,9 +276,9 @@ namespace MyTCP
             });
         }
 
-        public void Send_CreateTeam(CreateTeamRequest request)
+        public void Send_CreateTeam(TeamChatListRequest request)
         {
-            SendMessage<CreateTeamRequest> message = new SendMessage<CreateTeamRequest>();
+            SendMessage<TeamChatListRequest> message = new SendMessage<TeamChatListRequest>();
             message.Action = (int)CommandType.CreateTeam;
             message.Data = request;
 

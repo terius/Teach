@@ -68,7 +68,7 @@ namespace StudentUser
                 case (int)CommandType.PrivateChat:
                     var chatResponse = JsonHelper.DeserializeObj<PrivateChatRequest>(message.DataStr);
 
-                    this.InvokeOnUiThreadIfRequired(() =>
+                    DoAction(() =>
                     {
                         AddChat(chatResponse);
                     });
@@ -78,6 +78,17 @@ namespace StudentUser
                     break;
                 case (int)CommandType.EndCall:
                 
+                    break;
+                case (int)CommandType.CreateTeam:
+                    var teamInfo = JsonHelper.DeserializeObj<TeamChatListRequest>(message.DataStr);
+                   GlobalVariable.RefleshTeamList(teamInfo);
+                    DoAction(() => {
+                        chatForm.BringToFront();
+                        chatForm.ReflashTeamChat();
+                        chatForm.Show();
+
+                    });
+                 
                     break;
                 default:
                     break;
@@ -245,7 +256,8 @@ namespace StudentUser
         }
         private void mChat_Click(object sender, EventArgs e)
         {
-
+            chatForm.BringToFront();
+            chatForm.Show();
         }
         private void mHandUp_Click(object sender, EventArgs e)
         {

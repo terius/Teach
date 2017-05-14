@@ -50,6 +50,11 @@ namespace Model
         {
             return string.Join(",", TeamMembers.Select(d => d.UserName));
         }
+
+        public string[] GetUserNameList()
+        {
+            return TeamMembers.Select(d => d.UserName).ToArray();
+        }
     }
 
 
