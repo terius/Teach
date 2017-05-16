@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace NewTeacher
 {
-    public partial class BaseForm : Form
+    public partial class BaseForm : DevExpress.XtraEditors.XtraForm
     {
         #region 自定义字段
         //  private static bool beingCallTheRoll = false;//
@@ -184,7 +184,8 @@ namespace NewTeacher
             }
             else
             {
-                ShowNotify(request);
+                OpenOrCreateChatForm(request, true);
+               // ShowNotify(request);
             }
 
         }
@@ -211,8 +212,8 @@ namespace NewTeacher
         private void ShowNotify(AddChatRequest request)
         {
             //上次登录历史窗体
-            frmNotify frm = new frmNotify(request);
-            frm.Show(this);
+            //frmNotify frm = new frmNotify(request);
+         //   frm.Show(this);
             //获取屏幕宽高与调节最大大小
             // this.MaximumSize = new Size(543, Screen.GetWorkingArea(this).Height);
         }
@@ -617,6 +618,12 @@ namespace NewTeacher
         private void btnReload_Click_1(object sender, EventArgs e)
         {
             GlobalVariable.client.Send_OnlineList();
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MainForm frm = new MainForm();
+            frm.ShowDialog();
         }
     }
 

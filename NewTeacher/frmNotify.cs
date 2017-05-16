@@ -1,7 +1,5 @@
 
-using CCWin;
-using CCWin.Win32;
-using CCWin.Win32.Const;
+
 using Model;
 using System;
 using System.Drawing;
@@ -9,7 +7,7 @@ using System.Windows.Forms;
 
 namespace NewTeacher
 {
-    public partial class frmNotify : CCSkinMain
+    public partial class frmNotify : Form
     {
         AddChatRequest _request;
         public frmNotify(AddChatRequest request)
@@ -21,7 +19,7 @@ namespace NewTeacher
         //窗口加载时
         private void FrmInformation_Load(object sender, EventArgs e)
         {
-         
+
             linkLabel1.Text = _request.DisplayName + "给您发了一条新消息，点击打开";
             //初始化窗口出现位置
             Point p = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width, Screen.PrimaryScreen.WorkingArea.Height - this.Height);
@@ -44,7 +42,7 @@ namespace NewTeacher
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var frm = (BaseForm)Owner;
-            frm.OpenOrCreateChatForm(_request,true);
+            frm.OpenOrCreateChatForm(_request, true);
             this.Close();
         }
     }

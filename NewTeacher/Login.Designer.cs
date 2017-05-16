@@ -102,6 +102,7 @@
             this.Login_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Login_Btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Login_Btn.ForeColor = System.Drawing.Color.Cornsilk;
+            this.Login_Btn.Image = global::NewTeacher.Properties.Resources.老师;
             this.Login_Btn.Location = new System.Drawing.Point(403, 298);
             this.Login_Btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Login_Btn.Name = "Login_Btn";
