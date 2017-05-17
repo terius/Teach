@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
-            this.MenuImageList = new System.Windows.Forms.ImageList(this.components);
-            this.UserListMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.userList_privateChat = new System.Windows.Forms.ToolStripMenuItem();
-            this.userList_lockScreen = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuImageList = new System.Windows.Forms.ImageList();
+            this.UserListMenu = new System.Windows.Forms.ContextMenuStrip();
             this.userList_stopLockScreen = new System.Windows.Forms.ToolStripMenuItem();
             this.userList_permisson = new System.Windows.Forms.ToolStripMenuItem();
             this.userList_P_forbidPrivateChat = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,52 +46,50 @@
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btnReload = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStripContainer6 = new System.Windows.Forms.ToolStripContainer();
             this.MenuOther = new System.Windows.Forms.MenuStrip();
-            this.other_userManager = new System.Windows.Forms.ToolStripMenuItem();
-            this.other_screenRecord = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip7 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer5 = new System.Windows.Forms.ToolStripContainer();
             this.MenuFile = new System.Windows.Forms.MenuStrip();
-            this.file_dispatch = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip6 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel8 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
             this.MenuVideo = new System.Windows.Forms.MenuStrip();
-            this.video_Broadcast = new System.Windows.Forms.ToolStripMenuItem();
-            this.video_studentShow = new System.Windows.Forms.ToolStripMenuItem();
-            this.video_live = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip3 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
             this.MeunControl = new System.Windows.Forms.MenuStrip();
-            this.control_slient = new System.Windows.Forms.ToolStripMenuItem();
-            this.control_remoteControl = new System.Windows.Forms.ToolStripMenuItem();
-            this.MouseKeyboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip4 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer4 = new System.Windows.Forms.ToolStripContainer();
             this.MenuTeam = new System.Windows.Forms.MenuStrip();
-            this.team_discuss = new System.Windows.Forms.ToolStripMenuItem();
-            this.team_view = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip5 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.MenuClass = new System.Windows.Forms.MenuStrip();
-            this.class_exportSign = new System.Windows.Forms.ToolStripMenuItem();
-            this.class_call = new System.Windows.Forms.ToolStripMenuItem();
-            this.class_groupChat = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.btnReload = new System.Windows.Forms.Button();
+            this.other_userManager = new System.Windows.Forms.ToolStripMenuItem();
+            this.other_screenRecord = new System.Windows.Forms.ToolStripMenuItem();
+            this.file_dispatch = new System.Windows.Forms.ToolStripMenuItem();
+            this.video_Broadcast = new System.Windows.Forms.ToolStripMenuItem();
+            this.video_studentShow = new System.Windows.Forms.ToolStripMenuItem();
+            this.video_live = new System.Windows.Forms.ToolStripMenuItem();
+            this.control_slient = new System.Windows.Forms.ToolStripMenuItem();
+            this.control_remoteControl = new System.Windows.Forms.ToolStripMenuItem();
+            this.MouseKeyboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.team_discuss = new System.Windows.Forms.ToolStripMenuItem();
+            this.team_view = new System.Windows.Forms.ToolStripMenuItem();
+            this.class_exportSign = new System.Windows.Forms.ToolStripMenuItem();
+            this.class_call = new System.Windows.Forms.ToolStripMenuItem();
+            this.class_groupChat = new System.Windows.Forms.ToolStripMenuItem();
+            this.userList_privateChat = new System.Windows.Forms.ToolStripMenuItem();
+            this.userList_lockScreen = new System.Windows.Forms.ToolStripMenuItem();
             this.UserListMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -134,7 +129,6 @@
             this.MenuClass.SuspendLayout();
             this.statusStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuImageList
@@ -195,22 +189,6 @@
             this.userList_stopStudentShow});
             this.UserListMenu.Name = "contextMenuStrip1";
             this.UserListMenu.Size = new System.Drawing.Size(167, 160);
-            // 
-            // userList_privateChat
-            // 
-            this.userList_privateChat.Image = ((System.Drawing.Image)(resources.GetObject("userList_privateChat.Image")));
-            this.userList_privateChat.Name = "userList_privateChat";
-            this.userList_privateChat.Size = new System.Drawing.Size(166, 26);
-            this.userList_privateChat.Text = "私聊";
-            this.userList_privateChat.Click += new System.EventHandler(this.userList_privateChat_Click);
-            // 
-            // userList_lockScreen
-            // 
-            this.userList_lockScreen.Image = ((System.Drawing.Image)(resources.GetObject("userList_lockScreen.Image")));
-            this.userList_lockScreen.Name = "userList_lockScreen";
-            this.userList_lockScreen.Size = new System.Drawing.Size(166, 26);
-            this.userList_lockScreen.Text = "锁屏";
-            this.userList_lockScreen.Click += new System.EventHandler(this.userList_lockScreen_Click);
             // 
             // userList_stopLockScreen
             // 
@@ -348,25 +326,6 @@
             this.panel4.Size = new System.Drawing.Size(253, 51);
             this.panel4.TabIndex = 1;
             // 
-            // btnReload
-            // 
-            this.btnReload.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReload.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReload.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnReload.ForeColor = System.Drawing.Color.White;
-            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
-            this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReload.Location = new System.Drawing.Point(16, 12);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(70, 31);
-            this.btnReload.TabIndex = 40;
-            this.btnReload.Text = "刷新";
-            this.btnReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReload.UseVisualStyleBackColor = false;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click_1);
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
@@ -422,28 +381,6 @@
             this.MenuOther.Size = new System.Drawing.Size(127, 102);
             this.MenuOther.TabIndex = 0;
             this.MenuOther.Text = "menuStrip7";
-            // 
-            // other_userManager
-            // 
-            this.other_userManager.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.other_userManager.ForeColor = System.Drawing.Color.White;
-            this.other_userManager.Image = ((System.Drawing.Image)(resources.GetObject("other_userManager.Image")));
-            this.other_userManager.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.other_userManager.Name = "other_userManager";
-            this.other_userManager.Size = new System.Drawing.Size(96, 24);
-            this.other_userManager.Text = "账号管理";
-            this.other_userManager.Click += new System.EventHandler(this.other_userManager_Click);
-            // 
-            // other_screenRecord
-            // 
-            this.other_screenRecord.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.other_screenRecord.ForeColor = System.Drawing.Color.White;
-            this.other_screenRecord.Image = ((System.Drawing.Image)(resources.GetObject("other_screenRecord.Image")));
-            this.other_screenRecord.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.other_screenRecord.Name = "other_screenRecord";
-            this.other_screenRecord.Size = new System.Drawing.Size(96, 24);
-            this.other_screenRecord.Text = "屏幕录制";
-            this.other_screenRecord.Click += new System.EventHandler(this.other_screenRecord_Click);
             // 
             // statusStrip7
             // 
@@ -512,18 +449,6 @@
             this.MenuFile.TabIndex = 1;
             this.MenuFile.Text = "menuStrip5";
             // 
-            // file_dispatch
-            // 
-            this.file_dispatch.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.file_dispatch.ForeColor = System.Drawing.Color.White;
-            this.file_dispatch.Image = ((System.Drawing.Image)(resources.GetObject("file_dispatch.Image")));
-            this.file_dispatch.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.file_dispatch.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.file_dispatch.Name = "file_dispatch";
-            this.file_dispatch.Size = new System.Drawing.Size(96, 24);
-            this.file_dispatch.Text = "文件分发";
-            this.file_dispatch.Click += new System.EventHandler(this.file_dispatch_Click);
-            // 
             // statusStrip6
             // 
             this.statusStrip6.BackColor = System.Drawing.Color.DodgerBlue;
@@ -585,48 +510,6 @@
             this.MenuVideo.Size = new System.Drawing.Size(390, 60);
             this.MenuVideo.TabIndex = 0;
             this.MenuVideo.Text = "menuStrip2";
-            // 
-            // video_Broadcast
-            // 
-            this.video_Broadcast.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
-            this.video_Broadcast.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.video_Broadcast.ForeColor = System.Drawing.Color.White;
-            this.video_Broadcast.Image = ((System.Drawing.Image)(resources.GetObject("video_Broadcast.Image")));
-            this.video_Broadcast.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.video_Broadcast.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.video_Broadcast.Name = "video_Broadcast";
-            this.video_Broadcast.Size = new System.Drawing.Size(77, 56);
-            this.video_Broadcast.Text = "屏幕广播";
-            this.video_Broadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.video_Broadcast.Click += new System.EventHandler(this.video_Broadcast_Click);
-            // 
-            // video_studentShow
-            // 
-            this.video_studentShow.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
-            this.video_studentShow.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.video_studentShow.ForeColor = System.Drawing.Color.White;
-            this.video_studentShow.Image = ((System.Drawing.Image)(resources.GetObject("video_studentShow.Image")));
-            this.video_studentShow.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.video_studentShow.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.video_studentShow.Name = "video_studentShow";
-            this.video_studentShow.Size = new System.Drawing.Size(77, 56);
-            this.video_studentShow.Text = "学生演示";
-            this.video_studentShow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.video_studentShow.Click += new System.EventHandler(this.video_studentShow_Click);
-            // 
-            // video_live
-            // 
-            this.video_live.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
-            this.video_live.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.video_live.ForeColor = System.Drawing.Color.White;
-            this.video_live.Image = ((System.Drawing.Image)(resources.GetObject("video_live.Image")));
-            this.video_live.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.video_live.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.video_live.Name = "video_live";
-            this.video_live.Size = new System.Drawing.Size(77, 56);
-            this.video_live.Text = "视频直播";
-            this.video_live.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.video_live.Click += new System.EventHandler(this.video_live_Click);
             // 
             // statusStrip3
             // 
@@ -690,41 +573,6 @@
             this.MeunControl.Size = new System.Drawing.Size(127, 102);
             this.MeunControl.TabIndex = 0;
             this.MeunControl.Text = "menuStrip3";
-            // 
-            // control_slient
-            // 
-            this.control_slient.BackColor = System.Drawing.Color.DodgerBlue;
-            this.control_slient.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.control_slient.ForeColor = System.Drawing.Color.White;
-            this.control_slient.Image = ((System.Drawing.Image)(resources.GetObject("control_slient.Image")));
-            this.control_slient.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.control_slient.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.control_slient.Name = "control_slient";
-            this.control_slient.Size = new System.Drawing.Size(96, 24);
-            this.control_slient.Text = "屏幕肃静";
-            this.control_slient.Click += new System.EventHandler(this.control_slient_Click);
-            // 
-            // control_remoteControl
-            // 
-            this.control_remoteControl.BackColor = System.Drawing.Color.DodgerBlue;
-            this.control_remoteControl.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MouseKeyboardMenuItem});
-            this.control_remoteControl.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.control_remoteControl.ForeColor = System.Drawing.Color.White;
-            this.control_remoteControl.Image = ((System.Drawing.Image)(resources.GetObject("control_remoteControl.Image")));
-            this.control_remoteControl.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.control_remoteControl.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.control_remoteControl.Name = "control_remoteControl";
-            this.control_remoteControl.Size = new System.Drawing.Size(96, 24);
-            this.control_remoteControl.Text = "远程控制";
-            this.control_remoteControl.Click += new System.EventHandler(this.control_remoteControl_Click);
-            // 
-            // MouseKeyboardMenuItem
-            // 
-            this.MouseKeyboardMenuItem.Name = "MouseKeyboardMenuItem";
-            this.MouseKeyboardMenuItem.Size = new System.Drawing.Size(162, 24);
-            this.MouseKeyboardMenuItem.Text = "禁用鼠标键盘";
-            this.MouseKeyboardMenuItem.Click += new System.EventHandler(this.MouseKeyboardMenuItem_Click);
             // 
             // statusStrip4
             // 
@@ -792,32 +640,6 @@
             this.MenuTeam.TabIndex = 0;
             this.MenuTeam.Text = "menuStrip4";
             // 
-            // team_discuss
-            // 
-            this.team_discuss.BackColor = System.Drawing.Color.DodgerBlue;
-            this.team_discuss.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.team_discuss.ForeColor = System.Drawing.Color.White;
-            this.team_discuss.Image = ((System.Drawing.Image)(resources.GetObject("team_discuss.Image")));
-            this.team_discuss.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.team_discuss.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.team_discuss.Name = "team_discuss";
-            this.team_discuss.Size = new System.Drawing.Size(96, 24);
-            this.team_discuss.Text = "分组讨论";
-            this.team_discuss.Click += new System.EventHandler(this.team_discuss_Click);
-            // 
-            // team_view
-            // 
-            this.team_view.BackColor = System.Drawing.Color.DodgerBlue;
-            this.team_view.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.team_view.ForeColor = System.Drawing.Color.White;
-            this.team_view.Image = ((System.Drawing.Image)(resources.GetObject("team_view.Image")));
-            this.team_view.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.team_view.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.team_view.Name = "team_view";
-            this.team_view.Size = new System.Drawing.Size(96, 24);
-            this.team_view.Text = "查看分组";
-            this.team_view.Click += new System.EventHandler(this.team_view_Click);
-            // 
             // statusStrip5
             // 
             this.statusStrip5.BackColor = System.Drawing.Color.DodgerBlue;
@@ -884,41 +706,6 @@
             this.MenuClass.TabIndex = 0;
             this.MenuClass.Text = "menuStrip1";
             // 
-            // class_exportSign
-            // 
-            this.class_exportSign.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.class_exportSign.ForeColor = System.Drawing.Color.White;
-            this.class_exportSign.Image = ((System.Drawing.Image)(resources.GetObject("class_exportSign.Image")));
-            this.class_exportSign.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.class_exportSign.Name = "class_exportSign";
-            this.class_exportSign.Size = new System.Drawing.Size(96, 24);
-            this.class_exportSign.Text = "导出签到";
-            this.class_exportSign.Click += new System.EventHandler(this.class_exportSign_Click);
-            // 
-            // class_call
-            // 
-            this.class_call.BackColor = System.Drawing.Color.DodgerBlue;
-            this.class_call.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.class_call.ForeColor = System.Drawing.Color.White;
-            this.class_call.Image = ((System.Drawing.Image)(resources.GetObject("class_call.Image")));
-            this.class_call.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.class_call.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.class_call.Name = "class_call";
-            this.class_call.Size = new System.Drawing.Size(96, 24);
-            this.class_call.Text = "课堂点名";
-            this.class_call.Click += new System.EventHandler(this.class_call_Click);
-            // 
-            // class_groupChat
-            // 
-            this.class_groupChat.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.class_groupChat.ForeColor = System.Drawing.Color.White;
-            this.class_groupChat.Image = ((System.Drawing.Image)(resources.GetObject("class_groupChat.Image")));
-            this.class_groupChat.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.class_groupChat.Name = "class_groupChat";
-            this.class_groupChat.Size = new System.Drawing.Size(96, 24);
-            this.class_groupChat.Text = "班级群聊";
-            this.class_groupChat.Click += new System.EventHandler(this.class_groupChat_Click);
-            // 
             // statusStrip2
             // 
             this.statusStrip2.BackColor = System.Drawing.Color.DodgerBlue;
@@ -957,45 +744,218 @@
             this.defaultLookAndFeel1.EnableBonusSkins = true;
             this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2016 Colorful";
             // 
-            // ribbonControl1
+            // btnReload
             // 
-            this.ribbonControl1.ExpandCollapseItem.Id = 0;
-            this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControl1.ExpandCollapseItem,
-            this.barButtonItem1});
-            this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 2;
-            this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage1});
-            this.ribbonControl1.Size = new System.Drawing.Size(988, 143);
+            this.btnReload.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnReload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReload.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReload.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnReload.ForeColor = System.Drawing.Color.White;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReload.Location = new System.Drawing.Point(16, 12);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(70, 31);
+            this.btnReload.TabIndex = 40;
+            this.btnReload.Text = "刷新";
+            this.btnReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click_1);
             // 
-            // ribbonPage1
+            // other_userManager
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "ribbonPage1";
+            this.other_userManager.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.other_userManager.ForeColor = System.Drawing.Color.White;
+            this.other_userManager.Image = ((System.Drawing.Image)(resources.GetObject("other_userManager.Image")));
+            this.other_userManager.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.other_userManager.Name = "other_userManager";
+            this.other_userManager.Size = new System.Drawing.Size(96, 24);
+            this.other_userManager.Text = "账号管理";
+            this.other_userManager.Click += new System.EventHandler(this.other_userManager_Click);
             // 
-            // ribbonPageGroup1
+            // other_screenRecord
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem1);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            this.other_screenRecord.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.other_screenRecord.ForeColor = System.Drawing.Color.White;
+            this.other_screenRecord.Image = ((System.Drawing.Image)(resources.GetObject("other_screenRecord.Image")));
+            this.other_screenRecord.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.other_screenRecord.Name = "other_screenRecord";
+            this.other_screenRecord.Size = new System.Drawing.Size(96, 24);
+            this.other_screenRecord.Text = "屏幕录制";
+            this.other_screenRecord.Click += new System.EventHandler(this.other_screenRecord_Click);
             // 
-            // barButtonItem1
+            // file_dispatch
             // 
-            this.barButtonItem1.Caption = "导出签名";
-            this.barButtonItem1.Id = 1;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.file_dispatch.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.file_dispatch.ForeColor = System.Drawing.Color.White;
+            this.file_dispatch.Image = ((System.Drawing.Image)(resources.GetObject("file_dispatch.Image")));
+            this.file_dispatch.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.file_dispatch.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.file_dispatch.Name = "file_dispatch";
+            this.file_dispatch.Size = new System.Drawing.Size(96, 24);
+            this.file_dispatch.Text = "文件分发";
+            this.file_dispatch.Click += new System.EventHandler(this.file_dispatch_Click);
+            // 
+            // video_Broadcast
+            // 
+            this.video_Broadcast.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.video_Broadcast.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.video_Broadcast.ForeColor = System.Drawing.Color.White;
+            this.video_Broadcast.Image = ((System.Drawing.Image)(resources.GetObject("video_Broadcast.Image")));
+            this.video_Broadcast.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.video_Broadcast.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.video_Broadcast.Name = "video_Broadcast";
+            this.video_Broadcast.Size = new System.Drawing.Size(77, 56);
+            this.video_Broadcast.Text = "屏幕广播";
+            this.video_Broadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.video_Broadcast.Click += new System.EventHandler(this.video_Broadcast_Click);
+            // 
+            // video_studentShow
+            // 
+            this.video_studentShow.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.video_studentShow.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.video_studentShow.ForeColor = System.Drawing.Color.White;
+            this.video_studentShow.Image = ((System.Drawing.Image)(resources.GetObject("video_studentShow.Image")));
+            this.video_studentShow.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.video_studentShow.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.video_studentShow.Name = "video_studentShow";
+            this.video_studentShow.Size = new System.Drawing.Size(77, 56);
+            this.video_studentShow.Text = "学生演示";
+            this.video_studentShow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.video_studentShow.Click += new System.EventHandler(this.video_studentShow_Click);
+            // 
+            // video_live
+            // 
+            this.video_live.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.video_live.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.video_live.ForeColor = System.Drawing.Color.White;
+            this.video_live.Image = ((System.Drawing.Image)(resources.GetObject("video_live.Image")));
+            this.video_live.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.video_live.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.video_live.Name = "video_live";
+            this.video_live.Size = new System.Drawing.Size(77, 56);
+            this.video_live.Text = "视频直播";
+            this.video_live.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.video_live.Click += new System.EventHandler(this.video_live_Click);
+            // 
+            // control_slient
+            // 
+            this.control_slient.BackColor = System.Drawing.Color.DodgerBlue;
+            this.control_slient.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.control_slient.ForeColor = System.Drawing.Color.White;
+            this.control_slient.Image = ((System.Drawing.Image)(resources.GetObject("control_slient.Image")));
+            this.control_slient.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.control_slient.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.control_slient.Name = "control_slient";
+            this.control_slient.Size = new System.Drawing.Size(96, 24);
+            this.control_slient.Text = "屏幕肃静";
+            this.control_slient.Click += new System.EventHandler(this.control_slient_Click);
+            // 
+            // control_remoteControl
+            // 
+            this.control_remoteControl.BackColor = System.Drawing.Color.DodgerBlue;
+            this.control_remoteControl.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MouseKeyboardMenuItem});
+            this.control_remoteControl.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.control_remoteControl.ForeColor = System.Drawing.Color.White;
+            this.control_remoteControl.Image = ((System.Drawing.Image)(resources.GetObject("control_remoteControl.Image")));
+            this.control_remoteControl.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.control_remoteControl.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.control_remoteControl.Name = "control_remoteControl";
+            this.control_remoteControl.Size = new System.Drawing.Size(96, 24);
+            this.control_remoteControl.Text = "远程控制";
+            this.control_remoteControl.Click += new System.EventHandler(this.control_remoteControl_Click);
+            // 
+            // MouseKeyboardMenuItem
+            // 
+            this.MouseKeyboardMenuItem.Name = "MouseKeyboardMenuItem";
+            this.MouseKeyboardMenuItem.Size = new System.Drawing.Size(162, 24);
+            this.MouseKeyboardMenuItem.Text = "禁用鼠标键盘";
+            this.MouseKeyboardMenuItem.Click += new System.EventHandler(this.MouseKeyboardMenuItem_Click);
+            // 
+            // team_discuss
+            // 
+            this.team_discuss.BackColor = System.Drawing.Color.DodgerBlue;
+            this.team_discuss.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.team_discuss.ForeColor = System.Drawing.Color.White;
+            this.team_discuss.Image = ((System.Drawing.Image)(resources.GetObject("team_discuss.Image")));
+            this.team_discuss.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.team_discuss.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.team_discuss.Name = "team_discuss";
+            this.team_discuss.Size = new System.Drawing.Size(96, 24);
+            this.team_discuss.Text = "分组讨论";
+            this.team_discuss.Click += new System.EventHandler(this.team_discuss_Click);
+            // 
+            // team_view
+            // 
+            this.team_view.BackColor = System.Drawing.Color.DodgerBlue;
+            this.team_view.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.team_view.ForeColor = System.Drawing.Color.White;
+            this.team_view.Image = ((System.Drawing.Image)(resources.GetObject("team_view.Image")));
+            this.team_view.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.team_view.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.team_view.Name = "team_view";
+            this.team_view.Size = new System.Drawing.Size(96, 24);
+            this.team_view.Text = "查看分组";
+            this.team_view.Click += new System.EventHandler(this.team_view_Click);
+            // 
+            // class_exportSign
+            // 
+            this.class_exportSign.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.class_exportSign.ForeColor = System.Drawing.Color.White;
+            this.class_exportSign.Image = ((System.Drawing.Image)(resources.GetObject("class_exportSign.Image")));
+            this.class_exportSign.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.class_exportSign.Name = "class_exportSign";
+            this.class_exportSign.Size = new System.Drawing.Size(96, 24);
+            this.class_exportSign.Text = "导出签到";
+            this.class_exportSign.Click += new System.EventHandler(this.class_exportSign_Click);
+            // 
+            // class_call
+            // 
+            this.class_call.BackColor = System.Drawing.Color.DodgerBlue;
+            this.class_call.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.class_call.ForeColor = System.Drawing.Color.White;
+            this.class_call.Image = ((System.Drawing.Image)(resources.GetObject("class_call.Image")));
+            this.class_call.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.class_call.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.class_call.Name = "class_call";
+            this.class_call.Size = new System.Drawing.Size(96, 24);
+            this.class_call.Text = "课堂点名";
+            this.class_call.Click += new System.EventHandler(this.class_call_Click);
+            // 
+            // class_groupChat
+            // 
+            this.class_groupChat.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.class_groupChat.ForeColor = System.Drawing.Color.White;
+            this.class_groupChat.Image = ((System.Drawing.Image)(resources.GetObject("class_groupChat.Image")));
+            this.class_groupChat.Margin = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.class_groupChat.Name = "class_groupChat";
+            this.class_groupChat.Size = new System.Drawing.Size(96, 24);
+            this.class_groupChat.Text = "班级群聊";
+            this.class_groupChat.Click += new System.EventHandler(this.class_groupChat_Click);
+            // 
+            // userList_privateChat
+            // 
+            this.userList_privateChat.Image = ((System.Drawing.Image)(resources.GetObject("userList_privateChat.Image")));
+            this.userList_privateChat.Name = "userList_privateChat";
+            this.userList_privateChat.Size = new System.Drawing.Size(166, 26);
+            this.userList_privateChat.Text = "私聊";
+            this.userList_privateChat.Click += new System.EventHandler(this.userList_privateChat_Click);
+            // 
+            // userList_lockScreen
+            // 
+            this.userList_lockScreen.Image = ((System.Drawing.Image)(resources.GetObject("userList_lockScreen.Image")));
+            this.userList_lockScreen.Name = "userList_lockScreen";
+            this.userList_lockScreen.Size = new System.Drawing.Size(166, 26);
+            this.userList_lockScreen.Text = "锁屏";
+            this.userList_lockScreen.Click += new System.EventHandler(this.userList_lockScreen_Click);
             // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 806);
-            this.Controls.Add(this.ribbonControl1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LookAndFeel.SkinName = "Office 2016 Colorful";
@@ -1074,9 +1034,7 @@
             this.statusStrip2.ResumeLayout(false);
             this.statusStrip2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1142,9 +1100,5 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnReload;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
     }
 }

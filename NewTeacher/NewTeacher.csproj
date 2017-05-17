@@ -181,6 +181,17 @@
     <None Include="Resources\上课点名.png" />
     <None Include="Resources\学生.png" />
     <None Include="Resources\群聊.png" />
+    <None Include="Resources\分组.png" />
+    <None Include="Resources\查看.png" />
+    <None Include="Resources\屏幕.png" />
+    <None Include="Resources\远程控制.png" />
+    <None Include="Resources\禁用.png" />
+    <None Include="Resources\禁用16.png" />
+    <None Include="Resources\共享桌面.png" />
+    <None Include="Resources\学生演示.png" />
+    <None Include="Resources\视频直播.png" />
+    <None Include="Resources\分发.png" />
+    <None Include="Resources\刷新.png" />
     <Content Include="ter.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

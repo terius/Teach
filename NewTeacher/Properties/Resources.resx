@@ -121,11 +121,38 @@
   <data name="上课点名" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\上课点名.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="共享桌面" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\共享桌面.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="分发" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\分发.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="分组" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\分组.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="刷新" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\刷新.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="在线" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\在线.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="学生" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\学生.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="学生演示" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\学生演示.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="屏幕" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\屏幕.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="查看" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\查看.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="禁用" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\禁用.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="禁用16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\禁用16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="离线" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\离线.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -138,5 +165,11 @@
   </data>
   <data name="老师" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\老师.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="视频直播" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\视频直播.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="远程控制" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\远程控制.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
