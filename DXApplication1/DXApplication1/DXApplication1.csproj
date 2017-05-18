@@ -63,18 +63,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sms.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="sms.Designer.cs">
-      <DependentUpon>sms.cs</DependentUpon>
-    </Compile>
-    <Compile Include="sms2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="sms2.Designer.cs">
-      <DependentUpon>sms2.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,12 +77,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="sms.resx">
-      <DependentUpon>sms.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sms2.resx">
-      <DependentUpon>sms2.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

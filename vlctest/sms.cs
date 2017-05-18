@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 
-namespace DXApplication1
+namespace vlctest
 {
     public partial class sms : UserControl
     {
@@ -28,6 +28,7 @@ namespace DXApplication1
         Image middleimgR = Properties.Resources.rm;
         Image bottomimgR = Properties.Resources.rb;
         string message;
+        int messageHeight;
         public sms(string _message)
         {
             message = _message;
@@ -35,7 +36,16 @@ namespace DXApplication1
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
             imgAtt = new ImageAttributes();
             imgAtt.SetWrapMode(WrapMode.Tile);
-          //  this.Size = new Size(300, 50);
+            SetHeight();
+            //  this.Size = new Size(300, 50);
+        }
+
+        private void SetHeight()
+        {
+            int textLen = message.Length;
+            int count = textLen / 27 + (textLen % 27 == 0 ? 0 : 1);
+            messageHeight = count * 18 + 18;
+            this.Size = new Size(200, messageHeight + 20);
         }
 
         private void sms_Paint(object sender, PaintEventArgs e)
@@ -77,10 +87,7 @@ namespace DXApplication1
 
             title = lxrxm + "(" + lxrdh + ")";
             int pleft = 5;
-            int textLen = scontent.Length;
-            int count = textLen / 27 + (textLen % 27 == 0 ? 0 : 1);
 
-            int MiddleHeight = count * 18 + 18;//
 
             Rectangle rectArea = new Rectangle(pleft, ptop, 388, 17);
             g.DrawImage(topimg, rectArea);
@@ -89,7 +96,7 @@ namespace DXApplication1
             ptop += 17;
             piccyBounds[0] = new Point(pleft, ptop);
             piccyBounds[1] = new Point(388 + pleft, ptop);
-            piccyBounds[2] = new Point(pleft, ptop + MiddleHeight);
+            piccyBounds[2] = new Point(pleft, ptop + messageHeight);
 
 
 
@@ -101,10 +108,10 @@ namespace DXApplication1
             g.DrawString(title, titleFont, blackBrush, new PointF(pleft + 10, ptop));
             g.DrawString(stime, contentFont, blackBrush, new PointF(pleft + 10 + textSize.Width, ptop));
             ptop += 18;
-            rectArea = new Rectangle(pleft + 10, ptop, 388, MiddleHeight - 18);
+            rectArea = new Rectangle(pleft + 10, ptop, 388, messageHeight - 18);
 
             g.DrawString(scontent, contentFont, blackBrush, rectArea);
-            ptop += MiddleHeight - 18;
+            ptop += messageHeight - 18;
             rectArea = new Rectangle(pleft, ptop, 388, 17);
             g.DrawImage(bottomimg, rectArea);
             ptop += 23;
@@ -114,7 +121,7 @@ namespace DXApplication1
 
             e.Graphics.DrawImage(bmp, 0, 0);
 
-           // this.AutoScrollMinSize = new Size(0, ptop);
+            // this.AutoScrollMinSize = new Size(0, ptop);
         }
     }
 }

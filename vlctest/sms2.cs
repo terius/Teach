@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DXApplication1
+namespace vlctest
 {
     public partial class sms2 : UserControl
     {
         public sms2(string message)
         {
             InitializeComponent();
-            this.labelControl1.Text = message;
+            this.label1.Text = message;
         }
     }
 }

@@ -16,8 +16,7 @@ namespace DXApplication1
         {
             InitializeComponent();
         }
-        sms s;
-        sms2 s2;
+      
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -32,21 +31,10 @@ namespace DXApplication1
         {
 
         }
-        int x = 10;
-        int y = 10;
+       
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //  s = new sms("asdasdas发水电费水电费水电费" + DateTime.Now.ToLongTimeString());
-            s = new sms("发水电费水电费水电费sda东水电费水电费水电费水电费水电费水电费沙发斯蒂芬" + DateTime.Now.ToLongTimeString());
-            s.Location = new Point(x, y);
-            //   s.Dock = DockStyle.Top;
-            //   s.BringToFront();
-            this.panel1.Controls.Add(s);
-            y += s.Height;
-          //  x += s.Height;
-          
-            this.panel1.AutoScrollMinSize = new Size(0, y);
-           // panel1.AutoScrollPosition = new Point(x, y);
+         
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DXApplication1
+﻿namespace vlctest
 {
     partial class sms
     {
@@ -32,11 +32,11 @@
             // 
             // sms
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Coral;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "sms";
-            this.Size = new System.Drawing.Size(549, 164);
+            this.Size = new System.Drawing.Size(713, 88);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.sms_Paint);
             this.ResumeLayout(false);
 
