@@ -63,7 +63,7 @@
     <Compile Include="Response\LoginResult.cs" />
     <Compile Include="LoginUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ChatStore.cs" />
+    <Compile Include="Views\TeamMember.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Windows.Forms;
 
-namespace vlctest
+namespace SharedForms
 {
     public partial class sms : UserControl
     {
@@ -21,12 +15,12 @@ namespace vlctest
         Font titleFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
         Font contentFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 
-        Image topimg = Properties.Resources.lt;
-        Image middleimg = Properties.Resources.lm;
-        Image bottomimg = Properties.Resources.lb;
-        Image topimgR = Properties.Resources.rt;
-        Image middleimgR = Properties.Resources.rm;
-        Image bottomimgR = Properties.Resources.rb;
+        Image topimg = Resource1.lt;
+        Image middleimg = Resource1.lm;
+        Image bottomimg = Resource1.lb;
+        Image topimgR = Resource1.rt;
+        Image middleimgR = Resource1.rm;
+        Image bottomimgR = Resource1.rb;
         string _message;
         string _title;
         bool _isMySelf;
@@ -49,7 +43,8 @@ namespace vlctest
             int textLen = _message.Length;
             int count = textLen / 27 + (textLen % 27 == 0 ? 0 : 1);
             _messageHeight = count * 18 + 18;
-            this.Size = new Size(400, _messageHeight + 45);
+          //  this.Size = new Size(400, _messageHeight + 45);
+            this.BackColor = Color.Green;
             //TextBox lab = new TextBox();
             //lab.BackColor = this.BackColor;
             //lab.ForeColor = Color.Blue;
@@ -71,7 +66,7 @@ namespace vlctest
             g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
             piccyBounds = new Point[3];
 
-            g.TranslateTransform(this.AutoScrollPosition.X, this.AutoScrollPosition.Y);
+        //    g.TranslateTransform(this.AutoScrollPosition.X, this.AutoScrollPosition.Y);
             int ptop = 4;
             int pleft = 5;
             Rectangle rectArea = new Rectangle(pleft, ptop, 388, 17);
@@ -112,6 +107,7 @@ namespace vlctest
            
 
             e.Graphics.DrawImage(bmp, 0, 0);
+            //this.Size = new Size(400, _messageHeight + 45);
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using CCWin.SkinControl;
+﻿
 using Common;
+using DevExpress.XtraEditors;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model
+namespace SharedForms
 {
     public class ChatStore
     {
@@ -27,7 +29,7 @@ namespace Model
 
         public IList<ChatMessage> NewMessageList { get; set; }
 
-        public ChatBoxContent HistoryContent { get; set; }
+        public smsPanel HistoryContent { get; set; }
 
         public IList<TeamMember> TeamMembers
         {
@@ -58,13 +60,7 @@ namespace Model
     }
 
 
-    public class TeamMember
-    {
-        public string DisplayName { get; set; }
-        public string UserName { get; set; }
 
-        public bool IsOnline { get; set; }
-    }
 
     public class ChatMessage
     {
@@ -78,20 +74,23 @@ namespace Model
 
         public string Message { get; set; }
 
-        public ChatBoxContent Content { get; set; }
+
+        public string Title { get { return SendDisplayName + " (" + SendTime.ToString("yyyy-MM-dd HH:mm:ss") + ")"; } }
+
+        // public ChatBoxContent Content { get; set; }
 
 
         public ChatMessage(string _sendUserName,
             string _sendDisplayName,
-            string _receieveUserName, ChatBoxContent _content)
+            string _receieveUserName,
+            string _message
+            )
         {
             this.SendUserName = _sendUserName;
             this.SendDisplayName = _sendDisplayName;
             this.ReceieveUserName = _receieveUserName;
             this.SendTime = DateTime.Now;
-            this.Message = _content.Text;
-            _content.Text = "    " + _content.Text.Replace("\n", "\n    ");
-            this.Content = _content;
+            this.Message = _message;
         }
     }
 

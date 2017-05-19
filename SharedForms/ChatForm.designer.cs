@@ -47,106 +47,82 @@ namespace SharedForms
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("所有人", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("群组", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("私聊", System.Windows.Forms.HorizontalAlignment.Left);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
-            this.chatBox_history = new CCWin.SkinControl.SkinChatRichTextBox();
-            this.chatBoxSend = new CCWin.SkinControl.SkinChatRichTextBox();
-            this.skinSplitContainer1 = new CCWin.SkinControl.SkinSplitContainer();
-            this.Content_panel = new System.Windows.Forms.Panel();
-            this.chatList = new SharedForms.MyListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSend = new CCWin.SkinControl.SkinButton();
-            this.btnClose = new CCWin.SkinControl.SkinButton();
-            this.labChatTitle = new CCWin.SkinControl.SkinLabel();
+            this.sendBox = new System.Windows.Forms.RichTextBox();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).BeginInit();
-            this.skinSplitContainer1.Panel1.SuspendLayout();
-            this.skinSplitContainer1.Panel2.SuspendLayout();
-            this.skinSplitContainer1.SuspendLayout();
-            this.Content_panel.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.chatList = new SharedForms.MyListView();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.smsPanel1 = new SharedForms.smsPanel();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.labChatTitle = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // chatBox_history
+            // imageList1
             // 
-            this.chatBox_history.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.chatBox_history.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.chatBox_history.ContextMenuMode = CCWin.SkinControl.ChatBoxContextMenuMode.None;
-            this.chatBox_history.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatBox_history.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.chatBox_history.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.chatBox_history.Location = new System.Drawing.Point(0, 36);
-            this.chatBox_history.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chatBox_history.Name = "chatBox_history";
-            this.chatBox_history.PopoutImageWhenDoubleClick = false;
-            this.chatBox_history.ReadOnly = true;
-            this.chatBox_history.SelectControl = null;
-            this.chatBox_history.SelectControlIndex = 0;
-            this.chatBox_history.SelectControlPoint = new System.Drawing.Point(0, 0);
-            this.chatBox_history.Size = new System.Drawing.Size(687, 405);
-            this.chatBox_history.TabIndex = 1;
-            this.chatBox_history.Text = "";
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "所有人.png");
+            this.imageList1.Images.SetKeyName(1, "群组.png");
+            this.imageList1.Images.SetKeyName(2, "在线学生.png");
             // 
-            // chatBoxSend
+            // sendBox
             // 
-            this.chatBoxSend.BackColor = System.Drawing.Color.White;
-            this.chatBoxSend.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.chatBoxSend.ContextMenuMode = CCWin.SkinControl.ChatBoxContextMenuMode.None;
-            this.chatBoxSend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatBoxSend.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.chatBoxSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.chatBoxSend.Location = new System.Drawing.Point(0, 8);
-            this.chatBoxSend.Margin = new System.Windows.Forms.Padding(2, 8, 2, 2);
-            this.chatBoxSend.Name = "chatBoxSend";
-            this.chatBoxSend.PopoutImageWhenDoubleClick = false;
-            this.chatBoxSend.SelectControl = null;
-            this.chatBoxSend.SelectControlIndex = 0;
-            this.chatBoxSend.SelectControlPoint = new System.Drawing.Point(0, 0);
-            this.chatBoxSend.Size = new System.Drawing.Size(687, 111);
-            this.chatBoxSend.TabIndex = 0;
-            this.chatBoxSend.Text = "";
+            this.sendBox.BackColor = System.Drawing.Color.White;
+            this.sendBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.sendBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sendBox.Location = new System.Drawing.Point(2, 2);
+            this.sendBox.Name = "sendBox";
+            this.sendBox.Size = new System.Drawing.Size(937, 126);
+            this.sendBox.TabIndex = 142;
+            this.sendBox.Text = "";
             // 
-            // skinSplitContainer1
+            // btnClose
             // 
-            this.skinSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.skinSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.skinSplitContainer1.IsSplitterFixed = true;
-            this.skinSplitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.skinSplitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.skinSplitContainer1.Name = "skinSplitContainer1";
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnClose.Appearance.Options.UseFont = true;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(851, 83);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(78, 38);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "关闭";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // skinSplitContainer1.Panel1
+            // btnSend
             // 
-            this.skinSplitContainer1.Panel1.Controls.Add(this.Content_panel);
+            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnSend.Appearance.Options.UseFont = true;
+            this.btnSend.Image = ((System.Drawing.Image)(resources.GetObject("btnSend.Image")));
+            this.btnSend.Location = new System.Drawing.Point(758, 83);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(78, 38);
+            this.btnSend.TabIndex = 0;
+            this.btnSend.Text = "发送";
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click_1);
             // 
-            // skinSplitContainer1.Panel2
+            // toolTip1
             // 
-            this.skinSplitContainer1.Panel2.Controls.Add(this.chatBox_history);
-            this.skinSplitContainer1.Panel2.Controls.Add(this.panel2);
-            this.skinSplitContainer1.Panel2.Controls.Add(this.labChatTitle);
-            this.skinSplitContainer1.Size = new System.Drawing.Size(940, 602);
-            this.skinSplitContainer1.SplitterDistance = 245;
-            this.skinSplitContainer1.SplitterWidth = 8;
-            this.skinSplitContainer1.TabIndex = 2;
-            // 
-            // Content_panel
-            // 
-            this.Content_panel.AutoScroll = true;
-            this.Content_panel.AutoSize = true;
-            this.Content_panel.BackColor = System.Drawing.Color.DodgerBlue;
-            this.Content_panel.Controls.Add(this.chatList);
-            this.Content_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Content_panel.Location = new System.Drawing.Point(0, 0);
-            this.Content_panel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Content_panel.Name = "Content_panel";
-            this.Content_panel.Size = new System.Drawing.Size(245, 602);
-            this.Content_panel.TabIndex = 5;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "群组成员";
             // 
             // chatList
             // 
@@ -167,7 +143,7 @@ namespace SharedForms
             this.chatList.Location = new System.Drawing.Point(0, 0);
             this.chatList.Name = "chatList";
             this.chatList.ShowItemToolTips = true;
-            this.chatList.Size = new System.Drawing.Size(245, 602);
+            this.chatList.Size = new System.Drawing.Size(165, 658);
             this.chatList.SmallImageList = this.imageList1;
             this.chatList.TabIndex = 5;
             this.toolTip1.SetToolTip(this.chatList, "群组成员");
@@ -175,151 +151,120 @@ namespace SharedForms
             this.chatList.View = System.Windows.Forms.View.SmallIcon;
             this.chatList.Click += new System.EventHandler(this.chatList_Click);
             // 
-            // imageList1
+            // splitContainerControl1
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "所有人.png");
-            this.imageList1.Images.SetKeyName(1, "群组.png");
-            this.imageList1.Images.SetKeyName(2, "在线学生.png");
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.chatList);
+            this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl2);
+            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl1);
+            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl3);
+            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Size = new System.Drawing.Size(1111, 658);
+            this.splitContainerControl1.SplitterPosition = 165;
+            this.splitContainerControl1.TabIndex = 143;
+            this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // panel2
+            // panelControl2
             // 
-            this.panel2.Controls.Add(this.chatBoxSend);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.panel1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 441);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(687, 161);
-            this.panel2.TabIndex = 141;
+            this.panelControl2.Controls.Add(this.smsPanel1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 50);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(941, 478);
+            this.panelControl2.TabIndex = 143;
             // 
-            // panel3
+            // smsPanel1
             // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(687, 8);
-            this.panel3.TabIndex = 141;
+            this.smsPanel1.Appearance.BackColor = System.Drawing.Color.MistyRose;
+            this.smsPanel1.Appearance.Options.UseBackColor = true;
+            this.smsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.smsPanel1.FireScrollEventOnMouseWheel = true;
+            this.smsPanel1.LastY = 10;
+            this.smsPanel1.Location = new System.Drawing.Point(2, 2);
+            this.smsPanel1.Name = "smsPanel1";
+            this.smsPanel1.Size = new System.Drawing.Size(937, 474);
+            this.smsPanel1.TabIndex = 142;
             // 
-            // panel1
+            // panelControl1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.btnSend);
-            this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 119);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(687, 42);
-            this.panel1.TabIndex = 140;
+            this.panelControl1.Controls.Add(this.btnClose);
+            this.panelControl1.Controls.Add(this.btnSend);
+            this.panelControl1.Controls.Add(this.sendBox);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(0, 528);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(941, 130);
+            this.panelControl1.TabIndex = 0;
             // 
-            // btnSend
+            // panelControl3
             // 
-            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.BackColor = System.Drawing.Color.Transparent;
-            this.btnSend.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btnSend.DownBack = global::SharedForms.Resource1.btn_Down;
-            this.btnSend.DrawType = CCWin.SkinControl.DrawStyle.Img;
-            this.btnSend.ForeColor = System.Drawing.Color.White;
-            this.btnSend.Location = new System.Drawing.Point(543, 6);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnSend.MouseBack = global::SharedForms.Resource1.btn_Mouse;
-            this.btnSend.Name = "btnSend";
-            this.btnSend.NormlBack = global::SharedForms.Resource1.btn_norml;
-            this.btnSend.Palace = true;
-            this.btnSend.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.btnSend.Size = new System.Drawing.Size(60, 30);
-            this.btnSend.TabIndex = 139;
-            this.btnSend.Text = "发 送";
-            this.btnSend.UseVisualStyleBackColor = false;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.Transparent;
-            this.btnClose.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btnClose.DownBack = global::SharedForms.Resource1.btn_Down;
-            this.btnClose.DrawType = CCWin.SkinControl.DrawStyle.Img;
-            this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(618, 6);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnClose.MouseBack = global::SharedForms.Resource1.btn_Mouse;
-            this.btnClose.Name = "btnClose";
-            this.btnClose.NormlBack = global::SharedForms.Resource1.btn_norml;
-            this.btnClose.Palace = true;
-            this.btnClose.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.btnClose.Size = new System.Drawing.Size(56, 30);
-            this.btnClose.TabIndex = 138;
-            this.btnClose.Text = "关 闭";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
+            this.panelControl3.Controls.Add(this.labelControl1);
+            this.panelControl3.Controls.Add(this.labChatTitle);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl3.Location = new System.Drawing.Point(0, 0);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(941, 50);
+            this.panelControl3.TabIndex = 144;
             // 
             // labChatTitle
             // 
-            this.labChatTitle.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.Relievo;
-            this.labChatTitle.BackColor = System.Drawing.Color.Transparent;
-            this.labChatTitle.BorderColor = System.Drawing.Color.White;
-            this.labChatTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labChatTitle.Enabled = false;
-            this.labChatTitle.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labChatTitle.ForeColor = System.Drawing.Color.White;
-            this.labChatTitle.Location = new System.Drawing.Point(0, 0);
-            this.labChatTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labChatTitle.Location = new System.Drawing.Point(129, 13);
             this.labChatTitle.Name = "labChatTitle";
-            this.labChatTitle.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.labChatTitle.Size = new System.Drawing.Size(687, 36);
-            this.labChatTitle.TabIndex = 136;
-            this.labChatTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labChatTitle.Size = new System.Drawing.Size(70, 14);
+            this.labChatTitle.TabIndex = 0;
+            this.labChatTitle.Text = "labelControl1";
             // 
-            // toolTip1
+            // labelControl1
             // 
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip1.ToolTipTitle = "群组成员";
+            this.labelControl1.Location = new System.Drawing.Point(273, 13);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(70, 14);
+            this.labelControl1.TabIndex = 1;
+            this.labelControl1.Text = "labelControl1";
             // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(940, 602);
-            this.Controls.Add(this.skinSplitContainer1);
+            this.ClientSize = new System.Drawing.Size(1111, 658);
+            this.Controls.Add(this.splitContainerControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ChatForm";
-            this.Opacity = 0.98D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "聊天窗口";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ChatForm_Paint);
-            this.skinSplitContainer1.Panel1.ResumeLayout(false);
-            this.skinSplitContainer1.Panel1.PerformLayout();
-            this.skinSplitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).EndInit();
-            this.skinSplitContainer1.ResumeLayout(false);
-            this.Content_panel.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            this.panelControl3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private CCWin.SkinControl.SkinChatRichTextBox chatBox_history;
-        public CCWin.SkinControl.SkinChatRichTextBox chatBoxSend;
-        private CCWin.SkinControl.SkinSplitContainer skinSplitContainer1;
-        private System.Windows.Forms.Panel Content_panel;
-        private CCWin.SkinControl.SkinLabel labChatTitle;
-        private CCWin.SkinControl.SkinButton btnClose;
-        private CCWin.SkinControl.SkinButton btnSend;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+     
         private System.Windows.Forms.ImageList imageList1;
         private MyListView chatList;
         private System.Windows.Forms.ToolTip toolTip1;
+        private DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraEditors.SimpleButton btnSend;
+        private System.Windows.Forms.RichTextBox sendBox;
+        private smsPanel smsPanel1;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.LabelControl labChatTitle;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

@@ -1,5 +1,4 @@
-﻿using CCWin.SkinControl;
-using Common;
+﻿using Common;
 using Model;
 using MyTCP;
 using System;
@@ -96,8 +95,8 @@ namespace SharedForms
 
         public static ChatMessage ToChatMessage(this AddChatRequest request)
         {
-            ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
-            return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, content);
+         //   ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
+            return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, request.Message);
         }
 
         static Font messageFont = new Font("微软雅黑", 9);
@@ -132,7 +131,7 @@ namespace SharedForms
         //    chat.MessageList.Add(message);
         //}
 
-        public static void SaveChatMessage(ChatBoxContent content, string userName)
+        public static void SaveChatMessage(smsPanel content, string userName)
         {
             var chatstore = ChatList.FirstOrDefault(d => d.ChatUserName == userName);
             if (chatstore != null)

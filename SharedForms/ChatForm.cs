@@ -1,15 +1,15 @@
-using CCWin.SkinControl;
+
 using Common;
+using DevExpress.XtraEditors;
 using Model;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace SharedForms
 {
-    public partial class ChatForm : Form
+    public partial class ChatForm : XtraForm
     {
         #region 变量
         /// <summary>
@@ -19,7 +19,7 @@ namespace SharedForms
         Color messageColor = Color.FromArgb(255, 32, 32, 32);
         string _myDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
         string _myUserName = GlobalVariable.LoginUserInfo.UserName;
-        bool _formIsOpen;
+
         ChatStore selectChatStore;
         string selectUserName = "";
         public delegate void ReveieveMessageHandle(object sender, ReceieveMessageEventArgs e);
@@ -28,6 +28,7 @@ namespace SharedForms
 
         public bool IsHide { get; set; }
         public AddChatRequest newMessage;
+
         #endregion
 
 
@@ -263,9 +264,9 @@ namespace SharedForms
                     {
                         AppendMessage(item, false);
                     }
-                    GlobalVariable.SaveChatMessage(chatBox_history.GetContent(), subItem.UserName);
-                    this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-                    this.chatBox_history.ScrollToCaret();
+                    GlobalVariable.SaveChatMessage(smsPanel1, subItem.UserName);
+                    //   this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+                    //  this.chatBox_history.ScrollToCaret();
                 }
             }
             // GlobalVariable.GetNewMessageList(subItem.);
@@ -274,9 +275,9 @@ namespace SharedForms
         private void AppendMessageAndSave(ChatMessage message)
         {
             AppendMessage(message, false);
-            GlobalVariable.SaveChatMessage(chatBox_history.GetContent(), message.SendUserName);
-            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            this.chatBox_history.ScrollToCaret();
+            GlobalVariable.SaveChatMessage(smsPanel1, message.SendUserName);
+            // this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+            //   this.chatBox_history.ScrollToCaret();
         }
 
         /// <summary>
@@ -287,25 +288,34 @@ namespace SharedForms
             // if (chatListBox1.SelectSubItem != subItem)
             // {
             //  chatListBox1.SelectSubItem = subItem;
-            chatBox_history.Text = "";
+            // chatBox_history.Text = "";
             var chatStore = subItem.GetChatStore();
             if (chatStore == null)
             {
                 return;
             }
-            AddContentToHistoryBox(chatStore.HistoryContent);
+            if (chatStore.HistoryContent == null)
+            {
+                chatStore.HistoryContent = new smsPanel();
+                //   chatStore.HistoryContent.BackColor = Color.Red;
+                //   chatStore.HistoryContent.Dock = DockStyle.None;
+                panelControl2.Controls.Add(chatStore.HistoryContent);
+            }
+            smsPanel1 = chatStore.HistoryContent;
+            chatStore.HistoryContent.BringToFront();
+            //    AddContentToHistoryBox(chatStore.HistoryContent);
 
         }
         #endregion
 
 
-        private void AddContentToHistoryBox(ChatBoxContent content)
-        {
-            chatBox_history.AppendChatBoxContent(content);
-            this.chatBox_history.AppendText("\n");
-            this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            this.chatBox_history.ScrollToCaret();
-        }
+        //private void AddContentToHistoryBox(ChatBoxContent content)
+        //{
+        //    chatBox_history.AppendChatBoxContent(content);
+        //    this.chatBox_history.AppendText("\n");
+        //    this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+        //    this.chatBox_history.ScrollToCaret();
+        //}
 
 
         #region 窗体重绘时
@@ -366,55 +376,40 @@ namespace SharedForms
         private void btnClose_Click_1(object sender, EventArgs e)
         {
 
-            this.IsHide = true;
-            this.Hide();
+
         }
 
-        private void btnSend_Click(object sender, EventArgs e)
+
+
+        public bool IsMySelf(string sendUserName)
         {
-            ChatBoxContent content = this.chatBoxSend.GetContent();
-            //发送内容为空时，不做响应
-            if (content.IsEmpty())
-            {
-                return;
-            }
-
-            if (chatList.SelectedItems == null)
-            {
-                GlobalVariable.ShowWarnning("请先选择聊天对象");
-                return;
-            }
-
-            //  string userName = chatListBox1.SelectSubItem.Tag.ToString();
-            SendMessageCommand(selectUserName, content.Text);
-            var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content);
-            AppendMessage(message, true);
-            GlobalVariable.SaveChatMessage(chatBox_history.GetContent(), selectUserName);
-            //  GlobalVariable.SaveChatMessage(message, true);
+            return GlobalVariable.LoginUserInfo.UserName == sendUserName;
         }
-
-
 
 
         private void AppendMessage(ChatMessage chatMessage, bool isInput)
         {
-            var color = chatMessage.SendUserName == _myUserName ? Color.SeaGreen : Color.Blue;
-            var showTime = chatMessage.SendTime.ToString("yyyy-MM-dd HH:mm:ss");
-            this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n",
-                chatMessage.SendDisplayName, showTime),
-                new Font(this.messageFont, FontStyle.Regular), color);
-            this.chatBox_history.AppendChatBoxContent(chatMessage.Content);
-            this.chatBox_history.AppendText("\n");
+            bool isMySelf = IsMySelf(chatMessage.SendUserName);
+            smsPanel1.AddMessage(chatMessage.Title, chatMessage.Message, isMySelf);
+            //var color = chatMessage.SendUserName == _myUserName ? Color.SeaGreen : Color.Blue;
+            //var showTime = chatMessage.SendTime.ToString("yyyy-MM-dd HH:mm:ss");
+            //this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n",
+            //    chatMessage.SendDisplayName, showTime),
+            //    new Font(this.messageFont, FontStyle.Regular), color);
+            //this.chatBox_history.AppendChatBoxContent(chatMessage.Content);
+            //this.chatBox_history.AppendText("\n");
 
 
             if (isInput)
             {
-                this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-                this.chatBox_history.ScrollToCaret();
+                //   this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+                //   this.chatBox_history.ScrollToCaret();
                 //清空发送输入框
-                this.chatBoxSend.Text = string.Empty;
-                this.chatBoxSend.Focus();
+                this.sendBox.Text = string.Empty;
+                this.sendBox.Focus();
             }
+
+
         }
 
 
@@ -426,7 +421,33 @@ namespace SharedForms
             ChatItemSelected(selectItem as ChatItem3, true);
         }
 
+        private void btnSend_Click_1(object sender, EventArgs e)
+        {
+            string content = sendBox.Text;
+            //发送内容为空时，不做响应
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                return;
+            }
+            if (chatList.SelectedItems == null)
+            {
+                GlobalVariable.ShowWarnning("请先选择聊天对象");
+                return;
+            }
+            SendMessageCommand(selectUserName, content);
+            var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content);
+            AppendMessage(message, true);
+            GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
+            labelControl1.Text = "width:" + smsPanel1.Controls[smsPanel1.Controls.Count - 1].Width.ToString()
 
+                + "  height:" + smsPanel1.Controls[smsPanel1.Controls.Count - 1].Height.ToString();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.IsHide = true;
+            this.Hide();
+        }
     }
 
     public class ReceieveMessageEventArgs : EventArgs
