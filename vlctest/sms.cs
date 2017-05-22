@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace vlctest
 {
@@ -27,6 +21,8 @@ namespace vlctest
         Image topimgR = Properties.Resources.rt;
         Image middleimgR = Properties.Resources.rm;
         Image bottomimgR = Properties.Resources.rb;
+        Image imgTech = Properties.Resources.老师;
+        Image imgStu = Properties.Resources.学生;
         string _message;
         string _title;
         bool _isMySelf;
@@ -49,7 +45,8 @@ namespace vlctest
             int textLen = _message.Length;
             int count = textLen / 27 + (textLen % 27 == 0 ? 0 : 1);
             _messageHeight = count * 18 + 18;
-            this.Size = new Size(400, _messageHeight + 45);
+            this.Size = new Size(388, 17 * 4 + 16);
+            this.BackColor = Color.Yellow;
             //TextBox lab = new TextBox();
             //lab.BackColor = this.BackColor;
             //lab.ForeColor = Color.Blue;
@@ -64,17 +61,20 @@ namespace vlctest
             this.Parent.Parent.Text = DateTime.Now.ToLongTimeString();
 
             //base.OnPaint(e);
-            Bitmap bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height);
-            Graphics g = Graphics.FromImage(bmp);
+            // Bitmap bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height);
+            Graphics g = e.Graphics;// Graphics.FromImage(bmp);
             g.Clear(this.BackColor);
             g.SmoothingMode = SmoothingMode.HighQuality; //高质量 
             g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
             piccyBounds = new Point[3];
 
-            g.TranslateTransform(this.AutoScrollPosition.X, this.AutoScrollPosition.Y);
-            int ptop = 4;
-            int pleft = 5;
-            Rectangle rectArea = new Rectangle(pleft, ptop, 388, 17);
+            //    g.TranslateTransform(this.AutoScrollPosition.X, this.AutoScrollPosition.Y);
+            int ptop = 0;// 4;
+            int pleft = 0;// 5;
+            Rectangle rectArea = new Rectangle(pleft, ptop + 17 * 3 - 16, 32, 32);
+            g.DrawImage(imgStu, rectArea);
+            pleft += 32;
+            rectArea = new Rectangle(pleft, ptop, 388, 17);
             if (IsMySelf)
             {
                 g.DrawImage(topimgR, rectArea);
@@ -89,17 +89,18 @@ namespace vlctest
             piccyBounds[2] = new Point(pleft, ptop + _messageHeight);
             if (IsMySelf)
             {
-                g.DrawImage(middleimgR, piccyBounds, new Rectangle(0, 0, 388, 17), GraphicsUnit.Pixel, imgAtt);
+                g.DrawImage(middleimgR, piccyBounds, new Rectangle(0, 0, 388, 17 * 2), GraphicsUnit.Pixel, imgAtt);
             }
             else
             {
-                g.DrawImage(middleimg, piccyBounds, new Rectangle(0, 0, 388, 17), GraphicsUnit.Pixel, imgAtt);
+                g.DrawImage(middleimg, piccyBounds, new Rectangle(0, 0, 388, 17 * 2), GraphicsUnit.Pixel, imgAtt);
             }
-            g.DrawString(_title, titleFont, blackBrush, new PointF(pleft + 10, ptop));
-            ptop += 18;
-            rectArea = new Rectangle(pleft + 10, ptop, 388, _messageHeight - 18);
-            g.DrawString(_message, contentFont, blackBrush, rectArea);
-            ptop += _messageHeight - 18;
+            ptop += 17 * 2;
+            //g.DrawString(_title, titleFont, blackBrush, new PointF(pleft + 10, ptop));
+            //ptop += 18;
+            //rectArea = new Rectangle(pleft + 10, ptop, 388, _messageHeight - 18);
+            //g.DrawString(_message, contentFont, blackBrush, rectArea);
+            //ptop += _messageHeight - 18;
             rectArea = new Rectangle(pleft, ptop, 388, 17);
             if (IsMySelf)
             {
@@ -109,9 +110,9 @@ namespace vlctest
             {
                 g.DrawImage(bottomimg, rectArea);
             }
-           
 
-            e.Graphics.DrawImage(bmp, 0, 0);
+
+            //  e.Graphics.DrawImage(bmp, 0, 0);
         }
     }
 }
