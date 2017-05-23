@@ -7,7 +7,7 @@ namespace vlctest
 {
     public partial class smsPanel : XtraScrollableControl
     {
-        private int _lastY = 10;
+        private int _lastY = 0;
 
         public int LastY
         {
@@ -37,10 +37,10 @@ namespace vlctest
 
         private void SmsPanel_MouseEnter(object sender, EventArgs e)
         {
-            this.Focus();
+            //  this.Focus();
         }
 
-     
+
 
         private void SmsPanel_Resize(object sender, EventArgs e)
         {
@@ -50,7 +50,7 @@ namespace vlctest
                 s = (sms)item;
                 if (s.IsMySelf)
                 {
-                    s.Location = new Point(Width - 400 - 20, s.Location.Y);
+                    s.Location = new Point(Width - 420 - SystemInformation.VerticalScrollBarWidth, s.Location.Y);
                 }
             }
         }
@@ -60,22 +60,25 @@ namespace vlctest
             ScrollControlIntoView(e.Control);
         }
 
-
+        int inum = 1;
         public void AddMessage(string title, string message, bool isMySelf)
         {
             chatItem = new sms(title, message, isMySelf);
+            // int aaa = SystemInformation.VerticalScrollBarWidth;
             if (isMySelf)
             {
-                X = Width - chatItem.Width - 15;
+                X = Width - chatItem.SizeWidth - SystemInformation.VerticalScrollBarWidth;
             }
             else
             {
                 X = 10;
             }
-            chatItem.Location = new Point(X - HorizontalScroll.Value, LastY - VerticalScroll.Value);
 
-            LastY += chatItem.Height;
             Controls.Add(chatItem);
+            chatItem.Location = new Point(X - HorizontalScroll.Value, LastY - VerticalScroll.Value);
+            LastY += chatItem.Height;
+            ScrollControlIntoView(Controls[Controls.Count - 1]);
+
         }
     }
 }

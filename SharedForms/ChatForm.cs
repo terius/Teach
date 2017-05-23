@@ -1,16 +1,21 @@
 
 using Common;
 using DevExpress.XtraEditors;
+using DevExpress.XtraNavBar;
+using DevExpress.XtraNavBar.ViewInfo;
 using Model;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace SharedForms
 {
     public partial class ChatForm : XtraForm
     {
+
+      
+
+
         #region 变量
         /// <summary>
         /// 文本格式
@@ -64,14 +69,14 @@ namespace SharedForms
         public ChatForm()
         {
             InitializeComponent();
-            ChatItem3 item = new ChatItem3();
-            item.Group = chatList.Groups[0];
-            item.ImageIndex = 0;
-            item.Text = "所有人";
-            item.UserName = "allpeople";
-            item.ChatType = ChatType.GroupChat;
-            item.DisplayName = "所有人";
-            chatList.Items.Add(item);
+            //ChatItem item = new ChatItem();
+            //item.Group = chatList.Groups[0];
+            //item.ImageIndex = 0;
+            //item.Text = "所有人";
+            //item.UserName = "allpeople";
+            //item.ChatType = ChatType.GroupChat;
+            //item.DisplayName = "所有人";
+            //chatList.Items.Add(item);
             // ReveieveMessage += ChatForm_ReveieveMessage; ;
         }
 
@@ -110,10 +115,10 @@ namespace SharedForms
             //    _formIsOpen = formIsOpend;
             IsHide = false;
             ReflashTeamChat();
-            ChatItem3 chatItem = GetItemInChatListBox(request);
+            ChatItem chatItem = GetItemInChatListBox(request);
             if (chatItem == null)
             {
-                chatItem = chatList.CreateItem(request);
+                chatItem = ChatNav.CreateItem(request);
 
             }
 
@@ -121,7 +126,7 @@ namespace SharedForms
             {
                 if (chatItem.UserName != selectUserName)
                 {
-                    chatItem.Text = chatItem.DisplayName + " 有新消息！";
+                    chatItem.Caption = chatItem.DisplayName + " 有新消息！";
                 }
                 else
                 {
@@ -134,10 +139,10 @@ namespace SharedForms
             }
         }
 
-        private void ChatItemSelected(ChatItem3 chatItem, bool fromClick)
+        private void ChatItemSelected(ChatItem chatItem, bool fromClick)
         {
-            //  chatItem.Text = chatItem.DisplayName;
-            this.labChatTitle.Text = "与" + chatItem.Text + "的对话：";
+            //  chatItem.Caption = chatItem.DisplayName;
+            this.labChatTitle.Text = "与【" + chatItem.DisplayName + "】的对话：";
             if (fromClick && chatItem.UserName == selectUserName)
             {
                 return;
@@ -145,21 +150,24 @@ namespace SharedForms
             if (chatItem.UserName != selectUserName)
             {
                 LoadChatMessage(chatItem);
-                ClearSelect();
+             //   ClearSelect();
             }
             AppendNewMessage(chatItem);
             selectUserName = chatItem.UserName;
-            chatItem.Selected = true;
-            chatList.Select();
+            ChatNav.SelectedLink= chatItem.Links[0];
+          //  ChatNav.Groups[0].SelectedLink = chatItem.Links[0];
+
+            //    chatItem.Selected = true;
+            //    chatList.Select();
         }
 
-        private void ClearSelect()
-        {
-            foreach (ChatItem3 item in chatList.SelectedItems)
-            {
-                item.Selected = false;
-            }
-        }
+        //private void ClearSelect()
+        //{
+        //    foreach (ChatItem item in ChatNav.SelectedItems)
+        //    {
+        //        item.Selected = false;
+        //    }
+        //}
 
         public void ReflashTeamChat()
         {
@@ -167,18 +175,19 @@ namespace SharedForms
             {
                 GlobalVariable.IsTeamChatChanged = false;
                 var list = GlobalVariable.GetTeamChatList();
-                this.chatList.Groups[1].Items.Clear();
-                int len = chatList.Items.Count;
-                while (--len >= 0)
-                {
-                    if (((ChatItem3)chatList.Items[len]).ChatType == ChatType.TeamChat)
-                    {
-                        chatList.Items[len].Remove();
-                    }
-                }
+                ChatNav.Groups[1].ItemLinks.Clear();
+                //this.chatList.Groups[1].Items.Clear();
+                //int len = chatList.Items.Count;
+                //while (--len >= 0)
+                //{
+                //    if (((ChatItem)chatList.Items[len]).ChatType == ChatType.TeamChat)
+                //    {
+                //        chatList.Items[len].Remove();
+                //    }
+                //}
                 foreach (ChatStore item in list)
                 {
-                    chatList.CreateItem(item);
+                    ChatNav.CreateItem(item);
                 }
             }
         }
@@ -188,16 +197,16 @@ namespace SharedForms
         /// </summary>
         /// <param name="chatUserName"></param>
         /// <returns></returns>
-        private ChatItem3 GetItemInChatListBox(AddChatRequest request)
+        private ChatItem GetItemInChatListBox(AddChatRequest request)
         {
-            ListViewGroup item = GetGroup(request.ChatType);
+            var item = GetGroup(request.ChatType);
             if (item != null)
             {
-                foreach (ChatItem3 subItem in item.Items)
+                foreach (NavBarItemLink subItem in item.ItemLinks)
                 {
-                    if (subItem.UserName == request.UserName)
+                    if (((ChatItem)subItem.Item).UserName == request.UserName)
                     {
-                        return subItem;
+                        return (ChatItem)subItem.Item;
                     }
                 }
             }
@@ -219,24 +228,21 @@ namespace SharedForms
         //    throw new NotImplementedException();
         //}
 
-        private void AddNewChatItem(AddChatRequest request)
-        {
 
-        }
 
-        private ListViewGroup GetGroup(ChatType type)
+        private NavBarGroup GetGroup(ChatType type)
         {
-            ListViewGroup item = null;
+            NavBarGroup item = null;
             switch (type)
             {
                 case ChatType.PrivateChat:
-                    item = chatList.Groups[2];
+                    item = ChatNav.Groups[2];
                     break;
                 case ChatType.GroupChat:
-                    item = chatList.Groups[0];
+                    item = ChatNav.Groups[0];
                     break;
                 case ChatType.TeamChat:
-                    item = chatList.Groups[1];
+                    item = ChatNav.Groups[1];
                     break;
                 default:
                     break;
@@ -244,22 +250,14 @@ namespace SharedForms
             return item;
         }
 
-
-
-
-
-
-
-
-
-
-        private void AppendNewMessage(ChatItem3 subItem)
+        private void AppendNewMessage(ChatItem subItem)
         {
             selectChatStore = subItem.GetChatStore();
             if (selectChatStore != null)
             {
                 if (selectChatStore.NewMessageList != null)
                 {
+
                     foreach (ChatMessage item in selectChatStore.NewMessageList)
                     {
                         AppendMessage(item, false);
@@ -272,18 +270,18 @@ namespace SharedForms
             // GlobalVariable.GetNewMessageList(subItem.);
         }
 
-        private void AppendMessageAndSave(ChatMessage message)
-        {
-            AppendMessage(message, false);
-            GlobalVariable.SaveChatMessage(smsPanel1, message.SendUserName);
-            // this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
-            //   this.chatBox_history.ScrollToCaret();
-        }
+        //private void AppendMessageAndSave(ChatMessage message)
+        //{
+        //    AppendMessage(message, false);
+        //    GlobalVariable.SaveChatMessage(smsPanel1, message.SendUserName);
+        //    // this.chatBox_history.Select(this.chatBox_history.Text.Length, 0);
+        //    //   this.chatBox_history.ScrollToCaret();
+        //}
 
         /// <summary>
         /// 加载聊天历史记录
         /// </summary>
-        private void LoadChatMessage(ChatItem3 subItem)
+        private void LoadChatMessage(ChatItem subItem)
         {
             // if (chatListBox1.SelectSubItem != subItem)
             // {
@@ -319,19 +317,19 @@ namespace SharedForms
 
 
         #region 窗体重绘时
-        private void ChatForm_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.HighQuality;
-            //  this.chatBox_history.BackColor = Color.WhiteSmoke;
-            ////全屏蒙浓遮罩层
-            //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, 0, this.Width, this.chatBox_history.Top));
-            //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, this.chatBox_history.Top, this.chatBox_history.Width + this.chatBox_history.Left, this.Height - this.chatBox_history.Top));
+        //private void ChatForm_Paint(object sender, PaintEventArgs e)
+        //{
+        //    Graphics g = e.Graphics;
+        //    g.SmoothingMode = SmoothingMode.HighQuality;
+        //    //  this.chatBox_history.BackColor = Color.WhiteSmoke;
+        //    ////全屏蒙浓遮罩层
+        //    //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, 0, this.Width, this.chatBox_history.Top));
+        //    //g.FillRectangle(new SolidBrush(Color.FromArgb(80, 255, 255, 255)), new Rectangle(0, this.chatBox_history.Top, this.chatBox_history.Width + this.chatBox_history.Left, this.Height - this.chatBox_history.Top));
 
-            //线条
-            // g.DrawLine(new Pen(Color.FromArgb(180, 198, 221)), new Point(0, this.chatBox_history.Top - 1), new Point(chatBox_history.Right, this.chatBox_history.Top - 1));
-            //   g.DrawLine(new Pen(Color.FromArgb(180, 198, 221)), new Point(0, this.chatBox_history.Bottom), new Point(chatBox_history.Right, this.chatBox_history.Bottom));
-        }
+        //    //线条
+        //    // g.DrawLine(new Pen(Color.FromArgb(180, 198, 221)), new Point(0, this.chatBox_history.Top - 1), new Point(chatBox_history.Right, this.chatBox_history.Top - 1));
+        //    //   g.DrawLine(new Pen(Color.FromArgb(180, 198, 221)), new Point(0, this.chatBox_history.Bottom), new Point(chatBox_history.Right, this.chatBox_history.Bottom));
+        //}
         #endregion
 
         #region 发送信息
@@ -346,6 +344,7 @@ namespace SharedForms
                 request.receivename = receieveUserName;
                 request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
+                request.clientRole = GlobalVariable.LoginUserInfo.UserType;
                 GlobalVariable.client.Send_PrivateChat(request);
             }
             else if (chatType == ChatType.TeamChat)
@@ -390,7 +389,7 @@ namespace SharedForms
         private void AppendMessage(ChatMessage chatMessage, bool isInput)
         {
             bool isMySelf = IsMySelf(chatMessage.SendUserName);
-            smsPanel1.AddMessage(chatMessage.Title, chatMessage.Message, isMySelf);
+            smsPanel1.AddMessage(chatMessage, isMySelf);
             //var color = chatMessage.SendUserName == _myUserName ? Color.SeaGreen : Color.Blue;
             //var showTime = chatMessage.SendTime.ToString("yyyy-MM-dd HH:mm:ss");
             //this.chatBox_history.AppendRichText(string.Format("{0}  {1}\n",
@@ -415,11 +414,7 @@ namespace SharedForms
 
 
 
-        private void chatList_Click(object sender, EventArgs e)
-        {
-            var selectItem = chatList.SelectedItems[0];
-            ChatItemSelected(selectItem as ChatItem3, true);
-        }
+    
 
         private void btnSend_Click_1(object sender, EventArgs e)
         {
@@ -429,24 +424,38 @@ namespace SharedForms
             {
                 return;
             }
-            if (chatList.SelectedItems == null)
+            if (ChatNav.SelectedLink == null)
             {
                 GlobalVariable.ShowWarnning("请先选择聊天对象");
                 return;
             }
             SendMessageCommand(selectUserName, content);
-            var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content);
+            var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content, GlobalVariable.LoginUserInfo.UserType);
             AppendMessage(message, true);
             GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
-            labelControl1.Text = "width:" + smsPanel1.Controls[smsPanel1.Controls.Count - 1].Width.ToString()
-
-                + "  height:" + smsPanel1.Controls[smsPanel1.Controls.Count - 1].Height.ToString();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.IsHide = true;
             this.Hide();
+        }
+
+        private void ChatNav_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+           // var selectItem = chatList.SelectedItems[0];
+            ChatItemSelected(e.Link.Item as ChatItem, true);
+        }
+
+        private void ChatNav_CustomDrawLink(object sender, CustomDrawNavBarElementEventArgs e)
+        {
+            NavBarItemLink link = ((NavLinkInfoArgs)e.ObjectInfo).Link;
+            if (link.State == DevExpress.Utils.Drawing.ObjectState.Selected
+                || link.State == DevExpress.Utils.Drawing.ObjectState.Hot
+                )
+            {
+                e.Graphics.FillRectangle(Brushes.DodgerBlue, e.RealBounds);
+            }
         }
     }
 

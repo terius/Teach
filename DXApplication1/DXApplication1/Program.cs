@@ -21,7 +21,8 @@ namespace DXApplication1
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new Form1());
+            UserLookAndFeel.Default.SetSkinStyle("Office 2016 Colorful");
+            Application.Run(new XtraForm1());
         }
     }
 }

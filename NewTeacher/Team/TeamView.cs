@@ -1,11 +1,12 @@
-﻿using Model;
+﻿using DevExpress.XtraEditors;
+using Model;
 using SharedForms;
 using System;
 using System.Windows.Forms;
 
 namespace NewTeacher
 {
-    public partial class TeamView : Form
+    public partial class TeamView : XtraForm
     {
         OnlineInfo _onLineInfo;
         public TeamView(OnlineInfo onLineInfo)

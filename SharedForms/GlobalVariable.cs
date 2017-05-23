@@ -95,8 +95,9 @@ namespace SharedForms
 
         public static ChatMessage ToChatMessage(this AddChatRequest request)
         {
+          
          //   ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
-            return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, request.Message);
+            return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, request.Message,request.UserType);
         }
 
         static Font messageFont = new Font("微软雅黑", 9);

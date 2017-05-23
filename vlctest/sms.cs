@@ -13,7 +13,7 @@ namespace vlctest
 
         Brush blackBrush = Brushes.Black;
         Font titleFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-        Font contentFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+       // Font contentFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 
         Image topimg = Properties.Resources.lt;
         Image middleimg = Properties.Resources.lm;
@@ -27,53 +27,51 @@ namespace vlctest
         string _title;
         bool _isMySelf;
         int _messageHeight;
+        int _sizeHeight;
         public bool IsMySelf { get { return _isMySelf; } }
+        public readonly int SizeWidth = 420;
         public sms(string title, string message, bool isMySelf)
         {
             _title = title;
             _message = message;
             _isMySelf = isMySelf;
             InitializeComponent();
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
-            imgAtt = new ImageAttributes();
-            imgAtt.SetWrapMode(WrapMode.Tile);
-            SetHeight();
         }
 
-        private void SetHeight()
-        {
-            int textLen = _message.Length;
-            int count = textLen / 27 + (textLen % 27 == 0 ? 0 : 1);
-            _messageHeight = count * 18 + 18;
-            this.Size = new Size(388, 17 * 4 + 16);
-            this.BackColor = Color.Yellow;
-            //TextBox lab = new TextBox();
-            //lab.BackColor = this.BackColor;
-            //lab.ForeColor = Color.Blue;
-            //lab.Location = new Point(20, 17);
-            //lab.Text = DateTime.Now.ToLongTimeString();
-            //lab.BorderStyle = BorderStyle.None;
-            //this.Controls.Add(lab);
-        }
+
 
         private void sms_Paint(object sender, PaintEventArgs e)
         {
-            this.Parent.Parent.Text = DateTime.Now.ToLongTimeString();
-
-            //base.OnPaint(e);
-            // Bitmap bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height);
-            Graphics g = e.Graphics;// Graphics.FromImage(bmp);
-            g.Clear(this.BackColor);
+            Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality; //高质量 
             g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
             piccyBounds = new Point[3];
-
-            //    g.TranslateTransform(this.AutoScrollPosition.X, this.AutoScrollPosition.Y);
             int ptop = 0;// 4;
             int pleft = 0;// 5;
-            Rectangle rectArea = new Rectangle(pleft, ptop + 17 * 3 - 16, 32, 32);
-            g.DrawImage(imgStu, rectArea);
-            pleft += 32;
+            int height = 0;
+            Rectangle rectArea;
+            height = 20;
+            if (IsMySelf)
+            {
+                g.DrawString(_title, titleFont, blackBrush, new PointF(pleft, ptop));
+            }
+            else
+            {
+                g.DrawString(_title, titleFont, blackBrush, new PointF(pleft + 40, ptop));
+            }
+            ptop += height;
+
+            if (IsMySelf)
+            {
+                rectArea = new Rectangle(pleft + 388, _sizeHeight - 32, 32, 32);
+                g.DrawImage(imgStu, rectArea);
+            }
+            else
+            {
+                rectArea = new Rectangle(pleft, _sizeHeight - 32, 32, 32);
+                g.DrawImage(imgStu, rectArea);
+                pleft += 32;
+            }
             rectArea = new Rectangle(pleft, ptop, 388, 17);
             if (IsMySelf)
             {
@@ -89,18 +87,13 @@ namespace vlctest
             piccyBounds[2] = new Point(pleft, ptop + _messageHeight);
             if (IsMySelf)
             {
-                g.DrawImage(middleimgR, piccyBounds, new Rectangle(0, 0, 388, 17 * 2), GraphicsUnit.Pixel, imgAtt);
+                g.DrawImage(middleimgR, piccyBounds, new Rectangle(0, 0, 388, _messageHeight), GraphicsUnit.Pixel, imgAtt);
             }
             else
             {
-                g.DrawImage(middleimg, piccyBounds, new Rectangle(0, 0, 388, 17 * 2), GraphicsUnit.Pixel, imgAtt);
+                g.DrawImage(middleimg, piccyBounds, new Rectangle(0, 0, 388, _messageHeight), GraphicsUnit.Pixel, imgAtt);
             }
-            ptop += 17 * 2;
-            //g.DrawString(_title, titleFont, blackBrush, new PointF(pleft + 10, ptop));
-            //ptop += 18;
-            //rectArea = new Rectangle(pleft + 10, ptop, 388, _messageHeight - 18);
-            //g.DrawString(_message, contentFont, blackBrush, rectArea);
-            //ptop += _messageHeight - 18;
+            ptop += _messageHeight;
             rectArea = new Rectangle(pleft, ptop, 388, 17);
             if (IsMySelf)
             {
@@ -110,9 +103,32 @@ namespace vlctest
             {
                 g.DrawImage(bottomimg, rectArea);
             }
+            this.Parent.Parent.Text = "sms size:width:" + Size.Width + "  height:" + Size.Height;
+        }
 
+        private void sms_Load(object sender, EventArgs e)
+        {
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
+            imgAtt = new ImageAttributes();
+            imgAtt.SetWrapMode(WrapMode.Tile);
+            var textSize = this.CreateGraphics().MeasureString(_message, txtSMS.Font);
+            int count = (int)Math.Floor(textSize.Width / 389) + (textSize.Width % 389 == 0 ? 0 : 1);
+            _messageHeight = count * 20 + 10;
+            _sizeHeight = 20 + 17 * 2 + _messageHeight;
+            this.Size = new Size(388 + 32, _sizeHeight + 1);
+            if (IsMySelf)
+            {
+                txtSMS.Location = new Point(7, 37);
+                txtSMS.BackColor = Color.FromArgb(198, 225, 252);
 
-            //  e.Graphics.DrawImage(bmp, 0, 0);
+            }
+            else
+            {
+                txtSMS.Location = new Point(42, 37);
+                txtSMS.BackColor = Color.FromArgb(244, 244, 244);
+            }
+            txtSMS.Size = new Size(388 - 10 - 5, _messageHeight);
+            txtSMS.Text = _message;
         }
     }
 }

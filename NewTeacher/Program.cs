@@ -2,11 +2,7 @@
 using DevExpress.Skins;
 using DevExpress.UserSkins;
 using Helpers;
-using SharedForms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NewTeacher
@@ -28,7 +24,7 @@ namespace NewTeacher
                     Application.SetCompatibleTextRenderingDefault(false);
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
-                    UserLookAndFeel.Default.SetSkinStyle("Office 2016 Colorful");
+                    UserLookAndFeel.Default.SetSkinStyle("Office 2010 Silver");
 
                     #region 线程异常处理
                     Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
@@ -37,7 +33,7 @@ namespace NewTeacher
                     Login frm = new Login();
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        Application.Run(new BaseForm());
+                        Application.Run(new MainForm());
                     }
 
                    // Application.Run(new MainForm());

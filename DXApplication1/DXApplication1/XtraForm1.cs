@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using DevExpress.XtraNavBar.ViewInfo;
 using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
 
 namespace DXApplication1
 {
@@ -16,6 +8,39 @@ namespace DXApplication1
         public XtraForm1()
         {
             InitializeComponent();
+        }
+
+        private void XtraForm1_Load(object sender, System.EventArgs e)
+        {
+            navBarGroup2.SelectedLinkIndex = 3;
+           // this.Appearance.
+        }
+
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            navBarGroup2.SelectedLinkIndex = 0;
+        }
+
+        private void navBarControl1_CustomDrawLink(object sender, CustomDrawNavBarElementEventArgs e)
+        {
+            DevExpress.XtraNavBar.NavBarItemLink link = ((NavLinkInfoArgs)e.ObjectInfo).Link;
+            if (link.State == DevExpress.Utils.Drawing.ObjectState.Selected
+                || link.State == DevExpress.Utils.Drawing.ObjectState.Hot
+                || link.State == DevExpress.Utils.Drawing.ObjectState.Pressed
+                )
+            {
+                e.Graphics.FillRectangle(Brushes.DodgerBlue, e.RealBounds);
+            }
+        }
+
+        private void navBarControl1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.Text = "navBarControl1_LinkClicked";
+        }
+
+        private void navBarControl1_LinkPressed(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.Text = "navBarControl1_LinkPressed";
         }
     }
 }

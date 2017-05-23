@@ -53,7 +53,9 @@
             this.lvOnline = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.UserListMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.userList_privateChat = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +80,7 @@
             // 
             this.ribbon.AllowMdiChildButtons = false;
             this.ribbon.AllowMinimizeRibbon = false;
-            this.ribbon.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Blue;
+            this.ribbon.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Green;
             this.ribbon.ExpandCollapseItem.Id = 0;
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
@@ -107,8 +109,9 @@
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
             this.ribbon.ShowQatLocationSelector = false;
             this.ribbon.ShowToolbarCustomizeItem = false;
-            this.ribbon.Size = new System.Drawing.Size(1122, 125);
+            this.ribbon.Size = new System.Drawing.Size(1130, 128);
             this.ribbon.Toolbar.ShowCustomizeItem = false;
+            this.ribbon.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ribbon_ItemClick);
             // 
             // menuExportSign
             // 
@@ -116,6 +119,7 @@
             this.menuExportSign.Id = 1;
             this.menuExportSign.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("menuExportSign.ImageOptions.LargeImage")));
             this.menuExportSign.Name = "menuExportSign";
+            this.menuExportSign.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuExportSign_ItemClick);
             // 
             // menuClassNamed
             // 
@@ -123,6 +127,7 @@
             this.menuClassNamed.Id = 2;
             this.menuClassNamed.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.上课点名;
             this.menuClassNamed.Name = "menuClassNamed";
+            this.menuClassNamed.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuClassNamed_ItemClick);
             // 
             // menuGroupChat
             // 
@@ -130,6 +135,7 @@
             this.menuGroupChat.Id = 3;
             this.menuGroupChat.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.群聊;
             this.menuGroupChat.Name = "menuGroupChat";
+            this.menuGroupChat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuGroupChat_ItemClick);
             // 
             // menuTeamCreate
             // 
@@ -137,6 +143,7 @@
             this.menuTeamCreate.Id = 5;
             this.menuTeamCreate.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.分组;
             this.menuTeamCreate.Name = "menuTeamCreate";
+            this.menuTeamCreate.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuTeamCreate_ItemClick);
             // 
             // menuViewTeam
             // 
@@ -144,6 +151,7 @@
             this.menuViewTeam.Id = 6;
             this.menuViewTeam.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.查看;
             this.menuViewTeam.Name = "menuViewTeam";
+            this.menuViewTeam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuViewTeam_ItemClick);
             // 
             // menuSilence
             // 
@@ -151,6 +159,7 @@
             this.menuSilence.Id = 7;
             this.menuSilence.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.屏幕;
             this.menuSilence.Name = "menuSilence";
+            this.menuSilence.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSilence_ItemClick);
             // 
             // menuRomoteControl
             // 
@@ -168,6 +177,7 @@
             this.menuDisableMK.ImageOptions.Image = global::NewTeacher.Properties.Resources.禁用16;
             this.menuDisableMK.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.禁用;
             this.menuDisableMK.Name = "menuDisableMK";
+            this.menuDisableMK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuDisableMK_ItemClick);
             // 
             // menuScreenShare
             // 
@@ -175,6 +185,7 @@
             this.menuScreenShare.Id = 1;
             this.menuScreenShare.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.共享桌面;
             this.menuScreenShare.Name = "menuScreenShare";
+            this.menuScreenShare.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuScreenShare_ItemClick);
             // 
             // menuStudentShow
             // 
@@ -182,6 +193,7 @@
             this.menuStudentShow.Id = 2;
             this.menuStudentShow.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.学生演示;
             this.menuStudentShow.Name = "menuStudentShow";
+            this.menuStudentShow.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuStudentShow_ItemClick);
             // 
             // menuVideoLive
             // 
@@ -189,6 +201,7 @@
             this.menuVideoLive.Id = 3;
             this.menuVideoLive.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.视频直播;
             this.menuVideoLive.Name = "menuVideoLive";
+            this.menuVideoLive.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuVideoLive_ItemClick);
             // 
             // menuFileShare
             // 
@@ -196,6 +209,7 @@
             this.menuFileShare.Id = 4;
             this.menuFileShare.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.分发;
             this.menuFileShare.Name = "menuFileShare";
+            this.menuFileShare.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuFileShare_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -254,7 +268,7 @@
             this.splitContainerControl1.Appearance.BackColor = System.Drawing.Color.White;
             this.splitContainerControl1.Appearance.Options.UseBackColor = true;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 125);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 128);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel1.Controls.Add(this.lvOnline);
@@ -265,7 +279,7 @@
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel2.ShowCaption = true;
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1122, 474);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1130, 475);
             this.splitContainerControl1.SplitterPosition = 195;
             this.splitContainerControl1.TabIndex = 3;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -279,10 +293,12 @@
             this.lvOnline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvOnline.Location = new System.Drawing.Point(10, 38);
             this.lvOnline.Name = "lvOnline";
-            this.lvOnline.Size = new System.Drawing.Size(181, 413);
+            this.lvOnline.Size = new System.Drawing.Size(181, 414);
+            this.lvOnline.SmallImageList = this.imageList1;
             this.lvOnline.TabIndex = 1;
             this.lvOnline.UseCompatibleStateImageBehavior = false;
             this.lvOnline.View = System.Windows.Forms.View.Details;
+            this.lvOnline.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvOnline_MouseDown);
             // 
             // colName
             // 
@@ -293,9 +309,16 @@
             // 
             this.colCall.Text = "是否点名";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "学生.png");
+            // 
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(10, 0);
@@ -303,11 +326,18 @@
             this.panelControl1.Size = new System.Drawing.Size(181, 38);
             this.panelControl1.TabIndex = 0;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(88, 8);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 1;
+            this.simpleButton1.Text = "ttt";
+            // 
             // btnRefresh
             // 
-            this.btnRefresh.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.btnRefresh.ImageUri.Uri = "Refresh;Size16x16";
-            this.btnRefresh.Location = new System.Drawing.Point(5, 4);
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.Location = new System.Drawing.Point(8, 6);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(57, 26);
             this.btnRefresh.TabIndex = 0;
@@ -334,6 +364,7 @@
             this.userList_privateChat.Name = "userList_privateChat";
             this.userList_privateChat.Size = new System.Drawing.Size(166, 26);
             this.userList_privateChat.Text = "私聊";
+            this.userList_privateChat.Click += new System.EventHandler(this.userList_privateChat_Click);
             // 
             // userList_lockScreen
             // 
@@ -341,12 +372,14 @@
             this.userList_lockScreen.Name = "userList_lockScreen";
             this.userList_lockScreen.Size = new System.Drawing.Size(166, 26);
             this.userList_lockScreen.Text = "锁屏";
+            this.userList_lockScreen.Click += new System.EventHandler(this.userList_lockScreen_Click);
             // 
             // userList_stopLockScreen
             // 
             this.userList_stopLockScreen.Name = "userList_stopLockScreen";
             this.userList_stopLockScreen.Size = new System.Drawing.Size(166, 26);
             this.userList_stopLockScreen.Text = "解锁";
+            this.userList_stopLockScreen.Click += new System.EventHandler(this.userList_stopLockScreen_Click);
             // 
             // userList_permisson
             // 
@@ -364,43 +397,49 @@
             this.userList_P_forbidPrivateChat.Name = "userList_P_forbidPrivateChat";
             this.userList_P_forbidPrivateChat.Size = new System.Drawing.Size(134, 24);
             this.userList_P_forbidPrivateChat.Text = "禁止私聊";
+            this.userList_P_forbidPrivateChat.Click += new System.EventHandler(this.userList_P_forbidPrivateChat_Click);
             // 
             // userList_P_forbidGroupChat
             // 
             this.userList_P_forbidGroupChat.Name = "userList_P_forbidGroupChat";
             this.userList_P_forbidGroupChat.Size = new System.Drawing.Size(134, 24);
             this.userList_P_forbidGroupChat.Text = "禁止群聊";
+            this.userList_P_forbidGroupChat.Click += new System.EventHandler(this.userList_P_forbidGroupChat_Click);
             // 
             // userList_P_allowPrivateChat
             // 
             this.userList_P_allowPrivateChat.Name = "userList_P_allowPrivateChat";
             this.userList_P_allowPrivateChat.Size = new System.Drawing.Size(134, 24);
             this.userList_P_allowPrivateChat.Text = "允许私聊";
+            this.userList_P_allowPrivateChat.Click += new System.EventHandler(this.userList_P_allowPrivateChat_Click);
             // 
             // userList_P_allowGroupChat
             // 
             this.userList_P_allowGroupChat.Name = "userList_P_allowGroupChat";
             this.userList_P_allowGroupChat.Size = new System.Drawing.Size(134, 24);
             this.userList_P_allowGroupChat.Text = "允许群聊";
+            this.userList_P_allowGroupChat.Click += new System.EventHandler(this.userList_P_allowGroupChat_Click);
             // 
             // userList_studentShow
             // 
             this.userList_studentShow.Name = "userList_studentShow";
             this.userList_studentShow.Size = new System.Drawing.Size(166, 26);
             this.userList_studentShow.Text = "学生演示";
+            this.userList_studentShow.Click += new System.EventHandler(this.userList_studentShow_Click);
             // 
             // userList_stopStudentShow
             // 
             this.userList_stopStudentShow.Name = "userList_stopStudentShow";
             this.userList_stopStudentShow.Size = new System.Drawing.Size(166, 26);
             this.userList_stopStudentShow.Text = "停止学生演示";
+            this.userList_stopStudentShow.Click += new System.EventHandler(this.userList_stopStudentShow_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(1122, 599);
+            this.ClientSize = new System.Drawing.Size(1130, 603);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbon);
             this.Name = "MainForm";
@@ -456,5 +495,7 @@
         private System.Windows.Forms.ToolStripMenuItem userList_P_allowGroupChat;
         private System.Windows.Forms.ToolStripMenuItem userList_studentShow;
         private System.Windows.Forms.ToolStripMenuItem userList_stopStudentShow;
+        private System.Windows.Forms.ImageList imageList1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

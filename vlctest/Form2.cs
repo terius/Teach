@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace vlctest
 {
-    public partial class Form2 : Form
+    public partial class Form2 : DevExpress.XtraEditors.XtraForm
     {
         private IList<MyPanel> pans;
         public Form2()
@@ -37,9 +37,13 @@ namespace vlctest
       //  MyPanel selectPanel;
         private void button1_Click(object sender, EventArgs e)
         {
-            bool ism = index % 2 == 0 ? true : false;
-            panel1.AddMessage("王菲 (" + DateTime.Now.ToLongTimeString() + ")", "测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测测试测试测试测试测试测试测试测试测试测试", ism);
+            bool ism =  index % 2 == 0 ? true : false;
+            panel1.AddMessage("王菲 (" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ")", textBox1.Text.Trim(), ism);
             index++;
+         
+            //我爱祖国天安们和人民我爱祖国天安们和人民我爱祖国天安们和
+            //测试测试测试测试测试测测试测试测试测试测试测测测试测试试
+            //1111111111111111111111111111
         }
 
         int lastY = 10;
@@ -70,12 +74,7 @@ namespace vlctest
             {
                 if (item.Name == "pan1")
                 {
-                    //   panel1.Controls.Clear();
-                    //  this.Controls.Add(item.Panel);
-                  //  selectPanel = item;
                     panel1 = item.Panel;
-
-                    this.textBox1.Text = panel1.Controls.Count.ToString();
                     item.Panel.BringToFront();
                     break;
                 }
@@ -89,10 +88,7 @@ namespace vlctest
             {
                 if (item.Name == "pan2")
                 {
-                 //   selectPanel = item;
-                    //   panel1.Controls.Clear();
                     panel1 = item.Panel;
-                    this.textBox1.Text = panel1.Controls.Count.ToString();
                     item.Panel.BringToFront();
                     break;
                 }

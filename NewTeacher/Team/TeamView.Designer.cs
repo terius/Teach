@@ -47,6 +47,7 @@
             // 
             // treeView1
             // 
+            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.treeView1.ImageIndex = 0;
@@ -76,7 +77,7 @@
             treeNode7});
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.Size = new System.Drawing.Size(445, 389);
+            this.treeView1.Size = new System.Drawing.Size(519, 454);
             this.treeView1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.treeView1, "在线状态");
             // 
@@ -96,9 +97,9 @@
             // 
             // TeamView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 389);
+            this.ClientSize = new System.Drawing.Size(519, 454);
             this.Controls.Add(this.treeView1);
             this.Name = "TeamView";
             this.ShowIcon = false;

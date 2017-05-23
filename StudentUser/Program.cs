@@ -1,4 +1,7 @@
-﻿using Helpers;
+﻿using DevExpress.LookAndFeel;
+using DevExpress.Skins;
+using DevExpress.UserSkins;
+using Helpers;
 using SharedForms;
 using System;
 using System.Windows.Forms;
@@ -20,7 +23,10 @@ namespace StudentUser
             //    {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-         
+            BonusSkins.Register();
+            SkinManager.EnableFormSkins();
+            UserLookAndFeel.Default.SetSkinStyle("Office 2016 Colorful");
+
             #region 线程异常处理
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);

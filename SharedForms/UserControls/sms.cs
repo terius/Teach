@@ -13,7 +13,7 @@ namespace SharedForms
 
         Brush blackBrush = Brushes.Black;
         Font titleFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-        Font contentFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+       // Font contentFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 
         Image topimg = Resource1.lt;
         Image middleimg = Resource1.lm;
@@ -21,55 +21,65 @@ namespace SharedForms
         Image topimgR = Resource1.rt;
         Image middleimgR = Resource1.rm;
         Image bottomimgR = Resource1.rb;
+        Image imgTech = Resource1.老师;
+        Image imgStu = Resource1.学生;
         string _message;
         string _title;
         bool _isMySelf;
         int _messageHeight;
+        int _sizeHeight;
         public bool IsMySelf { get { return _isMySelf; } }
-        public sms(string title, string message, bool isMySelf)
+        public readonly int SizeWidth = 420;
+        Image headIcon;
+        public sms(ChatMessage messageInfo, bool isMySelf)
         {
-            _title = title;
-            _message = message;
+            _title = messageInfo.Title;
+            _message = messageInfo.Message;
             _isMySelf = isMySelf;
             InitializeComponent();
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
-            imgAtt = new ImageAttributes();
-            imgAtt.SetWrapMode(WrapMode.Tile);
-            SetHeight();
+            if (messageInfo.UserType == Common.ClientRole.Student)
+            {
+                headIcon = imgStu;
+            }
+            else
+            {
+                headIcon = imgTech;
+            }
         }
 
-        private void SetHeight()
-        {
-            int textLen = _message.Length;
-            int count = textLen / 27 + (textLen % 27 == 0 ? 0 : 1);
-            _messageHeight = count * 18 + 18;
-          //  this.Size = new Size(400, _messageHeight + 45);
-            this.BackColor = Color.Green;
-            //TextBox lab = new TextBox();
-            //lab.BackColor = this.BackColor;
-            //lab.ForeColor = Color.Blue;
-            //lab.Location = new Point(20, 17);
-            //lab.Text = DateTime.Now.ToLongTimeString();
-            //lab.BorderStyle = BorderStyle.None;
-            //this.Controls.Add(lab);
-        }
+
 
         private void sms_Paint(object sender, PaintEventArgs e)
         {
-            this.Parent.Parent.Text = DateTime.Now.ToLongTimeString();
-
-            //base.OnPaint(e);
-            Bitmap bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height);
-            Graphics g = Graphics.FromImage(bmp);
-            g.Clear(this.BackColor);
+            Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality; //高质量 
             g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
             piccyBounds = new Point[3];
+            int ptop = 0;// 4;
+            int pleft = 0;// 5;
+            Rectangle rectArea;
+            if (IsMySelf)
+            {
+                g.DrawString(_title, titleFont, blackBrush, new PointF(pleft, ptop));
+            }
+            else
+            {
+                g.DrawString(_title, titleFont, blackBrush, new PointF(pleft + 40, ptop));
+            }
+            ptop += 20;
 
-        //    g.TranslateTransform(this.AutoScrollPosition.X, this.AutoScrollPosition.Y);
-            int ptop = 4;
-            int pleft = 5;
-            Rectangle rectArea = new Rectangle(pleft, ptop, 388, 17);
+            if (IsMySelf)
+            {
+                rectArea = new Rectangle(pleft + 388, _sizeHeight - 32, 32, 32);
+                g.DrawImage(headIcon, rectArea);
+            }
+            else
+            {
+                rectArea = new Rectangle(pleft, _sizeHeight - 32, 32, 32);
+                g.DrawImage(headIcon, rectArea);
+                pleft += 32;
+            }
+            rectArea = new Rectangle(pleft, ptop, 388, 17);
             if (IsMySelf)
             {
                 g.DrawImage(topimgR, rectArea);
@@ -84,17 +94,13 @@ namespace SharedForms
             piccyBounds[2] = new Point(pleft, ptop + _messageHeight);
             if (IsMySelf)
             {
-                g.DrawImage(middleimgR, piccyBounds, new Rectangle(0, 0, 388, 17), GraphicsUnit.Pixel, imgAtt);
+                g.DrawImage(middleimgR, piccyBounds, new Rectangle(0, 0, 388, _messageHeight), GraphicsUnit.Pixel, imgAtt);
             }
             else
             {
-                g.DrawImage(middleimg, piccyBounds, new Rectangle(0, 0, 388, 17), GraphicsUnit.Pixel, imgAtt);
+                g.DrawImage(middleimg, piccyBounds, new Rectangle(0, 0, 388, _messageHeight), GraphicsUnit.Pixel, imgAtt);
             }
-            g.DrawString(_title, titleFont, blackBrush, new PointF(pleft + 10, ptop));
-            ptop += 18;
-            rectArea = new Rectangle(pleft + 10, ptop, 388, _messageHeight - 18);
-            g.DrawString(_message, contentFont, blackBrush, rectArea);
-            ptop += _messageHeight - 18;
+            ptop += _messageHeight;
             rectArea = new Rectangle(pleft, ptop, 388, 17);
             if (IsMySelf)
             {
@@ -104,10 +110,31 @@ namespace SharedForms
             {
                 g.DrawImage(bottomimg, rectArea);
             }
-           
+        }
 
-            e.Graphics.DrawImage(bmp, 0, 0);
-            //this.Size = new Size(400, _messageHeight + 45);
+        private void sms_Load(object sender, EventArgs e)
+        {
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
+            imgAtt = new ImageAttributes();
+            imgAtt.SetWrapMode(WrapMode.Tile);
+            var textSize = this.CreateGraphics().MeasureString(_message, txtSMS.Font);
+            int count = (int)Math.Floor(textSize.Width / 389) + (textSize.Width % 389 == 0 ? 0 : 1);
+            _messageHeight = count * 20 + 10;
+            _sizeHeight = 20 + 17 * 2 + _messageHeight;
+            Size = new Size(388 + 32, _sizeHeight + 5);
+            if (IsMySelf)
+            {
+                txtSMS.Location = new Point(7, 37);
+                txtSMS.BackColor = Color.FromArgb(198, 225, 252);
+
+            }
+            else
+            {
+                txtSMS.Location = new Point(42, 37);
+                txtSMS.BackColor = Color.FromArgb(244, 244, 244);
+            }
+            txtSMS.Size = new Size(388 - 10 - 5, _messageHeight);
+            txtSMS.Text = _message;
         }
     }
 }

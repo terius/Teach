@@ -1,4 +1,5 @@
 ﻿using Common;
+using DevExpress.XtraEditors;
 using Model;
 using SharedForms;
 using System;
@@ -7,7 +8,7 @@ using System.Windows.Forms;
 
 namespace NewTeacher
 {
-    public partial class TeamDiscuss : Form
+    public partial class TeamDiscuss : XtraForm
     {
 
         OnlineInfo _onLineInfo;

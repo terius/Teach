@@ -1,4 +1,5 @@
 ﻿using Common;
+using DevExpress.XtraNavBar;
 using Model;
 using System;
 using System.Drawing;
@@ -42,16 +43,16 @@ namespace SharedForms
             return request;
         }
 
-        public static ChatItem3 CreateItem(this MyListView source,AddChatRequest request)
+        public static ChatItem CreateItem(this NavBarControl source,AddChatRequest request)
         {
-            ChatItem3 item = new ChatItem3(source, request.UserName,
+            ChatItem item = new ChatItem(source, request.UserName,
                 request.DisplayName, request.ChatType, request.UserType);
           
             return item;
         }
-        public static ChatItem3 CreateItem(this MyListView source, ChatStore store)
+        public static ChatItem CreateItem(this NavBarControl source, ChatStore store)
         {
-            ChatItem3 item = new ChatItem3(source, store.ChatUserName,
+            ChatItem item = new ChatItem(source, store.ChatUserName,
                 store.ChatDisplayName, store.ChatType, store.UserType);
 
             return item;

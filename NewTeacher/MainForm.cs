@@ -168,7 +168,22 @@ namespace NewTeacher
             });
 
         }
-
+        private void lvOnline_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewItem lvi = lvOnline.GetItemAt(e.X, e.Y);
+                if (lvi != null)
+                {
+                    lvOnline.ContextMenuStrip = UserListMenu;
+                }
+                else
+                {
+                    lvOnline.ContextMenuStrip = null;
+                }
+                return;
+            }
+        }
 
         #endregion
 
@@ -185,5 +200,151 @@ namespace NewTeacher
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
         }
+
+
+
+        #region 顶部菜单
+        private void menuExportSign_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void menuClassNamed_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void menuGroupChat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void menuTeamCreate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            TeamDiscuss frm = new TeamDiscuss(onlineInfo);
+            frm.ShowDialog();
+        }
+
+        private void menuViewTeam_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            TeamView frm = new TeamView(onlineInfo);
+            frm.ShowDialog();
+        }
+
+        private void menuSilence_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void menuDisableMK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void menuScreenShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void ribbon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void menuStudentShow_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void menuVideoLive_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void menuFileShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+
+        #endregion
+
+
+        #region 用户列表右键菜单
+
+        private void userList_privateChat_Click(object sender, EventArgs e)
+        {
+            string userName =lvOnline.SelectedItems[0].SubItems[2].Text;
+            string displayName = lvOnline.SelectedItems[0].Text;
+            AddChatRequest request = new AddChatRequest();
+            request.DisplayName = displayName;
+            request.ChatType = ChatType.PrivateChat;
+            request.UserName = userName;
+            request.UserType = ClientRole.Student;
+            GlobalVariable.AddNewChat(request);
+            OpenOrCreateChatForm(request, false);
+        }
+
+        /// <summary>
+        /// 打开或创建聊天窗口
+        /// </summary>
+        /// <param name="request"></param>
+        public void OpenOrCreateChatForm(AddChatRequest request, bool fromReceMsg)
+        {
+            //chatFormIsShow = CheckChatFormIsOpen();
+            //if (chatForm == null)
+            //{
+            //    chatForm = new ChatForm();
+            //    isOpen = false;
+            //}
+
+            chatForm.BringToFront();
+            chatForm.CreateChatItems(request, fromReceMsg);
+            chatForm.Show();
+        }
+
+
+
+        private void userList_lockScreen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userList_stopLockScreen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userList_P_forbidPrivateChat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userList_P_forbidGroupChat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userList_P_allowPrivateChat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userList_P_allowGroupChat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userList_studentShow_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userList_stopStudentShow_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }

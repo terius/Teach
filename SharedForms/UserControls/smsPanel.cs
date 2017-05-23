@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using Common;
+using DevExpress.XtraEditors;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -23,21 +24,21 @@ namespace SharedForms
         }
 
         int X = 10;
-        //   sms chatItem;
+        sms chatItem;
         public smsPanel()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             HorizontalScroll.Enabled = false;
             FireScrollEventOnMouseWheel = true;
-            //  ControlAdded += SmsPanel_ControlAdded;
-            //  Resize += SmsPanel_Resize;
-            //  MouseEnter += SmsPanel_MouseEnter;
+            ControlAdded += SmsPanel_ControlAdded;
+            Resize += SmsPanel_Resize;
+            MouseEnter += SmsPanel_MouseEnter;
         }
 
         private void SmsPanel_MouseEnter(object sender, EventArgs e)
         {
-            this.Focus();
+            //  this.Focus();
         }
 
 
@@ -50,7 +51,7 @@ namespace SharedForms
                 s = (sms)item;
                 if (s.IsMySelf)
                 {
-                    s.Location = new Point(Width - 400 - 20, s.Location.Y);
+                    s.Location = new Point(Width - 420 - SystemInformation.VerticalScrollBarWidth - 5, s.Location.Y);
                 }
             }
         }
@@ -61,24 +62,23 @@ namespace SharedForms
         }
 
 
-        public void AddMessage(string title, string message, bool isMySelf)
+        public void AddMessage(ChatMessage messageInfo, bool isMySelf)
         {
-            sms chatItem = new sms(title, message, isMySelf);
+            chatItem = new sms(messageInfo, isMySelf);
             if (isMySelf)
             {
-                X = Width - 400 - 20;
+                X = Width - chatItem.SizeWidth - SystemInformation.VerticalScrollBarWidth - 5;
             }
             else
             {
                 X = 10;
             }
-            // var height = Controls.Count > 0 ? Controls[Controls.Count - 1].Location.Y + Controls[Controls.Count - 1].Height : 10;
-            chatItem.Location = new Point(X, LastY);// LastY - VerticalScroll.Value
 
             Controls.Add(chatItem);
-            chatItem.BringToFront();
-            LastY += 82;
-            //   LastY += chatItem.Height;
+            chatItem.Location = new Point(X - HorizontalScroll.Value, LastY - VerticalScroll.Value);
+            LastY += chatItem.Height;
+            ScrollControlIntoView(Controls[Controls.Count - 1]);
+
         }
     }
 }
