@@ -36,14 +36,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tuopan = new System.Windows.Forms.NotifyIcon(this.components);
-            this.MinMenu = new CCWin.SkinControl.SkinContextMenuStrip();
+            this.MinMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mSignIn = new System.Windows.Forms.ToolStripMenuItem();
             this.mChat = new System.Windows.Forms.ToolStripMenuItem();
             this.mHandUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPrivateSMS = new System.Windows.Forms.ToolStripMenuItem();
             this.mFileShare = new System.Windows.Forms.ToolStripMenuItem();
-            this.mLetter = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mCloseForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.mExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.MinMenu.SuspendLayout();
@@ -108,91 +108,69 @@
             // 
             // MinMenu
             // 
-            this.MinMenu.Arrow = System.Drawing.Color.Black;
-            this.MinMenu.Back = System.Drawing.Color.White;
-            this.MinMenu.BackRadius = 4;
-            this.MinMenu.Base = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
-            this.MinMenu.DropDownImageSeparator = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.MinMenu.Fore = System.Drawing.Color.Black;
-            this.MinMenu.HoverFore = System.Drawing.Color.White;
-            this.MinMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.MinMenu.ItemAnamorphosis = true;
-            this.MinMenu.ItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.MinMenu.ItemBorderShow = true;
-            this.MinMenu.ItemHover = System.Drawing.Color.DeepSkyBlue;
-            this.MinMenu.ItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.MinMenu.ItemRadius = 4;
-            this.MinMenu.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
             this.MinMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mSignIn,
             this.mChat,
             this.mHandUp,
+            this.mPrivateSMS,
             this.mFileShare,
-            this.mLetter,
             this.toolStripSeparator1,
-            this.mCloseForm});
-            this.MinMenu.ItemSplitter = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.mExit});
             this.MinMenu.Name = "MinMenu";
-            this.MinMenu.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.MinMenu.Size = new System.Drawing.Size(129, 166);
-            this.MinMenu.SkinAllColor = true;
-            this.MinMenu.TitleAnamorphosis = true;
-            this.MinMenu.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
-            this.MinMenu.TitleRadius = 4;
-            this.MinMenu.TitleRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.MinMenu.Size = new System.Drawing.Size(125, 142);
             // 
             // mSignIn
             // 
-            this.mSignIn.Image = ((System.Drawing.Image)(resources.GetObject("mSignIn.Image")));
+            this.mSignIn.Image = global::StudentUser.Properties.Resources.签到;
             this.mSignIn.Name = "mSignIn";
-            this.mSignIn.Size = new System.Drawing.Size(128, 26);
+            this.mSignIn.Size = new System.Drawing.Size(124, 22);
             this.mSignIn.Text = "签到";
             this.mSignIn.Click += new System.EventHandler(this.mSignIn_Click);
             // 
             // mChat
             // 
-            this.mChat.Image = ((System.Drawing.Image)(resources.GetObject("mChat.Image")));
+            this.mChat.Image = global::StudentUser.Properties.Resources.聊天;
             this.mChat.Name = "mChat";
-            this.mChat.Size = new System.Drawing.Size(128, 26);
+            this.mChat.Size = new System.Drawing.Size(124, 22);
             this.mChat.Text = "聊天";
             this.mChat.Click += new System.EventHandler(this.mChat_Click);
             // 
             // mHandUp
             // 
-            this.mHandUp.Image = ((System.Drawing.Image)(resources.GetObject("mHandUp.Image")));
+            this.mHandUp.Image = global::StudentUser.Properties.Resources.举手;
             this.mHandUp.Name = "mHandUp";
-            this.mHandUp.Size = new System.Drawing.Size(128, 26);
+            this.mHandUp.Size = new System.Drawing.Size(124, 22);
             this.mHandUp.Text = "举手";
             this.mHandUp.Click += new System.EventHandler(this.mHandUp_Click);
             // 
+            // mPrivateSMS
+            // 
+            this.mPrivateSMS.Image = global::StudentUser.Properties.Resources.私信;
+            this.mPrivateSMS.Name = "mPrivateSMS";
+            this.mPrivateSMS.Size = new System.Drawing.Size(124, 22);
+            this.mPrivateSMS.Text = "私信";
+            this.mPrivateSMS.Click += new System.EventHandler(this.mPrivateSMS_Click);
+            // 
             // mFileShare
             // 
-            this.mFileShare.Image = ((System.Drawing.Image)(resources.GetObject("mFileShare.Image")));
+            this.mFileShare.Image = global::StudentUser.Properties.Resources.文件共享;
             this.mFileShare.Name = "mFileShare";
-            this.mFileShare.Size = new System.Drawing.Size(128, 26);
+            this.mFileShare.Size = new System.Drawing.Size(124, 22);
             this.mFileShare.Text = "文件共享";
             this.mFileShare.Click += new System.EventHandler(this.mFileShare_Click);
-            // 
-            // mLetter
-            // 
-            this.mLetter.Image = ((System.Drawing.Image)(resources.GetObject("mLetter.Image")));
-            this.mLetter.Name = "mLetter";
-            this.mLetter.Size = new System.Drawing.Size(128, 26);
-            this.mLetter.Text = "私信";
-            this.mLetter.Click += new System.EventHandler(this.mLetter_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
             // 
-            // mCloseForm
+            // mExit
             // 
-            this.mCloseForm.Image = ((System.Drawing.Image)(resources.GetObject("mCloseForm.Image")));
-            this.mCloseForm.Name = "mCloseForm";
-            this.mCloseForm.Size = new System.Drawing.Size(128, 26);
-            this.mCloseForm.Text = "退出";
-            this.mCloseForm.Click += new System.EventHandler(this.mCloseForm_Click);
+            this.mExit.Image = global::StudentUser.Properties.Resources.退出;
+            this.mExit.Name = "mExit";
+            this.mExit.Size = new System.Drawing.Size(124, 22);
+            this.mExit.Text = "退出";
+            this.mExit.Click += new System.EventHandler(this.mExit_Click);
             // 
             // UserMainForm
             // 
@@ -223,14 +201,16 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.NotifyIcon tuopan;
-        private CCWin.SkinControl.SkinContextMenuStrip MinMenu;
+     
+       
+        private System.Windows.Forms.ContextMenuStrip MinMenu;
         private System.Windows.Forms.ToolStripMenuItem mSignIn;
         private System.Windows.Forms.ToolStripMenuItem mChat;
         private System.Windows.Forms.ToolStripMenuItem mHandUp;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem mCloseForm;
+        private System.Windows.Forms.ToolStripMenuItem mPrivateSMS;
         private System.Windows.Forms.ToolStripMenuItem mFileShare;
-        private System.Windows.Forms.ToolStripMenuItem mLetter;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem mExit;
     }
 }
 

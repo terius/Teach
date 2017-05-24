@@ -257,7 +257,7 @@ namespace NewTeacher
         /// <param name="e"></param>
         private void team_view_Click(object sender, EventArgs e)
         {
-            TeamView frm = new TeamView(onlineInfo);
+            TeamView frm = new TeamView();
             frm.ShowDialog();
         }
         /// <summary>

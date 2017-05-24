@@ -4,15 +4,14 @@ using SharedForms;
 using System;
 using System.Windows.Forms;
 
-namespace NewTeacher
+namespace SharedForms
 {
     public partial class TeamView : XtraForm
     {
-        OnlineInfo _onLineInfo;
-        public TeamView(OnlineInfo onLineInfo)
+    
+        public TeamView()
         {
             InitializeComponent();
-            _onLineInfo = onLineInfo;
         }
 
        

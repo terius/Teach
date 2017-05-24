@@ -1,4 +1,5 @@
 ﻿using Common;
+using DevExpress.XtraEditors;
 using Helpers;
 using Model;
 using SharedForms;
@@ -7,7 +8,7 @@ using System.Windows.Forms;
 
 namespace StudentUser
 {
-    public partial class UserMainForm : Form
+    public partial class UserMainForm : XtraForm
     {
         private BlackScreen bsForm = null;
         VLCPlayer videoPlayer;
@@ -244,37 +245,43 @@ namespace StudentUser
         }
 
        
-        private void mCloseForm_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Environment.Exit(0);
-        }
+        
+
         #region 右键菜单
+
         private void mSignIn_Click(object sender, EventArgs e)
         {
 
         }
         private void mChat_Click(object sender, EventArgs e)
         {
-            chatForm.BringToFront();
-            chatForm.Show();
+
         }
+
         private void mHandUp_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void mPrivateSMS_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void mFileShare_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void mLetter_Click(object sender, EventArgs e)
+        private void mExit_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            Environment.Exit(0);
         }
+
 
         #endregion
 
-
+       
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace NewTeacher
+﻿namespace SharedForms
 {
     partial class TeamView
     {

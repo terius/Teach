@@ -55,7 +55,6 @@
             this.colCall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.UserListMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.userList_privateChat = new System.Windows.Forms.ToolStripMenuItem();
@@ -278,7 +277,7 @@
             this.splitContainerControl1.Panel1.Text = "在线学生列表";
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel2.ShowCaption = true;
-            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Panel2.Text = "主窗口";
             this.splitContainerControl1.Size = new System.Drawing.Size(1130, 475);
             this.splitContainerControl1.SplitterPosition = 195;
             this.splitContainerControl1.TabIndex = 3;
@@ -318,21 +317,12 @@
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(10, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(181, 38);
             this.panelControl1.TabIndex = 0;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(88, 8);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 1;
-            this.simpleButton1.Text = "ttt";
             // 
             // btnRefresh
             // 
@@ -496,6 +486,5 @@
         private System.Windows.Forms.ToolStripMenuItem userList_studentShow;
         private System.Windows.Forms.ToolStripMenuItem userList_stopStudentShow;
         private System.Windows.Forms.ImageList imageList1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

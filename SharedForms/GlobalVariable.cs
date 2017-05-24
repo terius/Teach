@@ -217,6 +217,26 @@ namespace SharedForms
             return true;
         }
 
+        public static ChatStore CreateGroupChat()
+        {
+            if (ChatList.Any(d => d.ChatType == ChatType.GroupChat))
+            {
+                return null;
+            }
+
+
+            ChatStore info = new ChatStore();
+            info.ChatDisplayName = "所有人";
+            info.ChatStartTime = DateTime.Now;
+            info.ChatType = ChatType.GroupChat;
+            info.ChatUserName = Guid.NewGuid().ToString();
+            info.UserType = ClientRole.Teacher;
+            info.MessageList = new List<ChatMessage>();
+            ChatList.Add(info);
+            IsTeamChatChanged = true;
+            return info;
+        }
+
         public static bool AddTeamMember(CheckedListViewItemCollection mems, string guid)
         {
             var info = ChatList.FirstOrDefault(d => d.ChatUserName == guid && d.ChatType == ChatType.TeamChat);

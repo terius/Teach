@@ -27,10 +27,10 @@ namespace SharedForms
                     {
                         case ClientRole.Teacher:
                         case ClientRole.Assistant:
-                            SmallImageIndex = 3;
+                            SmallImage = Resource1.老师24;
                             break;
                         case ClientRole.Student:
-                            SmallImageIndex = 2;
+                            SmallImage = Resource1.学生24;
                             break;
                         default:
                             break;
@@ -40,12 +40,12 @@ namespace SharedForms
 
                     break;
                 case ChatType.GroupChat:
-                    SmallImageIndex = 0;
+                    SmallImage = Resource1.所有人24;
                     source.Groups[0].ItemLinks.Add(this);
                     //   this.Group = source.Groups[0];
                     break;
                 case ChatType.TeamChat:
-                    SmallImageIndex = 1;
+                    SmallImage = Resource1.群组24;
                     source.Groups[1].ItemLinks.Add(this);
                     //  this.Group = source.Groups[1];
                     var childList = GlobalVariable.GetTeamMemberDisplayNames(userName);

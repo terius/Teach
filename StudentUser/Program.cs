@@ -25,7 +25,7 @@ namespace StudentUser
             Application.SetCompatibleTextRenderingDefault(false);
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            UserLookAndFeel.Default.SetSkinStyle("Office 2016 Colorful");
+            UserLookAndFeel.Default.SetSkinStyle("Office 2010 Silver");
 
             #region 线程异常处理
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);

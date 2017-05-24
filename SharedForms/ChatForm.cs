@@ -6,6 +6,7 @@ using DevExpress.XtraNavBar.ViewInfo;
 using Model;
 using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace SharedForms
@@ -13,7 +14,7 @@ namespace SharedForms
     public partial class ChatForm : XtraForm
     {
 
-      
+
 
 
         #region 变量
@@ -33,7 +34,7 @@ namespace SharedForms
 
         public bool IsHide { get; set; }
         public AddChatRequest newMessage;
-
+        NavBarItem rightSelectedNavBarItem = null;
         #endregion
 
 
@@ -69,14 +70,18 @@ namespace SharedForms
         public ChatForm()
         {
             InitializeComponent();
-            //ChatItem item = new ChatItem();
-            //item.Group = chatList.Groups[0];
-            //item.ImageIndex = 0;
-            //item.Text = "所有人";
-            //item.UserName = "allpeople";
-            //item.ChatType = ChatType.GroupChat;
-            //item.DisplayName = "所有人";
-            //chatList.Items.Add(item);
+            //AddChatRequest allreq = new AddChatRequest();
+            //allreq.ChatType = ChatType.GroupChat;
+            //allreq.DisplayName = "所有人";
+            //allreq.UserName = "alluser";
+            //allreq.UserType = ClientRole.Teacher;
+
+            var groupChat = GlobalVariable.CreateGroupChat();
+            if (groupChat != null)
+            {
+                ChatNav.CreateItem(groupChat);
+            }
+        
             // ReveieveMessage += ChatForm_ReveieveMessage; ;
         }
 
@@ -150,12 +155,12 @@ namespace SharedForms
             if (chatItem.UserName != selectUserName)
             {
                 LoadChatMessage(chatItem);
-             //   ClearSelect();
+                //   ClearSelect();
             }
             AppendNewMessage(chatItem);
             selectUserName = chatItem.UserName;
-            ChatNav.SelectedLink= chatItem.Links[0];
-          //  ChatNav.Groups[0].SelectedLink = chatItem.Links[0];
+            ChatNav.SelectedLink = chatItem.Links[0];
+            //  ChatNav.Groups[0].SelectedLink = chatItem.Links[0];
 
             //    chatItem.Selected = true;
             //    chatList.Select();
@@ -199,17 +204,26 @@ namespace SharedForms
         /// <returns></returns>
         private ChatItem GetItemInChatListBox(AddChatRequest request)
         {
-            var item = GetGroup(request.ChatType);
-            if (item != null)
+            foreach (ChatItem item in ChatNav.Items)
             {
-                foreach (NavBarItemLink subItem in item.ItemLinks)
+                if (item.UserName == request.UserName)
                 {
-                    if (((ChatItem)subItem.Item).UserName == request.UserName)
-                    {
-                        return (ChatItem)subItem.Item;
-                    }
+                    return item;
                 }
             }
+
+
+            //var item = GetGroup(request.ChatType);
+            //if (item != null)
+            //{
+            //    foreach (NavBarItemLink subItem in item.ItemLinks)
+            //    {
+            //        if (((ChatItem)subItem.Item).UserName == request.UserName)
+            //        {
+            //            return (ChatItem)subItem.Item;
+            //        }
+            //    }
+            //}
 
             return null;
         }
@@ -414,7 +428,7 @@ namespace SharedForms
 
 
 
-    
+
 
         private void btnSend_Click_1(object sender, EventArgs e)
         {
@@ -443,7 +457,7 @@ namespace SharedForms
 
         private void ChatNav_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-           // var selectItem = chatList.SelectedItems[0];
+            // var selectItem = chatList.SelectedItems[0];
             ChatItemSelected(e.Link.Item as ChatItem, true);
         }
 
@@ -455,6 +469,40 @@ namespace SharedForms
                 )
             {
                 e.Graphics.FillRectangle(Brushes.DodgerBlue, e.RealBounds);
+            }
+        }
+
+        private void itemViewTeamMem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            TeamView frm = new TeamView();
+            frm.ShowDialog();
+        }
+
+        private void ChatNav_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                NavBarHitInfo hit = ChatNav.CalcHitInfo(e.Location);
+
+                if ((!hit.InLink))
+                {
+                    return;
+                }
+
+                if (hit.Group.Name != "navBarGroup2")
+                {
+                    return;
+                }
+                rightSelectedNavBarItem = hit.Link.Item;
+                Point p = new Point(e.Location.X, e.Location.Y + ChatNav.Appearance.Item.FontHeight);
+                popupMenu1.ShowPopup(ChatNav.PointToScreen(p));
+
+                //FieldInfo fi = typeof(NavBarControl).GetField("viewInfo", BindingFlags.NonPublic | BindingFlags.Instance);
+                //NavBarViewInfo vi = fi.GetValue(ChatNav) as NavBarViewInfo;
+                //rightSelectedNavBarItem = vi.HotTrackedLink.Item;
+                //NavLinkInfoArgs arg = vi.GetLinkInfo(hit.Link);
+                //Point p = new Point(arg.Bounds.X, arg.Bounds.Bottom);
+                // popupMenu1.ShowPopup(ChatNav.PointToScreen(p));
             }
         }
     }

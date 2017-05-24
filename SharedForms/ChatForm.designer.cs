@@ -46,17 +46,14 @@ namespace SharedForms
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
-            this.imageList1 = new System.Windows.Forms.ImageList();
             this.sendBox = new System.Windows.Forms.RichTextBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.ChatNav = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.smallImageList = new System.Windows.Forms.ImageList();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.smsPanel1 = new SharedForms.smsPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -64,6 +61,13 @@ namespace SharedForms
             this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.labChatTitle = new DevExpress.XtraEditors.LabelControl();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.itemViewTeamMem = new DevExpress.XtraBars.BarButtonItem();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChatNav)).BeginInit();
@@ -73,15 +77,9 @@ namespace SharedForms
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "所有人.png");
-            this.imageList1.Images.SetKeyName(1, "群组.png");
-            this.imageList1.Images.SetKeyName(2, "在线学生.png");
             // 
             // sendBox
             // 
@@ -90,14 +88,9 @@ namespace SharedForms
             this.sendBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sendBox.Location = new System.Drawing.Point(2, 2);
             this.sendBox.Name = "sendBox";
-            this.sendBox.Size = new System.Drawing.Size(1056, 148);
+            this.sendBox.Size = new System.Drawing.Size(1063, 148);
             this.sendBox.TabIndex = 142;
             this.sendBox.Text = "";
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip1.ToolTipTitle = "群组成员";
             // 
             // splitContainerControl1
             // 
@@ -129,20 +122,17 @@ namespace SharedForms
             this.navBarGroup1,
             this.navBarGroup2,
             this.navBarGroup3});
-            this.ChatNav.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
-            this.navBarItem1});
-            this.ChatNav.LargeImages = this.imageList1;
             this.ChatNav.LinkInterval = 10;
             this.ChatNav.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInControl;
             this.ChatNav.Location = new System.Drawing.Point(0, 0);
             this.ChatNav.Name = "ChatNav";
             this.ChatNav.OptionsNavPane.ExpandedWidth = 224;
             this.ChatNav.Size = new System.Drawing.Size(224, 768);
-            this.ChatNav.SmallImages = this.smallImageList;
             this.ChatNav.TabIndex = 6;
             this.ChatNav.Text = "navBarControl1";
             this.ChatNav.CustomDrawLink += new DevExpress.XtraNavBar.ViewInfo.CustomDrawNavBarElementEventHandler(this.ChatNav_CustomDrawLink);
             this.ChatNav.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ChatNav_LinkClicked);
+            this.ChatNav.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ChatNav_MouseDown);
             // 
             // navBarGroup1
             // 
@@ -151,16 +141,8 @@ namespace SharedForms
             this.navBarGroup1.Caption = "所有人";
             this.navBarGroup1.Expanded = true;
             this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.SmallIconsText;
-            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1)});
-            this.navBarGroup1.LargeImageIndex = 0;
+            this.navBarGroup1.LargeImage = global::SharedForms.Resource1.所有人;
             this.navBarGroup1.Name = "navBarGroup1";
-            // 
-            // navBarItem1
-            // 
-            this.navBarItem1.Caption = "所有人";
-            this.navBarItem1.Name = "navBarItem1";
-            this.navBarItem1.SmallImageIndex = 0;
             // 
             // navBarGroup2
             // 
@@ -169,9 +151,9 @@ namespace SharedForms
             this.navBarGroup2.Caption = "群组";
             this.navBarGroup2.Expanded = true;
             this.navBarGroup2.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.SmallIconsText;
-            this.navBarGroup2.LargeImageIndex = 1;
+            this.navBarGroup2.LargeImage = global::SharedForms.Resource1.群组;
             this.navBarGroup2.Name = "navBarGroup2";
-            this.navBarGroup2.SelectedLinkIndex = 11;
+            this.navBarGroup2.SelectedLinkIndex = 0;
             // 
             // navBarGroup3
             // 
@@ -179,16 +161,8 @@ namespace SharedForms
             this.navBarGroup3.Appearance.Options.UseFont = true;
             this.navBarGroup3.Caption = "私聊";
             this.navBarGroup3.Expanded = true;
-            this.navBarGroup3.LargeImageIndex = 2;
+            this.navBarGroup3.LargeImage = global::SharedForms.Resource1.私;
             this.navBarGroup3.Name = "navBarGroup3";
-            // 
-            // smallImageList
-            // 
-            this.smallImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("smallImageList.ImageStream")));
-            this.smallImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.smallImageList.Images.SetKeyName(0, "所有人.png");
-            this.smallImageList.Images.SetKeyName(1, "群组.png");
-            this.smallImageList.Images.SetKeyName(2, "在线学生.png");
             // 
             // panelControl2
             // 
@@ -196,7 +170,7 @@ namespace SharedForms
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 36);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1060, 580);
+            this.panelControl2.Size = new System.Drawing.Size(1067, 580);
             this.panelControl2.TabIndex = 143;
             // 
             // smsPanel1
@@ -208,7 +182,7 @@ namespace SharedForms
             this.smsPanel1.LastY = 10;
             this.smsPanel1.Location = new System.Drawing.Point(2, 2);
             this.smsPanel1.Name = "smsPanel1";
-            this.smsPanel1.Size = new System.Drawing.Size(1056, 576);
+            this.smsPanel1.Size = new System.Drawing.Size(1063, 576);
             this.smsPanel1.TabIndex = 142;
             // 
             // panelControl1
@@ -219,7 +193,7 @@ namespace SharedForms
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 616);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1060, 152);
+            this.panelControl1.Size = new System.Drawing.Size(1067, 152);
             this.panelControl1.TabIndex = 0;
             // 
             // btnClose
@@ -228,7 +202,7 @@ namespace SharedForms
             this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(982, 113);
+            this.btnClose.Location = new System.Drawing.Point(989, 113);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(69, 27);
             this.btnClose.TabIndex = 1;
@@ -241,7 +215,7 @@ namespace SharedForms
             this.btnSend.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.btnSend.Appearance.Options.UseFont = true;
             this.btnSend.Image = ((System.Drawing.Image)(resources.GetObject("btnSend.Image")));
-            this.btnSend.Location = new System.Drawing.Point(898, 113);
+            this.btnSend.Location = new System.Drawing.Point(905, 113);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(69, 27);
             this.btnSend.TabIndex = 0;
@@ -257,7 +231,7 @@ namespace SharedForms
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1060, 36);
+            this.panelControl3.Size = new System.Drawing.Size(1067, 36);
             this.panelControl3.TabIndex = 144;
             // 
             // labChatTitle
@@ -272,6 +246,65 @@ namespace SharedForms
             this.labChatTitle.TabIndex = 0;
             this.labChatTitle.Text = "labelControl1";
             // 
+            // popupMenu1
+            // 
+            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.itemViewTeamMem)});
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
+            // 
+            // itemViewTeamMem
+            // 
+            this.itemViewTeamMem.Caption = "查看群组成员";
+            this.itemViewTeamMem.Id = 0;
+            this.itemViewTeamMem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("itemViewTeamMem.ImageOptions.Image")));
+            this.itemViewTeamMem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("itemViewTeamMem.ImageOptions.LargeImage")));
+            this.itemViewTeamMem.Name = "itemViewTeamMem";
+            this.itemViewTeamMem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.itemViewTeamMem_ItemClick);
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.itemViewTeamMem});
+            this.barManager1.MaxItemId = 1;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1296, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 768);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1296, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 768);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1296, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 768);
+            // 
             // ChatForm
             // 
             this.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
@@ -280,6 +313,10 @@ namespace SharedForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1296, 768);
             this.Controls.Add(this.splitContainerControl1);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LookAndFeel.SkinName = "Office 2010 Silver";
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -297,14 +334,14 @@ namespace SharedForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-     
-        private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.ToolTip toolTip1;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton btnSend;
         private System.Windows.Forms.RichTextBox sendBox;
@@ -315,10 +352,15 @@ namespace SharedForms
         private DevExpress.XtraEditors.LabelControl labChatTitle;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
         private DevExpress.XtraNavBar.NavBarControl ChatNav;
-        private System.Windows.Forms.ImageList smallImageList;
+        private DevExpress.XtraBars.PopupMenu popupMenu1;
+        private DevExpress.XtraBars.BarButtonItem itemViewTeamMem;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
     }
 }

@@ -129,16 +129,7 @@ namespace NewTeacher
         {
             AddChatRequest request = message.ToAddChatRequest();
             GlobalVariable.AddNewChat(request);
-            //if (CheckChatFormIsOpen())
-            //{
-            //    //   chatForm.DoReveieveMessage(request);
-            //    OpenOrCreateChatForm(request, true);
-            //}
-            //else
-            //{
-            //    OpenOrCreateChatForm(request, true);
-            //    // ShowNotify(request);
-            //}
+            OpenOrCreateChatForm(request, true);
         }
 
         private void UpdateOnLineStatus(StuCallRequest callInfo)
@@ -227,7 +218,7 @@ namespace NewTeacher
 
         private void menuViewTeam_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            TeamView frm = new TeamView(onlineInfo);
+            TeamView frm = new TeamView();
             frm.ShowDialog();
         }
 
