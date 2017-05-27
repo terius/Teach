@@ -37,9 +37,6 @@
     <Reference Include="AxInterop.WMPLib">
       <HintPath>..\lib\AxInterop.WMPLib.dll</HintPath>
     </Reference>
-    <Reference Include="CSkin">
-      <HintPath>..\..\..\..\dll\CSkin 16.1.14.2\CSkin 4.0\CSkin.dll</HintPath>
-    </Reference>
     <Reference Include="DirectShowLib, Version=2.1.0.1599, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DirectShowLib.1.0.0\lib\DirectShowLib.dll</HintPath>
       <Private>True</Private>

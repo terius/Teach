@@ -17,6 +17,6 @@ namespace Model
     {
         public string groupname { get; set; }
         public string groupid { get; set; }
-        public IList<TeamMember> groupuserList { get; set; }
+        public List<TeamMember> groupuserList { get; set; }
     }
 }

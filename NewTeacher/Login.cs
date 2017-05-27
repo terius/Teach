@@ -1,9 +1,12 @@
 ﻿using Common;
 using Helpers;
 using Model;
+using Model.Views;
 using MyTCP;
 using SharedForms;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace NewTeacher
@@ -20,15 +23,48 @@ namespace NewTeacher
         //  private messageListCallback messageCallback;
         private void Form2_Load(object sender, EventArgs e)
         {
+
+           // CreateXML();
             this.rbTeacher.Checked = true;
             this.ContextMenuStrip = contextMenuStrip1;
-        //    Login_Btn.SetButtonHoverLeave();
-        //    btnExit.SetButtonHoverLeave();
+            //    Login_Btn.SetButtonHoverLeave();
+            //    btnExit.SetButtonHoverLeave();
             GlobalVariable.client = new MyTcpClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             this.textBox1.Text = "tech1";
             this.textBox2.Text = "1";
             //TestAES();
+        }
+
+        private void CreateXML()
+        {
+            TeamXmlInfo xml = new TeamXmlInfo();
+            xml.DisplayName = "老师111";
+            xml.UserName = "99993";
+            xml.Teams = new List<TeamInfo>();
+            for (int i = 0; i < 5; i++)
+            {
+                TeamInfo team = new TeamInfo();
+                team.groupname = "群组" + i;
+                team.groupid = Guid.NewGuid().ToString();
+                team.groupuserList = new List<TeamMember>();
+                for (int j = 0; j < 5; j++)
+                {
+                    TeamMember member = new TeamMember();
+                    member.DisplayName = team.groupname + "成员" + j;
+                    member.UserName = Guid.NewGuid().ToString();
+                    team.groupuserList.Add(member);
+                }
+                xml.Teams.Add(team);
+            }
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TeamXML");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string fileName = Path.Combine(path, "群组" + xml.UserName + ".xml");
+            XmlHelper.SerializerToFile(xml, fileName);
+            TeamXmlInfo xml2 = XmlHelper.DeserializeFromFile<TeamXmlInfo>(fileName);
         }
 
         private void Client_OnReveieveData(ReceieveMessage message)
@@ -129,7 +165,7 @@ namespace NewTeacher
                 return;
             }
 
-            await GlobalVariable.client.Send_UserLogin(displayName,displayName, userPass, ClientRole.Teacher);
+            await GlobalVariable.client.Send_UserLogin(displayName, displayName, userPass, ClientRole.Teacher);
 
             //this.Hide();
             //MainForm f = new MainForm();
@@ -158,7 +194,7 @@ namespace NewTeacher
 
 
 
-       
+
 
         private void btnExit_Click(object sender, EventArgs e)
         {

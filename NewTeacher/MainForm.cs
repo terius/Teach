@@ -13,6 +13,7 @@ namespace NewTeacher
         #region 自定义字段
         OnlineInfo onlineInfo;
         ChatForm chatForm;
+        string soundSource;
         #endregion
         public MainForm()
         {
@@ -20,6 +21,44 @@ namespace NewTeacher
             InitOnlineInfo();
             //  menuClassNamed.ImageOptions.LargeImage.h.
             //  menuClassNamed.ItemAppearance.SetFont(new Font("微软雅黑", 10F));
+         //   GetSoundSource();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            GlobalVariable.LoadTeamFromXML();
+            chatForm = new ChatForm();
+            GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
+            GlobalVariable.client.Send_OnlineList();
+         
+        }
+
+
+        private void GetSoundSou()
+        {
+            MessageBox.Show("asdasdasd");
+            
+          //  CaptureDevicesCollection sound_devices = new CaptureDevicesCollection();
+            //if (sound_devices.Count > 0)
+            //{
+            //    int i = 0;
+            //    while (i < sound_devices.Count)
+            //    {
+            //        string text = sound_devices[i].Description;
+            //        if (text.Contains("麦克风"))
+            //        {
+            //            string descrip = sound_devices[i].Description;
+            //            int len = descrip.Length;
+            //            if (len > 31)
+            //                soundSource = descrip.Substring(0, 31);
+            //            else
+            //                soundSource = descrip;
+            //            //return;
+            //            break;
+            //        }
+            //        i++;
+            //    }
+            //}
         }
 
 
@@ -185,12 +224,7 @@ namespace NewTeacher
 
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            chatForm = new ChatForm();
-            GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-            GlobalVariable.client.Send_OnlineList();
-        }
+      
 
 
 
@@ -249,7 +283,7 @@ namespace NewTeacher
 
         private void menuVideoLive_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            GetSoundSou();
         }
 
         private void menuFileShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -265,7 +299,7 @@ namespace NewTeacher
 
         private void userList_privateChat_Click(object sender, EventArgs e)
         {
-            string userName =lvOnline.SelectedItems[0].SubItems[2].Text;
+            string userName = lvOnline.SelectedItems[0].SubItems[2].Text;
             string displayName = lvOnline.SelectedItems[0].Text;
             AddChatRequest request = new AddChatRequest();
             request.DisplayName = displayName;

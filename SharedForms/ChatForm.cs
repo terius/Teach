@@ -117,6 +117,7 @@ namespace SharedForms
         /// <param name="isCreate"></param>
         public void CreateChatItems(AddChatRequest request, bool fromReceieveMessage)
         {
+            this.Text = GlobalVariable.LoginUserInfo.DisplayName + " 的聊天窗口";
             //    _formIsOpen = formIsOpend;
             IsHide = false;
             ReflashTeamChat();
@@ -148,6 +149,7 @@ namespace SharedForms
         {
             //  chatItem.Caption = chatItem.DisplayName;
             this.labChatTitle.Text = "与【" + chatItem.DisplayName + "】的对话：";
+            chatItem.Caption = chatItem.DisplayName;
             if (fromClick && chatItem.UserName == selectUserName)
             {
                 return;

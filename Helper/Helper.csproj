@@ -83,6 +83,7 @@
     <Compile Include="RSAHelper.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="Tools.cs" />
+    <Compile Include="XMLHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

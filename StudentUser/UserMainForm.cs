@@ -255,7 +255,8 @@ namespace StudentUser
         }
         private void mChat_Click(object sender, EventArgs e)
         {
-
+            chatForm.BringToFront();
+            chatForm.Show();
         }
 
         private void mHandUp_Click(object sender, EventArgs e)

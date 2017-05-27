@@ -96,7 +96,7 @@
             this.menuVideoLive,
             this.menuFileShare});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 5;
+            this.ribbon.MaxItemId = 1;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -108,8 +108,9 @@
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
             this.ribbon.ShowQatLocationSelector = false;
             this.ribbon.ShowToolbarCustomizeItem = false;
-            this.ribbon.Size = new System.Drawing.Size(1130, 128);
+            this.ribbon.Size = new System.Drawing.Size(1130, 125);
             this.ribbon.Toolbar.ShowCustomizeItem = false;
+            this.ribbon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbon.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ribbon_ItemClick);
             // 
             // menuExportSign
@@ -267,7 +268,7 @@
             this.splitContainerControl1.Appearance.BackColor = System.Drawing.Color.White;
             this.splitContainerControl1.Appearance.Options.UseBackColor = true;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 128);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 125);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel1.Controls.Add(this.lvOnline);
@@ -278,7 +279,7 @@
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel2.ShowCaption = true;
             this.splitContainerControl1.Panel2.Text = "主窗口";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1130, 475);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1130, 478);
             this.splitContainerControl1.SplitterPosition = 195;
             this.splitContainerControl1.TabIndex = 3;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -292,7 +293,7 @@
             this.lvOnline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvOnline.Location = new System.Drawing.Point(10, 38);
             this.lvOnline.Name = "lvOnline";
-            this.lvOnline.Size = new System.Drawing.Size(181, 414);
+            this.lvOnline.Size = new System.Drawing.Size(181, 417);
             this.lvOnline.SmallImageList = this.imageList1;
             this.lvOnline.TabIndex = 1;
             this.lvOnline.UseCompatibleStateImageBehavior = false;

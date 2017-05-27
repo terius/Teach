@@ -1,9 +1,12 @@
 ﻿using Common;
+using Helpers;
 using Model;
+using Model.Views;
 using MyTCP;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.ListView;
@@ -347,16 +350,65 @@ namespace SharedForms
             TeamChatListRequest request = new TeamChatListRequest();
             request.TeamInfos = new List<TeamInfo>();
             var list = GetTeamChatList();
+            SaveTeamXML(list);
             TeamInfo info;
             foreach (ChatStore item in list)
             {
                 info = new TeamInfo();
                 info.groupname = item.ChatDisplayName;
                 info.groupid = item.ChatUserName;
-                info.groupuserList = item.TeamMembers;
+                info.groupuserList = item.TeamMembers.ToList();
                 request.TeamInfos.Add(info);
             }
             client.Send_CreateTeam(request);
+        }
+
+        private static void SaveTeamXML(IList<ChatStore> teamChatList)
+        {
+            TeamXmlInfo info = new TeamXmlInfo();
+            info.DisplayName = LoginUserInfo.DisplayName;
+            info.UserName = LoginUserInfo.UserName;
+            info.Teams = new List<TeamInfo>();
+            foreach (ChatStore chat in teamChatList)
+            {
+                TeamInfo team = new TeamInfo();
+                team.groupid = chat.ChatUserName;
+                team.groupname = chat.ChatDisplayName;
+                team.groupuserList = chat.TeamMembers.ToList();
+                info.Teams.Add(team);
+            }
+
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TeamXML");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string fileName = Path.Combine(path, "群组" + info.UserName + ".xml");
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+            XmlHelper.SerializerToFile(info, fileName);
+
+        }
+
+        public static void LoadTeamFromXML()
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TeamXML");
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+            string fileName = Path.Combine(path, "群组" + LoginUserInfo.UserName + ".xml");
+            if (!File.Exists(fileName))
+            {
+                return;
+            }
+            TeamXmlInfo info = XmlHelper.DeserializeFromFile<TeamXmlInfo>(fileName);
+            TeamChatListRequest loadTeam = new TeamChatListRequest();
+            loadTeam.TeamInfos = info.Teams;
+            RefleshTeamList(loadTeam);
+
         }
     }
 }

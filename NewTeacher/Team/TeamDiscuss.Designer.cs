@@ -49,8 +49,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnSave = new System.Windows.Forms.Button();
             this.cboxTeam2 = new System.Windows.Forms.ComboBox();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -182,7 +182,7 @@
             // 
             this.picAddMem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picAddMem.Image = ((System.Drawing.Image)(resources.GetObject("picAddMem.Image")));
-            this.picAddMem.Location = new System.Drawing.Point(30, 181);
+            this.picAddMem.Location = new System.Drawing.Point(30, 187);
             this.picAddMem.Margin = new System.Windows.Forms.Padding(2);
             this.picAddMem.Name = "picAddMem";
             this.picAddMem.Size = new System.Drawing.Size(90, 40);
@@ -288,20 +288,6 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "选择群组";
             // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(30, 437);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(72, 32);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "保  存";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // cboxTeam2
             // 
             this.cboxTeam2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -314,11 +300,21 @@
             this.cboxTeam2.TabIndex = 6;
             this.cboxTeam2.SelectedIndexChanged += new System.EventHandler(this.cboxTeam2_SelectedIndexChanged);
             // 
+            // btnSave
+            // 
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Location = new System.Drawing.Point(30, 327);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(79, 36);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "保存";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
+            // 
             // TeamDiscuss
             // 
+            this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(845, 525);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -363,6 +359,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ComboBox cboxTeam2;
-        private System.Windows.Forms.Button btnSave;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
     }
 }

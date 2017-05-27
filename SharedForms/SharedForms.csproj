@@ -146,9 +146,6 @@
     <None Include="Resources\lb.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AxInterop.AXVLC.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\rt.png" />
   </ItemGroup>
   <ItemGroup>

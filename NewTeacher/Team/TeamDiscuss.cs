@@ -247,8 +247,11 @@ namespace NewTeacher
             BindTeamMember();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+       
+
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
+         
             GlobalVariable.SendCommand_TeamChatList();
         }
     }

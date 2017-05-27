@@ -115,8 +115,6 @@ namespace SharedForms
             this.ChatNav.Appearance.Background.Options.UseBackColor = true;
             this.ChatNav.Appearance.ItemHotTracked.ForeColor = System.Drawing.Color.Red;
             this.ChatNav.Appearance.ItemHotTracked.Options.UseForeColor = true;
-            this.ChatNav.Appearance.ItemPressed.ForeColor = System.Drawing.Color.White;
-            this.ChatNav.Appearance.ItemPressed.Options.UseForeColor = true;
             this.ChatNav.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChatNav.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1,

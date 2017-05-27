@@ -109,7 +109,7 @@ namespace MyTCP
         #region 发送命令
         public async Task Send_UserLogin(string userName, string nickName, string password, ClientRole clientRole)
         {
-            //   GetAudioName();
+            GetAudioName();
             var loginInfo = new LoginInfo();
             if (clientRole == ClientRole.Teacher || clientRole == ClientRole.Assistant)
             {
@@ -236,7 +236,7 @@ namespace MyTCP
         }
 
 
-        public void SendMessage<T>(T t, CommandType cmdType) where T : class,new()
+        public void SendMessage<T>(T t, CommandType cmdType) where T : class, new()
         {
             SendMessage<T> message = new SendMessage<T>();
             message.Action = (int)cmdType;
