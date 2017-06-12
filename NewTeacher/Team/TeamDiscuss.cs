@@ -201,7 +201,7 @@ namespace NewTeacher
                 }
 
 
-                //TeamChatListRequest request = new TeamChatListRequest();
+                //TeamChatCreateOrUpdateRequest request = new TeamChatCreateOrUpdateRequest();
                 //request.groupguid = selectTeam.ChatUserName;
                 //request.groupname = selectTeam.ChatDisplayName;
                 //request.groupuserList = selectTeam.TeamMembers.Select(d => d.UserName).ToArray();
@@ -252,7 +252,7 @@ namespace NewTeacher
         private void btnSave_Click_1(object sender, EventArgs e)
         {
          
-            GlobalVariable.SendCommand_TeamChatList();
+            GlobalVariable.SendCommand_CreateOrUpdateTeam();
         }
     }
 }

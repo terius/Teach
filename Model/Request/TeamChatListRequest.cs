@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class TeamChatListRequest
+    public class TeamChatCreateOrUpdateRequest
     {
         public IList<TeamInfo> TeamInfos { get; set; }
 

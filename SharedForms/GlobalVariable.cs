@@ -314,7 +314,7 @@ namespace SharedForms
             return true;
         }
 
-        public static void RefleshTeamList(TeamChatListRequest teamList)
+        public static void RefleshTeamList(TeamChatCreateOrUpdateRequest teamList)
         {
             IsTeamChatChanged = true;
             var list = GetTeamChatList();
@@ -345,9 +345,9 @@ namespace SharedForms
         }
 
 
-        public static void SendCommand_TeamChatList()
+        public static void SendCommand_CreateOrUpdateTeam()
         {
-            TeamChatListRequest request = new TeamChatListRequest();
+            TeamChatCreateOrUpdateRequest request = new TeamChatCreateOrUpdateRequest();
             request.TeamInfos = new List<TeamInfo>();
             var list = GetTeamChatList();
             SaveTeamXML(list);
@@ -405,7 +405,7 @@ namespace SharedForms
                 return;
             }
             TeamXmlInfo info = XmlHelper.DeserializeFromFile<TeamXmlInfo>(fileName);
-            TeamChatListRequest loadTeam = new TeamChatListRequest();
+            TeamChatCreateOrUpdateRequest loadTeam = new TeamChatCreateOrUpdateRequest();
             loadTeam.TeamInfos = info.Teams;
             RefleshTeamList(loadTeam);
 

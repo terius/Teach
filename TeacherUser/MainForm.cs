@@ -1118,6 +1118,11 @@ namespace TeacherUser
         {
 
         }
+
+        private void VideoPlayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     public class ChatForm
     {

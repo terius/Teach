@@ -81,7 +81,7 @@ namespace StudentUser
                 
                     break;
                 case (int)CommandType.CreateTeam:
-                    var teamInfo = JsonHelper.DeserializeObj<TeamChatListRequest>(message.DataStr);
+                    var teamInfo = JsonHelper.DeserializeObj<TeamChatCreateOrUpdateRequest>(message.DataStr);
                    GlobalVariable.RefleshTeamList(teamInfo);
                     DoAction(() => {
                         chatForm.BringToFront();
@@ -90,6 +90,9 @@ namespace StudentUser
 
                     });
                  
+                    break;
+                case (int)CommandType.TeamChat:
+
                     break;
                 default:
                     break;

@@ -371,6 +371,8 @@ namespace SharedForms
                 request.groupuserList = chat.GetUserNames();
                 request.msg = msg;
                 request.username = GlobalVariable.LoginUserInfo.UserName;
+                request.groupid = receieveUserName;
+                request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 GlobalVariable.client.SendMessage(request, CommandType.TeamChat);
             }
             //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);

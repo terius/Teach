@@ -26,7 +26,7 @@ namespace StudentUser
             GlobalVariable.client = new MyTcpClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
-            this.textBox1.Text = "学生" + DateTime.Now.ToString("MMddHHmmss");
+            this.textBox1.Text = "Stu-" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "110";
             await LoginIn();
 
@@ -87,21 +87,22 @@ namespace StudentUser
 
         private async Task LoginIn()
         {
-            string nickName = this.textBox1.Text.Trim();
-            string no = this.textBox2.Text.Trim();
+            string nickName = "学生"+ DateTime.Now.ToString("yyyyMMddHHmmss");
+            string userName = textBox1.Text.Trim();
+            string password = textBox2.Text.Trim();
 
-            if (nickName == string.Empty)
+            if (userName == string.Empty)
             {
-                MessageBox.Show("请输入昵称！");
+                MessageBox.Show("请输入登陆用户名！");
                 return;
             }
-            if (no == string.Empty)
+            if (password == string.Empty)
             {
-                MessageBox.Show("请输入学号！");
+                MessageBox.Show("请输入登陆密码！");
                 return;
             }
-            userGuid = Guid.NewGuid().ToString();
-            await GlobalVariable.client.Send_UserLogin(userGuid, nickName, no, ClientRole.Student);
+          //  userGuid = Guid.NewGuid().ToString();
+            await GlobalVariable.client.Send_UserLogin(userName, nickName, password, ClientRole.Student);
         }
 
 

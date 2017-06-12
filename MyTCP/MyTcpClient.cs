@@ -109,7 +109,7 @@ namespace MyTCP
         #region 发送命令
         public async Task Send_UserLogin(string userName, string nickName, string password, ClientRole clientRole)
         {
-            GetAudioName();
+           // GetAudioName();
             var loginInfo = new LoginInfo();
             if (clientRole == ClientRole.Teacher || clientRole == ClientRole.Assistant)
             {
@@ -276,9 +276,9 @@ namespace MyTCP
             });
         }
 
-        public void Send_CreateTeam(TeamChatListRequest request)
+        public void Send_CreateTeam(TeamChatCreateOrUpdateRequest request)
         {
-            SendMessage<TeamChatListRequest> message = new SendMessage<TeamChatListRequest>();
+            SendMessage<TeamChatCreateOrUpdateRequest> message = new SendMessage<TeamChatCreateOrUpdateRequest>();
             message.Action = (int)CommandType.CreateTeam;
             message.Data = request;
 

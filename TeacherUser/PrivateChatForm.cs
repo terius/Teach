@@ -60,8 +60,8 @@ namespace TeacherUser
                 request.guid = Guid.NewGuid().ToString();
                 request.msg = msg;
                 request.receivename = _userName;
-                request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
-                request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
+                request.SendDisplayName =  GlobalVariable.LoginUserInfo.DisplayName;
+                request.SendUserName =  GlobalVariable.LoginUserInfo.UserName;
                 GlobalVariable.client.Send_PrivateChat(request);
               //  GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
                 PrivateContentRtb.Text = "";
