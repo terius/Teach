@@ -14,6 +14,8 @@ namespace NewTeacher
         OnlineInfo onlineInfo;
         ChatForm chatForm;
         string soundSource;
+        static bool beingWatching = false;//正在查看学生端
+        bool beingScreenBroadcast = false;//正在屏幕广播
         #endregion
         public MainForm()
         {
@@ -268,7 +270,31 @@ namespace NewTeacher
 
         private void menuScreenShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            
+            string text = e.Item.Caption;
+            if (text == "屏幕广播")
+            {
+                if (!beingWatching)
+                {
+                    GlobalVariable.client.CreateScreenInteract();
+                    GlobalVariable.client.Send_ScreenInteract();
+                    e.Item.Caption = "关闭广播";
+                    beingScreenBroadcast = true;
+                }
+                else
+                {
+                    //  showTip();
+                    return;
+                }
+            }
+            else
+            {
+                GlobalVariable.client.StopScreenInteract();
+                GlobalVariable.client.Send_StopScreenInteract();
+                e.Item.Caption = "屏幕广播";
 
+                beingScreenBroadcast = false;
+            }
         }
 
         private void ribbon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

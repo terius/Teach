@@ -13,6 +13,7 @@ namespace StudentUser
         private BlackScreen bsForm = null;
         VLCPlayer videoPlayer;
         ChatForm chatForm = new ChatForm();
+        ViewRtsp videoPlayer2;
         public UserMainForm()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace StudentUser
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
 
-          
+            
 
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
@@ -48,7 +49,7 @@ namespace StudentUser
             {
                 case (int)CommandType.ScreenInteract:
                     ScreenInteract_Response resp = JsonHelper.DeserializeObj<ScreenInteract_Response>(message.DataStr);
-                    ShowViewRtsp(resp.url);
+                    ShowViewRtsp2(resp.url);
                     break;
                 case (int)CommandType.StopScreenInteract:
                     StopRtsp();
@@ -135,17 +136,17 @@ namespace StudentUser
         //{
         //    base.SetVisibleCore(false);
         //}
-        private bool windowCreate = true;
-        protected override void OnActivated(EventArgs e)
-        {
-            if (windowCreate)
-            {
-                base.Visible = false;
-                windowCreate = false;
-            }
+        //private bool windowCreate = true;
+        //protected override void OnActivated(EventArgs e)
+        //{
+        //    if (windowCreate)
+        //    {
+        //        base.Visible = false;
+        //        windowCreate = false;
+        //    }
 
-            base.OnActivated(e);
-        }
+        //    base.OnActivated(e);
+        //}
 
 
         private void ShowViewRtsp(string rtsp)
@@ -158,7 +159,21 @@ namespace StudentUser
                 }
                 videoPlayer.Show();
                 //  videoPlayer = f;
-                videoPlayer.StartPlay(rtsp);
+                videoPlayer.StartPlayStream(rtsp);
+            });
+        }
+
+        private void ShowViewRtsp2(string rtsp)
+        {
+            DoAction(() =>
+            {
+                if (videoPlayer2 == null)
+                {
+                    videoPlayer2 = new ViewRtsp(rtsp);
+                }
+                videoPlayer2.Show();
+                //  videoPlayer = f;
+                videoPlayer2.startPlay();
             });
         }
 
@@ -168,6 +183,7 @@ namespace StudentUser
             {
                 if (videoPlayer != null)
                 {
+                    videoPlayer.StopPlay();
                     videoPlayer.Close();
                     videoPlayer = null;
                 }
@@ -284,8 +300,23 @@ namespace StudentUser
         }
 
 
+
         #endregion
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (videoPlayer == null)
+            {
+                videoPlayer = new VLCPlayer();
+            }
+            videoPlayer.Show();
+            //  videoPlayer = f;
+            videoPlayer.StartPlayLocation("e:\\terius\\hkdg.mkv");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            StopRtsp();
+        }
     }
 }

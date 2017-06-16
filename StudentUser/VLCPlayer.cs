@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using Helpers;
+using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vlc.DotNet.Forms;
 
@@ -48,14 +42,19 @@ namespace StudentUser
             }
         }
 
-        public void StartPlay(string url)
+        public void StartPlayStream(string url)
         {
-            MessageBox.Show("start play");
-            FileInfo fi = new FileInfo(@"E:\terius\hkdg.mkv");
-            vlcControl1.Play();
+            Loger.LogMessage("接收到rtsp地址：" + url);
+            vlcControl1.Play(url);
         }
 
-        public void StopPlay(string url)
+        public void StartPlayLocation(string filename)
+        {
+            FileInfo fi = new FileInfo(filename);
+            vlcControl1.Play(fi);
+        }
+
+        public void StopPlay()
         {
       
             vlcControl1.Stop();

@@ -15,6 +15,16 @@ namespace NewTeacher
         [STAThread]
         static void Main()
         {
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+
+            //BonusSkins.Register();
+            //SkinManager.EnableFormSkins();
+            //UserLookAndFeel.Default.SetSkinStyle("Visual Studio 2013 Light");
+            //Application.Run(new RibbonForm1());
+            //return;
+
+
             bool createNew;
             using (System.Threading.Mutex m = new System.Threading.Mutex(true, Application.ProductName, out createNew))
             {
@@ -22,9 +32,10 @@ namespace NewTeacher
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
+
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
-                    UserLookAndFeel.Default.SetSkinStyle("Office 2010 Silver");
+                    UserLookAndFeel.Default.SetSkinStyle("Office 2013 Light Gray");
 
                     #region 线程异常处理
                     Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
@@ -36,7 +47,7 @@ namespace NewTeacher
                         Application.Run(new MainForm());
                     }
 
-                    //Application.Run(new MainForm());
+                    //  Application.Run(new RibbonForm1());
                 }
                 else
                 {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeacherUser", "TeacherUser\TeacherUser.csproj", "{06BF00AE-3E4E-4C2F-AB68-3C5687380760}"
 EndProject
@@ -26,8 +26,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedForms", "SharedForms\SharedForms.csproj", "{56B28B98-487B-450F-8B3A-654B668DB221}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXApplication1", "DXApplication1\DXApplication1\DXApplication1.csproj", "{C90D29A8-8A16-407E-9687-467305ABD0A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDevice", "TestDevice\TestDevice.csproj", "{3B3DA95E-6332-4568-97B8-0D554BB0B623}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -183,18 +181,6 @@ Global
 		{C90D29A8-8A16-407E-9687-467305ABD0A8}.Release|x64.Build.0 = Release|Any CPU
 		{C90D29A8-8A16-407E-9687-467305ABD0A8}.Release|x86.ActiveCfg = Release|Any CPU
 		{C90D29A8-8A16-407E-9687-467305ABD0A8}.Release|x86.Build.0 = Release|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Debug|x64.Build.0 = Debug|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Debug|x86.Build.0 = Debug|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Release|x64.ActiveCfg = Release|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Release|x64.Build.0 = Release|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Release|x86.ActiveCfg = Release|Any CPU
-		{3B3DA95E-6332-4568-97B8-0D554BB0B623}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,8 +23,8 @@ namespace vlctest
             string url = textBox1.Text.Trim();
             if (!string.IsNullOrWhiteSpace(url))
             {
-                //   FileInfo file = new FileInfo(@"F:\1.avi");
-                vlcControl1.Play(new Uri(url));
+                   FileInfo file = new FileInfo(url);
+                vlcControl1.Play(file);
             }
         }
 

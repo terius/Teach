@@ -21,8 +21,8 @@ namespace DXApplication1
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            UserLookAndFeel.Default.SetSkinStyle("Office 2016 Colorful");
-            Application.Run(new XtraForm1());
+            UserLookAndFeel.Default.SetSkinStyle("Visual Studio 2013 Light");
+            Application.Run(new RibbonForm1());
         }
     }
 }

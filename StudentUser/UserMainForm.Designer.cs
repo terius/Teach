@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserMainForm));
             this.btnLockScreen = new System.Windows.Forms.Button();
             this.btnStopLockScreen = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.tuopan = new System.Windows.Forms.NotifyIcon(this.components);
-            this.MinMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tuopan = new System.Windows.Forms.NotifyIcon();
+            this.MinMenu = new System.Windows.Forms.ContextMenuStrip();
             this.mSignIn = new System.Windows.Forms.ToolStripMenuItem();
             this.mChat = new System.Windows.Forms.ToolStripMenuItem();
             this.mHandUp = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +44,7 @@
             this.mFileShare = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.MinMenu.SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             this.btnLockScreen.Location = new System.Drawing.Point(3, 3);
             this.btnLockScreen.Name = "btnLockScreen";
-            this.btnLockScreen.Size = new System.Drawing.Size(75, 23);
+            this.btnLockScreen.Size = new System.Drawing.Size(87, 27);
             this.btnLockScreen.TabIndex = 0;
             this.btnLockScreen.Text = "显示黑屏";
             this.btnLockScreen.UseVisualStyleBackColor = true;
@@ -61,9 +62,9 @@
             // 
             // btnStopLockScreen
             // 
-            this.btnStopLockScreen.Location = new System.Drawing.Point(3, 32);
+            this.btnStopLockScreen.Location = new System.Drawing.Point(3, 37);
             this.btnStopLockScreen.Name = "btnStopLockScreen";
-            this.btnStopLockScreen.Size = new System.Drawing.Size(75, 23);
+            this.btnStopLockScreen.Size = new System.Drawing.Size(87, 27);
             this.btnStopLockScreen.TabIndex = 1;
             this.btnStopLockScreen.Text = "关闭黑屏";
             this.btnStopLockScreen.UseVisualStyleBackColor = true;
@@ -71,23 +72,35 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnLockScreen);
             this.panel1.Controls.Add(this.btnStopLockScreen);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(653, 63);
+            this.panel1.Size = new System.Drawing.Size(762, 73);
             this.panel1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(96, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 27);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "播放视频";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.richTextBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 63);
+            this.panel2.Location = new System.Drawing.Point(0, 73);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(653, 342);
+            this.panel2.Size = new System.Drawing.Size(762, 399);
             this.panel2.TabIndex = 3;
             // 
             // richTextBox1
@@ -96,7 +109,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(653, 342);
+            this.richTextBox1.Size = new System.Drawing.Size(762, 399);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -172,11 +185,21 @@
             this.mExit.Text = "退出";
             this.mExit.Click += new System.EventHandler(this.mExit_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(189, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 27);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "停止播放视频";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // UserMainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 405);
+            this.ClientSize = new System.Drawing.Size(762, 472);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -211,6 +234,8 @@
         private System.Windows.Forms.ToolStripMenuItem mFileShare;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem mExit;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
