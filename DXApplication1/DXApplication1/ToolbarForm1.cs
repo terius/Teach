@@ -11,9 +11,9 @@ using DevExpress.XtraBars;
 
 namespace DXApplication1
 {
-    public partial class RibbonForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class ToolbarForm1 : DevExpress.XtraEditors.XtraForm
     {
-        public RibbonForm1()
+        public ToolbarForm1()
         {
             InitializeComponent();
         }
