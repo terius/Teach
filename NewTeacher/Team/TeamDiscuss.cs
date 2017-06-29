@@ -19,6 +19,7 @@ namespace NewTeacher
             _onLineInfo = onLineInfo;
             _onLineInfo.AddOnLine += _onLineInfo_AddOnLine;
             _onLineInfo.DelOnLine += _onLineInfo_DelOnLine;
+          
         }
 
         private void _onLineInfo_DelOnLine(UserLogoutResponse delInfo)
@@ -34,7 +35,7 @@ namespace NewTeacher
                     }
                 }
             });
-         
+
         }
 
         private void _onLineInfo_AddOnLine(object sender, OnlineEventArgs e)
@@ -63,6 +64,7 @@ namespace NewTeacher
 
         private void TeamDiscuss_Load(object sender, System.EventArgs e)
         {
+            FormShadow.Opacity = 120;
             BindOnlineUser();
             BindTeam();
         }
@@ -130,7 +132,7 @@ namespace NewTeacher
 
         private void cboxTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -218,7 +220,7 @@ namespace NewTeacher
             if (cboxTeam.SelectedIndex >= 0)
             {
                 selectTeam = (ChatStore)cboxTeam.SelectedItem;
-                
+
                 string userName = this.teamMemList.SelectedItems[0].SubItems[1].Text;
                 bool rs = GlobalVariable.DelTeamMember(selectTeam.ChatUserName, userName);
                 BindTeamMember();
@@ -247,11 +249,11 @@ namespace NewTeacher
             BindTeamMember();
         }
 
-       
+
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-         
+
             GlobalVariable.SendCommand_CreateOrUpdateTeam();
         }
     }

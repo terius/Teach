@@ -21,18 +21,37 @@ namespace NewTeacher
         {
             InitializeComponent();
             InitOnlineInfo();
+          
             //  menuClassNamed.ImageOptions.LargeImage.h.
             //  menuClassNamed.ItemAppearance.SetFont(new Font("微软雅黑", 10F));
-         //   GetSoundSource();
+            //   GetSoundSource();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //  lvOnline.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //  lvOnline.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+           // lvOnline.Columns[0].Width = -2;
+           // autoResizeColumns(lvOnline);
             GlobalVariable.LoadTeamFromXML();
             chatForm = new ChatForm();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-          //  GlobalVariable.client.Send_OnlineList();
+            GlobalVariable.client.Send_OnlineList();
          
+        }
+
+        public static void autoResizeColumns(ListView lv)
+        {
+            lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            ListView.ColumnHeaderCollection cc = lv.Columns;
+            for (int i = 0; i < cc.Count; i++)
+            {
+                int colWidth = TextRenderer.MeasureText(cc[i].Text, lv.Font).Width + 10;
+                if (colWidth > cc[i].Width)
+                {
+                    cc[i].Width = colWidth;
+                }
+            }
         }
 
 

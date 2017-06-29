@@ -109,8 +109,9 @@
             this.MinimizeBox = false;
             this.Name = "CallForm";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "老师点名";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CallForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

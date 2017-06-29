@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.menuExportSign = new DevExpress.XtraBars.BarButtonItem();
@@ -52,10 +53,10 @@
             this.lvOnline = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.imageList1 = new System.Windows.Forms.ImageList();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
-            this.UserListMenu = new System.Windows.Forms.ContextMenuStrip();
+            this.UserListMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.userList_privateChat = new System.Windows.Forms.ToolStripMenuItem();
             this.userList_lockScreen = new System.Windows.Forms.ToolStripMenuItem();
             this.userList_stopLockScreen = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +67,7 @@
             this.userList_P_allowGroupChat = new System.Windows.Forms.ToolStripMenuItem();
             this.userList_studentShow = new System.Windows.Forms.ToolStripMenuItem();
             this.userList_stopStudentShow = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -264,17 +266,20 @@
             // 
             // splitContainerControl1
             // 
-            this.splitContainerControl1.Appearance.BackColor = System.Drawing.Color.White;
-            this.splitContainerControl1.Appearance.Options.UseBackColor = true;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 128);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.splitContainerControl1.Panel1.Appearance.Options.UseBackColor = true;
+            this.splitContainerControl1.Panel1.AppearanceCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.splitContainerControl1.Panel1.AppearanceCaption.Options.UseForeColor = true;
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel1.Controls.Add(this.lvOnline);
             this.splitContainerControl1.Panel1.Controls.Add(this.panelControl1);
-            this.splitContainerControl1.Panel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.splitContainerControl1.Panel1.ShowCaption = true;
             this.splitContainerControl1.Panel1.Text = "在线学生列表";
+            this.splitContainerControl1.Panel2.AppearanceCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.splitContainerControl1.Panel2.AppearanceCaption.Options.UseForeColor = true;
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel2.ShowCaption = true;
             this.splitContainerControl1.Panel2.Text = "主窗口";
@@ -290,9 +295,9 @@
             this.colName,
             this.colCall});
             this.lvOnline.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvOnline.Location = new System.Drawing.Point(10, 38);
+            this.lvOnline.Location = new System.Drawing.Point(0, 38);
             this.lvOnline.Name = "lvOnline";
-            this.lvOnline.Size = new System.Drawing.Size(181, 405);
+            this.lvOnline.Size = new System.Drawing.Size(191, 405);
             this.lvOnline.SmallImageList = this.imageList1;
             this.lvOnline.TabIndex = 1;
             this.lvOnline.UseCompatibleStateImageBehavior = false;
@@ -307,6 +312,7 @@
             // colCall
             // 
             this.colCall.Text = "是否点名";
+            this.colCall.Width = 70;
             // 
             // imageList1
             // 
@@ -319,9 +325,9 @@
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(10, 0);
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(181, 38);
+            this.panelControl1.Size = new System.Drawing.Size(191, 38);
             this.panelControl1.TabIndex = 0;
             // 
             // btnRefresh
@@ -424,6 +430,10 @@
             this.userList_stopStudentShow.Text = "停止学生演示";
             this.userList_stopStudentShow.Click += new System.EventHandler(this.userList_stopStudentShow_Click);
             // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2016 Colorful";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -432,9 +442,11 @@
             this.ClientSize = new System.Drawing.Size(1110, 594);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbon);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Ribbon = this.ribbon;
-            this.Text = "主页面";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "多媒体教育管理系统";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
@@ -486,5 +498,6 @@
         private System.Windows.Forms.ToolStripMenuItem userList_studentShow;
         private System.Windows.Forms.ToolStripMenuItem userList_stopStudentShow;
         private System.Windows.Forms.ImageList imageList1;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
     }
 }

@@ -104,20 +104,29 @@ namespace StudentUser
 
         private void CloseCallForm()
         {
-            if (callForm != null)
+            DoAction(() =>
             {
-                callForm.Close();
-            }
+                if (callForm != null && !callForm.isClosed)
+                {
+                    callForm.TeacherCloseSign();
+                }
+            });
+            
         }
 
         private void OpenCallForm()
         {
-            if (callForm == null)
+            DoAction(() =>
             {
-                callForm = new CallForm();
-            }
-            callForm.BringToFront();
-            callForm.ShowDialog();
+                if (callForm == null || callForm.isClosed)
+                {
+                    callForm = new CallForm();
+                }
+                callForm.BringToFront();
+                
+                callForm.Show();
+            });
+       
         }
 
         private bool CheckChatFormIsOpen()
