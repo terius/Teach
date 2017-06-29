@@ -232,7 +232,7 @@ namespace SharedForms
             info.ChatDisplayName = "所有人";
             info.ChatStartTime = DateTime.Now;
             info.ChatType = ChatType.GroupChat;
-            info.ChatUserName = Guid.NewGuid().ToString();
+            info.ChatUserName = "allpeople";
             info.UserType = ClientRole.Teacher;
             info.MessageList = new List<ChatMessage>();
             ChatList.Add(info);
@@ -410,5 +410,6 @@ namespace SharedForms
             RefleshTeamList(loadTeam);
 
         }
+        
     }
 }

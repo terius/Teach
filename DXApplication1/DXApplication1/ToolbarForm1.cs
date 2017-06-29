@@ -17,5 +17,10 @@ namespace DXApplication1
         {
             InitializeComponent();
         }
+
+        private void quickPrintItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }

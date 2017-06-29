@@ -21,6 +21,7 @@
 
 namespace Helpers
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
@@ -165,7 +166,7 @@ namespace Helpers
             DirectoryInfo info = new DirectoryInfo(dirPath);
             foreach (FileInfo info2 in info.GetFiles())
             {
-                num += (ulong) info2.Length;
+                num += (ulong)info2.Length;
             }
             DirectoryInfo[] directories = info.GetDirectories();
             if (directories.Length > 0)
@@ -203,12 +204,13 @@ namespace Helpers
         public static ulong GetFileSize(string filePath)
         {
             FileInfo info = new FileInfo(filePath);
-            return (ulong) info.Length;
+            return (ulong)info.Length;
         }
 
         public static string GetFileToOpen(string title)
         {
-            OpenFileDialog dialog = new OpenFileDialog {
+            OpenFileDialog dialog = new OpenFileDialog
+            {
                 Filter = "All Files (*.*)|*.*",
                 FileName = ""
             };
@@ -257,7 +259,8 @@ namespace Helpers
                     builder.Append(";");
                 }
             }
-            OpenFileDialog dialog = new OpenFileDialog {
+            OpenFileDialog dialog = new OpenFileDialog
+            {
                 Filter = builder.ToString(),
                 FileName = "",
                 InitialDirectory = iniDir
@@ -277,7 +280,8 @@ namespace Helpers
 
         public static string GetFolderToOpen(bool newFolderButton)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog {
+            FolderBrowserDialog dialog = new FolderBrowserDialog
+            {
                 ShowNewFolderButton = newFolderButton
             };
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -303,7 +307,8 @@ namespace Helpers
         public static string GetPathToSave(string title, string defaultName, string iniDir)
         {
             string extension = Path.GetExtension(defaultName);
-            SaveFileDialog dialog = new SaveFileDialog {
+            SaveFileDialog dialog = new SaveFileDialog
+            {
                 Filter = string.Format("The Files (*{0})|*{0}", extension),
                 FileName = defaultName,
                 InitialDirectory = iniDir,
@@ -364,7 +369,7 @@ namespace Helpers
             }
             FileStream input = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             BinaryReader reader = new BinaryReader(input);
-            byte[] buffer = reader.ReadBytes((int) input.Length);
+            byte[] buffer = reader.ReadBytes((int)input.Length);
             reader.Close();
             input.Close();
             return buffer;
@@ -398,6 +403,42 @@ namespace Helpers
             writer.Flush();
             writer.Close();
             output.Close();
+        }
+
+        public static void UploadFile(string fileName, string serverUrl, Action<object, System.Net.UploadFileCompletedEventArgs> action)
+        {
+            using (var myClient = new System.Net.WebClient())
+            {
+                myClient.UploadFileCompleted += action.Invoke;
+                myClient.UploadFileAsync(new System.Uri(serverUrl), fileName);
+            }
+
+            //using (StreamReader reader = new StreamReader(new FileStream(fileName, FileMode.Open), new UTF8Encoding())) // do anything you want, e.g. read it
+            //{
+
+            //    // ...
+            //}
+        }
+
+        //private static void MyClient_UploadFileCompleted(object sender, System.Net.UploadFileCompletedEventArgs e)
+        //{
+        //    string result = Encoding.UTF8.GetString(e.Result);
+        //    MessageBox.Show(result);
+        //}
+
+        public static void DownloadFile(string url)
+        {
+            using (var myClient = new System.Net.WebClient())
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.RestoreDirectory = true;
+                saveFileDialog1.FileName = url.Substring(url.LastIndexOf("/") + 1);
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    myClient.DownloadFileAsync(new Uri(url), saveFileDialog1.FileName);
+                }
+
+            }
         }
     }
 }

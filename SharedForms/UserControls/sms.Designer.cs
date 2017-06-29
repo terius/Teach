@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.txtSMS = new System.Windows.Forms.TextBox();
+            this.txtLink = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // txtSMS
@@ -42,11 +43,22 @@
             this.txtSMS.Size = new System.Drawing.Size(100, 21);
             this.txtSMS.TabIndex = 0;
             // 
+            // txtLink
+            // 
+            this.txtLink.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtLink.Location = new System.Drawing.Point(182, 22);
+            this.txtLink.Name = "txtLink";
+            this.txtLink.Size = new System.Drawing.Size(100, 23);
+            this.txtLink.TabIndex = 1;
+            this.txtLink.TabStop = true;
+            this.txtLink.Text = "linkLabel1";
+            // 
             // sms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.txtLink);
             this.Controls.Add(this.txtSMS);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "sms";
@@ -61,5 +73,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtSMS;
+        private System.Windows.Forms.LinkLabel txtLink;
     }
 }

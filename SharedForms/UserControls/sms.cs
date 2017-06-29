@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -13,7 +14,7 @@ namespace SharedForms
 
         Brush blackBrush = Brushes.Black;
         Font titleFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-       // Font contentFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+        // Font contentFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 
         Image topimg = Resource1.lt;
         Image middleimg = Resource1.lm;
@@ -31,12 +32,27 @@ namespace SharedForms
         public bool IsMySelf { get { return _isMySelf; } }
         public readonly int SizeWidth = 420;
         Image headIcon;
+        bool messageIsString = false;
         public sms(ChatMessage messageInfo, bool isMySelf)
         {
             _title = messageInfo.Title;
             _message = messageInfo.Message;
             _isMySelf = isMySelf;
             InitializeComponent();
+
+            if (messageInfo.MessageType == Common.MessageType.String)
+            {
+                messageIsString = true;
+                this.txtSMS.Show();
+                this.txtLink.Hide();
+            }
+            else
+            {
+                messageIsString = false;
+                this.txtSMS.Hide();
+                this.txtLink.Show();
+                this.txtLink.LinkClicked += TxtLink_LinkClicked;
+            }
             if (messageInfo.UserType == Common.ClientRole.Student)
             {
                 headIcon = imgStu;
@@ -47,7 +63,10 @@ namespace SharedForms
             }
         }
 
-
+        private void TxtLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FileHelper.DownloadFile(this.txtLink.Text);
+        }
 
         private void sms_Paint(object sender, PaintEventArgs e)
         {
@@ -117,24 +136,51 @@ namespace SharedForms
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
             imgAtt = new ImageAttributes();
             imgAtt.SetWrapMode(WrapMode.Tile);
-            var textSize = this.CreateGraphics().MeasureString(_message, txtSMS.Font);
+            var textSize = this.CreateGraphics().MeasureString(_message, messageIsString ? txtSMS.Font : txtLink.Font);
             int count = (int)Math.Floor(textSize.Width / 389) + (textSize.Width % 389 == 0 ? 0 : 1);
             _messageHeight = count * 20 + 10;
             _sizeHeight = 20 + 17 * 2 + _messageHeight;
             Size = new Size(388 + 32, _sizeHeight + 5);
             if (IsMySelf)
             {
-                txtSMS.Location = new Point(7, 37);
-                txtSMS.BackColor = Color.FromArgb(198, 225, 252);
+                if (messageIsString)
+                {
+                    txtSMS.Location = new Point(7, 37);
+                    txtSMS.BackColor = Color.FromArgb(198, 225, 252);
+                }
+                else
+                {
+                    txtLink.Location = new Point(7, 37);
+                    txtLink.BackColor = Color.FromArgb(198, 225, 252);
+                }
 
             }
             else
             {
-                txtSMS.Location = new Point(42, 37);
-                txtSMS.BackColor = Color.FromArgb(244, 244, 244);
+                if (messageIsString)
+                {
+                    txtSMS.Location = new Point(42, 37);
+                    txtSMS.BackColor = Color.FromArgb(244, 244, 244);
+                }
+                else
+                {
+                    txtLink.Location = new Point(42, 37);
+                    txtLink.BackColor = Color.FromArgb(244, 244, 244);
+                }
+
+
             }
-            txtSMS.Size = new Size(388 - 10 - 5, _messageHeight);
-            txtSMS.Text = _message;
+            if (messageIsString)
+            {
+                txtSMS.Size = new Size(388 - 10 - 5, _messageHeight);
+                txtSMS.Text = _message;
+            }
+            else
+            {
+                txtLink.Size = new Size(388 - 10 - 5, _messageHeight);
+                txtLink.Text = _message;
+            }
+
         }
     }
 }

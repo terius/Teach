@@ -107,7 +107,7 @@
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
             this.ribbon.ShowQatLocationSelector = false;
             this.ribbon.ShowToolbarCustomizeItem = false;
-            this.ribbon.Size = new System.Drawing.Size(1102, 126);
+            this.ribbon.Size = new System.Drawing.Size(1110, 128);
             this.ribbon.Toolbar.ShowCustomizeItem = false;
             this.ribbon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbon.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ribbon_ItemClick);
@@ -267,7 +267,7 @@
             this.splitContainerControl1.Appearance.BackColor = System.Drawing.Color.White;
             this.splitContainerControl1.Appearance.Options.UseBackColor = true;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 126);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 128);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel1.Controls.Add(this.lvOnline);
@@ -278,7 +278,7 @@
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel2.ShowCaption = true;
             this.splitContainerControl1.Panel2.Text = "主窗口";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1102, 464);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1110, 466);
             this.splitContainerControl1.SplitterPosition = 195;
             this.splitContainerControl1.TabIndex = 3;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -292,7 +292,7 @@
             this.lvOnline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvOnline.Location = new System.Drawing.Point(10, 38);
             this.lvOnline.Name = "lvOnline";
-            this.lvOnline.Size = new System.Drawing.Size(181, 403);
+            this.lvOnline.Size = new System.Drawing.Size(181, 405);
             this.lvOnline.SmallImageList = this.imageList1;
             this.lvOnline.TabIndex = 1;
             this.lvOnline.UseCompatibleStateImageBehavior = false;
@@ -429,7 +429,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(1102, 590);
+            this.ClientSize = new System.Drawing.Size(1110, 594);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbon);
             this.Name = "MainForm";

@@ -3,10 +3,13 @@ using Common;
 using DevExpress.XtraEditors;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraNavBar.ViewInfo;
+using Helpers;
 using Model;
+using Model.Views;
 using System;
 using System.Drawing;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SharedForms
@@ -81,7 +84,7 @@ namespace SharedForms
             {
                 ChatNav.CreateItem(groupChat);
             }
-        
+
             // ReveieveMessage += ChatForm_ReveieveMessage; ;
         }
 
@@ -107,6 +110,20 @@ namespace SharedForms
         //    }
 
         //}
+
+        public void ChatTo(string userName)
+        {
+            foreach (ChatItem item in ChatNav.Items)
+            {
+                if (item.UserName == userName)
+                {
+                    ChatItemSelected(item, false);
+                    break;
+                }
+            }
+
+        }
+
 
 
 
@@ -508,6 +525,35 @@ namespace SharedForms
                 //Point p = new Point(arg.Bounds.X, arg.Bounds.Bottom);
                 // popupMenu1.ShowPopup(ChatNav.PointToScreen(p));
             }
+        }
+
+        private void btnUploadFile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "媒体文件 (*.jpg,*.gif,*.bmp,*.png)|*.jpg;*.gif;*.bmp;*.png";
+            dlg.Title = "选择媒体文件";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                FileHelper.UploadFile(dlg.FileName, MyConfig.UploadFileServer, (ob, ea) =>
+                {
+                    string result = Encoding.UTF8.GetString(ea.Result);
+                    UploadResult uploadResult = JsonHelper.DeserializeObj<UploadResult>(result);
+                    if (uploadResult.error == 0)
+                    {
+                        uploadResult.url = "http://" + MyConfig.ServerIp + ":8080" + uploadResult.url;
+                    }
+                    var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, uploadResult.url, GlobalVariable.LoginUserInfo.UserType, MessageType.Link);
+                    AppendMessage(message, true);
+                    GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
+
+                });
+
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FileHelper.DownloadFile(this.linkLabel1.Text);
         }
     }
 

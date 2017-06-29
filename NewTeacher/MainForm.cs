@@ -156,7 +156,7 @@ namespace NewTeacher
                     var callInfo = JsonHelper.DeserializeObj<StuCallRequest>(message.DataStr);
                     UpdateOnLineStatus(callInfo);
                     break;
-                case (int)CommandType.UserLoginOut:
+                case (int)CommandType.UserLoginOut://学生登出
                     var loginoutInfo = JsonHelper.DeserializeObj<UserLogoutResponse>(message.DataStr);
                     onlineInfo.OnUserLoginOut(loginoutInfo);
                     break;
@@ -243,7 +243,11 @@ namespace NewTeacher
 
         private void menuGroupChat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            if (chatForm != null)
+            {
+                chatForm.ChatTo("allpeople");
+                chatForm.Show();
+            }
         }
 
         private void menuTeamCreate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

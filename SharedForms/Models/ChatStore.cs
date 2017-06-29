@@ -81,6 +81,8 @@ namespace SharedForms
 
         // public ChatBoxContent Content { get; set; }
 
+        public MessageType MessageType { get; set; }
+
 
         public ChatMessage(string _sendUserName,
             string _sendDisplayName,
@@ -95,6 +97,19 @@ namespace SharedForms
             this.SendTime = DateTime.Now;
             this.Message = _message;
             UserType = _userType;
+            MessageType = MessageType.String;
+        }
+
+        public ChatMessage(string _sendUserName,
+          string _sendDisplayName,
+          string _receieveUserName,
+          string _message,
+          ClientRole _userType,
+          MessageType MessageType
+          ) : this(_sendUserName, _sendDisplayName, _receieveUserName, _message, _userType)
+        {
+            this.MessageType = MessageType;
+
         }
     }
 

@@ -47,4 +47,19 @@
         GroupChat,
         TeamChat
     }
+
+    /// <summary>
+    /// 聊天信息类型
+    /// </summary>
+    public enum MessageType
+    {
+        /// <summary>
+        ///  文字
+        /// </summary>
+        String,
+        /// <summary>
+        /// 下载链接
+        /// </summary>
+        Link
+    }
 }
