@@ -14,6 +14,7 @@ namespace StudentUser
         VLCPlayer videoPlayer;
         ChatForm chatForm = new ChatForm();
         ViewRtsp videoPlayer2;
+        CallForm callForm;
         public UserMainForm()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace StudentUser
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
 
-            
+
 
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
@@ -79,18 +80,19 @@ namespace StudentUser
                     OpenCallForm();
                     break;
                 case (int)CommandType.EndCall:
-                
+                    CloseCallForm();
                     break;
                 case (int)CommandType.CreateTeam:
                     var teamInfo = JsonHelper.DeserializeObj<TeamChatCreateOrUpdateRequest>(message.DataStr);
-                   GlobalVariable.RefleshTeamList(teamInfo);
-                    DoAction(() => {
+                    GlobalVariable.RefleshTeamList(teamInfo);
+                    DoAction(() =>
+                    {
                         chatForm.BringToFront();
                         chatForm.ReflashTeamChat();
                         chatForm.Show();
 
                     });
-                 
+
                     break;
                 case (int)CommandType.TeamChat:
 
@@ -100,10 +102,22 @@ namespace StudentUser
             }
         }
 
+        private void CloseCallForm()
+        {
+            if (callForm != null)
+            {
+                callForm.Close();
+            }
+        }
+
         private void OpenCallForm()
         {
-            CallForm frm = new CallForm();
-            frm.ShowDialog();
+            if (callForm == null)
+            {
+                callForm = new CallForm();
+            }
+            callForm.BringToFront();
+            callForm.ShowDialog();
         }
 
         private bool CheckChatFormIsOpen()
@@ -243,11 +257,11 @@ namespace StudentUser
 
             });
         }
-        
+
 
         private void btnLockScreen_Click(object sender, EventArgs e)
         {
-         
+
             LockScreen(true);
         }
 
@@ -260,11 +274,11 @@ namespace StudentUser
 
         private void UserMainForm_Shown(object sender, EventArgs e)
         {
-           // this.Hide();
+            // this.Hide();
         }
 
-       
-        
+
+
 
         #region 右键菜单
 

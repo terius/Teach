@@ -209,10 +209,10 @@ namespace Cowboy.Sockets
                     throw new InvalidOperationException("This tcp socket client is in invalid state when connected.");
                 }
 
-                Loger.DebugFormat("Connected to server [{0}] with dispatcher [{1}] on [{2}].",
-                    this.RemoteEndPoint,
-                    _dispatcher.GetType().Name,
-                    DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"));
+                //Loger.DebugFormat("Connected to server [{0}] with dispatcher [{1}] on [{2}].",
+                //    this.RemoteEndPoint,
+                //    _dispatcher.GetType().Name,
+                //    DateTime.UtcNow.ToString(@"yyyy-MM-dd HH:mm:ss.fffffff"));
                 bool isErrorOccurredInUserSide = false;
                 try
                 {

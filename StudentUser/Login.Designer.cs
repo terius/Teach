@@ -93,7 +93,7 @@
             this.Login_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(201)))), ((int)(((byte)(59)))));
             this.Login_Btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Login_Btn.ForeColor = System.Drawing.Color.Cornsilk;
-            this.Login_Btn.Location = new System.Drawing.Point(404, 243);
+            this.Login_Btn.Location = new System.Drawing.Point(404, 258);
             this.Login_Btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Login_Btn.Name = "Login_Btn";
             this.Login_Btn.Size = new System.Drawing.Size(129, 43);
@@ -114,9 +114,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(27, 44);
+            this.pictureBox1.Location = new System.Drawing.Point(21, 21);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(357, 297);
+            this.pictureBox1.Size = new System.Drawing.Size(357, 280);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
@@ -124,7 +124,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(303, 397);
+            this.label4.Location = new System.Drawing.Point(280, 330);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(219, 20);
             this.label4.TabIndex = 12;
@@ -135,7 +135,7 @@
             this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(201)))), ((int)(((byte)(59)))));
             this.btnExit.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnExit.ForeColor = System.Drawing.Color.Cornsilk;
-            this.btnExit.Location = new System.Drawing.Point(557, 243);
+            this.btnExit.Location = new System.Drawing.Point(552, 258);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(129, 43);
@@ -149,7 +149,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(399, 72);
+            this.label5.Location = new System.Drawing.Point(401, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 25);
             this.label5.TabIndex = 14;
@@ -161,7 +161,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(249)))));
-            this.ClientSize = new System.Drawing.Size(745, 421);
+            this.ClientSize = new System.Drawing.Size(745, 370);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.label4);

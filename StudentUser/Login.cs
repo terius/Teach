@@ -26,8 +26,8 @@ namespace StudentUser
             GlobalVariable.client = new MyTcpClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
-            this.textBox1.Text = "Stu-" + DateTime.Now.ToString("MMddHHmmss");
-            this.textBox2.Text = "110";
+            this.textBox1.Text = "Stu" + DateTime.Now.ToString("MMddHHmmss");
+            this.textBox2.Text = "8888";
             await LoginIn();
 
             //TestAES();
@@ -47,7 +47,7 @@ namespace StudentUser
                         GlobalVariable.LoginUserInfo = new LoginUserInfo
                         {
                             DisplayName = textBox1.Text.Trim(),
-                            UserName = userGuid,
+                            UserName = textBox1.Text.Trim(),
                             UserType = ClientRole.Student,
                             No = textBox2.Text.Trim()
                         };

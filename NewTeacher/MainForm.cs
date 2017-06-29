@@ -31,7 +31,7 @@ namespace NewTeacher
             GlobalVariable.LoadTeamFromXML();
             chatForm = new ChatForm();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-            GlobalVariable.client.Send_OnlineList();
+          //  GlobalVariable.client.Send_OnlineList();
          
         }
 
@@ -238,7 +238,8 @@ namespace NewTeacher
 
         private void menuClassNamed_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            CallForm frm = new CallForm();
+            frm.ShowDialog(this);
         }
 
         private void menuGroupChat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
