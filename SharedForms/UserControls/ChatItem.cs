@@ -10,7 +10,7 @@ namespace SharedForms
         {
 
         }
-
+        System.Drawing.Image defaultImg;
         public string UserName { get; set; }
         public string DisplayName { get; set; }
 
@@ -59,7 +59,7 @@ namespace SharedForms
             this.UserName = userName;
             this.DisplayName = displayName;
             this.ChatType = chatType;
-           
+            defaultImg = SmallImage;
             //  this.AppearanceHotTracked.BorderColor = System.Drawing.Color.Black;
             //    this.AppearanceHotTracked.Options.UseBorderColor = true;
             source.Items.Add(this);

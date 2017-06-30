@@ -78,7 +78,8 @@ namespace SharedForms
             {
                 if (chatItem.UserName != selectUserName)
                 {
-                    chatItem.Caption = chatItem.DisplayName + " 有新消息！";
+                    //chatItem.Caption = chatItem.DisplayName + " 有新消息！";
+                    chatItem.SmallImage = Resource1.新消息;
                 }
                 else
                 {
