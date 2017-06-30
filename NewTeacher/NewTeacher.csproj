@@ -46,6 +46,7 @@
     <Reference Include="DevExpress.Utils.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="SharpDX, Version=3.1.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.3.1.1\lib\net45\SharpDX.dll</HintPath>
@@ -175,10 +176,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="老师图标.ico" />
-    <None Include="Resources\在线.png" />
-    <None Include="Resources\老师.png" />
     <None Include="Resources\离线.png" />
+    <None Include="Resources\在线.png" />
+    <Content Include="老师图标.ico" />
+    <None Include="Resources\老师.png" />
     <None Include="Resources\签到.png" />
     <None Include="Resources\上课点名.png" />
     <None Include="Resources\学生.png" />

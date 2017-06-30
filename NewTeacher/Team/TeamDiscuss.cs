@@ -64,7 +64,7 @@ namespace NewTeacher
 
         private void TeamDiscuss_Load(object sender, System.EventArgs e)
         {
-            FormShadow.Opacity = 120;
+           
             BindOnlineUser();
             BindTeam();
         }
@@ -166,23 +166,7 @@ namespace NewTeacher
             }
         }
 
-        private void picAddMem_Click(object sender, EventArgs e)
-        {
-            if (onLineListView.CheckedItems.Count <= 0)
-            {
-                GlobalVariable.ShowWarnning("请先选择要添加的学生");
-                return;
-            }
-
-            if (cboxTeam2.SelectedIndex < 0)
-            {
-                GlobalVariable.ShowWarnning("请先选择要添加的分组");
-                return;
-            }
-            selectTeam = (ChatStore)cboxTeam2.SelectedItem;
-            GlobalVariable.AddTeamMember(onLineListView.CheckedItems, selectTeam.ChatUserName);
-            BindTeamMember();
-        }
+       
 
         private void BindTeamMember()
         {
@@ -253,8 +237,26 @@ namespace NewTeacher
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-
             GlobalVariable.SendCommand_CreateOrUpdateTeam();
+            MessageBox.Show("群组信息保存成功");
+        }
+
+        private void btnAddStudent_Click(object sender, EventArgs e)
+        {
+            if (onLineListView.CheckedItems.Count <= 0)
+            {
+                GlobalVariable.ShowWarnning("请先选择要添加的学生");
+                return;
+            }
+
+            if (cboxTeam2.SelectedIndex < 0)
+            {
+                GlobalVariable.ShowWarnning("请先选择要添加的分组");
+                return;
+            }
+            selectTeam = (ChatStore)cboxTeam2.SelectedItem;
+            GlobalVariable.AddTeamMember(onLineListView.CheckedItems, selectTeam.ChatUserName);
+            BindTeamMember();
         }
     }
 }

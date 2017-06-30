@@ -22,9 +22,26 @@ namespace MyTCP
         public delegate void receHandle(ReceieveMessage message);
         public event receHandle OnReveieveData;
 
+        public bool IsConnected
+        {
+            get
+            {
+                if (_client == null)
+                {
+                    return false;
+                }
+
+                if (_client.State == TcpSocketConnectionState.Connected || _client.State == TcpSocketConnectionState.Connecting)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
         public MyTcpClient()
         {
+
             messageDue = new SimpleMessageDispatcher();
             messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage; ;
             var config = new AsyncTcpSocketClientConfiguration();
@@ -109,7 +126,7 @@ namespace MyTCP
         #region 发送命令
         public async Task Send_UserLogin(string userName, string nickName, string password, ClientRole clientRole)
         {
-           // GetAudioName();
+            // GetAudioName();
             var loginInfo = new LoginInfo();
             if (clientRole == ClientRole.Teacher || clientRole == ClientRole.Assistant)
             {

@@ -15,7 +15,19 @@ namespace SharedForms
 {
     public static class GlobalVariable
     {
-        public static MyTcpClient client;
+        private static MyTcpClient _client;
+        public static MyTcpClient client
+        {
+            get
+            {
+                if (_client == null || !_client.IsConnected)
+                {
+                    _client = new MyTcpClient();
+                }
+                return _client;
+
+            }
+        }
         public static LoginUserInfo LoginUserInfo;
 
         private static List<ChatStore> chatList;
@@ -82,7 +94,7 @@ namespace SharedForms
                 {
                     if (mem.UserName == userName)
                     {
-                        mem.IsOnline = isOnline ? true : false;
+                        mem.IsOnline = isOnline;
                         break;
                     }
                 }
@@ -98,9 +110,9 @@ namespace SharedForms
 
         public static ChatMessage ToChatMessage(this AddChatRequest request)
         {
-          
-         //   ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
-            return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, request.Message,request.UserType);
+
+            //   ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
+            return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, request.Message, request.UserType);
         }
 
         static Font messageFont = new Font("微软雅黑", 9);
@@ -341,7 +353,7 @@ namespace SharedForms
             }
 
 
-          
+
         }
 
 
@@ -360,7 +372,7 @@ namespace SharedForms
                 info.groupuserList = item.TeamMembers.ToList();
                 request.TeamInfos.Add(info);
             }
-            client.Send_CreateTeam(request);
+            _client.Send_CreateTeam(request);
         }
 
         private static void SaveTeamXML(IList<ChatStore> teamChatList)
@@ -410,6 +422,6 @@ namespace SharedForms
             RefleshTeamList(loadTeam);
 
         }
-        
+
     }
 }

@@ -39,7 +39,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.picAddMem = new System.Windows.Forms.PictureBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.txtCreate = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -51,10 +50,11 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.cboxTeam2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnAddStudent = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picAddMem)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.memberMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -178,19 +178,6 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // picAddMem
-            // 
-            this.picAddMem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picAddMem.Image = ((System.Drawing.Image)(resources.GetObject("picAddMem.Image")));
-            this.picAddMem.Location = new System.Drawing.Point(6, 276);
-            this.picAddMem.Margin = new System.Windows.Forms.Padding(2);
-            this.picAddMem.Name = "picAddMem";
-            this.picAddMem.Size = new System.Drawing.Size(90, 40);
-            this.picAddMem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picAddMem.TabIndex = 5;
-            this.picAddMem.TabStop = false;
-            this.picAddMem.Click += new System.EventHandler(this.picAddMem_Click);
-            // 
             // btnCreate
             // 
             this.btnCreate.Location = new System.Drawing.Point(122, 26);
@@ -277,25 +264,28 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.btnAddStudent);
+            this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.btnSave);
             this.groupBox5.Controls.Add(this.cboxTeam2);
-            this.groupBox5.Controls.Add(this.picAddMem);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox5.Location = new System.Drawing.Point(229, 3);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(200, 493);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "选择群组";
+            this.groupBox5.Text = "选择群组成员";
             // 
             // btnSave
             // 
+            this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(6, 24);
+            this.btnSave.Location = new System.Drawing.Point(3, 454);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(153, 36);
+            this.btnSave.Size = new System.Drawing.Size(194, 36);
             this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "保存";
+            this.btnSave.Text = "保存群组信息";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // cboxTeam2
@@ -303,12 +293,35 @@
             this.cboxTeam2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxTeam2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cboxTeam2.FormattingEnabled = true;
-            this.cboxTeam2.Location = new System.Drawing.Point(5, 91);
+            this.cboxTeam2.Location = new System.Drawing.Point(6, 47);
             this.cboxTeam2.Margin = new System.Windows.Forms.Padding(2);
             this.cboxTeam2.Name = "cboxTeam2";
-            this.cboxTeam2.Size = new System.Drawing.Size(170, 24);
+            this.cboxTeam2.Size = new System.Drawing.Size(189, 24);
             this.cboxTeam2.TabIndex = 6;
             this.cboxTeam2.SelectedIndexChanged += new System.EventHandler(this.cboxTeam2_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "选择群组";
+            // 
+            // btnAddStudent
+            // 
+            this.btnAddStudent.Appearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddStudent.Appearance.Options.UseFont = true;
+            this.btnAddStudent.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnAddStudent.Image = ((System.Drawing.Image)(resources.GetObject("btnAddStudent.Image")));
+            this.btnAddStudent.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleRight;
+            this.btnAddStudent.Location = new System.Drawing.Point(6, 180);
+            this.btnAddStudent.Name = "btnAddStudent";
+            this.btnAddStudent.Size = new System.Drawing.Size(153, 36);
+            this.btnAddStudent.TabIndex = 9;
+            this.btnAddStudent.Text = "选择勾选的学生";
+            this.btnAddStudent.Click += new System.EventHandler(this.btnAddStudent_Click);
             // 
             // TeamDiscuss
             // 
@@ -327,7 +340,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picAddMem)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.memberMenu.ResumeLayout(false);
@@ -335,6 +347,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -352,7 +365,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.PictureBox picAddMem;
         private System.Windows.Forms.ContextMenuStrip memberMenu;
         private System.Windows.Forms.ToolStripMenuItem memDel;
         private System.Windows.Forms.TabControl tabControl1;
@@ -361,5 +373,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ComboBox cboxTeam2;
         private DevExpress.XtraEditors.SimpleButton btnSave;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SimpleButton btnAddStudent;
     }
 }

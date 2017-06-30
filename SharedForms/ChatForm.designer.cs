@@ -46,6 +46,7 @@ namespace SharedForms
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.sendBox = new System.Windows.Forms.RichTextBox();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
@@ -59,7 +60,7 @@ namespace SharedForms
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnUploadFile = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -70,8 +71,7 @@ namespace SharedForms
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.labChatTitle = new DevExpress.XtraEditors.LabelControl();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChatNav)).BeginInit();
@@ -101,7 +101,6 @@ namespace SharedForms
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.linkLabel1);
             this.splitContainerControl1.Panel1.Controls.Add(this.ChatNav);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.panelControl2);
@@ -116,11 +115,15 @@ namespace SharedForms
             // ChatNav
             // 
             this.ChatNav.ActiveGroup = this.navBarGroup1;
-            this.ChatNav.Appearance.Background.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.ChatNav.Appearance.Background.Options.UseBackColor = true;
-            this.ChatNav.Appearance.ItemHotTracked.ForeColor = System.Drawing.Color.Red;
+            this.ChatNav.AllowDrop = false;
+            this.ChatNav.Appearance.ItemHotTracked.ForeColor = System.Drawing.Color.White;
+            this.ChatNav.Appearance.ItemHotTracked.Options.UseFont = true;
             this.ChatNav.Appearance.ItemHotTracked.Options.UseForeColor = true;
+            this.ChatNav.Appearance.ItemPressed.BorderColor = System.Drawing.Color.Red;
+            this.ChatNav.Appearance.ItemPressed.Options.UseBorderColor = true;
+            this.ChatNav.Appearance.ItemPressed.Options.UseFont = true;
             this.ChatNav.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChatNav.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None;
             this.ChatNav.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1,
             this.navBarGroup2,
@@ -128,6 +131,8 @@ namespace SharedForms
             this.ChatNav.LinkInterval = 10;
             this.ChatNav.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInControl;
             this.ChatNav.Location = new System.Drawing.Point(0, 0);
+            this.ChatNav.LookAndFeel.SkinName = "Office 2010 Blue";
+            this.ChatNav.LookAndFeel.UseDefaultLookAndFeel = false;
             this.ChatNav.Name = "ChatNav";
             this.ChatNav.OptionsNavPane.ExpandedWidth = 224;
             this.ChatNav.Size = new System.Drawing.Size(224, 768);
@@ -139,13 +144,18 @@ namespace SharedForms
             // 
             // navBarGroup1
             // 
+            this.navBarGroup1.Appearance.BackColor = System.Drawing.Color.Red;
             this.navBarGroup1.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup1.Appearance.Options.UseBackColor = true;
             this.navBarGroup1.Appearance.Options.UseFont = true;
+            this.navBarGroup1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup1.BackgroundImage")));
             this.navBarGroup1.Caption = "所有人";
             this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
             this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.SmallIconsText;
             this.navBarGroup1.LargeImage = global::SharedForms.Resource1.所有人;
             this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarGroup1.SelectedLinkIndex = 0;
             // 
             // navBarGroup2
             // 
@@ -156,7 +166,6 @@ namespace SharedForms
             this.navBarGroup2.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.SmallIconsText;
             this.navBarGroup2.LargeImage = global::SharedForms.Resource1.群组;
             this.navBarGroup2.Name = "navBarGroup2";
-            this.navBarGroup2.SelectedLinkIndex = 0;
             // 
             // navBarGroup3
             // 
@@ -169,7 +178,7 @@ namespace SharedForms
             // 
             // panelControl2
             // 
-            this.panelControl2.Appearance.BackColor = System.Drawing.Color.Teal;
+            this.panelControl2.Appearance.BackColor = System.Drawing.Color.SeaShell;
             this.panelControl2.Appearance.Options.UseBackColor = true;
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl2.Controls.Add(this.smsPanel1);
@@ -354,17 +363,6 @@ namespace SharedForms
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(82, 322);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(484, 14);
-            this.linkLabel1.TabIndex = 7;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "http://118.184.18.254:8080/edu-server/Upload/20170622/20170622104645_944.jpg";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // ChatForm
             // 
             this.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
@@ -426,6 +424,5 @@ namespace SharedForms
         private DevExpress.XtraBars.StandaloneBarDockControl standaloneBarDockControl1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnUploadFile;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

@@ -19,16 +19,16 @@ namespace StudentUser
 
         //   private delegate void messageListCallback(string content);
         //  private messageListCallback messageCallback;
-        private async void Form2_Load(object sender, EventArgs e)
+        private  void Form2_Load(object sender, EventArgs e)
         {
             Login_Btn.SetButtonHoverLeave();
             btnExit.SetButtonHoverLeave();
-            GlobalVariable.client = new MyTcpClient();
+           
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
             this.textBox1.Text = "Stu" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "8888";
-            await LoginIn();
+          //  await LoginIn();
 
             //TestAES();
         }
@@ -87,7 +87,7 @@ namespace StudentUser
 
         private async Task LoginIn()
         {
-            string nickName = "学生"+ DateTime.Now.ToString("yyyyMMddHHmmss");
+            string nickName = "学生"+ textBox1.Text.Trim();
             string userName = textBox1.Text.Trim();
             string password = textBox2.Text.Trim();
 

@@ -59,6 +59,7 @@ namespace SharedForms
             this.UserName = userName;
             this.DisplayName = displayName;
             this.ChatType = chatType;
+           
             //  this.AppearanceHotTracked.BorderColor = System.Drawing.Color.Black;
             //    this.AppearanceHotTracked.Options.UseBorderColor = true;
             source.Items.Add(this);
