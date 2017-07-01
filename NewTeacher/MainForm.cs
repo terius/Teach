@@ -24,7 +24,7 @@ namespace NewTeacher
             InitOnlineInfo();
             //  menuClassNamed.ImageOptions.LargeImage.h.
             //  menuClassNamed.ItemAppearance.SetFont(new Font("微软雅黑", 10F));
-         //   GetSoundSource();
+            //   GetSoundSource();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -33,15 +33,15 @@ namespace NewTeacher
             chatForm = new ChatForm();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
-         
+
         }
 
 
         private void GetSoundSou()
         {
             MessageBox.Show("asdasdasd");
-            
-          //  CaptureDevicesCollection sound_devices = new CaptureDevicesCollection();
+
+            //  CaptureDevicesCollection sound_devices = new CaptureDevicesCollection();
             //if (sound_devices.Count > 0)
             //{
             //    int i = 0;
@@ -224,16 +224,48 @@ namespace NewTeacher
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            GlobalVariable.client.Send_OnlineList();
         }
 
-      
+
 
 
 
         #region 顶部菜单
         private void menuExportSign_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            ExportSign();
+
+        }
+
+        private void ExportSign()
+        {
+            if (onlineInfo.OnLineList.Count <= 0)
+            {
+                MessageBox.Show("当前在线学生为空");
+                return;
+            }
+            var table = new System.Data.DataTable();
+            table.Columns.Add("学生姓名", typeof(string));
+            table.Columns.Add("是否签到", typeof(string));
+            foreach (var item in onlineInfo.OnLineList)
+            {
+                if (item.clientRole == ClientRole.Student)
+                {
+                    System.Data.DataRow dr = table.NewRow();
+                    dr[0] = item.nickname;
+                    dr[1] = item.IsCalled ? "是" : "否";
+                    table.Rows.Add(dr);
+                }
+            }
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.RestoreDirectory = true;
+            saveFileDialog1.FileName = "导出签到.xls";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ExcelHelper.Export(table, saveFileDialog1.FileName);
+                MessageBox.Show("导出成功");
+            }
 
         }
 
@@ -245,6 +277,13 @@ namespace NewTeacher
 
         private void menuGroupChat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            AddChatRequest request = new AddChatRequest();
+            request.DisplayName = "所有人";
+            request.ChatType = ChatType.PrivateChat;
+            request.UserName = "allpeople";
+            request.UserType = ClientRole.Student;
+            GlobalVariable.AddNewChat(request);
+            OpenOrCreateChatForm(request, false);
 
         }
 
@@ -272,7 +311,7 @@ namespace NewTeacher
 
         private void menuScreenShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+
             string text = e.Item.Caption;
             if (text == "屏幕广播")
             {

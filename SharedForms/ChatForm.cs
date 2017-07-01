@@ -35,11 +35,7 @@ namespace SharedForms
         /// </summary>
         public bool IsHide { get; set; }
         #endregion
-
-
-
-
-
+        
         #region 构造函数
 
 
@@ -54,8 +50,7 @@ namespace SharedForms
         }
 
         #endregion
-
-
+        
         #region 方法
         /// <summary>
         /// 创建聊天对象
@@ -277,9 +272,7 @@ namespace SharedForms
             }
         }
         #endregion
-
         
-
         #region 事件
 
         /// <summary>
