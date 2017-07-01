@@ -22,7 +22,7 @@ namespace StudentUser
             Text = GlobalVariable.LoginUserInfo.DisplayName;
             tuopan.Text = Text;
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-
+            GlobalVariable.client.Send_StudentInMainForm();
         }
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
@@ -151,17 +151,17 @@ namespace StudentUser
         //{
         //    base.SetVisibleCore(false);
         //}
-        //private bool windowCreate = true;
-        //protected override void OnActivated(EventArgs e)
-        //{
-        //    if (windowCreate)
-        //    {
-        //        base.Visible = false;
-        //        windowCreate = false;
-        //    }
+        private bool windowCreate = true;
+        protected override void OnActivated(EventArgs e)
+        {
+            if (windowCreate)
+            {
+                base.Visible = false;
+                windowCreate = false;
+            }
 
-        //    base.OnActivated(e);
-        //}
+            base.OnActivated(e);
+        }
 
 
         private void ShowViewRtsp(string rtsp)

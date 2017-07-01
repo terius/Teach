@@ -15,19 +15,19 @@ namespace SharedForms
 {
     public static class GlobalVariable
     {
-        private static MyClient _client;
-        public static MyClient client
-        {
-            get
-            {
-                if (_client == null || !_client.Connected)
-                {
-                    _client = new MyClient();
-                }
-                return _client;
+        public static MyClient client;
+        //public static MyClient client
+        //{
+        //    get
+        //    {
+        //        if (_client == null || !_client.Connected)
+        //        {
+        //            _client = new MyClient();
+        //        }
+        //        return _client;
 
-            }
-        }
+        //    }
+        //}
         public static LoginUserInfo LoginUserInfo;
 
         private static List<ChatStore> chatList;
@@ -372,7 +372,7 @@ namespace SharedForms
                 info.groupuserList = item.TeamMembers.ToList();
                 request.TeamInfos.Add(info);
             }
-            _client.Send_CreateTeam(request);
+            client.Send_CreateTeam(request);
         }
 
         private static void SaveTeamXML(IList<ChatStore> teamChatList)

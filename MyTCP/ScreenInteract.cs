@@ -79,7 +79,7 @@ namespace MyTCP
 
         private string pushRtspStream(string ipServer, string ipSelf, int portSelf)
         {
-            ipServer = "192.168.100.16";
+           // ipServer = "192.168.100.16";
           //  this.audio = "Default WaveOut Device";
             string nameByIpPort = this.createNameByIpPort(ipSelf, portSelf);
             string mic = GetMicName();

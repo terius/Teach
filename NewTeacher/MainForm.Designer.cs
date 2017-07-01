@@ -109,7 +109,7 @@
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
             this.ribbon.ShowQatLocationSelector = false;
             this.ribbon.ShowToolbarCustomizeItem = false;
-            this.ribbon.Size = new System.Drawing.Size(1269, 162);
+            this.ribbon.Size = new System.Drawing.Size(1269, 156);
             this.ribbon.Toolbar.ShowCustomizeItem = false;
             this.ribbon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbon.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ribbon_ItemClick);
@@ -192,7 +192,7 @@
             // 
             this.menuStudentShow.Caption = "学生演示";
             this.menuStudentShow.Id = 2;
-            this.menuStudentShow.ImageOptions.Image = global::NewTeacher.Properties.Resources.学生演示;
+            this.menuStudentShow.ImageOptions.LargeImage = global::NewTeacher.Properties.Resources.学生演示;
             this.menuStudentShow.Name = "menuStudentShow";
             this.menuStudentShow.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuStudentShow_ItemClick);
             // 
@@ -269,7 +269,7 @@
             this.splitContainerControl1.Appearance.BackColor = System.Drawing.Color.White;
             this.splitContainerControl1.Appearance.Options.UseBackColor = true;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 162);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 156);
             this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
@@ -281,7 +281,7 @@
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.splitContainerControl1.Panel2.ShowCaption = true;
             this.splitContainerControl1.Panel2.Text = "主窗口";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1269, 602);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1269, 608);
             this.splitContainerControl1.SplitterPosition = 274;
             this.splitContainerControl1.TabIndex = 3;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -296,7 +296,7 @@
             this.lvOnline.Location = new System.Drawing.Point(11, 49);
             this.lvOnline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lvOnline.Name = "lvOnline";
-            this.lvOnline.Size = new System.Drawing.Size(259, 525);
+            this.lvOnline.Size = new System.Drawing.Size(259, 530);
             this.lvOnline.SmallImageList = this.imageList1;
             this.lvOnline.TabIndex = 1;
             this.lvOnline.UseCompatibleStateImageBehavior = false;

@@ -32,7 +32,7 @@ namespace NewTeacher
             GlobalVariable.LoadTeamFromXML();
             chatForm = new ChatForm();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
-          //  GlobalVariable.client.Send_OnlineList();
+            GlobalVariable.client.Send_OnlineList();
          
         }
 

@@ -1,7 +1,6 @@
 ﻿using Common;
 using Helpers;
 using Model;
-using MyTCP;
 using SuperSocket.ClientEngine;
 using SuperSocket.ProtoBase;
 using System;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using MyVideo;
 
 namespace MySocket
 {
@@ -17,9 +17,15 @@ namespace MySocket
         //   readonly string terminator = "|||";
         EasyClient client;
         public delegate void ReceiveHandle(ReceieveMessage message);
+        // internal ReceiveHandle _delegate;
         public event ReceiveHandle OnReveieveData;
+        //{
+        //    add { _delegate += value; }
+        //    remove { _delegate -= value; }
+        //}
         readonly string serverIP = System.Configuration.ConfigurationManager.AppSettings["serverIP"];
         readonly int serverPort = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["serverPort"]);
+        
         bool _connected;
         ScreenInteract _screenInteract;
 
@@ -41,11 +47,36 @@ namespace MySocket
             client = new EasyClient();
             client.Initialize(new MyReceiveFilter(), (response) =>
             {
-                OnReveieveData(response);
+                try
+                {
+                    OnReveieveData(response);
+                }
+                catch (Exception ex)
+                {
+                    Loger.LogMessage(ex.ToString());
+                }
+                
             });
 
             _connected = client.ConnectAsync(new IPEndPoint(IPAddress.Parse(serverIP), serverPort)).Result;
         }
+
+       
+
+        //public bool IsEventHandlerRegistered(Delegate prospectiveHandler)
+        //{
+        //    if (this.OnReveieveData != null)
+        //    {
+        //        foreach (Delegate existingHandler in this.OnReveieveData.GetInvocationList())
+        //        {
+        //            if (existingHandler == prospectiveHandler)
+        //            {
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //    return false;
+        //}
 
 
         public void SendMessage<T>(SendMessage<T> message) where T : class, new()
@@ -69,9 +100,10 @@ namespace MySocket
 
         public void CreateScreenInteract()
         {
-            var aa = client.LocalEndPoint;
-            string localIP = "";// this.client.LocalEndPoint
-            int localPort = 0;// this.client.LocalEndPoint.AddressFamily.;
+           
+            var local = (IPEndPoint)client.LocalEndPoint;
+            string localIP = "192.168.1.93";// local.Address.ToString();// this.client.LocalEndPoint
+            int localPort = local.Port;// local.Port;// this.client.LocalEndPoint.AddressFamily.;
             _screenInteract = new ScreenInteract(serverIP, localIP, localPort);
         }
 
@@ -291,6 +323,15 @@ namespace MySocket
             message.Data = new StuCallRequest { name = name, no = no, username = userName };
             SendMessage(message);
 
+        }
+
+
+        public void Send_StudentInMainForm()
+        {
+            var message = new SendMessage<BaseRequest>();
+            message.Action = (int)CommandType.StudentInMainForm;
+            message.Data = new BaseRequest();
+            SendMessage(message);
         }
 
         #endregion

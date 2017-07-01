@@ -19,27 +19,36 @@ namespace StudentUser
 
         //   private delegate void messageListCallback(string content);
         //  private messageListCallback messageCallback;
-        private async void Form2_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
             Login_Btn.SetButtonHoverLeave();
             btnExit.SetButtonHoverLeave();
+            GlobalVariable.client = new MyClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
             this.textBox1.Text = "Stu" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "8888";
-            await LoginIn();
+            //  await LoginIn();
 
             //TestAES();
+
+        }
+
+        private void DoAction(Action action)
+        {
+            this.InvokeOnUiThreadIfRequired(action);
         }
 
         private void Client_OnReveieveData(ReceieveMessage message)
         {
-            TranMessage = resStr =>
+            // TranMessage = resStr =>
+            //  {
+            if (message.Action == 2)
             {
-                if (message.Action == 2)
+                var result = JsonHelper.DeserializeObj<LoginResult>(message.DataStr);
+                if (result.success)
                 {
-                    var result = JsonHelper.DeserializeObj<LoginResult>(resStr);
-                    if (result.success)
+                    DoAction(() =>
                     {
                         this.DialogResult = DialogResult.OK;
                         GlobalVariable.client.OnReveieveData -= Client_OnReveieveData;
@@ -51,19 +60,22 @@ namespace StudentUser
                             No = textBox2.Text.Trim()
                         };
                         this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(result.msg);
-                    }
+                    });
+
+                  
                 }
-            };
+                else
+                {
+                    MessageBox.Show(result.msg);
+                }
+            }
+            //  };
             //Action<string> action = (data) =>
             //{
             //    Thread.Sleep(3000);
             //    txtBox.AppendText(data);
             //};
-            Invoke(TranMessage, message.DataStr);
+            // Invoke(TranMessage, message.DataStr);
         }
 
         Action<string> TranMessage;
@@ -78,15 +90,15 @@ namespace StudentUser
         }
 
 
-        private async void button1_Click(object sender, EventArgs e)//登录 
+        private void button1_Click(object sender, EventArgs e)//登录 
         {
             //string connectionString = "Database='" + ConfigurationManager.AppSettings["Database"] + "';Data Source='" + ConfigurationManager.AppSettings["serverIP"]+ "';User Id='" + ConfigurationManager.AppSettings["User ID"]+ "';Password='" + ConfigurationManager.AppSettings["Password"]+ "'";//默认端口3306 
-            await LoginIn();
+            LoginIn();
         }
 
-        private async Task LoginIn()
+        private void LoginIn()
         {
-            string nickName = "学生"+ DateTime.Now.ToString("yyyyMMddHHmmss");
+            string nickName = "学生" + DateTime.Now.ToString("yyyyMMddHHmmss");
             string userName = textBox1.Text.Trim();
             string password = textBox2.Text.Trim();
 
@@ -100,8 +112,8 @@ namespace StudentUser
                 MessageBox.Show("请输入登陆密码！");
                 return;
             }
-          //  userGuid = Guid.NewGuid().ToString();
-             GlobalVariable.client.Send_UserLogin(userName, nickName, password, ClientRole.Student);
+            //  userGuid = Guid.NewGuid().ToString();
+            GlobalVariable.client.Send_UserLogin(userName, nickName, password, ClientRole.Student);
         }
 
 

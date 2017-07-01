@@ -29,7 +29,7 @@ namespace NewTeacher
             this.ContextMenuStrip = contextMenuStrip1;
             //    Login_Btn.SetButtonHoverLeave();
             //    btnExit.SetButtonHoverLeave();
-            
+            GlobalVariable.client = new MyClient();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             this.textBox1.Text = "tech1";
             this.textBox2.Text = "1";

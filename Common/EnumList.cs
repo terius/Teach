@@ -19,7 +19,8 @@
         TeamChat = 16,
         OneUserLogIn = 17,
         UserLoginOut = 18,
-        StudentCall = 19
+        StudentCall = 19,
+        StudentInMainForm = 20
     }
 
     /// <summary>
