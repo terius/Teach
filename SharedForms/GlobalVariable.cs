@@ -2,7 +2,7 @@
 using Helpers;
 using Model;
 using Model.Views;
-using MyTCP;
+using MySocket;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,14 +15,14 @@ namespace SharedForms
 {
     public static class GlobalVariable
     {
-        private static MyTcpClient _client;
-        public static MyTcpClient client
+        private static MyClient _client;
+        public static MyClient client
         {
             get
             {
-                if (_client == null || !_client.IsConnected)
+                if (_client == null || !_client.Connected)
                 {
-                    _client = new MyTcpClient();
+                    _client = new MyClient();
                 }
                 return _client;
 

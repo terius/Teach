@@ -131,9 +131,9 @@
       <Project>{2e25ae3c-9dce-4cec-81f5-8b853350ab4c}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyTCP\MyTCP.csproj">
-      <Project>{ad4cd22f-e3b9-4a1f-bea6-dc373524b896}</Project>
-      <Name>MyTCP</Name>
+    <ProjectReference Include="..\MySocket\MySocket.csproj">
+      <Project>{82ed2e95-b75d-4a90-859f-a9148f494f53}</Project>
+      <Name>MySocket</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

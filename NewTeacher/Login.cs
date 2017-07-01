@@ -2,7 +2,7 @@
 using Helpers;
 using Model;
 using Model.Views;
-using MyTCP;
+using MySocket;
 using SharedForms;
 using System;
 using System.Collections.Generic;
@@ -35,6 +35,8 @@ namespace NewTeacher
             this.textBox2.Text = "1";
             //TestAES();
         }
+
+      
 
         private void CreateXML()
         {
@@ -165,7 +167,7 @@ namespace NewTeacher
                 return;
             }
 
-            await GlobalVariable.client.Send_UserLogin(displayName, displayName, userPass, ClientRole.Teacher);
+             GlobalVariable.client.Send_UserLogin(displayName, displayName, userPass, ClientRole.Teacher);
 
             //this.Hide();
             //MainForm f = new MainForm();

@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using Helpers;
 using Model;
+using MySocket;
 using SharedForms;
 using System;
 using System.Windows.Forms;
@@ -104,29 +105,20 @@ namespace StudentUser
 
         private void CloseCallForm()
         {
-            DoAction(() =>
+            if (callForm != null)
             {
-                if (callForm != null && !callForm.isClosed)
-                {
-                    callForm.TeacherCloseSign();
-                }
-            });
-            
+                callForm.Close();
+            }
         }
 
         private void OpenCallForm()
         {
-            DoAction(() =>
+            if (callForm == null)
             {
-                if (callForm == null || callForm.isClosed)
-                {
-                    callForm = new CallForm();
-                }
-                callForm.BringToFront();
-                
-                callForm.Show();
-            });
-       
+                callForm = new CallForm();
+            }
+            callForm.BringToFront();
+            callForm.ShowDialog();
         }
 
         private bool CheckChatFormIsOpen()

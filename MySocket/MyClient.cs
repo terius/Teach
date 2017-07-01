@@ -20,19 +20,19 @@ namespace MySocket
         public event ReceiveHandle OnReveieveData;
         readonly string serverIP = System.Configuration.ConfigurationManager.AppSettings["serverIP"];
         readonly int serverPort = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["serverPort"]);
-        bool connected;
+        bool _connected;
         ScreenInteract _screenInteract;
 
         public bool Connected
         {
             get
             {
-                return connected;
+                return _connected;
             }
 
             set
             {
-                connected = value;
+                _connected = value;
             }
         }
 
@@ -44,7 +44,7 @@ namespace MySocket
                 OnReveieveData(response);
             });
 
-            Connected = client.ConnectAsync(new IPEndPoint(IPAddress.Parse(serverIP), serverPort)).Result;
+            _connected = client.ConnectAsync(new IPEndPoint(IPAddress.Parse(serverIP), serverPort)).Result;
         }
 
 

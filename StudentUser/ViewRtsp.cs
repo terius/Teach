@@ -8,7 +8,7 @@ namespace StudentUser
 {
     public partial class ViewRtsp : Form
     {
-        private VlcPlayer player = null;
+        private VLCPlus player = null;
         //private string playAddress = null;
         public string playAddress = null;
         // private TcpConnectJson.ScreenMonitor screenmonitor;
@@ -29,7 +29,7 @@ namespace StudentUser
         {
             InitializeComponent();
             this.playAddress = rtspAddress;
-            player = new VlcPlayer(this.axVLCPlugin21);
+            player = new VLCPlus(this.axVLCPlugin21);
             this.MaximumSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
 
         }

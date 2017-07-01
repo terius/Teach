@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>老师图标.ico</ApplicationIcon>
+    <ApplicationIcon>ter.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -46,7 +46,6 @@
     <Reference Include="DevExpress.Utils.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="SharpDX, Version=3.1.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.3.1.1\lib\net45\SharpDX.dll</HintPath>
@@ -54,10 +53,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Remoting" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -166,9 +163,9 @@
       <Project>{2e25ae3c-9dce-4cec-81f5-8b853350ab4c}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyTCP\MyTCP.csproj">
-      <Project>{ad4cd22f-e3b9-4a1f-bea6-dc373524b896}</Project>
-      <Name>MyTCP</Name>
+    <ProjectReference Include="..\MySocket\MySocket.csproj">
+      <Project>{82ed2e95-b75d-4a90-859f-a9148f494f53}</Project>
+      <Name>MySocket</Name>
     </ProjectReference>
     <ProjectReference Include="..\SharedForms\SharedForms.csproj">
       <Project>{56b28b98-487b-450f-8b3a-654b668db221}</Project>
@@ -176,10 +173,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\离线.png" />
     <None Include="Resources\在线.png" />
-    <Content Include="老师图标.ico" />
     <None Include="Resources\老师.png" />
+    <None Include="Resources\离线.png" />
     <None Include="Resources\签到.png" />
     <None Include="Resources\上课点名.png" />
     <None Include="Resources\学生.png" />

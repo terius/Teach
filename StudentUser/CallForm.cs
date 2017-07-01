@@ -6,7 +6,6 @@ namespace StudentUser
 {
     public partial class CallForm : Form
     {
-        public bool isClosed = false;
         public CallForm()
         {
             InitializeComponent();
@@ -31,17 +30,6 @@ namespace StudentUser
             }
             GlobalVariable.client.Send_StudentCall(no, name, GlobalVariable.LoginUserInfo.UserName);
             this.Close();
-        }
-
-        public void TeacherCloseSign()
-        {
-            MessageBox.Show("老师已关闭点名");
-            this.Close();
-        }
-
-        private void CallForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.isClosed = true;
         }
     }
 }
