@@ -149,7 +149,7 @@ namespace NewTeacher
         }
 
 
-        private async void button1_Click(object sender, EventArgs e)//登录 
+        private  void button1_Click(object sender, EventArgs e)//登录 
         {
             //string connectionString = "Database='" + ConfigurationManager.AppSettings["Database"] + "';Data Source='" + ConfigurationManager.AppSettings["serverIP"]+ "';User Id='" + ConfigurationManager.AppSettings["User ID"]+ "';Password='" + ConfigurationManager.AppSettings["Password"]+ "'";//默认端口3306 
             string displayName = this.textBox1.Text.Trim();

@@ -213,9 +213,9 @@
     <None Include="Resources\学生.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyTCP\MyTCP.csproj">
-      <Project>{ad4cd22f-e3b9-4a1f-bea6-dc373524b896}</Project>
-      <Name>MyTCP</Name>
+    <ProjectReference Include="..\MyVideo\MyVideo.csproj">
+      <Project>{3472b2b1-63d7-42de-a088-2565969ede39}</Project>
+      <Name>MyVideo</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

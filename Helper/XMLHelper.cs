@@ -31,7 +31,7 @@ namespace Helpers
                     return (T)xmldes.Deserialize(sr);
                 }
             }
-            catch (Exception e)
+            catch
             {
 
                 return default(T);

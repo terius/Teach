@@ -12,8 +12,8 @@ namespace StudentUser
         //private string playAddress = null;
         public string playAddress = null;
         // private TcpConnectJson.ScreenMonitor screenmonitor;
-        private string ip = "";
-        private int port = 0;
+        //   private string ip = "";
+        //  private int port = 0;
 
 
         //public ViewRtsp(string IP,int Port)

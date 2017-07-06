@@ -14,9 +14,9 @@ namespace NewTeacher
         #region 自定义字段
         OnlineInfo onlineInfo;
         ChatForm chatForm;
-        string soundSource;
+        //  string soundSource;
         static bool beingWatching = false;//正在查看学生端
-        bool beingScreenBroadcast = false;//正在屏幕广播
+                                          //  bool beingScreenBroadcast = false;//正在屏幕广播
         #endregion
         public MainForm()
         {
@@ -320,7 +320,7 @@ namespace NewTeacher
                     GlobalVariable.client.CreateScreenInteract();
                     GlobalVariable.client.Send_ScreenInteract();
                     e.Item.Caption = "关闭广播";
-                    beingScreenBroadcast = true;
+                    // beingScreenBroadcast = true;
                 }
                 else
                 {
@@ -334,7 +334,7 @@ namespace NewTeacher
                 GlobalVariable.client.Send_StopScreenInteract();
                 e.Item.Caption = "屏幕广播";
 
-                beingScreenBroadcast = false;
+                //   beingScreenBroadcast = false;
             }
         }
 

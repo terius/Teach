@@ -23,8 +23,8 @@ namespace MyVideo
         private string _serverIp;
         private string _ipSelf;
         private int _portSelf;
-        private int widthPixel;
-        private int heightPixel;
+      //  private int widthPixel;
+      //  private int heightPixel;
 
         readonly string RTSPserverIP = System.Configuration.ConfigurationManager.AppSettings["RTSPserverIP"];
 

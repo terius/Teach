@@ -60,7 +60,7 @@ namespace vlctest
             ScrollControlIntoView(e.Control);
         }
 
-        int inum = 1;
+        //  int inum = 1;
         public void AddMessage(string title, string message, bool isMySelf)
         {
             chatItem = new sms(title, message, isMySelf);

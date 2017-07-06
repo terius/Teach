@@ -1,5 +1,5 @@
 ﻿using DirectShowLib;
-using MyTCP;
+using MyVideo;
 using System;
 using System.IO;
 using System.Windows.Forms;

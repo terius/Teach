@@ -15,7 +15,7 @@ namespace StudentUser
         {
             InitializeComponent();
         }
-        string userGuid;
+       // string userGuid;
 
         //   private delegate void messageListCallback(string content);
         //  private messageListCallback messageCallback;
@@ -78,13 +78,7 @@ namespace StudentUser
             // Invoke(TranMessage, message.DataStr);
         }
 
-        Action<string> TranMessage;
-
-
-
-
-
-
+       // Action<string> TranMessage;
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
         }

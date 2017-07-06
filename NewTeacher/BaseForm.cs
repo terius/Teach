@@ -15,13 +15,13 @@ namespace NewTeacher
     {
         #region 自定义字段
         //  private static bool beingCallTheRoll = false;//
-        private bool beingScreenBroadcast = false;//正在屏幕广播
+        // private bool beingScreenBroadcast = false;//正在屏幕广播
         private static bool beingWatching = false;//正在查看学生端
                                                   // private string rtspAddress = null;
         private ChatForm chatForm;
         //  IList<OnlineListResult> userOnlineList;
         OnlineInfo onlineInfo;
-        bool chatFormIsShow;
+       // bool chatFormIsShow;
         #endregion
 
 
@@ -185,7 +185,7 @@ namespace NewTeacher
             else
             {
                 OpenOrCreateChatForm(request, true);
-               // ShowNotify(request);
+                // ShowNotify(request);
             }
 
         }
@@ -213,7 +213,7 @@ namespace NewTeacher
         {
             //上次登录历史窗体
             //frmNotify frm = new frmNotify(request);
-         //   frm.Show(this);
+            //   frm.Show(this);
             //获取屏幕宽高与调节最大大小
             // this.MaximumSize = new Size(543, Screen.GetWorkingArea(this).Height);
         }
@@ -313,7 +313,7 @@ namespace NewTeacher
                     GlobalVariable.client.CreateScreenInteract();
                     GlobalVariable.client.Send_ScreenInteract();
                     this.video_Broadcast.Text = "关闭广播";
-                    beingScreenBroadcast = true;
+                    //beingScreenBroadcast = true;
                 }
                 else
                 {
@@ -327,7 +327,7 @@ namespace NewTeacher
                 GlobalVariable.client.Send_StopScreenInteract();
                 this.video_Broadcast.Text = "屏幕广播";
 
-                beingScreenBroadcast = false;
+              //  beingScreenBroadcast = false;
             }
         }
 
