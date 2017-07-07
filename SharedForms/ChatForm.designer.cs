@@ -46,7 +46,6 @@ namespace SharedForms
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.sendBox = new System.Windows.Forms.RichTextBox();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
@@ -60,7 +59,7 @@ namespace SharedForms
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnUploadFile = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -71,7 +70,7 @@ namespace SharedForms
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.labChatTitle = new DevExpress.XtraEditors.LabelControl();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChatNav)).BeginInit();
@@ -92,7 +91,7 @@ namespace SharedForms
             this.sendBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sendBox.Location = new System.Drawing.Point(2, 34);
             this.sendBox.Name = "sendBox";
-            this.sendBox.Size = new System.Drawing.Size(1056, 147);
+            this.sendBox.Size = new System.Drawing.Size(1063, 147);
             this.sendBox.TabIndex = 142;
             this.sendBox.Text = "";
             // 
@@ -185,7 +184,7 @@ namespace SharedForms
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 36);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1060, 549);
+            this.panelControl2.Size = new System.Drawing.Size(1067, 549);
             this.panelControl2.TabIndex = 143;
             // 
             // smsPanel1
@@ -195,7 +194,7 @@ namespace SharedForms
             this.smsPanel1.LastY = 10;
             this.smsPanel1.Location = new System.Drawing.Point(0, 0);
             this.smsPanel1.Name = "smsPanel1";
-            this.smsPanel1.Size = new System.Drawing.Size(1060, 549);
+            this.smsPanel1.Size = new System.Drawing.Size(1067, 549);
             this.smsPanel1.TabIndex = 142;
             // 
             // panelControl1
@@ -207,7 +206,7 @@ namespace SharedForms
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 585);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1060, 183);
+            this.panelControl1.Size = new System.Drawing.Size(1067, 183);
             this.panelControl1.TabIndex = 0;
             // 
             // btnClose
@@ -243,7 +242,7 @@ namespace SharedForms
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(2, 2);
             this.standaloneBarDockControl1.Manager = this.barManager1;
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(1056, 32);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(1063, 32);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barManager1
@@ -260,7 +259,7 @@ namespace SharedForms
             this.itemViewTeamMem,
             this.barButtonItem1,
             this.btnUploadFile});
-            this.barManager1.MaxItemId = 3;
+            this.barManager1.MaxItemId = 4;
             // 
             // bar1
             // 
@@ -341,7 +340,7 @@ namespace SharedForms
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1060, 36);
+            this.panelControl3.Size = new System.Drawing.Size(1067, 36);
             this.panelControl3.TabIndex = 144;
             // 
             // labChatTitle

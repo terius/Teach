@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Common;
+using Model;
 using SharedForms;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,10 @@ namespace NewTeacher
             OnLineList = new List<OnlineListResult>();
 
         }
-
+        public IList<OnlineListResult> GetStudentOnlineList()
+        {
+            return OnLineList.Where(d => d.clientRole == ClientRole.Student).ToList();
+        }
 
         public void OnOnlineChange(IList<OnlineListResult> onLineList)
         {
@@ -35,7 +39,7 @@ namespace NewTeacher
             GlobalVariable.RefreshTeamMember(onLineList[0].username, true);
             OnlineEventArgs e = new OnlineEventArgs(onLineList);
             AddOnLine(this, e);
-        
+
         }
 
         public void OnUserLoginOut(UserLogoutResponse loginOutInfo)

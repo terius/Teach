@@ -1,5 +1,6 @@
 
 using Common;
+using DevExpress.XtraBars.Alerter;
 using DevExpress.XtraEditors;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraNavBar.ViewInfo;
@@ -8,6 +9,7 @@ using Model;
 using Model.Views;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -271,6 +273,18 @@ namespace SharedForms
                 this.sendBox.Focus();
             }
         }
+
+        AlertControl messagebox;
+        private void ShowNotify(string msg)
+        {
+            if (messagebox == null)
+            {
+                messagebox = new AlertControl();
+                messagebox.AutoFormDelay = 500;
+                messagebox.ShowPinButton = false;
+            }
+            messagebox.Show(this, "信息", msg);
+        }
         #endregion
         
         #region 事件
@@ -388,10 +402,13 @@ namespace SharedForms
                     {
                         uploadResult.url = "http://" + MyConfig.ServerIp + ":8080" + uploadResult.url;
                     }
-                    var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, uploadResult.url, GlobalVariable.LoginUserInfo.UserType, MessageType.Link);
+                    FileInfo fi = new FileInfo(dlg.FileName);
+                    var uploadtext = _myDisplayName + "上传了文件:" + fi.Name;
+                    var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, uploadtext, GlobalVariable.LoginUserInfo.UserType, MessageType.Link);
+                    message.DownloadFileUrl = uploadResult.url;
                     AppendMessage(message, true);
                     GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
-
+                    ShowNotify("上传成功");
                 });
 
             }

@@ -22,7 +22,7 @@ namespace DXApplication1
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
             UserLookAndFeel.Default.SetSkinStyle("Visual Studio 2013 Light");
-            Application.Run(new ToolbarForm1());
+            Application.Run(new XtraForm1());
         }
     }
 }

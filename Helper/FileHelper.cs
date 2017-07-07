@@ -426,8 +426,13 @@ namespace Helpers
         //    MessageBox.Show(result);
         //}
 
-        public static void DownloadFile(string url)
+        public static string DownloadFile(string url)
         {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                MessageBox.Show("下载地址为空");
+                return null;
+            }
             using (var myClient = new System.Net.WebClient())
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -436,9 +441,10 @@ namespace Helpers
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     myClient.DownloadFileAsync(new Uri(url), saveFileDialog1.FileName);
+                    return saveFileDialog1.FileName;
                 }
-
             }
+            return null;
         }
     }
 }

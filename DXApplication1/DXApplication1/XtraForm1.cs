@@ -72,5 +72,11 @@ namespace DXApplication1
                 MessageBox.Show(selectedNavBarItem.Caption);
             }
         }
+
+        private void button2_Click(object sender, System.EventArgs e)
+        {
+            alertControl1.AutoFormDelay = 300;
+            alertControl1.Show(this, "警告", "asdasdasd");
+        }
     }
 }

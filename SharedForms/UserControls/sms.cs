@@ -1,4 +1,5 @@
-﻿using Helpers;
+﻿using DevExpress.XtraBars.Alerter;
+using Helpers;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -24,20 +25,22 @@ namespace SharedForms
         Image bottomimgR = Resource1.rb;
         Image imgTech = Resource1.老师;
         Image imgStu = Resource1.学生;
-        string _message;
-        string _title;
-        bool _isMySelf;
+        string _message;//消息
+        string _title; //标题
+        bool _isMySelf;//是否为自己
         int _messageHeight;
         int _sizeHeight;
         public bool IsMySelf { get { return _isMySelf; } }
         public readonly int SizeWidth = 420;
         Image headIcon;
         bool messageIsString = false;
+        string _downloadFileUrl;
         public sms(ChatMessage messageInfo, bool isMySelf)
         {
             _title = messageInfo.Title;
             _message = messageInfo.Message;
             _isMySelf = isMySelf;
+            _downloadFileUrl = messageInfo.DownloadFileUrl;
             InitializeComponent();
 
             if (messageInfo.MessageType == Common.MessageType.String)
@@ -50,6 +53,7 @@ namespace SharedForms
             {
                 messageIsString = false;
                 this.txtSMS.Hide();
+
                 this.txtLink.Show();
                 this.txtLink.LinkClicked += TxtLink_LinkClicked;
             }
@@ -63,9 +67,41 @@ namespace SharedForms
             }
         }
 
+        string saveFilePath;
         private void TxtLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FileHelper.DownloadFile(this.txtLink.Text);
+             saveFilePath = FileHelper.DownloadFile(_downloadFileUrl);
+            if (!string.IsNullOrWhiteSpace(saveFilePath))
+            {
+                ShowNotify("下载成功!文件已下载到\r\n" + saveFilePath);
+            }
+        }
+
+        AlertControl messagebox;
+        private void ShowNotify(string msg)
+        {
+            if (messagebox == null)
+            {
+                messagebox = new AlertControl();
+                messagebox.AutoFormDelay = 2000;
+                //   messagebox.AllowHtmlText = true;
+                messagebox.ShowPinButton = false;
+
+                AlertButton btn1 = new AlertButton(Resource1.打开文件);// global::DXApplication1.Properties.Resources.open_16x16;);
+                btn1.Hint = "打开文件";
+                btn1.Name = "buttonOpen";
+                messagebox.Buttons.Add(btn1);
+                messagebox.ButtonClick += Messagebox_ButtonClick;
+            }
+            messagebox.Show(this.ParentForm, "信息", msg);
+        }
+
+        private void Messagebox_ButtonClick(object sender, AlertButtonClickEventArgs e)
+        {
+            if (e.ButtonName == "buttonOpen")
+            {
+                System.Diagnostics.Process.Start(saveFilePath);
+            }
         }
 
         private void sms_Paint(object sender, PaintEventArgs e)

@@ -240,7 +240,8 @@ namespace NewTeacher
 
         private void ExportSign()
         {
-            if (onlineInfo.OnLineList.Count <= 0)
+            var onlineList = onlineInfo.GetStudentOnlineList();
+            if (onlineList.Count <= 0)
             {
                 MessageBox.Show("当前在线学生为空");
                 return;
@@ -248,7 +249,7 @@ namespace NewTeacher
             var table = new System.Data.DataTable();
             table.Columns.Add("学生姓名", typeof(string));
             table.Columns.Add("是否签到", typeof(string));
-            foreach (var item in onlineInfo.OnLineList)
+            foreach (var item in onlineList)
             {
                 if (item.clientRole == ClientRole.Student)
                 {

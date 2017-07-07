@@ -83,6 +83,9 @@ namespace SharedForms
 
         public MessageType MessageType { get; set; }
 
+        public string DownloadFileUrl { get; set; }
+
+
 
         public ChatMessage(string _sendUserName,
             string _sendDisplayName,
