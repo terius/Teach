@@ -102,6 +102,7 @@ namespace SharedForms
             {
                 return;
             }
+            chatItem.SmallImage = chatItem.DefaultImg;
             if (chatItem.UserName != selectUserName)
             {
                 LoadChatMessage(chatItem);
@@ -238,6 +239,7 @@ namespace SharedForms
                 request.username = GlobalVariable.LoginUserInfo.UserName;
                 request.groupid = receieveUserName;
                 request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
+                request.clientRole = GlobalVariable.LoginUserInfo.UserType;
                 GlobalVariable.client.SendMessage(request, CommandType.TeamChat);
             }
             //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
@@ -428,11 +430,13 @@ namespace SharedForms
             {
                 return;
             }
-            if (ChatNav.SelectedLink == null)
+            if (ChatNav.SelectedLink == null || string.IsNullOrWhiteSpace(selectUserName))
             {
                 GlobalVariable.ShowWarnning("请先选择聊天对象");
                 return;
             }
+         
+
             SendMessageCommand(selectUserName, content);
             var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content, GlobalVariable.LoginUserInfo.UserType);
             AppendMessage(message, true);

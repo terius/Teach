@@ -9,6 +9,7 @@ using DirectShowLib;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading;
 
 namespace MyVideo
@@ -74,6 +75,20 @@ namespace MyVideo
                 {
                     return item.Name;
                 }
+            }
+            return "";
+        }
+
+        private string GetVideoName()
+        {
+            var capDevices = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in capDevices)
+            {
+                sb.Append("name:" + item.Name +
+                         "\r\ndeviceid:" + item.ClassID +
+                         "\r\npath:" + item.DevicePath +
+                         "\r\n\r\n");
             }
             return "";
         }

@@ -92,8 +92,9 @@ namespace StudentUser
 
         private void LoginIn()
         {
-            string nickName = "学生" + DateTime.Now.ToString("yyyyMMddHHmmss");
+           
             string userName = textBox1.Text.Trim();
+            string nickName = "学生" + userName;
             string password = textBox2.Text.Trim();
 
             if (userName == string.Empty)

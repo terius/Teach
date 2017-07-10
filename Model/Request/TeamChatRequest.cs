@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common;
 
 namespace Model
 {
@@ -16,5 +12,7 @@ namespace Model
         public string groupid { get; set; }
 
         public string SendDisplayName { get; set; }
+
+        public ClientRole clientRole { get; set; }
     }
 }

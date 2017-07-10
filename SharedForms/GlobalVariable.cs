@@ -229,6 +229,7 @@ namespace SharedForms
             ChatList.Add(info);
             ShowSuccess("分组建立成功");
             IsTeamChatChanged = true;
+            AddLoginUserToMember(info.ChatUserName);
             return true;
         }
 
@@ -273,6 +274,21 @@ namespace SharedForms
             }
             IsTeamChatChanged = true;
             //  ShowSuccess("分组成员添加成功");
+            return true;
+        }
+
+        private static bool AddLoginUserToMember(string guid)
+        {
+            var info = ChatList.FirstOrDefault(d => d.ChatUserName == guid && d.ChatType == ChatType.TeamChat);
+            if (info == null)
+            {
+                ShowError("未找到添加的分组信息");
+                return false;
+            }
+            if (!info.TeamMembers.Any(d => d.UserName == LoginUserInfo.UserName))
+            {
+                info.TeamMembers.Add(new TeamMember { UserName = LoginUserInfo.UserName, DisplayName = LoginUserInfo.DisplayName, IsOnline = true });
+            }
             return true;
         }
 

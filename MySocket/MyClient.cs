@@ -49,6 +49,7 @@ namespace MySocket
             {
                 try
                 {
+                    Loger.LogMessage("收到消息：" + JsonHelper.SerializeObj(response));
                     OnReveieveData(response);
                 }
                 catch (Exception ex)
@@ -83,6 +84,7 @@ namespace MySocket
         {
             if (client.IsConnected)
             {
+                Loger.LogMessage("发送信息：" + JsonHelper.SerializeObj(message));
                 var messageByte = CreateSendMessageByte(message);
                 client.Send(messageByte);
             }

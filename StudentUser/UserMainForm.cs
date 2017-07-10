@@ -5,7 +5,6 @@ using Model;
 using MySocket;
 using SharedForms;
 using System;
-using System.Windows.Forms;
 
 namespace StudentUser
 {
@@ -77,6 +76,14 @@ namespace StudentUser
                         AddChat(chatResponse);
                     });
                     break;
+                case (int)CommandType.TeamChat:
+                    var teamChatResponse = JsonHelper.DeserializeObj<TeamChatRequest>(message.DataStr);
+
+                    DoAction(() =>
+                    {
+                        AddTeamChat(teamChatResponse);
+                    });
+                    break;
                 case (int)CommandType.BeginCall:
                     OpenCallForm();
                     break;
@@ -95,13 +102,14 @@ namespace StudentUser
                     });
 
                     break;
-                case (int)CommandType.TeamChat:
 
-                    break;
                 default:
                     break;
             }
         }
+
+
+
 
         private void CloseCallForm()
         {
@@ -134,11 +142,25 @@ namespace StudentUser
 
         private void AddChat(PrivateChatRequest chatResponse)
         {
-            bool isOpen = CheckChatFormIsOpen();
+            //  bool isOpen = CheckChatFormIsOpen();
             AddChatRequest request = chatResponse.ToAddChatRequest();
             GlobalVariable.AddNewChat(request);
             chatForm.BringToFront();
-            chatForm.CreateChatItems(request, isOpen);
+            chatForm.CreateChatItems(request, true);
+            chatForm.Show();
+        }
+
+        private void AddTeamChat(TeamChatRequest message)
+        {
+            //AddChatRequest request = message.ToAddChatRequest();
+            //GlobalVariable.AddNewChat(request);
+            //OpenOrCreateChatForm(request, true);
+
+            // bool isOpen = CheckChatFormIsOpen();
+            AddChatRequest request = message.ToAddChatRequest();
+            GlobalVariable.AddNewChat(request);
+            chatForm.BringToFront();
+            chatForm.CreateChatItems(request, true);
             chatForm.Show();
         }
 

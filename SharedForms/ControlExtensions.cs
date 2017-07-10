@@ -43,6 +43,17 @@ namespace SharedForms
             return request;
         }
 
+        public static AddChatRequest ToAddChatRequest(this TeamChatRequest response)
+        {
+            AddChatRequest request = new AddChatRequest();
+            request.UserName = response.groupid;
+            request.DisplayName = response.SendDisplayName;
+            request.ChatType = ChatType.TeamChat;
+            request.Message = response.msg;
+            request.UserType = response.clientRole;
+            return request;
+        }
+
         public static ChatItem CreateItem(this NavBarControl source,AddChatRequest request)
         {
             ChatItem item = new ChatItem(source, request.UserName,

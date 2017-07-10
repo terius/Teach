@@ -72,9 +72,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(399, 120);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 25);
+            this.label1.Size = new System.Drawing.Size(84, 25);
             this.label1.TabIndex = 2;
-            this.label1.Text = "昵    称：";
+            this.label1.Text = "用户名：";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
@@ -84,9 +84,9 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(399, 178);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 25);
+            this.label2.Size = new System.Drawing.Size(81, 25);
             this.label2.TabIndex = 8;
-            this.label2.Text = "学    号：";
+            this.label2.Text = "密   码：";
             // 
             // Login_Btn
             // 

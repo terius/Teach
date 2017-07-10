@@ -17,6 +17,7 @@ namespace NewTeacher
         //  string soundSource;
         static bool beingWatching = false;//正在查看学生端
                                           //  bool beingScreenBroadcast = false;//正在屏幕广播
+     
         #endregion
         public MainForm()
         {
@@ -161,9 +162,20 @@ namespace NewTeacher
                     var loginoutInfo = JsonHelper.DeserializeObj<UserLogoutResponse>(message.DataStr);
                     onlineInfo.OnUserLoginOut(loginoutInfo);
                     break;
+                case (int)CommandType.TeamChat:
+                    var TeamChatRequest = JsonHelper.DeserializeObj<TeamChatRequest>(message.DataStr);
+                    this.InvokeOnUiThreadIfRequired(() => { ReceieveTeamMessage(TeamChatRequest); });
+                    break;
                 default:
                     break;
             }
+        }
+
+        private void ReceieveTeamMessage(TeamChatRequest message)
+        {
+            AddChatRequest request = message.ToAddChatRequest();
+            GlobalVariable.AddNewChat(request);
+            OpenOrCreateChatForm(request, true);
         }
 
 
@@ -240,16 +252,16 @@ namespace NewTeacher
 
         private void ExportSign()
         {
-            var onlineList = onlineInfo.GetStudentOnlineList();
-            if (onlineList.Count <= 0)
+            //var onlineList = onlineInfo.GetStudentOnlineList();
+            if (onlineInfo.LoginedStuList.Count <= 0)
             {
-                MessageBox.Show("当前在线学生为空");
+                MessageBox.Show("当前登陆学生为空");
                 return;
             }
             var table = new System.Data.DataTable();
             table.Columns.Add("学生姓名", typeof(string));
             table.Columns.Add("是否签到", typeof(string));
-            foreach (var item in onlineList)
+            foreach (var item in onlineInfo.LoginedStuList)
             {
                 if (item.clientRole == ClientRole.Student)
                 {

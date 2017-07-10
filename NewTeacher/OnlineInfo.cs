@@ -15,6 +15,7 @@ namespace NewTeacher
         public event OnlineChangeHandle OnLineChange;
         public event OnlineChangeHandle AddOnLine;
         public event OnlineDelHandle DelOnLine;
+        public IList<OnlineListResult> LoginedStuList { get; set; }
 
         public OnlineInfo()
         {
@@ -29,6 +30,7 @@ namespace NewTeacher
         public void OnOnlineChange(IList<OnlineListResult> onLineList)
         {
             this.OnLineList = onLineList;
+            LoginedStuList = onLineList.Where(d => d.clientRole == ClientRole.Student).ToList(); ;
             OnlineEventArgs e = new OnlineEventArgs(onLineList);
             OnLineChange(this, e);
         }
@@ -55,6 +57,14 @@ namespace NewTeacher
             if (!OnLineList.Any(d => d.username == newUser.username))
             {
                 OnLineList.Add(newUser);
+            }
+
+            if (!LoginedStuList.Any(d => d.username == newUser.username))
+            {
+                if (newUser.clientRole == ClientRole.Student)
+                {
+                    LoginedStuList.Add(newUser);
+                }
             }
         }
 
