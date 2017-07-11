@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using MyVideo;
+using System.Net.Sockets;
 
 namespace MySocket
 {
@@ -25,7 +26,7 @@ namespace MySocket
         //}
         readonly string serverIP = System.Configuration.ConfigurationManager.AppSettings["serverIP"];
         readonly int serverPort = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["serverPort"]);
-        
+
         bool _connected;
         ScreenInteract _screenInteract;
 
@@ -56,13 +57,13 @@ namespace MySocket
                 {
                     Loger.LogMessage(ex.ToString());
                 }
-                
+
             });
 
             _connected = client.ConnectAsync(new IPEndPoint(IPAddress.Parse(serverIP), serverPort)).Result;
         }
 
-       
+
 
         //public bool IsEventHandlerRegistered(Delegate prospectiveHandler)
         //{
@@ -102,11 +103,24 @@ namespace MySocket
 
         public void CreateScreenInteract()
         {
-           
             var local = (IPEndPoint)client.LocalEndPoint;
-            string localIP = "192.168.1.93";// local.Address.ToString();// this.client.LocalEndPoint
+            var ipv4 = local.Address.ToString();
+            string localIP = ipv4.Substring(ipv4.LastIndexOf(':') + 1);// this.client.LocalEndPoint
             int localPort = local.Port;// local.Port;// this.client.LocalEndPoint.AddressFamily.;
             _screenInteract = new ScreenInteract(serverIP, localIP, localPort);
+        }
+
+        private string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("Local IP Address Not Found!");
         }
 
         public void StopScreenInteract()
@@ -185,12 +199,34 @@ namespace MySocket
 
         }
 
+        public void Send_VideoInteract()
+        {
+            string rtspAddress = _screenInteract.beginVideoInteract();
+            SendMessage<ScreenInteract_Request> message = new SendMessage<ScreenInteract_Request>();
+            message.Action = (int)CommandType.VideoInteract;
+            message.Data = new ScreenInteract_Request { url = rtspAddress };
+
+            SendMessage(message);
+
+        }
+
 
         public void Send_StopScreenInteract()
         {
 
             SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
             message.Action = (int)CommandType.StopScreenInteract;
+            message.Data = new StopLockScreenRequest();
+
+            SendMessage(message);
+
+        }
+
+        public void Send_StopVideoInteract()
+        {
+
+            SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
+            message.Action = (int)CommandType.StopVideoInteract;
             message.Data = new StopLockScreenRequest();
 
             SendMessage(message);

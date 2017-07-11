@@ -1,4 +1,4 @@
-﻿ // Decompiled with JetBrains decompiler
+﻿// Decompiled with JetBrains decompiler
 // Type: TcpConnectJson.ScreenInteract
 // Assembly: TcpConnect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: 22F34CB8-D6B3-4751-8C6A-D41233928FAE
@@ -24,8 +24,8 @@ namespace MyVideo
         private string _serverIp;
         private string _ipSelf;
         private int _portSelf;
-      //  private int widthPixel;
-      //  private int heightPixel;
+        //  private int widthPixel;
+        //  private int heightPixel;
 
         readonly string RTSPserverIP = System.Configuration.ConfigurationManager.AppSettings["RTSPserverIP"];
 
@@ -51,9 +51,25 @@ namespace MyVideo
 
         public string beginScreenInteract()
         {
+            if (isBeginScreenInteract)
+            {
+                stopScreenInteract();
+            }
             this._rtspAddress = this.pushRtspStream(this._serverIp, this._ipSelf, this._portSelf);
 
             this.isBeginScreenInteract = true;
+            return this._rtspAddress;
+        }
+
+        public string beginVideoInteract()
+        {
+            if (isBeginScreenInteract)
+            {
+                stopScreenInteract();
+            }
+            _rtspAddress = pushVideoByFFmpeg(_serverIp, _ipSelf, _portSelf);
+
+            isBeginScreenInteract = true;
             return this._rtspAddress;
         }
 
@@ -85,38 +101,45 @@ namespace MyVideo
             StringBuilder sb = new StringBuilder();
             foreach (var item in capDevices)
             {
-                sb.Append("name:" + item.Name +
-                         "\r\ndeviceid:" + item.ClassID +
-                         "\r\npath:" + item.DevicePath +
-                         "\r\n\r\n");
+                return item.Name;
             }
             return "";
         }
 
         private string pushRtspStream(string ipServer, string ipSelf, int portSelf)
         {
+            var para = GetFFMpegParaAndUrl(ipServer, ipSelf, portSelf);
+            var mic = GetMicName();
+            var url = "-f gdigrab -i desktop " + para[1];
+            if (!string.IsNullOrWhiteSpace(mic))
+                url = " -f gdigrab -i desktop -f dshow -i audio=\"" + mic + "\"" + para[1];
+            this._ffmpeg = new Ffmpeg();
+            this._ffmpeg.beginExecute(url);
+            // var rtsp = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
+            return para[0];
+        }
+
+        private string[] GetFFMpegParaAndUrl(string ipServer, string ipSelf, int portSelf)
+        {
             if (!string.IsNullOrWhiteSpace(RTSPserverIP))
             {
                 ipServer = RTSPserverIP;
             }
-            //  this.audio = "Default WaveOut Device";
-            string nameByIpPort = this.createNameByIpPort(ipSelf, portSelf);
-            string mic = GetMicName();
-            //if (!string.IsNullOrWhiteSpace(mic))
-            //{
-            //    mic = string.Format("-f dshow -i audio=\"{0}\"", mic);
-            //}
-            // mic = "";
+            string nameByIpPort = createNameByIpPort(ipSelf, portSelf);
             var rtspUrl = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
-            //  rtspUrl = "videos\\" + DateTime.Now.ToString("HHmmssfff") + ".mpg";
-            // string para = string.Format("-f gdigrab -i desktop {1}  -s 1280*760 -vcodec libx264 -framerate 10  {0}", rtspUrl, mic);
-            string para = " -f gdigrab -i desktop -framerate 6 -g 36 -s 640*480 -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
-            if (!string.IsNullOrWhiteSpace(mic))
-                para = " -f gdigrab -i desktop -f dshow -i audio=\"" + mic + "\" -framerate 6 -g 240 -s 640*480 -acodec mp2 -ab 128k -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
+            string para = " -framerate 15 -g 36 -s 960*640 -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
+            return new string[] { rtspUrl, para };
+        }
+
+        private string pushVideoByFFmpeg(string ipServer, string ipSelf, int portSelf)
+        {
+            var para = GetFFMpegParaAndUrl(ipServer, ipSelf, portSelf);
+            var video = GetVideoName();
+            var mic = GetMicName();
+            var url = "-f dshow -i video=\"" + video + "\":audio=\"" + mic + "\"" + para[1];
             this._ffmpeg = new Ffmpeg();
-            this._ffmpeg.beginExecute(para);
-            // var rtsp = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
-            return rtspUrl;
+            this._ffmpeg.beginExecute(url);
+            return para[0];
         }
 
         private string createNameByIpPort(string ip, int port)
@@ -135,7 +158,7 @@ namespace MyVideo
 
     public class Ffmpeg
     {
-        private Process myProcess = (Process)null;
+        private Process myProcess = null;
 
         public event MessageReceivedEventHandler MessageReceived;
 

@@ -15,8 +15,7 @@ namespace NewTeacher
         OnlineInfo onlineInfo;
         ChatForm chatForm;
         //  string soundSource;
-        static bool beingWatching = false;//正在查看学生端
-                                          //  bool beingScreenBroadcast = false;//正在屏幕广播
+        bool isPush = false;//是否正在推送视频流
 
         #endregion
         public MainForm()
@@ -37,34 +36,7 @@ namespace NewTeacher
 
         }
 
-
-        private void GetSoundSou()
-        {
-            MessageBox.Show("asdasdasd");
-
-            //  CaptureDevicesCollection sound_devices = new CaptureDevicesCollection();
-            //if (sound_devices.Count > 0)
-            //{
-            //    int i = 0;
-            //    while (i < sound_devices.Count)
-            //    {
-            //        string text = sound_devices[i].Description;
-            //        if (text.Contains("麦克风"))
-            //        {
-            //            string descrip = sound_devices[i].Description;
-            //            int len = descrip.Length;
-            //            if (len > 31)
-            //                soundSource = descrip.Substring(0, 31);
-            //            else
-            //                soundSource = descrip;
-            //            //return;
-            //            break;
-            //        }
-            //        i++;
-            //    }
-            //}
-        }
-
+        
 
         #region 在线列表
         private void InitOnlineInfo()
@@ -347,16 +319,15 @@ namespace NewTeacher
 
         private void menuScreenShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
             string text = e.Item.Caption;
             if (text == "屏幕广播")
             {
-                if (!beingWatching)
+                if (!isPush)
                 {
                     GlobalVariable.client.CreateScreenInteract();
                     GlobalVariable.client.Send_ScreenInteract();
                     e.Item.Caption = "关闭广播";
-                    // beingScreenBroadcast = true;
+                    isPush = true;
                 }
                 else
                 {
@@ -369,8 +340,7 @@ namespace NewTeacher
                 GlobalVariable.client.StopScreenInteract();
                 GlobalVariable.client.Send_StopScreenInteract();
                 e.Item.Caption = "屏幕广播";
-
-                //   beingScreenBroadcast = false;
+                isPush = false;
             }
         }
 
@@ -386,12 +356,34 @@ namespace NewTeacher
 
         private void menuVideoLive_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            GetSoundSou();
+            string text = e.Item.Caption;
+            if (text == "视频直播")
+            {
+                if (!isPush)
+                {
+                    GlobalVariable.client.CreateScreenInteract();
+                    GlobalVariable.client.Send_VideoInteract();
+                    e.Item.Caption = "关闭直播";
+                    isPush = true;
+                }
+                else
+                {
+                    //  showTip();
+                    return;
+                }
+            }
+            else
+            {
+                GlobalVariable.client.StopScreenInteract();
+                GlobalVariable.client.Send_StopScreenInteract();
+                e.Item.Caption = "视频直播";
+                isPush = false;
+            }
         }
 
         private void menuFileShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+           
         }
 
 
