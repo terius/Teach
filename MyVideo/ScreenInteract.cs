@@ -1,4 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
+﻿ // Decompiled with JetBrains decompiler
 // Type: TcpConnectJson.ScreenInteract
 // Assembly: TcpConnect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: 22F34CB8-D6B3-4751-8C6A-D41233928FAE

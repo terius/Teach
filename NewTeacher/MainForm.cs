@@ -17,7 +17,7 @@ namespace NewTeacher
         //  string soundSource;
         static bool beingWatching = false;//正在查看学生端
                                           //  bool beingScreenBroadcast = false;//正在屏幕广播
-     
+
         #endregion
         public MainForm()
         {
@@ -314,12 +314,35 @@ namespace NewTeacher
 
         private void menuSilence_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            if (e.Item.Caption == "屏幕肃静")
+            {
+                GlobalVariable.client.Send_Quiet();
+                e.Item.Caption = "解除屏幕肃静";
+            }
+            else
+            {
+                GlobalVariable.client.Send_StopQuiet();
+                e.Item.Caption = "屏幕肃静";
+            }
         }
 
         private void menuDisableMK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            if (lvOnline.SelectedItems.Count <= 0)
+            {
+                return;
+            }
+            string username = lvOnline.SelectedItems[0].SubItems[2].Text;
+            if (e.Item.Caption == "禁止鼠标键盘")
+            {
+                GlobalVariable.client.Send_LockScreen(username);
+                e.Item.Caption = "解锁";
+            }
+            else
+            {
+                GlobalVariable.client.Send_StopLockScreen(username);
+                e.Item.Caption = "禁止鼠标键盘";
+            }
         }
 
         private void menuScreenShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
