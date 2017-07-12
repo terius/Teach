@@ -12,5 +12,8 @@ namespace Model
         public ClientRole UserType { get; set; }
 
         public string DisplayName { get; set; }
+
+        public bool AllowPrivateChat { get; set; }
+        public bool AllowTeamChat { get; set; }
     }
 }

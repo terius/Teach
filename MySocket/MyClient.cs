@@ -206,7 +206,7 @@ namespace MySocket
         {
             string rtspAddress = _screenInteract.beginVideoInteract();
             var request = new ScreenInteract_Request { url = rtspAddress };
-            SendMessage(request, CommandType.VideoInteract);
+            SendMessage(request, CommandType.ScreenInteract);
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace MySocket
         /// </summary>
         public void Send_StopVideoInteract()
         {
-            SendMessageNoPara(CommandType.StopVideoInteract);
+            SendMessageNoPara(CommandType.StopScreenInteract);
 
         }
         /// <summary>
@@ -350,7 +350,7 @@ namespace MySocket
         /// <param name="userName"></param>
         public void Send_CallStudentShow(string userName)
         {
-            var request = new CallStudentShowRequest { StuUserName = userName };
+            var request = new OnlyUserNameRequest { receivename = userName };
             SendMessage(request, CommandType.CallStudentShow);
         }
 
@@ -360,8 +360,46 @@ namespace MySocket
         /// <param name="userName"></param>
         public void Send_StopStudentShow(string userName)
         {
-            var request = new StopStudentShowRequest { StuUserName = userName };
+            var request = new OnlyUserNameRequest { receivename = userName };
             SendMessage(request, CommandType.StopStudentShow);
+        }
+
+        /// <summary>
+        /// 禁止学生私聊
+        /// </summary>
+        /// <param name="userName"></param>
+        public void Send_ForbidPrivateChat(string userName)
+        {
+            var request = new OnlyUserNameRequest { receivename = userName };
+            SendMessage(request, CommandType.ForbidPrivateChat);
+        }
+        /// <summary>
+        /// 允许学生私聊
+        /// </summary>
+        /// <param name="userName"></param>
+        public void Send_AllowPrivateChat(string userName)
+        {
+            var request = new OnlyUserNameRequest { receivename = userName };
+            SendMessage(request, CommandType.AllowPrivateChat);
+        }
+        /// <summary>
+        /// 禁止群聊
+        /// </summary>
+        /// <param name="userName"></param>
+        public void Send_ForbidTeamChat(string userName)
+        {
+            var request = new OnlyUserNameRequest { receivename = userName };
+            SendMessage(request, CommandType.ForbidTeamChat);
+        }
+
+        /// <summary>
+        /// 允许群聊
+        /// </summary>
+        /// <param name="userName"></param>
+        public void Send_AllowTeamChat(string userName)
+        {
+            var request = new OnlyUserNameRequest { receivename = userName };
+            SendMessage(request, CommandType.AllowTeamChat);
         }
 
         #region 通用方法

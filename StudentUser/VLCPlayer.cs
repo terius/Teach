@@ -44,8 +44,10 @@ namespace StudentUser
 
         public void StartPlayStream(string url)
         {
+            Uri uri = new Uri(url);
+            var option = ":network-caching=300:rtsp-caching=300:no-video-title-show";
             Loger.LogMessage("接收到rtsp地址：" + url);
-            vlcControl1.Play(url);
+            vlcControl1.Play(uri, option);
         }
 
         public void StartPlayLocation(string filename)

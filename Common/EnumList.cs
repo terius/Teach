@@ -82,22 +82,39 @@
         /// 开始学生演示
         /// </summary>
         CallStudentShow = 21,
-        /// <summary>
-        /// 学生启动演示
-        /// </summary>
-        StudentBeginShow = 22,
+        ///// <summary>
+        ///// 学生启动演示
+        ///// </summary>
+        //StudentBeginShow = 22,
         /// <summary>
         /// 停止学生演示
         /// </summary>
         StopStudentShow = 23,
+        ///// <summary>
+        ///// 视频直播
+        ///// </summary>
+        //VideoInteract = 24,
+        ///// <summary>
+        ///// 结束视频直播
+        ///// </summary>
+        //StopVideoInteract = 25,
         /// <summary>
-        /// 视频直播
+        /// 禁止私聊
         /// </summary>
-        VideoInteract = 24,
+        ForbidPrivateChat=26,
         /// <summary>
-        ///   结束视频直播
+        /// 允许私聊
         /// </summary>
-        StopVideoInteract = 25
+        AllowPrivateChat = 27,
+        /// <summary>
+        /// 禁止群聊
+        /// </summary>
+        ForbidTeamChat=28,
+        /// <summary>
+        /// 允许群聊
+        /// </summary>
+        AllowTeamChat = 29,
+
     }
 
     /// <summary>

@@ -220,6 +220,7 @@ namespace NewTeacher
                 return "";
             }
             string username = lvOnline.SelectedItems[0].SubItems[2].Text;
+            actionStuUserName = username;
             return username;
         }
         #endregion
@@ -364,10 +365,7 @@ namespace NewTeacher
             }
         }
 
-        private void ribbon_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
+      
 
 
 
@@ -379,7 +377,7 @@ namespace NewTeacher
                 var username = GetSelectStudentUserName();
                 if (!string.IsNullOrWhiteSpace(username))
                 {
-                    actionStuUserName = username;
+                   
                     GlobalVariable.client.Send_CallStudentShow(username);
                     e.Item.Caption = "关闭演示";
 
@@ -473,42 +471,75 @@ namespace NewTeacher
 
         private void userList_lockScreen_Click(object sender, EventArgs e)
         {
-
+            var userName = GetSelectStudentUserName();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                GlobalVariable.client.Send_LockScreen(userName);
+            }
+           
         }
 
         private void userList_stopLockScreen_Click(object sender, EventArgs e)
         {
-
+            var userName = GetSelectStudentUserName();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                GlobalVariable.client.Send_StopLockScreen(userName);
+            }
         }
 
         private void userList_P_forbidPrivateChat_Click(object sender, EventArgs e)
         {
-
+            var userName = GetSelectStudentUserName();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                GlobalVariable.client.Send_ForbidPrivateChat(userName);
+            }
         }
 
         private void userList_P_forbidGroupChat_Click(object sender, EventArgs e)
         {
-
+            var userName = GetSelectStudentUserName();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                GlobalVariable.client.Send_ForbidTeamChat(userName);
+            }
         }
 
         private void userList_P_allowPrivateChat_Click(object sender, EventArgs e)
         {
-
+            var userName = GetSelectStudentUserName();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                GlobalVariable.client.Send_AllowPrivateChat(userName);
+            }
         }
 
         private void userList_P_allowGroupChat_Click(object sender, EventArgs e)
         {
-
+            var userName = GetSelectStudentUserName();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                GlobalVariable.client.Send_AllowTeamChat(userName);
+            }
         }
 
         private void userList_studentShow_Click(object sender, EventArgs e)
         {
-
+            var userName = GetSelectStudentUserName();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                GlobalVariable.client.Send_CallStudentShow(userName);
+            }
         }
 
         private void userList_stopStudentShow_Click(object sender, EventArgs e)
         {
-
+            var userName = GetSelectStudentUserName();
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                GlobalVariable.client.Send_StopStudentShow(userName);
+            }
         }
 
         #endregion

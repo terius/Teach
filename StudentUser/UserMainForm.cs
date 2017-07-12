@@ -102,6 +102,14 @@ namespace StudentUser
                     });
 
                     break;
+                case (int)CommandType.CallStudentShow:
+                    DoAction(() =>
+                    {
+                        GlobalVariable.client.CreateScreenInteract();
+                        GlobalVariable.client.Send_ScreenInteract();
+
+                    });
+                    break;
 
                 default:
                     break;
