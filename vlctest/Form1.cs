@@ -14,6 +14,7 @@ namespace vlctest
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
         }
 
       
@@ -50,6 +51,13 @@ namespace vlctest
                     e.VlcLibDirectory = new DirectoryInfo(folderBrowserDialog.SelectedPath);
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            sms s = new sms("asdas", "asdasd", true);
+            Controls.Add(s);
+            this.Text = "asdasdasd";
         }
     }
 }

@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Request\BaseRequest.cs" />
+    <Compile Include="Request\StudentShowRequest.cs" />
+    <Compile Include="Request\EmptyRequest.cs" />
     <Compile Include="Request\TeamChatListRequest.cs" />
     <Compile Include="Request\LockScreenRequest.cs" />
     <Compile Include="Request\GroupChatRequest.cs" />

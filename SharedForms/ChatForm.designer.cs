@@ -118,9 +118,6 @@ namespace SharedForms
             this.ChatNav.Appearance.ItemHotTracked.ForeColor = System.Drawing.Color.White;
             this.ChatNav.Appearance.ItemHotTracked.Options.UseFont = true;
             this.ChatNav.Appearance.ItemHotTracked.Options.UseForeColor = true;
-            this.ChatNav.Appearance.ItemPressed.BorderColor = System.Drawing.Color.Red;
-            this.ChatNav.Appearance.ItemPressed.Options.UseBorderColor = true;
-            this.ChatNav.Appearance.ItemPressed.Options.UseFont = true;
             this.ChatNav.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChatNav.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None;
             this.ChatNav.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
@@ -191,7 +188,6 @@ namespace SharedForms
             // 
             this.smsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.smsPanel1.FireScrollEventOnMouseWheel = true;
-            this.smsPanel1.LastY = 10;
             this.smsPanel1.Location = new System.Drawing.Point(0, 0);
             this.smsPanel1.Name = "smsPanel1";
             this.smsPanel1.Size = new System.Drawing.Size(1060, 549);
@@ -374,7 +370,7 @@ namespace SharedForms
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "聊天窗口";

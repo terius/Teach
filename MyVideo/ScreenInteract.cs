@@ -1,11 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TcpConnectJson.ScreenInteract
-// Assembly: TcpConnect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 22F34CB8-D6B3-4751-8C6A-D41233928FAE
-// Assembly location: D:\Study2\教育系统\1209\Teach\TeacherUser\Libs\DLL\TcpConnect.dll
-
-//using DirectShowLib;
-using DirectShowLib;
+﻿using DirectShowLib;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -16,9 +9,9 @@ namespace MyVideo
 {
     public class ScreenInteract
     {
-        private string audio = (string)null;
-        private Ffmpeg _ffmpeg = (Ffmpeg)null;
-        private string _rtspAddress = (string)null;
+        private string audio = null;
+        private Ffmpeg _ffmpeg = null;
+        private string _rtspAddress = null;
         private bool isBeginScreenInteract = false;
         // private ClientConnectTcp _clientConnect;
         private string _serverIp;
@@ -28,26 +21,14 @@ namespace MyVideo
         //  private int heightPixel;
 
         readonly string RTSPserverIP = System.Configuration.ConfigurationManager.AppSettings["RTSPserverIP"];
-
-
-
-
-
         public ScreenInteract(string serverIP, string ipSelf, int portSelf)
         {
-
-            this._serverIp = serverIP;
-            this._ipSelf = ipSelf;
-            this._portSelf = portSelf;
+            _serverIp = serverIP;
+            _ipSelf = ipSelf;
+            _portSelf = portSelf;
         }
 
-        public ScreenInteract(string serverIP, string ipSelf, int portSelf, string audioName)
-        {
-            this._serverIp = serverIP;
-            this._ipSelf = ipSelf;
-            this._portSelf = portSelf;
-            this.audio = audioName;
-        }
+
 
         public string beginScreenInteract()
         {

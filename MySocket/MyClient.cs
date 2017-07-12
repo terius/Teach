@@ -103,11 +103,14 @@ namespace MySocket
 
         public void CreateScreenInteract()
         {
-            var local = (IPEndPoint)client.LocalEndPoint;
-            var ipv4 = local.Address.ToString();
-            string localIP = ipv4.Substring(ipv4.LastIndexOf(':') + 1);// this.client.LocalEndPoint
-            int localPort = local.Port;// local.Port;// this.client.LocalEndPoint.AddressFamily.;
-            _screenInteract = new ScreenInteract(serverIP, localIP, localPort);
+            if (_screenInteract == null)
+            {
+                var local = (IPEndPoint)client.LocalEndPoint;
+                var ipv4 = local.Address.ToString();
+                string localIP = ipv4.Substring(ipv4.LastIndexOf(':') + 1);// this.client.LocalEndPoint
+                int localPort = local.Port;// local.Port;// this.client.LocalEndPoint.AddressFamily.;
+                _screenInteract = new ScreenInteract(serverIP, localIP, localPort);
+            }
         }
 
         private string GetLocalIPAddress()
@@ -151,6 +154,13 @@ namespace MySocket
 
 
         #region 发送命令
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="nickName"></param>
+        /// <param name="password"></param>
+        /// <param name="clientRole"></param>
         public void Send_UserLogin(string userName, string nickName, string password, ClientRole clientRole)
         {
             // GetAudioName();
@@ -169,161 +179,132 @@ namespace MySocket
             }
             loginInfo.clientRole = clientRole;
             loginInfo.clientStyle = ClientStyle.PC;
-            SendMessage<LoginInfo> message = new SendMessage<LoginInfo>();
-            message.Action = (int)CommandType.UserLogin;
-            message.Data = loginInfo;
-            SendMessage(message);
-
-            //Task.Run(async () =>
-            //{
-            //    await this.SendMessage(message);
-            //});
+            SendMessage(loginInfo, CommandType.UserLogin);
         }
 
+        /// <summary>
+        /// 显示当前在线用户
+        /// </summary>
         public void Send_OnlineList()
         {
-            SendMessage<object> message = new SendMessage<object>();
-            message.Action = (int)CommandType.OnlineList;
-            SendMessage(message);
-
+            SendMessageNoPara(CommandType.OnlineList);
         }
-
+        /// <summary>
+        /// 屏幕广播
+        /// </summary>
         public void Send_ScreenInteract()
         {
             string rtspAddress = _screenInteract.beginScreenInteract();
-            SendMessage<ScreenInteract_Request> message = new SendMessage<ScreenInteract_Request>();
-            message.Action = (int)CommandType.ScreenInteract;
-            message.Data = new ScreenInteract_Request { url = rtspAddress };
-
-            SendMessage(message);
-
+            var request = new ScreenInteract_Request { url = rtspAddress };
+            SendMessage(request, CommandType.ScreenInteract);
         }
 
+        /// <summary>
+        /// 视频直播
+        /// </summary>
         public void Send_VideoInteract()
         {
             string rtspAddress = _screenInteract.beginVideoInteract();
-            SendMessage<ScreenInteract_Request> message = new SendMessage<ScreenInteract_Request>();
-            message.Action = (int)CommandType.VideoInteract;
-            message.Data = new ScreenInteract_Request { url = rtspAddress };
-
-            SendMessage(message);
-
+            var request = new ScreenInteract_Request { url = rtspAddress };
+            SendMessage(request, CommandType.VideoInteract);
         }
 
-
+        /// <summary>
+        /// 停止屏幕广播
+        /// </summary>
         public void Send_StopScreenInteract()
         {
-
-            SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
-            message.Action = (int)CommandType.StopScreenInteract;
-            message.Data = new StopLockScreenRequest();
-
-            SendMessage(message);
+            SendMessageNoPara(CommandType.StopScreenInteract);
 
         }
-
+        /// <summary>
+        /// 停止视频直播
+        /// </summary>
         public void Send_StopVideoInteract()
         {
-
-            SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
-            message.Action = (int)CommandType.StopVideoInteract;
-            message.Data = new StopLockScreenRequest();
-
-            SendMessage(message);
+            SendMessageNoPara(CommandType.StopVideoInteract);
 
         }
-
+        /// <summary>
+        /// 锁屏
+        /// </summary>
+        /// <param name="userName"></param>
         public void Send_LockScreen(string userName)
         {
-
-            SendMessage<LockScreenRequest> message = new SendMessage<LockScreenRequest>();
-            message.Action = (int)CommandType.LockScreen;
-            message.Data = new LockScreenRequest { receivename = userName };
-
-            SendMessage(message);
+            var request = new LockScreenRequest { receivename = userName };
+            SendMessage(request, CommandType.LockScreen);
 
         }
 
-
+        /// <summary>
+        /// 停止锁屏
+        /// </summary>
+        /// <param name="userName"></param>
         public void Send_StopLockScreen(string userName)
         {
-
-            SendMessage<StopLockScreenRequest> message = new SendMessage<StopLockScreenRequest>();
-            message.Action = (int)CommandType.StopLockScreen;
-            message.Data = new StopLockScreenRequest { receivename = userName };
-
-            SendMessage(message);
+            var request = new LockScreenRequest { receivename = userName };
+            SendMessage(request, CommandType.StopLockScreen);
 
         }
 
-
+        /// <summary>
+        /// 屏幕肃静
+        /// </summary>
         public void Send_Quiet()
         {
-
-            SendMessage<QuietRequest> message = new SendMessage<QuietRequest>();
-            message.Action = (int)CommandType.Quiet;
-            message.Data = new QuietRequest();
-
-            SendMessage(message);
+            SendMessageNoPara(CommandType.Quiet);
 
         }
 
-
+        /// <summary>
+        /// 结束屏幕肃静
+        /// </summary>
         public void Send_StopQuiet()
         {
-            SendMessage<StopQuietRequest> message = new SendMessage<StopQuietRequest>();
-            message.Action = (int)CommandType.StopQuiet;
-            message.Data = new StopQuietRequest();
-            SendMessage(message);
+            SendMessageNoPara(CommandType.StopQuiet);
         }
 
-
+        /// <summary>
+        /// 私聊
+        /// </summary>
+        /// <param name="request"></param>
         public void Send_PrivateChat(PrivateChatRequest request)
         {
-
-            SendMessage<PrivateChatRequest> message = new SendMessage<PrivateChatRequest>();
-            message.Action = (int)CommandType.PrivateChat;
-            message.Data = request;
-            SendMessage(message);
+            SendMessage(request, CommandType.PrivateChat);
         }
 
-
-        public void SendMessage<T>(T t, CommandType cmdType) where T : class, new()
-        {
-            SendMessage<T> message = new SendMessage<T>();
-            message.Action = (int)cmdType;
-            message.Data = t;
-            SendMessage(message);
-        }
-
+      
+        /// <summary>
+        /// 群组聊天
+        /// </summary>
+        /// <param name="request"></param>
         public void Send_TeamChat(TeamChatRequest request)
         {
-
-            SendMessage<TeamChatRequest> message = new SendMessage<TeamChatRequest>();
-            message.Action = (int)CommandType.TeamChat;
-            message.Data = request;
-            SendMessage(message);
+            SendMessage(request, CommandType.TeamChat);
         }
 
 
+        /// <summary>
+        /// 全体成员聊天
+        /// </summary>
+        /// <param name="sendName"></param>
+        /// <param name="msg"></param>
         public void Send_GroupChat(string sendName, string msg)
         {
-            SendMessage<GroupChatRequest> message = new SendMessage<GroupChatRequest>();
-            message.Action = (int)CommandType.GroupChat;
-            message.Data = new GroupChatRequest
+            var request = new GroupChatRequest
             {
                 sendname = sendName,
                 msg = msg
             };
-            SendMessage(message);
+            SendMessage(request, CommandType.GroupChat);
         }
-
+        /// <summary>
+        /// 创建群组
+        /// </summary>
+        /// <param name="request"></param>
         public void Send_CreateTeam(TeamChatCreateOrUpdateRequest request)
         {
-            SendMessage<TeamChatCreateOrUpdateRequest> message = new SendMessage<TeamChatCreateOrUpdateRequest>();
-            message.Action = (int)CommandType.CreateTeam;
-            message.Data = request;
-            SendMessage(message);
+            SendMessage(request, CommandType.CreateTeam);
         }
         /// <summary>
         /// 课堂点名
@@ -332,10 +313,7 @@ namespace MySocket
         /// <param name="msg"></param>
         public void Send_Call()
         {
-            var message = new SendMessage<BaseRequest>();
-            message.Action = (int)CommandType.BeginCall;
-            message.Data = new BaseRequest();
-            SendMessage(message);
+            SendMessageNoPara( CommandType.BeginCall);
 
         }
 
@@ -344,10 +322,7 @@ namespace MySocket
         /// </summary>
         public void Send_EndCall()
         {
-            var message = new SendMessage<BaseRequest>();
-            message.Action = (int)CommandType.EndCall;
-            message.Data = new BaseRequest();
-            SendMessage(message);
+            SendMessageNoPara(CommandType.EndCall);
 
         }
 
@@ -356,21 +331,57 @@ namespace MySocket
         /// </summary>
         public void Send_StudentCall(string no, string name, string userName)
         {
-            var message = new SendMessage<StuCallRequest>();
-            message.Action = (int)CommandType.StudentCall;
-            message.Data = new StuCallRequest { name = name, no = no, username = userName };
-            SendMessage(message);
+            var request = new StuCallRequest { name = name, no = no, username = userName };
+            SendMessage(request, CommandType.StudentCall);
 
         }
 
-
+        /// <summary>
+        /// 学生登录完成已进入主页面
+        /// </summary>
         public void Send_StudentInMainForm()
         {
-            var message = new SendMessage<BaseRequest>();
-            message.Action = (int)CommandType.StudentInMainForm;
-            message.Data = new BaseRequest();
+            SendMessageNoPara(CommandType.StudentInMainForm);
+        }
+
+        /// <summary>
+        /// 呼叫学生演示
+        /// </summary>
+        /// <param name="userName"></param>
+        public void Send_CallStudentShow(string userName)
+        {
+            var request = new CallStudentShowRequest { StuUserName = userName };
+            SendMessage(request, CommandType.CallStudentShow);
+        }
+
+        /// <summary>
+        /// 关闭学生演示
+        /// </summary>
+        /// <param name="userName"></param>
+        public void Send_StopStudentShow(string userName)
+        {
+            var request = new StopStudentShowRequest { StuUserName = userName };
+            SendMessage(request, CommandType.StopStudentShow);
+        }
+
+        #region 通用方法
+        private void SendMessage<T>(T t, CommandType cmdType) where T : class, new()
+        {
+            SendMessage<T> message = new SendMessage<T>();
+            message.Action = (int)cmdType;
+            message.Data = t;
             SendMessage(message);
         }
+
+        private void SendMessageNoPara(CommandType cmdType)
+        {
+            SendMessage<EmptyRequest> message = new SendMessage<EmptyRequest>();
+            message.Action = (int)cmdType;
+            message.Data = new EmptyRequest();
+            SendMessage(message);
+        }
+
+        #endregion
 
         #endregion
     }

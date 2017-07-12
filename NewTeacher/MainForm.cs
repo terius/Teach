@@ -16,7 +16,7 @@ namespace NewTeacher
         ChatForm chatForm;
         //  string soundSource;
         bool isPush = false;//是否正在推送视频流
-
+        string actionStuUserName;
         #endregion
         public MainForm()
         {
@@ -36,7 +36,7 @@ namespace NewTeacher
 
         }
 
-        
+
 
         #region 在线列表
         private void InitOnlineInfo()
@@ -205,6 +205,26 @@ namespace NewTeacher
         #endregion
 
 
+        #region 方法
+
+        private string GetSelectStudentUserName()
+        {
+            if (lvOnline.Items.Count <= 0)
+            {
+                GlobalVariable.ShowWarnning("当前在线学生为空");
+                return "";
+            }
+            if (lvOnline.SelectedItems.Count <= 0)
+            {
+                GlobalVariable.ShowWarnning("请先选择学生");
+                return "";
+            }
+            string username = lvOnline.SelectedItems[0].SubItems[2].Text;
+            return username;
+        }
+        #endregion
+
+
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -349,8 +369,33 @@ namespace NewTeacher
 
         }
 
+
+
         private void menuStudentShow_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            string text = e.Item.Caption;
+            if (text == "学生演示")
+            {
+                var username = GetSelectStudentUserName();
+                if (!string.IsNullOrWhiteSpace(username))
+                {
+                    actionStuUserName = username;
+                    GlobalVariable.client.Send_CallStudentShow(username);
+                    e.Item.Caption = "关闭演示";
+
+                }
+
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(actionStuUserName))
+                {
+                    GlobalVariable.client.Send_StopStudentShow(actionStuUserName);
+                    actionStuUserName = null;
+                    e.Item.Caption = "学生演示";
+                }
+            }
+
 
         }
 
@@ -383,7 +428,7 @@ namespace NewTeacher
 
         private void menuFileShare_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-           
+
         }
 
 
@@ -419,8 +464,9 @@ namespace NewTeacher
             //}
 
             chatForm.BringToFront();
-            chatForm.CreateChatItems(request, fromReceMsg);
             chatForm.Show();
+            chatForm.CreateChatItems(request, fromReceMsg);
+
         }
 
 

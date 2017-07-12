@@ -37,7 +37,7 @@ namespace SharedForms
         /// </summary>
         public bool IsHide { get; set; }
         #endregion
-        
+
         #region 构造函数
 
 
@@ -52,7 +52,7 @@ namespace SharedForms
         }
 
         #endregion
-        
+
         #region 方法
         /// <summary>
         /// 创建聊天对象
@@ -97,7 +97,7 @@ namespace SharedForms
         private void ChatItemSelected(ChatItem chatItem, bool fromClick)
         {
             this.labChatTitle.Text = "与【" + chatItem.DisplayName + "】的对话：";
-          //  chatItem.Caption = chatItem.DisplayName;
+            //  chatItem.Caption = chatItem.DisplayName;
             if (fromClick && chatItem.UserName == selectUserName)
             {
                 return;
@@ -240,7 +240,8 @@ namespace SharedForms
                 request.groupid = receieveUserName;
                 request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
-                GlobalVariable.client.SendMessage(request, CommandType.TeamChat);
+                GlobalVariable.client.Send_TeamChat(request);
+                //  GlobalVariable.client.SendMessage(request, CommandType.TeamChat);
             }
             //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
 
@@ -267,6 +268,7 @@ namespace SharedForms
         private void AppendMessage(ChatMessage chatMessage, bool isInput)
         {
             bool isMySelf = IsMySelf(chatMessage.SendUserName);
+         
             smsPanel1.AddMessage(chatMessage, isMySelf);
             if (isInput)
             {
@@ -288,7 +290,7 @@ namespace SharedForms
             messagebox.Show(this, "信息", msg);
         }
         #endregion
-        
+
         #region 事件
 
         /// <summary>
@@ -327,6 +329,7 @@ namespace SharedForms
                 )
             {
                 link.Item.AppearancePressed.ForeColor = Color.White;
+               // link.Item.Appearance.Options.UseFont = true;
                 e.Graphics.FillRectangle(Brushes.DodgerBlue, e.RealBounds);
             }
         }
@@ -369,9 +372,9 @@ namespace SharedForms
             }
         }
 
-       
 
-    
+
+
         /// <summary>
         /// 窗体关闭时
         /// </summary>
@@ -435,7 +438,7 @@ namespace SharedForms
                 GlobalVariable.ShowWarnning("请先选择聊天对象");
                 return;
             }
-         
+
 
             SendMessageCommand(selectUserName, content);
             var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content, GlobalVariable.LoginUserInfo.UserType);
@@ -447,7 +450,7 @@ namespace SharedForms
 
         #endregion
 
-        
+
     }
 
 

@@ -14,7 +14,7 @@ namespace SharedForms
         private Point[] piccyBounds;
 
         Brush blackBrush = Brushes.Black;
-        Font titleFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+        Font titleFont = new Font("微软雅黑", 10F, FontStyle.Bold, GraphicsUnit.Point, 134);
         // Font contentFont = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 
         Image topimg = Resource1.lt;
@@ -35,6 +35,7 @@ namespace SharedForms
         Image headIcon;
         bool messageIsString = false;
         string _downloadFileUrl;
+      
         public sms(ChatMessage messageInfo, bool isMySelf)
         {
             _title = messageInfo.Title;
@@ -65,12 +66,14 @@ namespace SharedForms
             {
                 headIcon = imgTech;
             }
-        }
 
+
+        }
+     
         string saveFilePath;
         private void TxtLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-             saveFilePath = FileHelper.DownloadFile(_downloadFileUrl);
+            saveFilePath = FileHelper.DownloadFile(_downloadFileUrl);
             if (!string.IsNullOrWhiteSpace(saveFilePath))
             {
                 ShowNotify("下载成功!文件已下载到\r\n" + saveFilePath);
@@ -167,7 +170,7 @@ namespace SharedForms
             }
         }
 
-        private void sms_Load(object sender, EventArgs e)
+        private void innerSize()
         {
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
             imgAtt = new ImageAttributes();
@@ -216,6 +219,11 @@ namespace SharedForms
                 txtLink.Size = new Size(388 - 10 - 5, _messageHeight);
                 txtLink.Text = _message;
             }
+        }
+
+        private void sms_Load(object sender, EventArgs e)
+        {
+            innerSize();
 
         }
     }

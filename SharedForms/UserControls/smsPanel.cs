@@ -1,5 +1,4 @@
-﻿using Common;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,20 +7,20 @@ namespace SharedForms
 {
     public partial class smsPanel : XtraScrollableControl
     {
-        private int _lastY = 0;
+        private int _lastY = 10;
 
-        public int LastY
-        {
-            get
-            {
-                return _lastY;
-            }
+        //public int LastY
+        //{
+        //    get
+        //    {
+        //        return _lastY;
+        //    }
 
-            set
-            {
-                _lastY = value;
-            }
-        }
+        //    set
+        //    {
+        //        _lastY = value;
+        //    }
+        //}
 
         int X = 10;
         sms chatItem;
@@ -35,6 +34,8 @@ namespace SharedForms
             Resize += SmsPanel_Resize;
             MouseEnter += SmsPanel_MouseEnter;
         }
+
+       
 
         private void SmsPanel_MouseEnter(object sender, EventArgs e)
         {
@@ -58,6 +59,7 @@ namespace SharedForms
 
         private void SmsPanel_ControlAdded(object sender, ControlEventArgs e)
         {
+
             ScrollControlIntoView(e.Control);
         }
 
@@ -73,12 +75,10 @@ namespace SharedForms
             {
                 X = 10;
             }
-
             Controls.Add(chatItem);
-            chatItem.Location = new Point(X - HorizontalScroll.Value, LastY - VerticalScroll.Value);
-            LastY += chatItem.Height;
+            chatItem.Location = new Point(X - HorizontalScroll.Value, _lastY - VerticalScroll.Value);
             ScrollControlIntoView(Controls[Controls.Count - 1]);
-
+            _lastY += chatItem.Height;
         }
     }
 }
