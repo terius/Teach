@@ -1,10 +1,9 @@
 ﻿using Helpers;
-using MyTCP;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace StudentUser
+namespace NewTeacher
 {
     public partial class ViewRtsp : Form
     {
@@ -29,9 +28,9 @@ namespace StudentUser
         {
             InitializeComponent();
             this.playAddress = rtspAddress;
-           // axVLCPlugin21.video.fullscreen = true;
+            axVLCPlugin21.video.fullscreen = true;
             player = new VLCPlus(this.axVLCPlugin21);
-            this.MaximumSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+        //    this.MaximumSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
            
         }
 

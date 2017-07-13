@@ -54,6 +54,7 @@ namespace SharedForms
                     Caption = displayName + " 【" + childList.Count + "】";
                     Hint= string.Join("\r\n", childList);
                     // this.ToolTipText = string.Join("\r\n", childList);
+                   
                     break;
                 default:
                     break;

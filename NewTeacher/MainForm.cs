@@ -17,6 +17,7 @@ namespace NewTeacher
         //  string soundSource;
         bool isPush = false;//是否正在推送视频流
         string actionStuUserName;
+        ViewRtsp videoPlayer;
         #endregion
         public MainForm()
         {
@@ -120,9 +121,12 @@ namespace NewTeacher
                     var PrivateChatMessage = JsonHelper.DeserializeObj<PrivateChatRequest>(message.DataStr);
                     this.InvokeOnUiThreadIfRequired(() => { ReceievePrivateMessage(PrivateChatMessage); });
                     break;
+                case (int)CommandType.TeamChat://收到群聊信息
+                    var TeamChatRequest = JsonHelper.DeserializeObj<TeamChatRequest>(message.DataStr);
+                    this.InvokeOnUiThreadIfRequired(() => { ReceieveTeamMessage(TeamChatRequest); });
+                    break;
                 case (int)CommandType.OneUserLogIn://某个学生登录
                     var newUser = JsonHelper.DeserializeObj<List<OnlineListResult>>(message.DataStr);
-
                     onlineInfo.OnNewUserLoginIn(newUser);
                     //  OnlineInfo_AddOnLine(onlineInfo, e2);
                     break;
@@ -130,17 +134,33 @@ namespace NewTeacher
                     var callInfo = JsonHelper.DeserializeObj<StuCallRequest>(message.DataStr);
                     UpdateOnLineStatus(callInfo);
                     break;
-                case (int)CommandType.UserLoginOut:
+                case (int)CommandType.UserLoginOut://用户登出
                     var loginoutInfo = JsonHelper.DeserializeObj<UserLogoutResponse>(message.DataStr);
                     onlineInfo.OnUserLoginOut(loginoutInfo);
                     break;
-                case (int)CommandType.TeamChat:
-                    var TeamChatRequest = JsonHelper.DeserializeObj<TeamChatRequest>(message.DataStr);
-                    this.InvokeOnUiThreadIfRequired(() => { ReceieveTeamMessage(TeamChatRequest); });
+                case (int)CommandType.ScreenInteract://收到视频流
+                    ScreenInteract_Response resp = JsonHelper.DeserializeObj<ScreenInteract_Response>(message.DataStr);
+                    this.InvokeOnUiThreadIfRequired(() =>
+                    {
+                        PlayRtspVideo(resp.url);
+                    });
                     break;
                 default:
                     break;
             }
+        }
+
+        private void PlayRtspVideo(string rtsp)
+        {
+
+            if (videoPlayer == null || videoPlayer.IsDisposed)
+            {
+                videoPlayer = new ViewRtsp(rtsp);
+            }
+            videoPlayer.Show();
+            //  videoPlayer = f;
+            videoPlayer.startPlay();
+
         }
 
         private void ReceieveTeamMessage(TeamChatRequest message)

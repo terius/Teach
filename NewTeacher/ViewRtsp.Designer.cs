@@ -1,4 +1,4 @@
-﻿namespace StudentUser
+﻿namespace NewTeacher
 {
     partial class ViewRtsp
     {
@@ -65,7 +65,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ViewRtsp";
             this.TopMost = true;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewRtsp_FormClosing);
             this.Load += new System.EventHandler(this.ViewRtsp_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ViewRtsp_KeyDown);

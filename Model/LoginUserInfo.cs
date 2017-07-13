@@ -1,4 +1,5 @@
 ﻿using Common;
+using System.ComponentModel;
 
 namespace Model
 {
@@ -13,7 +14,9 @@ namespace Model
 
         public string DisplayName { get; set; }
 
+        [DefaultValue(true)]
         public bool AllowPrivateChat { get; set; }
+        [DefaultValue(true)]
         public bool AllowTeamChat { get; set; }
     }
 }

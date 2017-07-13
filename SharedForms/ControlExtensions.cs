@@ -74,6 +74,6 @@ namespace SharedForms
             return userName == GlobalVariable.LoginUserInfo.UserName;
         }
 
-
+       
     }
 }

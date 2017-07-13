@@ -17,14 +17,14 @@ namespace vlctest
 
         }
 
-      
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             string url = textBox1.Text.Trim();
             if (!string.IsNullOrWhiteSpace(url))
             {
-                   FileInfo file = new FileInfo(url);
+                FileInfo file = new FileInfo(url);
                 vlcControl1.Play(file);
             }
         }
@@ -53,11 +53,22 @@ namespace vlctest
             }
         }
 
+        Form2 f2;
         private void button2_Click(object sender, EventArgs e)
         {
-            sms s = new sms("asdas", "asdasd", true);
-            Controls.Add(s);
-            this.Text = "asdasdasd";
+            if (f2 == null || f2.IsDisposed)
+            {
+                f2 = new Form2();
+            }
+            f2.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (f2 != null)
+            {
+                f2.Close();
+            }
         }
     }
 }

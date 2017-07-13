@@ -76,7 +76,7 @@ namespace SharedForms
                 if (chatItem.UserName != selectUserName)
                 {
                     //chatItem.Caption = chatItem.DisplayName + " 有新消息！";
-                    chatItem.SmallImage = Resource1.新消息;
+                    chatItem.SmallImage = Resource1.新消息24;
                 }
                 else
                 {
@@ -86,6 +86,38 @@ namespace SharedForms
             else
             {
                 ChatItemSelected(chatItem, false);
+            }
+        }
+
+
+        public void ChangeAllowChat(ChatType chatType,bool allow)
+        {
+            switch (chatType)
+            {
+                case ChatType.PrivateChat:
+                    if (allow)
+                    {
+                        ChatNav.Groups[2].LargeImage = Resource1.私;
+                    }
+                    else
+                    {
+                        ChatNav.Groups[2].LargeImage = Resource1.禁止24;
+                    }
+                    break;
+                case ChatType.GroupChat:
+                    break;
+                case ChatType.TeamChat:
+                    if (allow)
+                    {
+                        ChatNav.Groups[1].LargeImage = Resource1.群组;
+                    }
+                    else
+                    {
+                        ChatNav.Groups[1].LargeImage = Resource1.禁止24;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 

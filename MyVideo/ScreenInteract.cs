@@ -9,7 +9,7 @@ namespace MyVideo
 {
     public class ScreenInteract
     {
-        private string audio = null;
+       
         private Ffmpeg _ffmpeg = null;
         private string _rtspAddress = null;
         private bool isBeginScreenInteract = false;
@@ -91,9 +91,9 @@ namespace MyVideo
         {
             var para = GetFFMpegParaAndUrl(ipServer, ipSelf, portSelf);
             var mic = GetMicName();
-            var url = "-f gdigrab -i desktop " + para[1];
+            var url = "-f gdigrab -i desktop" + para[1];
             if (!string.IsNullOrWhiteSpace(mic))
-                url = " -f gdigrab -i desktop -f dshow -i audio=\"" + mic + "\"" + para[1];
+                url = " -f gdigrab -i desktop -f dshow -i audio=\"" + mic + "\" -acodec mp2 -ab 128k" + para[1];
             this._ffmpeg = new Ffmpeg();
             this._ffmpeg.beginExecute(url);
             // var rtsp = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
@@ -116,8 +116,17 @@ namespace MyVideo
         {
             var para = GetFFMpegParaAndUrl(ipServer, ipSelf, portSelf);
             var video = GetVideoName();
+            if (string.IsNullOrWhiteSpace(video))
+            {
+                throw new Exception("未找到摄像头");
+            }
+            var url = "-f dshow -i video=\"" + video + "\"";
             var mic = GetMicName();
-            var url = "-f dshow -i video=\"" + video + "\":audio=\"" + mic + "\"" + para[1];
+            if (!string.IsNullOrWhiteSpace(video))
+            {
+                url += ":audio =\"" + mic + "\" -acodec mp2 -ab 128k";
+            }
+            url += para[1];
             this._ffmpeg = new Ffmpeg();
             this._ffmpeg.beginExecute(url);
             return para[0];
