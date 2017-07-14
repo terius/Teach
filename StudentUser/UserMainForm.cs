@@ -131,6 +131,14 @@ namespace StudentUser
 
                     });
                     break;
+                case (int)CommandType.StopStudentShow://停止演示
+                    DoAction(() =>
+                    {
+                        GlobalVariable.client.StopScreenInteract();
+                        GlobalVariable.client.Send_StopScreenInteract();
+
+                    });
+                    break;
                 case (int)CommandType.ForbidPrivateChat://收到禁止私聊
                     GlobalVariable.LoginUserInfo.AllowPrivateChat = false;
                     ChangeChatAllowOrForbit(ChatType.PrivateChat, false);

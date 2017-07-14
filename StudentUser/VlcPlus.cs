@@ -8,7 +8,7 @@ using AxAXVLC;
 using System;
 using System.Threading;
 
-namespace MyTCP
+namespace StudentUser
 {
     public class VLCPlus
     {

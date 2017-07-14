@@ -145,6 +145,12 @@ namespace NewTeacher
                         PlayRtspVideo(resp.url);
                     });
                     break;
+                case (int)CommandType.StopScreenInteract://收到停止接收视频流
+                    this.InvokeOnUiThreadIfRequired(() =>
+                    {
+                        StopPlay();
+                    });
+                    break;
                 default:
                     break;
             }
@@ -160,6 +166,15 @@ namespace NewTeacher
             videoPlayer.Show();
             //  videoPlayer = f;
             videoPlayer.startPlay();
+
+        }
+        private void StopPlay()
+        {
+            if (videoPlayer != null)
+            {
+                videoPlayer.Close();
+                videoPlayer = null;
+            }
 
         }
 

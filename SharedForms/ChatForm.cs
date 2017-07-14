@@ -101,7 +101,7 @@ namespace SharedForms
                     }
                     else
                     {
-                        ChatNav.Groups[2].LargeImage = Resource1.禁止24;
+                        ChatNav.Groups[2].LargeImage = Resource1.禁止;
                     }
                     break;
                 case ChatType.GroupChat:
@@ -113,7 +113,7 @@ namespace SharedForms
                     }
                     else
                     {
-                        ChatNav.Groups[1].LargeImage = Resource1.禁止24;
+                        ChatNav.Groups[1].LargeImage = Resource1.禁止;
                     }
                     break;
                 default:

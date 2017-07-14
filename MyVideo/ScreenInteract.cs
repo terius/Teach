@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace MyVideo
 {
@@ -76,6 +77,12 @@ namespace MyVideo
             return "";
         }
 
+        private string GetResolution()
+        {
+            var resolution = Screen.PrimaryScreen.Bounds;
+            return resolution.Width + "*" + resolution.Height;
+        }
+
         private string GetVideoName()
         {
             var capDevices = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
@@ -91,9 +98,10 @@ namespace MyVideo
         {
             var para = GetFFMpegParaAndUrl(ipServer, ipSelf, portSelf);
             var mic = GetMicName();
-            var url = "-f gdigrab -i desktop" + para[1];
+            var url = "-f gdigrab -i desktop ";
             if (!string.IsNullOrWhiteSpace(mic))
-                url = " -f gdigrab -i desktop -f dshow -i audio=\"" + mic + "\" -acodec mp2 -ab 128k" + para[1];
+                url += " -f dshow -i audio=\"" + mic + "\" -acodec mp2 -ab 128k";
+            url += para[1];
             this._ffmpeg = new Ffmpeg();
             this._ffmpeg.beginExecute(url);
             // var rtsp = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
@@ -108,7 +116,7 @@ namespace MyVideo
             }
             string nameByIpPort = createNameByIpPort(ipSelf, portSelf);
             var rtspUrl = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
-            string para = " -framerate 15 -g 36 -s 960*640 -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
+            string para = " -framerate 15 -g 36 -s " + GetResolution() +" -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
             return new string[] { rtspUrl, para };
         }
 
