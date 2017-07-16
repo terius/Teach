@@ -226,17 +226,17 @@ namespace StudentUser
 
 
         //最小化窗体
-        //private bool windowCreate = true;
-        //protected override void OnActivated(EventArgs e)
-        //{
-        //    if (windowCreate)
-        //    {
-        //        base.Visible = false;
-        //        windowCreate = false;
-        //    }
+        private bool windowCreate = true;
+        protected override void OnActivated(EventArgs e)
+        {
+            if (windowCreate)
+            {
+                base.Visible = false;
+                windowCreate = false;
+            }
 
-        //    base.OnActivated(e);
-        //}
+            base.OnActivated(e);
+        }
 
 
 
@@ -342,9 +342,10 @@ namespace StudentUser
 
         #region 右键菜单
 
+        //签到
         private void mSignIn_Click(object sender, EventArgs e)
         {
-
+            OpenCallForm();
         }
         private void mChat_Click(object sender, EventArgs e)
         {

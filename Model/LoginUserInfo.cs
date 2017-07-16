@@ -5,7 +5,11 @@ namespace Model
 {
     public class LoginUserInfo
     {
-        
+        public LoginUserInfo()
+        {
+            AllowPrivateChat = true;
+            AllowTeamChat = true;
+        }
         public string UserName { get; set; }
 
         public string No { get; set; }
@@ -14,9 +18,9 @@ namespace Model
 
         public string DisplayName { get; set; }
 
-        [DefaultValue(true)]
-        public bool AllowPrivateChat { get; set; }
-        [DefaultValue(true)]
+        //[DefaultValue(true)]
+        public bool AllowPrivateChat { get;  set; }
+        //[DefaultValue(true)]
         public bool AllowTeamChat { get; set; }
     }
 }

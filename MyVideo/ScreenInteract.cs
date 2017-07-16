@@ -1,4 +1,5 @@
 ﻿using DirectShowLib;
+using Helpers;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -102,6 +103,7 @@ namespace MyVideo
             if (!string.IsNullOrWhiteSpace(mic))
                 url += " -f dshow -i audio=\"" + mic + "\" -acodec mp2 -ab 128k";
             url += para[1];
+            Loger.LogMessage("视频命令:" + url);
             this._ffmpeg = new Ffmpeg();
             this._ffmpeg.beginExecute(url);
             // var rtsp = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
@@ -135,6 +137,7 @@ namespace MyVideo
                 url += ":audio =\"" + mic + "\" -acodec mp2 -ab 128k";
             }
             url += para[1];
+            Loger.LogMessage("视频命令:" + url);
             this._ffmpeg = new Ffmpeg();
             this._ffmpeg.beginExecute(url);
             return para[0];

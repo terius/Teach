@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ter.ico</ApplicationIcon>
+    <ApplicationIcon>老师图标.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxInterop.AXVLC">
@@ -190,6 +190,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="老师图标.ico" />
     <None Include="Resources\在线.png" />
     <None Include="Resources\老师.png" />
     <None Include="Resources\离线.png" />
@@ -208,7 +209,6 @@
     <None Include="Resources\视频直播.png" />
     <None Include="Resources\分发.png" />
     <None Include="Resources\刷新.png" />
-    <Content Include="ter.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

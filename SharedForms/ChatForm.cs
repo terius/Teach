@@ -247,11 +247,16 @@ namespace SharedForms
         /// </summary>
         /// <param name="receieveUserName"></param>
         /// <param name="msg"></param>
-        private void SendMessageCommand(string receieveUserName, string msg)
+        private bool SendMessageCommand(string receieveUserName, string msg)
         {
             var chatType = GlobalVariable.GetChatType(receieveUserName);
             if (chatType == ChatType.PrivateChat)
             {
+                if (!GlobalVariable.LoginUserInfo.AllowPrivateChat)
+                {
+                    GlobalVariable.ShowError("您不允许发送私聊信息");
+                    return false;
+                }
                 PrivateChatRequest request = new PrivateChatRequest();
                 request.guid = Guid.NewGuid().ToString();
                 request.msg = msg;
@@ -263,6 +268,11 @@ namespace SharedForms
             }
             else if (chatType == ChatType.TeamChat)
             {
+                if (!GlobalVariable.LoginUserInfo.AllowTeamChat)
+                {
+                    GlobalVariable.ShowError("您不允许发送群聊信息");
+                    return false;
+                }
                 var chat = GlobalVariable.GetChatStoreByUserName(receieveUserName);
                 TeamChatRequest request = new TeamChatRequest();
                 request.groupname = chat.ChatDisplayName;
@@ -276,7 +286,7 @@ namespace SharedForms
                 //  GlobalVariable.client.SendMessage(request, CommandType.TeamChat);
             }
             //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
-
+            return true;
 
         }
 
@@ -426,6 +436,12 @@ namespace SharedForms
         /// <param name="e"></param>
         private void btnUploadFile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+         
+            if (ChatNav.SelectedLink == null || string.IsNullOrWhiteSpace(selectUserName))
+            {
+                GlobalVariable.ShowWarnning("请先选择聊天对象");
+                return;
+            }
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "媒体文件 (*.jpg,*.gif,*.bmp,*.png)|*.jpg;*.gif;*.bmp;*.png";
             dlg.Title = "选择媒体文件";
@@ -443,9 +459,12 @@ namespace SharedForms
                     var uploadtext = _myDisplayName + "上传了文件:" + fi.Name;
                     var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, uploadtext, GlobalVariable.LoginUserInfo.UserType, MessageType.Link);
                     message.DownloadFileUrl = uploadResult.url;
-                    AppendMessage(message, true);
-                    GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
-                    ShowNotify("上传成功");
+                    if (SendMessageCommand(selectUserName, uploadtext))
+                    {
+                        AppendMessage(message, true);
+                        GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
+                        ShowNotify("上传成功");
+                    }
                 });
 
             }
@@ -472,10 +491,12 @@ namespace SharedForms
             }
 
 
-            SendMessageCommand(selectUserName, content);
-            var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content, GlobalVariable.LoginUserInfo.UserType);
-            AppendMessage(message, true);
-            GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
+            if (SendMessageCommand(selectUserName, content))
+            {
+                var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content, GlobalVariable.LoginUserInfo.UserType);
+                AppendMessage(message, true);
+                GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
+            }
         }
 
 

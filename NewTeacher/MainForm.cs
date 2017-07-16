@@ -266,11 +266,7 @@ namespace NewTeacher
         {
             GlobalVariable.client.Send_OnlineList();
         }
-
-
-
-
-
+        
         #region 顶部菜单
         private void menuExportSign_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

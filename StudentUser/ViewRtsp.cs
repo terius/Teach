@@ -45,38 +45,38 @@ namespace StudentUser
             }
            */
         }
-        //protected override void WndProc(ref Message m)
-        //{
-        //    const int WM_SYSCOMMAND = 0x112;
-        //    const int SC_CLOSE = 0xF060;
-        //    const int SC_MINIMIZE = 0xF020;
-        //    const int SC_MAXIMIZE = 0xF030;
-        //    if (m.Msg == WM_SYSCOMMAND)
-        //    {
-        //        if (m.WParam.ToInt32() == SC_MINIMIZE) //是否点击最小化
-        //        {
-        //            //这里写操作代码
-        //            this.Visible = false; //隐藏窗体
-        //            return;
-        //        }
-        //        if (m.WParam.ToInt32() == SC_MAXIMIZE) //是否点击最大化
-        //        {
-        //            //MessageBox.Show("最大化");
-        //            this.FormBorderStyle = FormBorderStyle.None;
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_SYSCOMMAND = 0x112;
+            const int SC_CLOSE = 0xF060;
+            const int SC_MINIMIZE = 0xF020;
+            const int SC_MAXIMIZE = 0xF030;
+            if (m.Msg == WM_SYSCOMMAND)
+            {
+                if (m.WParam.ToInt32() == SC_MINIMIZE) //是否点击最小化
+                {
+                    //这里写操作代码
+                    this.Visible = false; //隐藏窗体
+                    return;
+                }
+                if (m.WParam.ToInt32() == SC_MAXIMIZE) //是否点击最大化
+                {
+                    //MessageBox.Show("最大化");
+                    this.FormBorderStyle = FormBorderStyle.None;
 
-        //            this.WindowState = FormWindowState.Maximized;
-        //        }
-        //        if (m.WParam.ToInt32() == SC_CLOSE) //是否点击关闭
-        //        {
-        //            //if (screenmonitor == null)
-        //            //{
-        //            //    MessageBox.Show("请通过用户列表右键菜单关闭学生演示!");
-        //            //    return;
-        //            //}
-        //        }
-        //    }
-        //    base.WndProc(ref m);
-        //}
+                    this.WindowState = FormWindowState.Maximized;
+                }
+                if (m.WParam.ToInt32() == SC_CLOSE) //是否点击关闭
+                {
+                    //if (screenmonitor == null)
+                    //{
+                    //    MessageBox.Show("请通过用户列表右键菜单关闭学生演示!");
+                    //    return;
+                    //}
+                }
+            }
+            base.WndProc(ref m);
+        }
         private void ViewRtsp_FormClosing(object sender, FormClosingEventArgs e)
         {
             //MessageBox.Show("界面即将关闭");

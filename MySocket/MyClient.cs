@@ -91,7 +91,7 @@ namespace MySocket
             }
             else
             {
-                throw new Exception("客户端未连接到服务器");
+                throw new Exception("连接服务器失败");
             }
 
         }
