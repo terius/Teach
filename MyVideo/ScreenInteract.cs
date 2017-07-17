@@ -118,7 +118,7 @@ namespace MyVideo
             }
             string nameByIpPort = createNameByIpPort(ipSelf, portSelf);
             var rtspUrl = "rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
-            string para = " -framerate 15 -g 36 -s " + GetResolution() +" -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
+            string para = " -framerate 25 -g 20 -s 320*320 -vcodec libx264 -x264opts bframes=3:b-adapt=0 -bufsize 2000k -threads 16 -preset:v ultrafast -tune:v zerolatency -f rtsp rtsp://" + ipServer + "/" + nameByIpPort + ".sdp";
             return new string[] { rtspUrl, para };
         }
 

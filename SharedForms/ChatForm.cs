@@ -36,6 +36,7 @@ namespace SharedForms
         /// 页面是否关闭或隐藏
         /// </summary>
         public bool IsHide { get; set; }
+        string groupId = "allpeople";
         #endregion
 
         #region 构造函数
@@ -44,7 +45,7 @@ namespace SharedForms
         public ChatForm()
         {
             InitializeComponent();
-            var groupChat = GlobalVariable.CreateGroupChat();
+            var groupChat = GlobalVariable.CreateGroupChat(groupId);
             if (groupChat != null)
             {
                 ChatNav.CreateItem(groupChat);
@@ -73,7 +74,7 @@ namespace SharedForms
 
             if (fromReceieveMessage)
             {
-                if (chatItem.UserName != selectUserName)
+                if (!string.IsNullOrWhiteSpace(selectUserName) && chatItem.UserName != selectUserName)
                 {
                     //chatItem.Caption = chatItem.DisplayName + " 有新消息！";
                     chatItem.SmallImage = Resource1.新消息24;
@@ -90,7 +91,7 @@ namespace SharedForms
         }
 
 
-        public void ChangeAllowChat(ChatType chatType,bool allow)
+        public void ChangeAllowChat(ChatType chatType, bool allow)
         {
             switch (chatType)
             {
@@ -252,6 +253,7 @@ namespace SharedForms
             var chatType = GlobalVariable.GetChatType(receieveUserName);
             if (chatType == ChatType.PrivateChat)
             {
+
                 if (!GlobalVariable.LoginUserInfo.AllowPrivateChat)
                 {
                     GlobalVariable.ShowError("您不允许发送私聊信息");
@@ -265,6 +267,7 @@ namespace SharedForms
                 request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
                 GlobalVariable.client.Send_PrivateChat(request);
+
             }
             else if (chatType == ChatType.TeamChat)
             {
@@ -284,6 +287,15 @@ namespace SharedForms
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
                 GlobalVariable.client.Send_TeamChat(request);
                 //  GlobalVariable.client.SendMessage(request, CommandType.TeamChat);
+            }
+            else if (chatType == ChatType.GroupChat)
+            {
+                var request = new GroupChatRequest();
+                request.msg = msg;
+                request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName; 
+                request.SendUserName = groupId;
+                request.clientRole = GlobalVariable.LoginUserInfo.UserType;
+                GlobalVariable.client.Send_GroupChat(request);
             }
             //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);
             return true;
@@ -310,7 +322,7 @@ namespace SharedForms
         private void AppendMessage(ChatMessage chatMessage, bool isInput)
         {
             bool isMySelf = IsMySelf(chatMessage.SendUserName);
-         
+
             smsPanel1.AddMessage(chatMessage, isMySelf);
             if (isInput)
             {
@@ -371,7 +383,7 @@ namespace SharedForms
                 )
             {
                 link.Item.AppearancePressed.ForeColor = Color.White;
-               // link.Item.Appearance.Options.UseFont = true;
+                // link.Item.Appearance.Options.UseFont = true;
                 e.Graphics.FillRectangle(Brushes.DodgerBlue, e.RealBounds);
             }
         }
@@ -436,7 +448,7 @@ namespace SharedForms
         /// <param name="e"></param>
         private void btnUploadFile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-         
+
             if (ChatNav.SelectedLink == null || string.IsNullOrWhiteSpace(selectUserName))
             {
                 GlobalVariable.ShowWarnning("请先选择聊天对象");

@@ -94,6 +94,15 @@ namespace StudentUser
                         OpenChatForm(request);
                     });
                     break;
+                case (int)CommandType.GroupChat://收到群聊信息
+                    var groupChatResponse = JsonHelper.DeserializeObj<GroupChatRequest>(message.DataStr);
+
+                    DoAction(() =>
+                    {
+                        AddChatRequest request = groupChatResponse.ToAddChatRequest();
+                        OpenChatForm(request);
+                    });
+                    break;
                 case (int)CommandType.BeginCall://开始点名
                     DoAction(() =>
                     {

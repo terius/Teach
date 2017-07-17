@@ -289,13 +289,9 @@ namespace MySocket
         /// </summary>
         /// <param name="sendName"></param>
         /// <param name="msg"></param>
-        public void Send_GroupChat(string sendName, string msg)
+        public void Send_GroupChat(GroupChatRequest request)
         {
-            var request = new GroupChatRequest
-            {
-                sendname = sendName,
-                msg = msg
-            };
+           
             SendMessage(request, CommandType.GroupChat);
         }
         /// <summary>

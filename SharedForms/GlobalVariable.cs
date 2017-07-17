@@ -233,7 +233,7 @@ namespace SharedForms
             return true;
         }
 
-        public static ChatStore CreateGroupChat()
+        public static ChatStore CreateGroupChat(string groupId)
         {
             if (ChatList.Any(d => d.ChatType == ChatType.GroupChat))
             {
@@ -245,7 +245,7 @@ namespace SharedForms
             info.ChatDisplayName = "所有人";
             info.ChatStartTime = DateTime.Now;
             info.ChatType = ChatType.GroupChat;
-            info.ChatUserName = "allpeople";
+            info.ChatUserName = groupId;
             info.UserType = ClientRole.Teacher;
             info.MessageList = new List<ChatMessage>();
             ChatList.Add(info);

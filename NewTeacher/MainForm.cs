@@ -125,6 +125,10 @@ namespace NewTeacher
                     var TeamChatRequest = JsonHelper.DeserializeObj<TeamChatRequest>(message.DataStr);
                     this.InvokeOnUiThreadIfRequired(() => { ReceieveTeamMessage(TeamChatRequest); });
                     break;
+                case (int)CommandType.GroupChat://收到群聊信息
+                    var groupChatRequest = JsonHelper.DeserializeObj<GroupChatRequest>(message.DataStr);
+                    this.InvokeOnUiThreadIfRequired(() => { ReceieveGroupMessage(groupChatRequest); });
+                    break;
                 case (int)CommandType.OneUserLogIn://某个学生登录
                     var newUser = JsonHelper.DeserializeObj<List<OnlineListResult>>(message.DataStr);
                     onlineInfo.OnNewUserLoginIn(newUser);
@@ -179,6 +183,13 @@ namespace NewTeacher
         }
 
         private void ReceieveTeamMessage(TeamChatRequest message)
+        {
+            AddChatRequest request = message.ToAddChatRequest();
+            GlobalVariable.AddNewChat(request);
+            OpenOrCreateChatForm(request, true);
+        }
+
+        private void ReceieveGroupMessage(GroupChatRequest message)
         {
             AddChatRequest request = message.ToAddChatRequest();
             GlobalVariable.AddNewChat(request);
