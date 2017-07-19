@@ -5,6 +5,10 @@ using Model;
 using MySocket;
 using SharedForms;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace StudentUser
 {
@@ -235,17 +239,17 @@ namespace StudentUser
 
 
         //最小化窗体
-        private bool windowCreate = true;
-        protected override void OnActivated(EventArgs e)
-        {
-            if (windowCreate)
-            {
-                base.Visible = false;
-                windowCreate = false;
-            }
+        //private bool windowCreate = true;
+        //protected override void OnActivated(EventArgs e)
+        //{
+        //    if (windowCreate)
+        //    {
+        //        base.Visible = false;
+        //        windowCreate = false;
+        //    }
 
-            base.OnActivated(e);
-        }
+        //    base.OnActivated(e);
+        //}
 
 
 
@@ -262,6 +266,9 @@ namespace StudentUser
             videoPlayer2.startPlay();
 
         }
+
+
+       
 
         private void StopPlay()
         {
@@ -396,6 +403,204 @@ namespace StudentUser
         private void button2_Click(object sender, EventArgs e)
         {
             StopPlay();
+        }
+
+        private void btnScreenCapture_Click(object sender, EventArgs e)
+        {
+            GetScreenCapture();
+        }
+
+        private void GetScreenCapture()
+        {
+            ScreenCapture sc = new ScreenCapture();
+            // capture entire screen, and save it to a file
+            //  Image img = sc.CaptureScreen();
+            // display image in a Picture control named imageDisplay
+            //  this.pictureBox1.Image = img;
+            // capture this window, and save it
+            string pathPerc = @"Send.png";
+            string source = @"Capture.png";
+            sc.CaptureScreenToFile(source, ImageFormat.Png);
+            //try
+            //{
+            //    if (!File.Exists(pathPerc))
+            //    {
+            //        File.Create(pathPerc).Close();
+            //    }
+            //    else
+            //    {
+            //        File.Delete(pathPerc);
+            //        File.Create(pathPerc).Close();
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    //MessageBox.Show(e.ToString(),"文件路径异常");
+            //    //Thread.Sleep(400);
+            //}
+            getThumImage(source, 40, 5, pathPerc);
+
+
+        }
+
+        /// <param name="sourceFile">原始图片文件</param>  
+        /// <param name="quality">质量压缩比</param>  
+        /// <param name="multiple">收缩倍数</param>  
+        /// <param name="outputFile">输出文件名</param>  
+        /// <returns>成功返回true,失败则返回false</returns> 
+        private  bool getThumImage(String sourceFile, long quality, int multiple, String outputFile)
+        {
+            try
+            {
+                long imageQuality = quality;
+                Bitmap sourceImage = new Bitmap(sourceFile);
+                ImageCodecInfo myImageCodecInfo = GetEncoderInfo("image/png");
+                System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, imageQuality);
+                myEncoderParameters.Param[0] = myEncoderParameter;
+                float xWidth = sourceImage.Width;
+                float yWidth = sourceImage.Height;
+                Bitmap newImage = new Bitmap((int)(xWidth / multiple), (int)(yWidth / multiple));
+                Graphics g = Graphics.FromImage(newImage);
+
+                g.DrawImage(sourceImage, 0, 0, xWidth / multiple, yWidth / multiple);
+                g.Dispose();
+                newImage.Save(outputFile, myImageCodecInfo, myEncoderParameters);
+                sourceImage.Dispose();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        // 获取图片编码信息  
+        private  ImageCodecInfo GetEncoderInfo(String mimeType)
+        {
+            int j;
+            ImageCodecInfo[] encoders;
+            encoders = ImageCodecInfo.GetImageEncoders();
+            for (j = 0; j < encoders.Length; ++j)
+            {
+                if (encoders[j].MimeType == mimeType)
+                    return encoders[j];
+            }
+            return null;
+        }
+    }
+
+    public class ScreenCapture
+    {
+        /// <summary>
+        /// Creates an Image object containing a screen shot of the entire desktop
+        /// </summary>
+        /// <returns></returns>
+        public Image CaptureScreen()
+        {
+            return CaptureWindow(User32.GetDesktopWindow());
+        }
+        /// <summary>
+        /// Creates an Image object containing a screen shot of a specific window
+        /// </summary>
+        /// <param name="handle">The handle to the window. (In windows forms, this is obtained by the Handle property)</param>
+        /// <returns></returns>
+        public Image CaptureWindow(IntPtr handle)
+        {
+            // get te hDC of the target window
+            IntPtr hdcSrc = User32.GetWindowDC(handle);
+            // get the size
+            User32.RECT windowRect = new User32.RECT();
+            User32.GetWindowRect(handle, ref windowRect);
+            int width = windowRect.right - windowRect.left;
+            int height = windowRect.bottom - windowRect.top;
+            // create a device context we can copy to
+            IntPtr hdcDest = GDI32.CreateCompatibleDC(hdcSrc);
+            // create a bitmap we can copy it to,
+            // using GetDeviceCaps to get the width/height
+            IntPtr hBitmap = GDI32.CreateCompatibleBitmap(hdcSrc, width, height);
+            // select the bitmap object
+            IntPtr hOld = GDI32.SelectObject(hdcDest, hBitmap);
+            // bitblt over
+            GDI32.BitBlt(hdcDest, 0, 0, width, height, hdcSrc, 0, 0, GDI32.SRCCOPY);
+            // restore selection
+            GDI32.SelectObject(hdcDest, hOld);
+            // clean up 
+            GDI32.DeleteDC(hdcDest);
+            User32.ReleaseDC(handle, hdcSrc);
+            // get a .NET image object for it
+            Image img = Image.FromHbitmap(hBitmap);
+            // free up the Bitmap object
+            GDI32.DeleteObject(hBitmap);
+            return img;
+        }
+        /// <summary>
+        /// Captures a screen shot of a specific window, and saves it to a file
+        /// </summary>
+        /// <param name="handle"></param>
+        /// <param name="filename"></param>
+        /// <param name="format"></param>
+        public void CaptureWindowToFile(IntPtr handle, string filename, ImageFormat format)
+        {
+            Image img = CaptureWindow(handle);
+            img.Save(filename, format);
+        }
+        /// <summary>
+        /// Captures a screen shot of the entire desktop, and saves it to a file
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="format"></param>
+        public void CaptureScreenToFile(string filename, ImageFormat format)
+        {
+            Image img = CaptureScreen();
+            img.Save(filename, format);
+        }
+
+        /// <summary>
+        /// Helper class containing Gdi32 API functions
+        /// </summary>
+        private class GDI32
+        {
+            public const int CAPTUREBLT = 1073741824;
+            public const int SRCCOPY = 0x00CC0020; // BitBlt dwRop parameter
+            [DllImport("gdi32.dll")]
+            public static extern bool BitBlt(IntPtr hObject, int nXDest, int nYDest,
+                int nWidth, int nHeight, IntPtr hObjectSource,
+                int nXSrc, int nYSrc, int dwRop);
+            [DllImport("gdi32.dll")]
+            public static extern IntPtr CreateCompatibleBitmap(IntPtr hDC, int nWidth,
+                int nHeight);
+            [DllImport("gdi32.dll")]
+            public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
+            [DllImport("gdi32.dll")]
+            public static extern bool DeleteDC(IntPtr hDC);
+            [DllImport("gdi32.dll")]
+            public static extern bool DeleteObject(IntPtr hObject);
+            [DllImport("gdi32.dll")]
+            public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
+        }
+
+        /// <summary>
+        /// Helper class containing User32 API functions
+        /// </summary>
+        private class User32
+        {
+            [StructLayout(LayoutKind.Sequential)]
+            public struct RECT
+            {
+                public int left;
+                public int top;
+                public int right;
+                public int bottom;
+            }
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetDesktopWindow();
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetWindowDC(IntPtr hWnd);
+            [DllImport("user32.dll")]
+            public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDC);
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetWindowRect(IntPtr hWnd, ref RECT rect);
         }
     }
 }

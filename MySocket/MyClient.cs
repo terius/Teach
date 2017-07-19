@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MyVideo;
 using System.Net.Sockets;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace MySocket
 {
@@ -29,6 +31,132 @@ namespace MySocket
 
         bool _connected;
         ScreenInteract _screenInteract;
+        UdpClient udpClient;
+
+        public void SendDesktopPic()
+        {
+            if (udpClient == null)
+            {
+                udpClient = new UdpClient();
+                var remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
+                udpClient.Connect(remoteEP);
+            }
+
+        }
+
+        private class GDI32
+        {
+            public const int CAPTUREBLT = 1073741824;
+            public const int SRCCOPY = 0x00CC0020; // BitBlt dwRop parameter
+            [DllImport("gdi32.dll")]
+            public static extern bool BitBlt(IntPtr hObject, int nXDest, int nYDest,
+                int nWidth, int nHeight, IntPtr hObjectSource,
+                int nXSrc, int nYSrc, int dwRop);
+            [DllImport("gdi32.dll")]
+            public static extern IntPtr CreateCompatibleBitmap(IntPtr hDC, int nWidth,
+                int nHeight);
+            [DllImport("gdi32.dll")]
+            public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
+            [DllImport("gdi32.dll")]
+            public static extern bool DeleteDC(IntPtr hDC);
+            [DllImport("gdi32.dll")]
+            public static extern bool DeleteObject(IntPtr hObject);
+            [DllImport("gdi32.dll")]
+            public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
+        }
+
+        private class User32
+        {
+            [StructLayout(LayoutKind.Sequential)]
+            public struct RECT
+            {
+                public int left;
+                public int top;
+                public int right;
+                public int bottom;
+            }
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetDesktopWindow();
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetWindowDC(IntPtr hWnd);
+            [DllImport("user32.dll")]
+            public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDC);
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetWindowRect(IntPtr hWnd, ref RECT rect);
+        }
+
+        //public void Get_pic(IntPtr handle)
+        //{
+        //    string pathPerc = @"Send.jpg";
+        //    string source = @"Capture.jpg";
+        //    //try
+        //    //{
+        //    //    Image myImg = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
+        //    //    Graphics g = Graphics.FromImage(myImg);
+        //    //    g.CopyFromScreen(new Point(0, 0), new Point(0, 0), Screen.AllScreens[0].Bounds.Size);
+        //    //    myImg.Save(source, System.Drawing.Imaging.ImageFormat.Jpeg);
+        //    //    g.Dispose();
+        //    //    myImg.Dispose();
+        //    //}
+        //    //catch (Exception e){
+        //    //    MessageBox.Show(e.ToString(),"截屏获取异常");
+        //    //}
+        //    try
+        //    {
+        //        // get te hDC of the target window
+        //        IntPtr hdcSrc = User32.GetWindowDC(handle);
+        //        // get the size
+        //        User32.RECT windowRect = new User32.RECT();
+        //        User32.GetWindowRect(handle, ref windowRect);
+        //        int width = windowRect.right - windowRect.left;
+        //        int height = windowRect.bottom - windowRect.top;
+        //        // create a device context we can copy to
+        //        IntPtr hdcDest = GDI32.CreateCompatibleDC(hdcSrc);
+        //        // create a bitmap we can copy it to,
+        //        // using GetDeviceCaps to get the width/height
+        //        IntPtr hBitmap = GDI32.CreateCompatibleBitmap(hdcSrc, width, height);
+        //        // select the bitmap object
+        //        IntPtr hOld = GDI32.SelectObject(hdcDest, hBitmap);
+        //        // bitblt over
+        //        GDI32.BitBlt(hdcDest, 0, 0, width, height, hdcSrc, 0, 0, GDI32.SRCCOPY | GDI32.CAPTUREBLT);
+        //        // restore selection
+        //        GDI32.SelectObject(hdcDest, hOld);
+        //        // clean up 
+        //        GDI32.DeleteDC(hdcDest);
+        //        User32.ReleaseDC(handle, hdcSrc);
+        //        // get a .NET image object for it
+        //        Image img = Image.FromHbitmap(hBitmap);
+        //        // free up the Bitmap object
+        //        GDI32.DeleteObject(hBitmap);
+
+        //        img.Save(source);
+        //        img.Dispose();
+        //        //return img;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        // MessageBox.Show(e.ToString(), "截屏获取异常");
+        //        //Thread.Sleep(400);
+        //    }
+        //    try
+        //    {
+        //        if (!File.Exists(pathPerc))
+        //        {
+        //            File.Create(pathPerc).Close();
+        //        }
+        //        else
+        //        {
+        //            File.Delete(pathPerc);
+        //            File.Create(pathPerc).Close();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //MessageBox.Show(e.ToString(),"文件路径异常");
+        //        //Thread.Sleep(400);
+        //    }
+        //    getThumImage(source, 40, 5, pathPerc);
+        //}
 
         public bool Connected
         {
@@ -273,7 +401,7 @@ namespace MySocket
             SendMessage(request, CommandType.PrivateChat);
         }
 
-      
+
         /// <summary>
         /// 群组聊天
         /// </summary>
@@ -291,7 +419,7 @@ namespace MySocket
         /// <param name="msg"></param>
         public void Send_GroupChat(GroupChatRequest request)
         {
-           
+
             SendMessage(request, CommandType.GroupChat);
         }
         /// <summary>
@@ -309,7 +437,7 @@ namespace MySocket
         /// <param name="msg"></param>
         public void Send_Call()
         {
-            SendMessageNoPara( CommandType.BeginCall);
+            SendMessageNoPara(CommandType.BeginCall);
 
         }
 
@@ -419,6 +547,8 @@ namespace MySocket
 
         #endregion
     }
+
+   
 
     class MyReceiveFilter : FixedHeaderReceiveFilter<ReceieveMessage>
     {
