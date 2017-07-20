@@ -1,7 +1,6 @@
 ﻿using Common;
 using Helpers;
 using Model;
-using Model.Views;
 using MySocket;
 using SharedForms;
 using System;
@@ -33,6 +32,9 @@ namespace NewTeacher
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             this.textBox1.Text = "tech1";
             this.textBox2.Text = "1";
+
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            this.labVer.Text = "版本：" + version;
             //TestAES();
         }
 

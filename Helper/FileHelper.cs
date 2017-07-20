@@ -25,6 +25,7 @@ namespace Helpers
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
+    using System.Net;
     using System.Text;
     using System.Windows.Forms;
 
@@ -406,12 +407,17 @@ namespace Helpers
             output.Close();
         }
 
-        public static void UploadFile(string fileName, string serverUrl, Action<object, System.Net.UploadFileCompletedEventArgs> action)
+        public static void UploadFile(string fileName, string serverUrl,
+            Action<object, UploadFileCompletedEventArgs> action,
+            Action<object, UploadProgressChangedEventArgs> progressAction
+            )
         {
-            using (var myClient = new System.Net.WebClient())
+            using (var myClient = new WebClient())
             {
                 myClient.UploadFileCompleted += action.Invoke;
-                myClient.UploadFileAsync(new System.Uri(serverUrl), fileName);
+                myClient.UploadProgressChanged += progressAction.Invoke;
+                myClient.UploadFileAsync(new Uri(serverUrl), fileName);
+               
             }
 
             //using (StreamReader reader = new StreamReader(new FileStream(fileName, FileMode.Open), new UTF8Encoding())) // do anything you want, e.g. read it

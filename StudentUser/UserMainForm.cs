@@ -32,10 +32,10 @@ namespace StudentUser
         }
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
-            ThreadStart ts = new ThreadStart(GetScreenCapture);
-            Thread t = new Thread(ts);
-            t.IsBackground = true;
-            t.Start();
+            //ThreadStart ts = new ThreadStart(GetScreenCapture);
+            //Thread t = new Thread(ts);
+            //t.IsBackground = true;
+            //t.Start();
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
             //player.SetRenderWindow((int)this.Handle);//panel

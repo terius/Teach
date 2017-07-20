@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    public class PrivateChatRequest
+    public class PrivateChatRequest: SendFileView
     {
         public string receivename { get; set; }
 

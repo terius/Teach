@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Model.Views
+namespace Model
 {
     [Serializable]
     public class TeamXmlInfo

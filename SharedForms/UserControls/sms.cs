@@ -35,7 +35,7 @@ namespace SharedForms
         Image headIcon;
         bool messageIsString = false;
         string _downloadFileUrl;
-      
+
         public sms(ChatMessage messageInfo, bool isMySelf)
         {
             _title = messageInfo.Title;
@@ -43,20 +43,38 @@ namespace SharedForms
             _isMySelf = isMySelf;
             _downloadFileUrl = messageInfo.DownloadFileUrl;
             InitializeComponent();
-
+            this.txtLink.Hide();
             if (messageInfo.MessageType == Common.MessageType.String)
             {
                 messageIsString = true;
                 this.txtSMS.Show();
-                this.txtLink.Hide();
+                this.pictureBox1.Hide();
             }
             else
             {
                 messageIsString = false;
-                this.txtSMS.Hide();
+                this.pictureBox1.Show();
+                this.pictureBox1.Cursor = Cursors.Hand;
+                this.pictureBox1.Click += PictureBox1_Click;
+                switch (messageInfo.MessageType)
+                {
+                  
+                    case Common.MessageType.Sound:
+                        pictureBox1.Image = Resource1.声音;
+                        break;
+                    case Common.MessageType.Image:
+                        pictureBox1.Image = Resource1.图片;
+                        break;
+                    case Common.MessageType.Video:
+                        pictureBox1.Image = Resource1.视频;
+                        break;
+                    default:
+                        break;
+                }
+                //  this.txtSMS.Hide();
 
-                this.txtLink.Show();
-                this.txtLink.LinkClicked += TxtLink_LinkClicked;
+                //  this.txtLink.Show();
+                //  this.txtLink.LinkClicked += TxtLink_LinkClicked;
             }
             if (messageInfo.UserType == Common.ClientRole.Student)
             {
@@ -69,7 +87,16 @@ namespace SharedForms
 
 
         }
-     
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+            saveFilePath = FileHelper.DownloadFile(_downloadFileUrl);
+            if (!string.IsNullOrWhiteSpace(saveFilePath))
+            {
+                ShowNotify("下载成功!文件已下载到\r\n" + saveFilePath);
+            }
+        }
+
         string saveFilePath;
         private void TxtLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -175,49 +202,59 @@ namespace SharedForms
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
             imgAtt = new ImageAttributes();
             imgAtt.SetWrapMode(WrapMode.Tile);
-            var textSize = this.CreateGraphics().MeasureString(_message, messageIsString ? txtSMS.Font : txtLink.Font);
+            var textSize = this.CreateGraphics().MeasureString(_message, txtSMS.Font);
+            // var textSize = this.CreateGraphics().MeasureString(_message, messageIsString ? txtSMS.Font : txtLink.Font);
             int count = (int)Math.Floor(textSize.Width / 389) + (textSize.Width % 389 == 0 ? 0 : 1);
             _messageHeight = count * 20 + 10;
             _sizeHeight = 20 + 17 * 2 + _messageHeight;
             Size = new Size(388 + 32, _sizeHeight + 5);
+
             if (IsMySelf)
             {
+                txtSMS.Location = new Point(7, 37);
+                txtSMS.BackColor = Color.FromArgb(198, 225, 252);
                 if (messageIsString)
                 {
-                    txtSMS.Location = new Point(7, 37);
-                    txtSMS.BackColor = Color.FromArgb(198, 225, 252);
+
+
                 }
                 else
                 {
-                    txtLink.Location = new Point(7, 37);
-                    txtLink.BackColor = Color.FromArgb(198, 225, 252);
+
+                    //  this.pictureBox1.Location = new Point(7 + txtSMS.Width, 37);
+                    //txtLink.Location = new Point(7, 37);
+                    //txtLink.BackColor = Color.FromArgb(198, 225, 252);
                 }
 
             }
             else
             {
+                txtSMS.Location = new Point(42, 37);
+                txtSMS.BackColor = Color.FromArgb(244, 244, 244);
                 if (messageIsString)
                 {
-                    txtSMS.Location = new Point(42, 37);
-                    txtSMS.BackColor = Color.FromArgb(244, 244, 244);
+
                 }
                 else
                 {
-                    txtLink.Location = new Point(42, 37);
-                    txtLink.BackColor = Color.FromArgb(244, 244, 244);
+                    //  this.pictureBox1.Location = new Point(42 + txtSMS.Width, 37);
+                    //  txtLink.Location = new Point(42, 37);
+                    //  txtLink.BackColor = Color.FromArgb(244, 244, 244);
                 }
 
 
             }
+            txtSMS.Size = new Size(388 - 10 - 5, _messageHeight);
+            txtSMS.Text = _message;
             if (messageIsString)
             {
-                txtSMS.Size = new Size(388 - 10 - 5, _messageHeight);
-                txtSMS.Text = _message;
+
             }
             else
             {
-                txtLink.Size = new Size(388 - 10 - 5, _messageHeight);
-                txtLink.Text = _message;
+                this.pictureBox1.Location = new Point(388 - 50, 35);
+                //txtLink.Size = new Size(388 - 10 - 5, _messageHeight);
+                //txtLink.Text = _message;
             }
         }
 

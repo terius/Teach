@@ -123,6 +123,26 @@ namespace SharedForms {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 图片 {
+            get {
+                object obj = ResourceManager.GetObject("图片", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 声音 {
+            get {
+                object obj = ResourceManager.GetObject("声音", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 学生 {
             get {
                 object obj = ResourceManager.GetObject("学生", resourceCulture);
@@ -236,6 +256,16 @@ namespace SharedForms {
         internal static System.Drawing.Bitmap 老师24 {
             get {
                 object obj = ResourceManager.GetObject("老师24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 视频 {
+            get {
+                object obj = ResourceManager.GetObject("视频", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

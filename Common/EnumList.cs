@@ -101,7 +101,7 @@
         /// <summary>
         /// 禁止私聊
         /// </summary>
-        ForbidPrivateChat=26,
+        ForbidPrivateChat = 26,
         /// <summary>
         /// 允许私聊
         /// </summary>
@@ -109,15 +109,19 @@
         /// <summary>
         /// 禁止群聊
         /// </summary>
-        ForbidTeamChat=28,
+        ForbidTeamChat = 28,
         /// <summary>
         /// 允许群聊
         /// </summary>
         AllowTeamChat = 29,
         /// <summary>
+        /// 发送文件信息
+        /// </summary>
+        SendMessageWithFile = 30,
+        /// <summary>
         /// 教师端登录
         /// </summary>
-        TeacherLoginIn=80,
+        TeacherLoginIn = 80,
         /// <summary>
         /// 教师端登出
         /// </summary>
@@ -162,6 +166,8 @@
         /// <summary>
         /// 下载链接
         /// </summary>
-        Link
+        Sound,
+        Image,
+        Video
     }
 }

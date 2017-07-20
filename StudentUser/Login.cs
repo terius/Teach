@@ -31,7 +31,8 @@ namespace StudentUser
             //  await LoginIn();
 
             //TestAES();
-
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            this.labVer.Text = "版本：" + version;
         }
 
         private void DoAction(Action action)

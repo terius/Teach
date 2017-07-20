@@ -51,6 +51,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
@@ -107,6 +108,7 @@
     <EmbeddedResource Include="ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
@@ -192,6 +194,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\禁止.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\图片.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\声音.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\视频.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

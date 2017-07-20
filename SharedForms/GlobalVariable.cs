@@ -1,7 +1,6 @@
 ﻿using Common;
 using Helpers;
 using Model;
-using Model.Views;
 using MySocket;
 using System;
 using System.Collections.Generic;

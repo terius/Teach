@@ -6,7 +6,6 @@ using DevExpress.XtraNavBar;
 using DevExpress.XtraNavBar.ViewInfo;
 using Helpers;
 using Model;
-using Model.Views;
 using System;
 using System.Drawing;
 using System.IO;
@@ -37,6 +36,8 @@ namespace SharedForms
         /// </summary>
         public bool IsHide { get; set; }
         string groupId = "allpeople";
+        readonly string UploadFileServer = System.Configuration.ConfigurationManager.AppSettings["UploadFileServer"];
+        readonly string ServerIp = System.Configuration.ConfigurationManager.AppSettings["serverIP"];
         #endregion
 
         #region 构造函数
@@ -50,6 +51,19 @@ namespace SharedForms
             {
                 ChatNav.CreateItem(groupChat);
             }
+            InitProgressBar();
+        }
+
+        private void InitProgressBar()
+        {
+            progressBarControl1.Properties.Minimum = 0;
+            //设置一个最大值
+            progressBarControl1.Properties.Maximum = 100;
+            //设置步长，即每次增加的数
+            progressBarControl1.Properties.Step = 1;
+
+            progressBarControl1.Properties.PercentView = true;
+            progressBarControl1.Visible = false;
         }
 
         #endregion
@@ -248,9 +262,10 @@ namespace SharedForms
         /// </summary>
         /// <param name="receieveUserName"></param>
         /// <param name="msg"></param>
-        private bool SendMessageCommand(string receieveUserName, string msg)
+        private bool SendMessageCommand(ChatMessage chatMessage)
         {
-            var chatType = GlobalVariable.GetChatType(receieveUserName);
+            
+            var chatType = GlobalVariable.GetChatType(chatMessage.ReceieveUserName);
             if (chatType == ChatType.PrivateChat)
             {
 
@@ -261,11 +276,12 @@ namespace SharedForms
                 }
                 PrivateChatRequest request = new PrivateChatRequest();
                 request.guid = Guid.NewGuid().ToString();
-                request.msg = msg;
-                request.receivename = receieveUserName;
+                request.msg = chatMessage.Message;
+                request.receivename = chatMessage.ReceieveUserName;
                 request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
+               
                 GlobalVariable.client.Send_PrivateChat(request);
 
             }
@@ -276,13 +292,13 @@ namespace SharedForms
                     GlobalVariable.ShowError("您不允许发送群聊信息");
                     return false;
                 }
-                var chat = GlobalVariable.GetChatStoreByUserName(receieveUserName);
+                var chat = GlobalVariable.GetChatStoreByUserName(chatMessage.ReceieveUserName);
                 TeamChatRequest request = new TeamChatRequest();
                 request.groupname = chat.ChatDisplayName;
                 request.groupuserList = chat.GetUserNames();
-                request.msg = msg;
+                request.msg = chatMessage.Message;
                 request.username = GlobalVariable.LoginUserInfo.UserName;
-                request.groupid = receieveUserName;
+                request.groupid = chatMessage.ReceieveUserName;
                 request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
                 GlobalVariable.client.Send_TeamChat(request);
@@ -291,8 +307,8 @@ namespace SharedForms
             else if (chatType == ChatType.GroupChat)
             {
                 var request = new GroupChatRequest();
-                request.msg = msg;
-                request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName; 
+                request.msg = chatMessage.Message;
+                request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 request.SendUserName = groupId;
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
                 GlobalVariable.client.Send_GroupChat(request);
@@ -455,30 +471,71 @@ namespace SharedForms
                 return;
             }
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "媒体文件 (*.jpg,*.gif,*.bmp,*.png)|*.jpg;*.gif;*.bmp;*.png";
+            dlg.Filter = "媒体文件 (*.jpg,*.gif,*.bmp,*.png,*.mp3,*.wav,*.mp4,*.avi,*.mpg)|*.jpg;*.gif;*.bmp;*.png;*.mp3;*.wav;*.mp4;*.avi;*.mpg";
             dlg.Title = "选择媒体文件";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                FileHelper.UploadFile(dlg.FileName, MyConfig.UploadFileServer, (ob, ea) =>
+                this.btnUploadFile.Enabled = false;
+                progressBarControl1.Visible = true;
+                ShowNotify("上传中，请稍候。。。");
+                FileHelper.UploadFile(dlg.FileName, UploadFileServer, (ob, ea) =>
                 {
                     string result = Encoding.UTF8.GetString(ea.Result);
                     UploadResult uploadResult = JsonHelper.DeserializeObj<UploadResult>(result);
                     if (uploadResult.error == 0)
                     {
-                        uploadResult.url = "http://" + MyConfig.ServerIp + ":8080" + uploadResult.url;
+                        uploadResult.url = "http://" + ServerIp + ":8080" + uploadResult.url;
+                    }
+                    else
+                    {
+                        GlobalVariable.ShowError(uploadResult.message);
+                        return;
                     }
                     FileInfo fi = new FileInfo(dlg.FileName);
                     var uploadtext = _myDisplayName + "上传了文件:" + fi.Name;
-                    var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, uploadtext, GlobalVariable.LoginUserInfo.UserType, MessageType.Link);
+                    var messageType = GetMessageType(fi.Extension.ToLower());
+                    var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, uploadtext, GlobalVariable.LoginUserInfo.UserType, messageType);
                     message.DownloadFileUrl = uploadResult.url;
-                    if (SendMessageCommand(selectUserName, uploadtext))
+                    if (SendMessageCommand(message))
                     {
                         AppendMessage(message, true);
                         GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
                         ShowNotify("上传成功");
                     }
+                    this.btnUploadFile.Enabled = true;
+                    progressBarControl1.Visible = false;
+                }, (ob, progress) =>
+                {
+                    var p = (int)(progress.BytesSent * 100 / progress.TotalBytesToSend);
+                    progressBarControl1.Position = p;
+                    Application.DoEvents();
+
                 });
 
+            }
+        }
+
+
+        private MessageType GetMessageType(string ext)
+        {
+            switch (ext)
+            {
+                case ".jpg":
+                case ".gif":
+                case ".bmp":
+                case ".png":
+                    return MessageType.Image;
+
+                case ".mp3":
+                case ".wav":
+                    return MessageType.Sound;
+
+                case ".mp4":
+                case ".avi":
+                case ".mpg":
+                    return MessageType.Video;
+                default:
+                    return MessageType.String;
             }
         }
 
@@ -489,6 +546,12 @@ namespace SharedForms
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnSend_Click_1(object sender, EventArgs e)
+        {
+            BtnSendMessage();
+        }
+
+
+        private void BtnSendMessage()
         {
             string content = sendBox.Text;
             //发送内容为空时，不做响应
@@ -502,10 +565,9 @@ namespace SharedForms
                 return;
             }
 
-
-            if (SendMessageCommand(selectUserName, content))
+            var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content, GlobalVariable.LoginUserInfo.UserType);
+            if (SendMessageCommand(message))
             {
-                var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, content, GlobalVariable.LoginUserInfo.UserType);
                 AppendMessage(message, true);
                 GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
             }
@@ -513,9 +575,17 @@ namespace SharedForms
 
 
 
+
         #endregion
 
-
+        private void sendBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BtnSendMessage();
+                e.Handled = true;
+            }
+        }
     }
 
 

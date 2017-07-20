@@ -30,7 +30,7 @@ namespace StudentUser
             this.playAddress = rtspAddress;
            // axVLCPlugin21.video.fullscreen = true;
             player = new VLCPlus(this.axVLCPlugin21);
-            this.MaximumSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+          //  this.MaximumSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
            
         }
 

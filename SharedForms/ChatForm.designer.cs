@@ -57,18 +57,20 @@ namespace SharedForms
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.smsPanel1 = new SharedForms.smsPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSend = new DevExpress.XtraEditors.SimpleButton();
-            this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
+            this.progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnUploadFile = new DevExpress.XtraBars.BarButtonItem();
+            this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.itemViewTeamMem = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.labChatTitle = new DevExpress.XtraEditors.LabelControl();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
@@ -79,7 +81,9 @@ namespace SharedForms
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
@@ -92,9 +96,10 @@ namespace SharedForms
             this.sendBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sendBox.Location = new System.Drawing.Point(2, 34);
             this.sendBox.Name = "sendBox";
-            this.sendBox.Size = new System.Drawing.Size(1063, 147);
+            this.sendBox.Size = new System.Drawing.Size(1056, 147);
             this.sendBox.TabIndex = 142;
             this.sendBox.Text = "";
+            this.sendBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sendBox_KeyDown);
             // 
             // splitContainerControl1
             // 
@@ -182,7 +187,7 @@ namespace SharedForms
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 36);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1067, 549);
+            this.panelControl2.Size = new System.Drawing.Size(1060, 549);
             this.panelControl2.TabIndex = 143;
             // 
             // smsPanel1
@@ -191,11 +196,12 @@ namespace SharedForms
             this.smsPanel1.FireScrollEventOnMouseWheel = true;
             this.smsPanel1.Location = new System.Drawing.Point(0, 0);
             this.smsPanel1.Name = "smsPanel1";
-            this.smsPanel1.Size = new System.Drawing.Size(1067, 549);
+            this.smsPanel1.Size = new System.Drawing.Size(1060, 549);
             this.smsPanel1.TabIndex = 142;
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.progressBarControl1);
             this.panelControl1.Controls.Add(this.btnClose);
             this.panelControl1.Controls.Add(this.btnSend);
             this.panelControl1.Controls.Add(this.sendBox);
@@ -203,44 +209,16 @@ namespace SharedForms
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 585);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1067, 183);
+            this.panelControl1.Size = new System.Drawing.Size(1060, 183);
             this.panelControl1.TabIndex = 0;
             // 
-            // btnClose
+            // progressBarControl1
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnClose.Appearance.Options.UseFont = true;
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(966, 144);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(69, 27);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "关闭";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnSend
-            // 
-            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnSend.Appearance.Options.UseFont = true;
-            this.btnSend.Image = ((System.Drawing.Image)(resources.GetObject("btnSend.Image")));
-            this.btnSend.Location = new System.Drawing.Point(880, 144);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(69, 27);
-            this.btnSend.TabIndex = 0;
-            this.btnSend.Text = "发送";
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click_1);
-            // 
-            // standaloneBarDockControl1
-            // 
-            this.standaloneBarDockControl1.CausesValidation = false;
-            this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.standaloneBarDockControl1.Location = new System.Drawing.Point(2, 2);
-            this.standaloneBarDockControl1.Manager = this.barManager1;
-            this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(1063, 32);
-            this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
+            this.progressBarControl1.Location = new System.Drawing.Point(116, 9);
+            this.progressBarControl1.MenuManager = this.barManager1;
+            this.progressBarControl1.Name = "progressBarControl1";
+            this.progressBarControl1.Size = new System.Drawing.Size(139, 18);
+            this.progressBarControl1.TabIndex = 144;
             // 
             // barManager1
             // 
@@ -256,7 +234,9 @@ namespace SharedForms
             this.itemViewTeamMem,
             this.barButtonItem1,
             this.btnUploadFile});
-            this.barManager1.MaxItemId = 4;
+            this.barManager1.MaxItemId = 5;
+            this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemProgressBar1});
             // 
             // bar1
             // 
@@ -280,6 +260,16 @@ namespace SharedForms
             this.btnUploadFile.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUploadFile.ImageOptions.LargeImage")));
             this.btnUploadFile.Name = "btnUploadFile";
             this.btnUploadFile.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUploadFile_ItemClick);
+            // 
+            // standaloneBarDockControl1
+            // 
+            this.standaloneBarDockControl1.CausesValidation = false;
+            this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.standaloneBarDockControl1.Location = new System.Drawing.Point(2, 2);
+            this.standaloneBarDockControl1.Manager = this.barManager1;
+            this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(1056, 32);
+            this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barDockControlTop
             // 
@@ -328,6 +318,37 @@ namespace SharedForms
             this.barButtonItem1.Id = 1;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
+            // repositoryItemProgressBar1
+            // 
+            this.repositoryItemProgressBar1.Name = "repositoryItemProgressBar1";
+            this.repositoryItemProgressBar1.Step = 1;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnClose.Appearance.Options.UseFont = true;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(959, 144);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(69, 27);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "关闭";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSend
+            // 
+            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.Appearance.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.btnSend.Appearance.Options.UseFont = true;
+            this.btnSend.Image = ((System.Drawing.Image)(resources.GetObject("btnSend.Image")));
+            this.btnSend.Location = new System.Drawing.Point(873, 144);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(69, 27);
+            this.btnSend.TabIndex = 0;
+            this.btnSend.Text = "发送";
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click_1);
+            // 
             // panelControl3
             // 
             this.panelControl3.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
@@ -337,7 +358,7 @@ namespace SharedForms
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1067, 36);
+            this.panelControl3.Size = new System.Drawing.Size(1060, 36);
             this.panelControl3.TabIndex = 144;
             // 
             // labChatTitle
@@ -371,7 +392,7 @@ namespace SharedForms
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "聊天窗口";
@@ -383,7 +404,9 @@ namespace SharedForms
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -418,5 +441,7 @@ namespace SharedForms
         private DevExpress.XtraBars.StandaloneBarDockControl standaloneBarDockControl1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnUploadFile;
+        private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar1;
+        private DevExpress.XtraEditors.ProgressBarControl progressBarControl1;
     }
 }
