@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,7 @@
     <Compile Include="LoginUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ChatTeamInfo.cs" />
+    <Compile Include="Views\ScreenCaptureInfo.cs" />
     <Compile Include="Views\TeamMember.cs" />
     <Compile Include="Views\UploadResult.cs" />
   </ItemGroup>

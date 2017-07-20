@@ -5,10 +5,13 @@ using Model;
 using MySocket;
 using SharedForms;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
 
 namespace StudentUser
 {
@@ -29,7 +32,10 @@ namespace StudentUser
         }
         private void UserMainForm_Load(object sender, System.EventArgs e)
         {
-
+            ThreadStart ts = new ThreadStart(GetScreenCapture);
+            Thread t = new Thread(ts);
+            t.IsBackground = true;
+            t.Start();
             //string pluginPath = Environment.CurrentDirectory + "\\plugins\\";  //插件目录
             //var player = new VlcPlayerBase(pluginPath);
             //player.SetRenderWindow((int)this.Handle);//panel
@@ -174,7 +180,7 @@ namespace StudentUser
         }
 
 
-        private void ChangeChatAllowOrForbit(ChatType chatType,bool isAllow)
+        private void ChangeChatAllowOrForbit(ChatType chatType, bool isAllow)
         {
             DoAction(() =>
             {
@@ -268,7 +274,7 @@ namespace StudentUser
         }
 
 
-       
+
 
         private void StopPlay()
         {
@@ -407,40 +413,101 @@ namespace StudentUser
 
         private void btnScreenCapture_Click(object sender, EventArgs e)
         {
-            GetScreenCapture();
-        }
 
+
+        }
+        ScreenCapture sc = new ScreenCapture();
+        object obLock = new object();
         private void GetScreenCapture()
         {
-            ScreenCapture sc = new ScreenCapture();
-            // capture entire screen, and save it to a file
-            //  Image img = sc.CaptureScreen();
-            // display image in a Picture control named imageDisplay
-            //  this.pictureBox1.Image = img;
-            // capture this window, and save it
-            string pathPerc = @"Send.png";
-            string source = @"Capture.png";
-            sc.CaptureScreenToFile(source, ImageFormat.Png);
-            //try
-            //{
-            //    if (!File.Exists(pathPerc))
-            //    {
-            //        File.Create(pathPerc).Close();
-            //    }
-            //    else
-            //    {
-            //        File.Delete(pathPerc);
-            //        File.Create(pathPerc).Close();
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    //MessageBox.Show(e.ToString(),"文件路径异常");
-            //    //Thread.Sleep(400);
-            //}
-            getThumImage(source, 40, 5, pathPerc);
+            //  sc = new ScreenCapture();
+            //// capture entire screen, and save it to a file
+            ////  Image img = sc.CaptureScreen();
+            //// display image in a Picture control named imageDisplay
+            ////  this.pictureBox1.Image = img;
+            //// capture this window, and save it
+            //string pathPerc = @"Send.png";
+            //string source = @"Capture.png";
+            //sc.CaptureScreenToFile(source, ImageFormat.Png);
+            //getThumImage(source, 40, 5, pathPerc);
+            //string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathPerc);
+            //GlobalVariable.client.SendDesktopPic(fullPath);
+            while (true)
+            {
+                lock (obLock)
+                {
+                    try
+                    {
+                        Image img = sc.CaptureScreen();
+                        var thumImg = getThumImage(img, 40, 5);
+
+                        ScreenCaptureInfo info = new ScreenCaptureInfo();
+                        info.DisplayName = GlobalVariable.LoginUserInfo.DisplayName;
+                        info.UserName = GlobalVariable.LoginUserInfo.UserName;
+
+                        var userJson = JsonHelper.SerializeObj(info);
+                        byte[] userBytes = Encoding.UTF8.GetBytes(userJson);
+                        byte[] userLengthBytes = BitConverter.GetBytes(userBytes.Length);
+                        byte[] imgBytes = FileHelper.ImageToByteArray(thumImg);
+                        byte[] imgLengthBytes = BitConverter.GetBytes(imgBytes.Length);
+                        byte[] allLengtBytes = BitConverter.GetBytes(userBytes.Length + userLengthBytes.Length + imgBytes.Length + imgLengthBytes.Length);
 
 
+                        List<byte> byteSource = new List<byte>();
+                        byteSource.AddRange(allLengtBytes);
+                        byteSource.AddRange(userLengthBytes);
+                        byteSource.AddRange(userBytes);
+                        byteSource.AddRange(imgLengthBytes);
+                        byteSource.AddRange(imgBytes);
+                        var sendBytes = byteSource.ToArray();
+
+                        GlobalVariable.client.SendDesktopPic(sendBytes);
+                        GlobalVariable.client.StopUdp();
+                        Thread.Sleep(1000);
+                    }
+                    catch (Exception ex)
+                    {
+                        Loger.LogMessage(ex);
+                    }
+                   
+                }
+            }
+
+
+        }
+
+
+       
+
+        private Image getThumImage(Image image, long quality, int multiple)
+
+        {
+            Bitmap newImage = null;
+            try
+            {
+                long imageQuality = quality;
+                Bitmap sourceImage = new Bitmap(image);
+                ImageCodecInfo myImageCodecInfo = GetEncoderInfo("image/png");
+                System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, imageQuality);
+                myEncoderParameters.Param[0] = myEncoderParameter;
+                float xWidth = sourceImage.Width;
+                float yWidth = sourceImage.Height;
+                newImage = new Bitmap((int)(xWidth / multiple), (int)(yWidth / multiple));
+                Graphics g = Graphics.FromImage(newImage);
+
+                g.DrawImage(sourceImage, 0, 0, xWidth / multiple, yWidth / multiple);
+                g.Dispose();
+                //   newImage.Save(outputFile, myImageCodecInfo, myEncoderParameters);
+                sourceImage.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                Loger.LogMessage(ex);
+            }
+            return newImage;
         }
 
         /// <param name="sourceFile">原始图片文件</param>  
@@ -448,7 +515,7 @@ namespace StudentUser
         /// <param name="multiple">收缩倍数</param>  
         /// <param name="outputFile">输出文件名</param>  
         /// <returns>成功返回true,失败则返回false</returns> 
-        private  bool getThumImage(String sourceFile, long quality, int multiple, String outputFile)
+        private bool getThumImage(String sourceFile, long quality, int multiple, String outputFile)
         {
             try
             {
@@ -461,6 +528,7 @@ namespace StudentUser
                 myEncoderParameters.Param[0] = myEncoderParameter;
                 float xWidth = sourceImage.Width;
                 float yWidth = sourceImage.Height;
+
                 Bitmap newImage = new Bitmap((int)(xWidth / multiple), (int)(yWidth / multiple));
                 Graphics g = Graphics.FromImage(newImage);
 
@@ -476,7 +544,7 @@ namespace StudentUser
             }
         }
         // 获取图片编码信息  
-        private  ImageCodecInfo GetEncoderInfo(String mimeType)
+        private ImageCodecInfo GetEncoderInfo(String mimeType)
         {
             int j;
             ImageCodecInfo[] encoders;
@@ -489,6 +557,8 @@ namespace StudentUser
             return null;
         }
     }
+
+  
 
     public class ScreenCapture
     {

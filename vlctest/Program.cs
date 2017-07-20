@@ -16,10 +16,10 @@ namespace vlctest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            BonusSkins.Register();
-            SkinManager.EnableFormSkins();
-            UserLookAndFeel.Default.SetSkinStyle("Office 2016 Colorful");
-            Application.Run(new Form1());
+            //BonusSkins.Register();
+            //SkinManager.EnableFormSkins();
+            //UserLookAndFeel.Default.SetSkinStyle("Office 2016 Colorful");
+            Application.Run(new Form2());
         }
     }
 }

@@ -87,6 +87,12 @@
     <Compile Include="CallForm.Designer.cs">
       <DependentUpon>CallForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StudentScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StudentScreen.Designer.cs">
+      <DependentUpon>StudentScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="fmEditTeamName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,12 +138,16 @@
     <EmbeddedResource Include="CallForm.resx">
       <DependentUpon>CallForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StudentScreen.resx">
+      <DependentUpon>StudentScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fmEditTeamName.resx">
       <DependentUpon>fmEditTeamName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>

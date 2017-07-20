@@ -1,11 +1,13 @@
-﻿using System;
-using System.Windows.Forms;
-using SharedForms;
-using Model;
-using System.Collections.Generic;
-using Common;
+﻿using Common;
 using Helpers;
+using Model;
 using MySocket;
+using NewTeacher.Controls;
+using SharedForms;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace NewTeacher
 {
@@ -34,7 +36,60 @@ namespace NewTeacher
             chatForm = new ChatForm();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
+            ReceiveStudentDesktopImg();
+        }
 
+        private void ReceiveStudentDesktopImg()
+        {
+            Thread t = new Thread(new ThreadStart(ReceiveScreenCapture));
+            t.IsBackground = true;
+            t.Start();
+        }
+
+     
+        object obLock = new object();
+        ScreenCaptureInfo sinfo;
+        private void ReceiveScreenCapture()
+        {
+            try
+            {
+                while (true)
+                {
+                    lock (obLock)
+                    {
+                        sinfo = GlobalVariable.client.GetReceieveDesktopInfo();
+                        this.InvokeOnUiThreadIfRequired(() =>
+                        {
+                            AddScreen(sinfo);
+                        });
+                        Thread.Sleep(200);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Loger.LogMessage(ex);
+            }
+        }
+
+        private void AddScreen(ScreenCaptureInfo sinfo)
+        {
+            bool isExist = false;
+            foreach (StudentScreen item in flowLayoutPanel1.Controls)
+            {
+                if (item.UserName == sinfo.UserName)
+                {
+                    isExist = true;
+                    item.UpdateScreen(sinfo.Image);
+                    break;
+                }
+            }
+
+            if (!isExist)
+            {
+                StudentScreen newItem = new StudentScreen(sinfo);
+                flowLayoutPanel1.Controls.Add(newItem);
+            }
         }
 
 
@@ -277,7 +332,7 @@ namespace NewTeacher
         {
             GlobalVariable.client.Send_OnlineList();
         }
-        
+
         #region 顶部菜单
         private void menuExportSign_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -407,7 +462,7 @@ namespace NewTeacher
             }
         }
 
-      
+
 
 
 
@@ -419,7 +474,7 @@ namespace NewTeacher
                 var username = GetSelectStudentUserName();
                 if (!string.IsNullOrWhiteSpace(username))
                 {
-                   
+
                     GlobalVariable.client.Send_CallStudentShow(username);
                     e.Item.Caption = "关闭演示";
 
@@ -518,7 +573,7 @@ namespace NewTeacher
             {
                 GlobalVariable.client.Send_LockScreen(userName);
             }
-           
+
         }
 
         private void userList_stopLockScreen_Click(object sender, EventArgs e)

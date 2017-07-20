@@ -15,7 +15,7 @@ namespace StudentUser
         {
             InitializeComponent();
         }
-       // string userGuid;
+        // string userGuid;
 
         //   private delegate void messageListCallback(string content);
         //  private messageListCallback messageCallback;
@@ -54,7 +54,7 @@ namespace StudentUser
                         GlobalVariable.client.OnReveieveData -= Client_OnReveieveData;
                         GlobalVariable.LoginUserInfo = new LoginUserInfo
                         {
-                            DisplayName = textBox1.Text.Trim(),
+                            DisplayName = nickName,
                             UserName = textBox1.Text.Trim(),
                             UserType = ClientRole.Student,
                             No = textBox2.Text.Trim()
@@ -62,7 +62,7 @@ namespace StudentUser
                         this.Close();
                     });
 
-                  
+
                 }
                 else
                 {
@@ -78,7 +78,7 @@ namespace StudentUser
             // Invoke(TranMessage, message.DataStr);
         }
 
-       // Action<string> TranMessage;
+        // Action<string> TranMessage;
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
         }
@@ -89,12 +89,12 @@ namespace StudentUser
             //string connectionString = "Database='" + ConfigurationManager.AppSettings["Database"] + "';Data Source='" + ConfigurationManager.AppSettings["serverIP"]+ "';User Id='" + ConfigurationManager.AppSettings["User ID"]+ "';Password='" + ConfigurationManager.AppSettings["Password"]+ "'";//默认端口3306 
             LoginIn();
         }
-
+        string nickName;
         private void LoginIn()
         {
-           
+
             string userName = textBox1.Text.Trim();
-            string nickName = "学生" + userName;
+            nickName = "学生" + userName;
             string password = textBox2.Text.Trim();
 
             if (userName == string.Empty)

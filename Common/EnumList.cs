@@ -114,7 +114,14 @@
         /// 允许群聊
         /// </summary>
         AllowTeamChat = 29,
-
+        /// <summary>
+        /// 教师端登录
+        /// </summary>
+        TeacherLoginIn=80,
+        /// <summary>
+        /// 教师端登出
+        /// </summary>
+        TeacherLoginOut = 81
     }
 
     /// <summary>

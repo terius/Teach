@@ -1,17 +1,16 @@
 ﻿using Common;
 using Helpers;
 using Model;
+using MyVideo;
 using SuperSocket.ClientEngine;
 using SuperSocket.ProtoBase;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using MyVideo;
 using System.Net.Sockets;
-using System.IO;
-using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MySocket
 {
@@ -31,132 +30,69 @@ namespace MySocket
 
         bool _connected;
         ScreenInteract _screenInteract;
-        UdpClient udpClient;
-
-        public void SendDesktopPic()
+        UdpClient sendUdpClient;
+        UdpClient receieveUdpClient;
+        IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+        ManualResetEvent sendDone = new ManualResetEvent(false);
+        public void SendDesktopPic(byte[] fileBytes)
         {
-            if (udpClient == null)
+            if (sendUdpClient == null)
             {
-                udpClient = new UdpClient();
-                var remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
-                udpClient.Connect(remoteEP);
+                sendUdpClient = new UdpClient();
+                var remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 10888);
+                sendUdpClient.Connect(remoteEP);
+            }
+            //var fileBytes = FileHelper.FileToByteArray(fileName);
+            sendUdpClient.BeginSend(fileBytes, fileBytes.Length, (result) =>
+            {
+                if (result.IsCompleted)
+                {
+                    sendDone.Set();
+                }
+            }, null);
+        }
+
+        public ScreenCaptureInfo GetReceieveDesktopInfo()
+        {
+            if (receieveUdpClient == null)
+            {
+                receieveUdpClient = new UdpClient(10888);
             }
 
+            Byte[] receiveBytes = receieveUdpClient.Receive(ref RemoteIpEndPoint);
+            return GetScreen(receiveBytes);
         }
 
-        private class GDI32
+        private ScreenCaptureInfo GetScreen(byte[] receiveBytes)
         {
-            public const int CAPTUREBLT = 1073741824;
-            public const int SRCCOPY = 0x00CC0020; // BitBlt dwRop parameter
-            [DllImport("gdi32.dll")]
-            public static extern bool BitBlt(IntPtr hObject, int nXDest, int nYDest,
-                int nWidth, int nHeight, IntPtr hObjectSource,
-                int nXSrc, int nYSrc, int dwRop);
-            [DllImport("gdi32.dll")]
-            public static extern IntPtr CreateCompatibleBitmap(IntPtr hDC, int nWidth,
-                int nHeight);
-            [DllImport("gdi32.dll")]
-            public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
-            [DllImport("gdi32.dll")]
-            public static extern bool DeleteDC(IntPtr hDC);
-            [DllImport("gdi32.dll")]
-            public static extern bool DeleteObject(IntPtr hObject);
-            [DllImport("gdi32.dll")]
-            public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
+            int tempOffset = 0;
+            var lenBytes = new byte[4];
+            Array.Copy(receiveBytes, tempOffset, lenBytes, 0, 4);
+            int alllength = BitConverter.ToInt32(lenBytes, 0);
+            tempOffset += 4;
+            Array.Copy(receiveBytes, tempOffset, lenBytes, 0, 4);
+            int userLength = BitConverter.ToInt32(lenBytes, 0);
+            var userBytes = new byte[userLength];
+            tempOffset += 4;
+            Array.Copy(receiveBytes, tempOffset, userBytes, 0, userLength);
+            string userString = Encoding.UTF8.GetString(userBytes);
+            ScreenCaptureInfo info = JsonHelper.DeserializeObj<ScreenCaptureInfo>(userString);
+            tempOffset += userLength;
+            Array.Copy(receiveBytes, tempOffset, lenBytes, 0, 4);
+            int imgLength = BitConverter.ToInt32(lenBytes, 0);
+            var imgBytes = new byte[imgLength];
+            tempOffset += 4;
+            Array.Copy(receiveBytes, tempOffset, imgBytes, 0, imgLength);
+            info.Image = FileHelper.ByteArrayToImage(imgBytes);
+            return info;
         }
 
-        private class User32
+
+        public void StopUdp()
         {
-            [StructLayout(LayoutKind.Sequential)]
-            public struct RECT
-            {
-                public int left;
-                public int top;
-                public int right;
-                public int bottom;
-            }
-            [DllImport("user32.dll")]
-            public static extern IntPtr GetDesktopWindow();
-            [DllImport("user32.dll")]
-            public static extern IntPtr GetWindowDC(IntPtr hWnd);
-            [DllImport("user32.dll")]
-            public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDC);
-            [DllImport("user32.dll")]
-            public static extern IntPtr GetWindowRect(IntPtr hWnd, ref RECT rect);
+            sendDone.WaitOne();
         }
 
-        //public void Get_pic(IntPtr handle)
-        //{
-        //    string pathPerc = @"Send.jpg";
-        //    string source = @"Capture.jpg";
-        //    //try
-        //    //{
-        //    //    Image myImg = new Bitmap(Screen.AllScreens[0].Bounds.Width, Screen.AllScreens[0].Bounds.Height);
-        //    //    Graphics g = Graphics.FromImage(myImg);
-        //    //    g.CopyFromScreen(new Point(0, 0), new Point(0, 0), Screen.AllScreens[0].Bounds.Size);
-        //    //    myImg.Save(source, System.Drawing.Imaging.ImageFormat.Jpeg);
-        //    //    g.Dispose();
-        //    //    myImg.Dispose();
-        //    //}
-        //    //catch (Exception e){
-        //    //    MessageBox.Show(e.ToString(),"截屏获取异常");
-        //    //}
-        //    try
-        //    {
-        //        // get te hDC of the target window
-        //        IntPtr hdcSrc = User32.GetWindowDC(handle);
-        //        // get the size
-        //        User32.RECT windowRect = new User32.RECT();
-        //        User32.GetWindowRect(handle, ref windowRect);
-        //        int width = windowRect.right - windowRect.left;
-        //        int height = windowRect.bottom - windowRect.top;
-        //        // create a device context we can copy to
-        //        IntPtr hdcDest = GDI32.CreateCompatibleDC(hdcSrc);
-        //        // create a bitmap we can copy it to,
-        //        // using GetDeviceCaps to get the width/height
-        //        IntPtr hBitmap = GDI32.CreateCompatibleBitmap(hdcSrc, width, height);
-        //        // select the bitmap object
-        //        IntPtr hOld = GDI32.SelectObject(hdcDest, hBitmap);
-        //        // bitblt over
-        //        GDI32.BitBlt(hdcDest, 0, 0, width, height, hdcSrc, 0, 0, GDI32.SRCCOPY | GDI32.CAPTUREBLT);
-        //        // restore selection
-        //        GDI32.SelectObject(hdcDest, hOld);
-        //        // clean up 
-        //        GDI32.DeleteDC(hdcDest);
-        //        User32.ReleaseDC(handle, hdcSrc);
-        //        // get a .NET image object for it
-        //        Image img = Image.FromHbitmap(hBitmap);
-        //        // free up the Bitmap object
-        //        GDI32.DeleteObject(hBitmap);
-
-        //        img.Save(source);
-        //        img.Dispose();
-        //        //return img;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // MessageBox.Show(e.ToString(), "截屏获取异常");
-        //        //Thread.Sleep(400);
-        //    }
-        //    try
-        //    {
-        //        if (!File.Exists(pathPerc))
-        //        {
-        //            File.Create(pathPerc).Close();
-        //        }
-        //        else
-        //        {
-        //            File.Delete(pathPerc);
-        //            File.Create(pathPerc).Close();
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        //MessageBox.Show(e.ToString(),"文件路径异常");
-        //        //Thread.Sleep(400);
-        //    }
-        //    getThumImage(source, 40, 5, pathPerc);
-        //}
 
         public bool Connected
         {
@@ -548,7 +484,7 @@ namespace MySocket
         #endregion
     }
 
-   
+
 
     class MyReceiveFilter : FixedHeaderReceiveFilter<ReceieveMessage>
     {

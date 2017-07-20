@@ -23,6 +23,7 @@ namespace Helpers
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.IO;
     using System.Text;
     using System.Windows.Forms;
@@ -445,6 +446,29 @@ namespace Helpers
                 }
             }
             return null;
+        }
+
+        public static byte[] ImageToByteArray(Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
+        public static byte[] FileToByteArray(string fileName)
+        {
+            return File.ReadAllBytes(fileName);
+        }
+
+        public static Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image returnImage = Image.FromStream(ms);
+                return returnImage;
+            }
         }
     }
 }
