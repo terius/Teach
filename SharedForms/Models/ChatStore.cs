@@ -59,61 +59,6 @@ namespace SharedForms
         }
     }
 
-
-
-
-    public class ChatMessage
-    {
-        public string SendUserName { get; set; }
-
-        public string SendDisplayName { get; set; }
-
-        public string ReceieveUserName { get; set; }
-
-        public DateTime SendTime { get; set; }
-
-        public string Message { get; set; }
-
-        public ClientRole UserType { get; set; }
-
-
-        public string Title { get { return SendDisplayName + " (" + SendTime.ToString("yyyy-MM-dd HH:mm:ss") + ")"; } }
-
-        // public ChatBoxContent Content { get; set; }
-
-        public MessageType MessageType { get; set; }
-
-        public string DownloadFileUrl { get; set; }
-
-
-
-        public ChatMessage(string _sendUserName,
-            string _sendDisplayName,
-            string _receieveUserName,
-            string _message,
-            ClientRole _userType
-            )
-        {
-            this.SendUserName = _sendUserName;
-            this.SendDisplayName = _sendDisplayName;
-            this.ReceieveUserName = _receieveUserName;
-            this.SendTime = DateTime.Now;
-            this.Message = _message;
-            UserType = _userType;
-            MessageType = MessageType.String;
-        }
-
-        public ChatMessage(string _sendUserName,
-          string _sendDisplayName,
-          string _receieveUserName,
-          string _message,
-          ClientRole _userType,
-          MessageType MessageType
-          ) : this(_sendUserName, _sendDisplayName, _receieveUserName, _message, _userType)
-        {
-            this.MessageType = MessageType;
-
-        }
-    }
+   
 
 }

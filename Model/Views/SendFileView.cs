@@ -4,8 +4,8 @@ namespace Model
 {
     public class SendFileView
     {
-        public string DownLoadFileUrl { get; set; }
-        public MessageType FileType { get; set; }
+        public string DownloadFileUrl { get; set; }
+        public MessageType MessageType { get; set; }
 
     }
 }

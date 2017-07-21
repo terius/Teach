@@ -69,17 +69,47 @@ namespace SharedForms
         #endregion
 
         #region 方法
-        /// <summary>
-        /// 创建聊天对象
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="isCreate"></param>
-        public void CreateChatItems(AddChatRequest request, bool fromReceieveMessage)
+        ///// <summary>
+        ///// 创建聊天对象
+        ///// </summary>
+        ///// <param name="request"></param>
+        ///// <param name="isCreate"></param>
+        //public void CreateChatItems(AddChatRequest request, bool fromReceieveMessage)
+        //{
+        //    this.Text = GlobalVariable.LoginUserInfo.DisplayName + " 的聊天窗口";
+        //    IsHide = false;
+        //    ReflashTeamChat();
+        //    ChatItem chatItem = GetItemInChatListBox(request.UserName);
+        //    if (chatItem == null)
+        //    {
+        //        chatItem = ChatNav.CreateItem(request);
+
+        //    }
+
+        //    if (fromReceieveMessage)
+        //    {
+        //        if (!string.IsNullOrWhiteSpace(selectUserName) && chatItem.UserName != selectUserName)
+        //        {
+        //            //chatItem.Caption = chatItem.DisplayName + " 有新消息！";
+        //            chatItem.SmallImage = Resource1.新消息24;
+        //        }
+        //        else
+        //        {
+        //            ChatItemSelected(chatItem, false);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ChatItemSelected(chatItem, false);
+        //    }
+        //}
+
+        public void CreateChatItems(ChatMessage request, bool fromReceieveMessage)
         {
             this.Text = GlobalVariable.LoginUserInfo.DisplayName + " 的聊天窗口";
             IsHide = false;
             ReflashTeamChat();
-            ChatItem chatItem = GetItemInChatListBox(request.UserName);
+            ChatItem chatItem = GetItemInChatListBox(request.SendUserName);
             if (chatItem == null)
             {
                 chatItem = ChatNav.CreateItem(request);
@@ -264,7 +294,7 @@ namespace SharedForms
         /// <param name="msg"></param>
         private bool SendMessageCommand(ChatMessage chatMessage)
         {
-            
+
             var chatType = GlobalVariable.GetChatType(chatMessage.ReceieveUserName);
             if (chatType == ChatType.PrivateChat)
             {
@@ -281,7 +311,11 @@ namespace SharedForms
                 request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 request.SendUserName = GlobalVariable.LoginUserInfo.UserName;
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
-               
+                // if (chatMessage.MessageType != MessageType.String)
+                //  {
+                request.MessageType = chatMessage.MessageType;
+                request.DownloadFileUrl = chatMessage.DownloadFileUrl;
+                // }
                 GlobalVariable.client.Send_PrivateChat(request);
 
             }
@@ -301,6 +335,8 @@ namespace SharedForms
                 request.groupid = chatMessage.ReceieveUserName;
                 request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
+                request.MessageType = chatMessage.MessageType;
+                request.DownloadFileUrl = chatMessage.DownloadFileUrl;
                 GlobalVariable.client.Send_TeamChat(request);
                 //  GlobalVariable.client.SendMessage(request, CommandType.TeamChat);
             }
@@ -311,6 +347,8 @@ namespace SharedForms
                 request.SendDisplayName = GlobalVariable.LoginUserInfo.DisplayName;
                 request.SendUserName = groupId;
                 request.clientRole = GlobalVariable.LoginUserInfo.UserType;
+                request.MessageType = chatMessage.MessageType;
+                request.DownloadFileUrl = chatMessage.DownloadFileUrl;
                 GlobalVariable.client.Send_GroupChat(request);
             }
             //   GlobalVariable.AddPrivateChatToChatList(_userName, GlobalVariable.LoginUserInfo.DisplayName, msg);

@@ -52,17 +52,48 @@ namespace SharedForms
             }
         }
 
-        public static void AddNewChat(AddChatRequest request)
+        //public static void AddNewChat(AddChatRequest request)
+        //{
+        //    ChatStore info = ChatList.FirstOrDefault(d => d.ChatUserName == request.UserName);
+
+        //    if (info == null)
+        //    {
+        //        info = new ChatStore();
+        //        info.ChatDisplayName = request.DisplayName;
+        //        info.ChatStartTime = DateTime.Now;
+        //        info.ChatType = request.ChatType;
+        //        info.ChatUserName = request.UserName;
+        //        info.UserType = request.UserType;
+        //        info.MessageList = new List<ChatMessage>();
+        //        ChatList.Add(info);
+        //    }
+
+        //    if (!string.IsNullOrWhiteSpace(request.Message))
+        //    {
+        //        //ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
+        //        var message = request.ToChatMessage();// new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, content);
+
+        //        if (info.NewMessageList == null)
+        //        {
+        //            info.NewMessageList = new List<ChatMessage>();
+
+        //        }
+        //        info.NewMessageList.Add(message);
+        //    }
+
+        //}
+
+        public static void AddNewChat(ChatMessage request)
         {
-            ChatStore info = ChatList.FirstOrDefault(d => d.ChatUserName == request.UserName);
+            ChatStore info = ChatList.FirstOrDefault(d => d.ChatUserName == request.SendUserName);
 
             if (info == null)
             {
                 info = new ChatStore();
-                info.ChatDisplayName = request.DisplayName;
+                info.ChatDisplayName = request.SendDisplayName;
                 info.ChatStartTime = DateTime.Now;
                 info.ChatType = request.ChatType;
-                info.ChatUserName = request.UserName;
+                info.ChatUserName = request.SendUserName;
                 info.UserType = request.UserType;
                 info.MessageList = new List<ChatMessage>();
                 ChatList.Add(info);
@@ -71,14 +102,14 @@ namespace SharedForms
             if (!string.IsNullOrWhiteSpace(request.Message))
             {
                 //ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
-                var message = request.ToChatMessage();// new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, content);
+             //   var message = request.ToChatMessage();// new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, content);
 
                 if (info.NewMessageList == null)
                 {
                     info.NewMessageList = new List<ChatMessage>();
 
                 }
-                info.NewMessageList.Add(message);
+                info.NewMessageList.Add(request);
             }
 
         }
@@ -107,12 +138,12 @@ namespace SharedForms
         }
 
 
-        public static ChatMessage ToChatMessage(this AddChatRequest request)
-        {
+        //public static ChatMessage ToChatMessage(this AddChatRequest request)
+        //{
 
-            //   ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
-            return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, request.Message, request.UserType);
-        }
+        //    //   ChatBoxContent content = new ChatBoxContent(request.Message, messageFont, messageColor);
+        //    return new ChatMessage(request.UserName, request.DisplayName, LoginUserInfo.UserName, request.Message, request.UserType);
+        //}
 
         static Font messageFont = new Font("微软雅黑", 9);
         static Color messageColor = Color.FromArgb(255, 32, 32, 32);

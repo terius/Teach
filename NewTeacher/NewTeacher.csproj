@@ -75,12 +75,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BaseForm.designer.cs">
-      <DependentUpon>BaseForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CallForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,9 +126,6 @@
       <DependentUpon>ViewRtsp.cs</DependentUpon>
     </Compile>
     <Compile Include="VlcPlus.cs" />
-    <EmbeddedResource Include="BaseForm.resx">
-      <DependentUpon>BaseForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CallForm.resx">
       <DependentUpon>CallForm.cs</DependentUpon>
     </EmbeddedResource>

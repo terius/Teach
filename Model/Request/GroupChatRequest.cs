@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    public class GroupChatRequest
+    public class GroupChatRequest:SendFileView
     {
        
 

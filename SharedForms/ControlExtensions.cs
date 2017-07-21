@@ -32,44 +32,73 @@ namespace SharedForms
             }
         }
 
-        public static AddChatRequest ToAddChatRequest(this PrivateChatRequest response)
+        //public static AddChatRequest ToAddChatRequest(this PrivateChatRequest response)
+        //{
+        //    AddChatRequest request = new AddChatRequest();
+        //    request.UserName = response.SendUserName;
+        //    request.DisplayName = response.SendDisplayName;
+        //    request.ChatType = ChatType.PrivateChat;
+        //    request.Message = response.msg;
+        //    request.UserType = response.clientRole;
+        //    return request;
+        //}
+
+        public static ChatMessage ToChatMessage(this PrivateChatRequest response)
         {
-            AddChatRequest request = new AddChatRequest();
-            request.UserName = response.SendUserName;
-            request.DisplayName = response.SendDisplayName;
+            ChatMessage request = new ChatMessage();
+            request.SendUserName = response.SendUserName;
+            request.SendDisplayName = response.SendDisplayName;
             request.ChatType = ChatType.PrivateChat;
             request.Message = response.msg;
             request.UserType = response.clientRole;
+            request.DownloadFileUrl = response.DownloadFileUrl;
+            request.MessageType = response.MessageType;
+            request.ReceieveUserName = response.receivename;
+         
             return request;
         }
 
-        public static AddChatRequest ToAddChatRequest(this TeamChatRequest response)
+        public static ChatMessage ToChatMessage(this TeamChatRequest response)
         {
-            AddChatRequest request = new AddChatRequest();
-            request.UserName = response.groupid;
-            request.DisplayName = response.SendDisplayName;
+            var request = new ChatMessage();
+            request.SendUserName = response.groupid;
+            request.SendDisplayName = response.SendDisplayName;
             request.ChatType = ChatType.TeamChat;
             request.Message = response.msg;
             request.UserType = response.clientRole;
+            request.DownloadFileUrl = response.DownloadFileUrl;
+            request.MessageType = response.MessageType;
+            request.ReceieveUserName = GlobalVariable.LoginUserInfo.UserName;
             return request;
         }
 
-        public static AddChatRequest ToAddChatRequest(this GroupChatRequest response)
+        public static ChatMessage ToChatMessage(this GroupChatRequest response)
         {
-            AddChatRequest request = new AddChatRequest();
-            request.UserName = response.SendUserName;
-            request.DisplayName = response.SendDisplayName;
+            var request = new ChatMessage();
+            request.SendUserName = response.SendUserName;
+            request.SendDisplayName = response.SendDisplayName;
             request.ChatType = ChatType.GroupChat;
             request.Message = response.msg;
             request.UserType = response.clientRole;
+            request.DownloadFileUrl = response.DownloadFileUrl;
+            request.MessageType = response.MessageType;
+            request.ReceieveUserName = GlobalVariable.LoginUserInfo.UserName;
             return request;
         }
 
-        public static ChatItem CreateItem(this NavBarControl source,AddChatRequest request)
-        {
-            ChatItem item = new ChatItem(source, request.UserName,
-                request.DisplayName, request.ChatType, request.UserType);
+        //public static ChatItem CreateItem(this NavBarControl source,AddChatRequest request)
+        //{
+        //    ChatItem item = new ChatItem(source, request.UserName,
+        //        request.DisplayName, request.ChatType, request.UserType);
           
+        //    return item;
+        //}
+
+        public static ChatItem CreateItem(this NavBarControl source, ChatMessage request)
+        {
+            ChatItem item = new ChatItem(source, request.SendUserName,
+                request.SendDisplayName, request.ChatType, request.UserType);
+
             return item;
         }
         public static ChatItem CreateItem(this NavBarControl source, ChatStore store)

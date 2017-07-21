@@ -239,14 +239,14 @@ namespace NewTeacher
 
         private void ReceieveTeamMessage(TeamChatRequest message)
         {
-            AddChatRequest request = message.ToAddChatRequest();
+            var request = message.ToChatMessage();
             GlobalVariable.AddNewChat(request);
             OpenOrCreateChatForm(request, true);
         }
 
         private void ReceieveGroupMessage(GroupChatRequest message)
         {
-            AddChatRequest request = message.ToAddChatRequest();
+            var request = message.ToChatMessage();
             GlobalVariable.AddNewChat(request);
             OpenOrCreateChatForm(request, true);
         }
@@ -254,7 +254,7 @@ namespace NewTeacher
 
         private void ReceievePrivateMessage(PrivateChatRequest message)
         {
-            AddChatRequest request = message.ToAddChatRequest();
+            var request = message.ToChatMessage();
             GlobalVariable.AddNewChat(request);
             OpenOrCreateChatForm(request, true);
         }
@@ -380,10 +380,10 @@ namespace NewTeacher
 
         private void menuGroupChat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AddChatRequest request = new AddChatRequest();
-            request.DisplayName = "所有人";
+            var request = new ChatMessage();
+            request.SendDisplayName = "所有人";
             request.ChatType = ChatType.PrivateChat;
-            request.UserName = "allpeople";
+            request.SendUserName = "allpeople";
             request.UserType = ClientRole.Student;
             GlobalVariable.AddNewChat(request);
             OpenOrCreateChatForm(request, false);
@@ -536,20 +536,35 @@ namespace NewTeacher
         {
             string userName = lvOnline.SelectedItems[0].SubItems[2].Text;
             string displayName = lvOnline.SelectedItems[0].Text;
-            AddChatRequest request = new AddChatRequest();
-            request.DisplayName = displayName;
+            var request = new ChatMessage();
+            request.SendDisplayName = displayName;
             request.ChatType = ChatType.PrivateChat;
-            request.UserName = userName;
+            request.SendUserName = userName;
             request.UserType = ClientRole.Student;
             GlobalVariable.AddNewChat(request);
             OpenOrCreateChatForm(request, false);
         }
 
-        /// <summary>
-        /// 打开或创建聊天窗口
-        /// </summary>
-        /// <param name="request"></param>
-        public void OpenOrCreateChatForm(AddChatRequest request, bool fromReceMsg)
+        ///// <summary>
+        ///// 打开或创建聊天窗口
+        ///// </summary>
+        ///// <param name="request"></param>
+        //public void OpenOrCreateChatForm(AddChatRequest request, bool fromReceMsg)
+        //{
+        //    //chatFormIsShow = CheckChatFormIsOpen();
+        //    //if (chatForm == null)
+        //    //{
+        //    //    chatForm = new ChatForm();
+        //    //    isOpen = false;
+        //    //}
+
+        //    chatForm.BringToFront();
+        //    chatForm.Show();
+        //    chatForm.CreateChatItems(request, fromReceMsg);
+
+        //}
+
+        public void OpenOrCreateChatForm(ChatMessage request, bool fromReceMsg)
         {
             //chatFormIsShow = CheckChatFormIsOpen();
             //if (chatForm == null)

@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraBars.Alerter;
 using Helpers;
+using Model;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;

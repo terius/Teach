@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    public class TeamChatRequest
+    public class TeamChatRequest : SendFileView
     {
         public string username { get; set; }
         public string groupname { get; set; }

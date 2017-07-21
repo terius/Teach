@@ -91,8 +91,8 @@ namespace StudentUser
                     var chatResponse = JsonHelper.DeserializeObj<PrivateChatRequest>(message.DataStr);
                     DoAction(() =>
                     {
-                        AddChatRequest request = chatResponse.ToAddChatRequest();
-                        OpenChatForm(request);
+                        var chatMessage = chatResponse.ToChatMessage();
+                        OpenChatForm(chatMessage);
                     });
                     break;
                 case (int)CommandType.TeamChat://收到群聊信息
@@ -100,7 +100,7 @@ namespace StudentUser
 
                     DoAction(() =>
                     {
-                        AddChatRequest request = teamChatResponse.ToAddChatRequest();
+                        var request = teamChatResponse.ToChatMessage();
                         OpenChatForm(request);
                     });
                     break;
@@ -109,7 +109,7 @@ namespace StudentUser
 
                     DoAction(() =>
                     {
-                        AddChatRequest request = groupChatResponse.ToAddChatRequest();
+                        var request = groupChatResponse.ToChatMessage();
                         OpenChatForm(request);
                     });
                     break;
@@ -225,12 +225,20 @@ namespace StudentUser
 
 
 
-        private void OpenChatForm(AddChatRequest request)
+        //private void OpenChatForm(AddChatRequest request)
+        //{
+        //    GlobalVariable.AddNewChat(request);
+        //    chatForm.BringToFront();
+        //    chatForm.Show();
+        //    chatForm.CreateChatItems(request, true);
+        //}
+
+        private void OpenChatForm(ChatMessage message)
         {
-            GlobalVariable.AddNewChat(request);
+            GlobalVariable.AddNewChat(message);
             chatForm.BringToFront();
             chatForm.Show();
-            chatForm.CreateChatItems(request, true);
+            chatForm.CreateChatItems(message, true);
         }
 
 
