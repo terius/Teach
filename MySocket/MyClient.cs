@@ -462,6 +462,14 @@ namespace MySocket
             SendMessage(request, CommandType.AllowTeamChat);
         }
 
+        /// <summary>
+        /// 学生端登出
+        /// </summary>
+        public void Send_StudentLoginOut()
+        {
+            SendMessageNoPara(CommandType.UserLoginOut);
+        }
+
         #region 通用方法
         private void SendMessage<T>(T t, CommandType cmdType) where T : class, new()
         {

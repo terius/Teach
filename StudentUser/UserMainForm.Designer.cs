@@ -33,6 +33,7 @@
             this.btnLockScreen = new System.Windows.Forms.Button();
             this.btnStopLockScreen = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnScreenCapture = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tuopan = new System.Windows.Forms.NotifyIcon(this.components);
@@ -45,7 +46,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mExit = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnScreenCapture = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.MinMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,6 +84,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(762, 73);
             this.panel1.TabIndex = 2;
+            // 
+            // btnScreenCapture
+            // 
+            this.btnScreenCapture.Location = new System.Drawing.Point(96, 36);
+            this.btnScreenCapture.Name = "btnScreenCapture";
+            this.btnScreenCapture.Size = new System.Drawing.Size(87, 27);
+            this.btnScreenCapture.TabIndex = 4;
+            this.btnScreenCapture.Text = "截屏";
+            this.btnScreenCapture.UseVisualStyleBackColor = true;
+            this.btnScreenCapture.Click += new System.EventHandler(this.btnScreenCapture_Click);
             // 
             // button2
             // 
@@ -185,16 +195,6 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // btnScreenCapture
-            // 
-            this.btnScreenCapture.Location = new System.Drawing.Point(96, 36);
-            this.btnScreenCapture.Name = "btnScreenCapture";
-            this.btnScreenCapture.Size = new System.Drawing.Size(87, 27);
-            this.btnScreenCapture.TabIndex = 4;
-            this.btnScreenCapture.Text = "截屏";
-            this.btnScreenCapture.UseVisualStyleBackColor = true;
-            this.btnScreenCapture.Click += new System.EventHandler(this.btnScreenCapture_Click);
-            // 
             // UserMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -207,6 +207,7 @@
             this.MinimumSize = new System.Drawing.Size(439, 406);
             this.Name = "UserMainForm";
             this.Text = "Student";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserMainForm_FormClosing);
             this.Load += new System.EventHandler(this.UserMainForm_Load);
             this.Shown += new System.EventHandler(this.UserMainForm_Shown);
             this.panel1.ResumeLayout(false);

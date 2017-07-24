@@ -17,11 +17,12 @@ namespace StudentUser
 {
     public partial class UserMainForm : XtraForm
     {
-        private BlackScreen bsForm = null;
+        BlackScreen bsForm = null;
         // VLCPlayer videoPlayer;
         ChatForm chatForm = new ChatForm();
         ViewRtsp videoPlayer2;
         CallForm callForm;
+
         public UserMainForm()
         {
             InitializeComponent();
@@ -58,6 +59,18 @@ namespace StudentUser
             //});
             switch (message.Action)
             {
+                case (int)CommandType.TeacherLoginIn://教师端登录
+
+                    DoAction(() =>
+                    {
+                        Thread t = new Thread(new ThreadStart(GetScreenCapture));
+                        t.IsBackground = true;
+                        t.Start();
+
+                    });
+                    break;
+                case (int)CommandType.TeacherLoginOut://教师端登出
+                    break;
                 case (int)CommandType.ScreenInteract://收到视频流
                     ScreenInteract_Response resp = JsonHelper.DeserializeObj<ScreenInteract_Response>(message.DataStr);
                     DoAction(() =>
@@ -253,17 +266,17 @@ namespace StudentUser
 
 
         //最小化窗体
-        //private bool windowCreate = true;
-        //protected override void OnActivated(EventArgs e)
-        //{
-        //    if (windowCreate)
-        //    {
-        //        base.Visible = false;
-        //        windowCreate = false;
-        //    }
+        private bool windowCreate = true;
+        protected override void OnActivated(EventArgs e)
+        {
+            if (windowCreate)
+            {
+                base.Visible = false;
+                windowCreate = false;
+            }
 
-        //    base.OnActivated(e);
-        //}
+            base.OnActivated(e);
+        }
 
 
 
@@ -308,9 +321,12 @@ namespace StudentUser
             //     actHook.Start();
             DoAction(() =>
             {
-                BlackScreen frm = new BlackScreen(isSlient);
-                frm.Show();
-                bsForm = frm;
+                if (bsForm == null)
+                {
+                    BlackScreen frm = new BlackScreen(isSlient);
+                    frm.Show();
+                    bsForm = frm;
+                }
             });
 
 
@@ -477,7 +493,7 @@ namespace StudentUser
                     {
                         Loger.LogMessage(ex);
                     }
-                   
+
                 }
             }
 
@@ -485,7 +501,7 @@ namespace StudentUser
         }
 
 
-       
+
 
         private Image getThumImage(Image image, long quality, int multiple)
 
@@ -564,9 +580,14 @@ namespace StudentUser
             }
             return null;
         }
+
+        private void UserMainForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            GlobalVariable.client.Send_StudentLoginOut();
+        }
     }
 
-  
+
 
     public class ScreenCapture
     {
