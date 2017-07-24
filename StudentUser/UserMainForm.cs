@@ -22,7 +22,7 @@ namespace StudentUser
         ChatForm chatForm = new ChatForm();
         ViewRtsp videoPlayer2;
         CallForm callForm;
-
+        volatile bool isRunScreen = false;
         public UserMainForm()
         {
             InitializeComponent();
@@ -51,7 +51,7 @@ namespace StudentUser
 
 
 
-
+        Thread theadScreen;
         private void Client_OnReveieveData(ReceieveMessage message)
         {
             //DoAction(() => {
@@ -63,13 +63,22 @@ namespace StudentUser
 
                     DoAction(() =>
                     {
-                        Thread t = new Thread(new ThreadStart(GetScreenCapture));
-                        t.IsBackground = true;
-                        t.Start();
+                        if (theadScreen == null || theadScreen.ThreadState != ThreadState.Running)
+                        {
+                            theadScreen = new Thread(new ThreadStart(GetScreenCapture));
+                            theadScreen.IsBackground = true;
+                            theadScreen.Start();
+                        }
 
                     });
                     break;
                 case (int)CommandType.TeacherLoginOut://教师端登出
+                    if (theadScreen != null && theadScreen.ThreadState == ThreadState.Background)
+                    {
+                        isRunScreen = false;
+                        Thread.Sleep(200);
+                        theadScreen.Abort();
+                    }
                     break;
                 case (int)CommandType.ScreenInteract://收到视频流
                     ScreenInteract_Response resp = JsonHelper.DeserializeObj<ScreenInteract_Response>(message.DataStr);
@@ -456,7 +465,8 @@ namespace StudentUser
             //getThumImage(source, 40, 5, pathPerc);
             //string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathPerc);
             //GlobalVariable.client.SendDesktopPic(fullPath);
-            while (true)
+            isRunScreen = true;
+            while (isRunScreen)
             {
                 lock (obLock)
                 {
