@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -41,6 +43,40 @@ namespace StudentUser
             //var player = new VlcPlayerBase(pluginPath);
             //player.SetRenderWindow((int)this.Handle);//panel
             // player.LoadFile("d:\\1.mkv");//视频文件路径
+            CreateUDPReceive();
+            CreateUDPConnect();
+        }
+
+        private void CreateUDPReceive()
+        {
+            Thread t = new Thread(new ThreadStart(CreateUDPServer));
+            t.IsBackground = true;
+            t.Start();
+        }
+
+
+        IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+        private void CreateUDPServer()
+        {
+
+            var receieveUdpClient = new UdpClient(10887);
+
+
+            Byte[] receiveBytes = receieveUdpClient.Receive(ref RemoteIpEndPoint);
+            var str = Encoding.UTF8.GetString(receiveBytes);
+            
+        }
+
+        private void CreateUDPConnect()
+        {
+            Thread t = new Thread(new ThreadStart(CreateUDP));
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private void CreateUDP()
+        {
+            GlobalVariable.client.CreateUDPStudentHole();
         }
 
         private void DoAction(Action action)
@@ -65,7 +101,10 @@ namespace StudentUser
                     {
                         if (theadScreen == null || theadScreen.ThreadState != ThreadState.Running)
                         {
+                            TeacherLoginInResponse teachRes = JsonHelper.DeserializeObj<TeacherLoginInResponse>(message.DataStr);
+                            GlobalVariable.TeacherIP = teachRes.teachIP;
                             theadScreen = new Thread(new ThreadStart(GetScreenCapture));
+
                             theadScreen.IsBackground = true;
                             theadScreen.Start();
                         }
@@ -453,6 +492,7 @@ namespace StudentUser
         object obLock = new object();
         private void GetScreenCapture()
         {
+
             //  sc = new ScreenCapture();
             //// capture entire screen, and save it to a file
             ////  Image img = sc.CaptureScreen();
@@ -495,7 +535,7 @@ namespace StudentUser
                         byteSource.AddRange(imgBytes);
                         var sendBytes = byteSource.ToArray();
 
-                        GlobalVariable.client.SendDesktopPic(sendBytes);
+                        GlobalVariable.client.SendDesktopPic(sendBytes, GlobalVariable.TeacherIP);
                         GlobalVariable.client.StopUdp();
                         Thread.Sleep(1000);
                     }

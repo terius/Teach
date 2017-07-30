@@ -27,6 +27,7 @@ namespace MySocket
         //}
         readonly string serverIP = System.Configuration.ConfigurationManager.AppSettings["serverIP"];
         readonly int serverPort = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["serverPort"]);
+        readonly int udpPort = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UDPPort"]);
 
         bool _connected;
         ScreenInteract _screenInteract;
@@ -34,12 +35,12 @@ namespace MySocket
         UdpClient receieveUdpClient;
         IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
         ManualResetEvent sendDone = new ManualResetEvent(false);
-        public void SendDesktopPic(byte[] fileBytes)
+        public void SendDesktopPic(byte[] fileBytes, string teacherIp)
         {
             if (sendUdpClient == null)
             {
                 sendUdpClient = new UdpClient();
-                var remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 10888);
+                var remoteEP = new IPEndPoint(IPAddress.Parse(teacherIp), 10888);
                 sendUdpClient.Connect(remoteEP);
             }
             //var fileBytes = FileHelper.FileToByteArray(fileName);
@@ -50,6 +51,24 @@ namespace MySocket
                     sendDone.Set();
                 }
             }, null);
+        }
+
+        public void CreateUDPTeacherHole()
+        {
+            var uClient = new UdpClient();
+            var remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), udpPort);
+            uClient.Connect(remoteEP);
+            var bt = Encoding.UTF8.GetBytes("TEACHER");
+            uClient.Send(bt, bt.Length);
+        }
+
+        public void CreateUDPStudentHole()
+        {
+            var uClient = new UdpClient();
+            var remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), udpPort);
+            uClient.Connect(remoteEP);
+            var bt = Encoding.UTF8.GetBytes("STUDENT");
+            uClient.Send(bt, bt.Length);
         }
 
         public ScreenCaptureInfo GetReceieveDesktopInfo()

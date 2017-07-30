@@ -36,7 +36,20 @@ namespace NewTeacher
             chatForm = new ChatForm();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
+           // CreateUDPConnect();
             ReceiveStudentDesktopImg();
+        }
+
+        private void CreateUDPConnect()
+        {
+            Thread t = new Thread(new ThreadStart(CreateUDP));
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private void CreateUDP()
+        {
+            GlobalVariable.client.CreateUDPTeacherHole();
         }
 
         private void ReceiveStudentDesktopImg()
@@ -58,6 +71,7 @@ namespace NewTeacher
                     lock (obLock)
                     {
                         sinfo = GlobalVariable.client.GetReceieveDesktopInfo();
+                        Loger.LogMessage("收到udp信息：" + JsonHelper.SerializeObj(sinfo));
                         this.InvokeOnUiThreadIfRequired(() =>
                         {
                             AddScreen(sinfo);

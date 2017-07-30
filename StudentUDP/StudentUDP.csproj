@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2E25AE3C-9DCE-4CEC-81F5-8B853350AB4C}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{EEA54025-F18F-4E9F-BE38-CB65C45F102F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Model</RootNamespace>
-    <AssemblyName>Model</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>StudentUDP</RootNamespace>
+    <AssemblyName>StudentUDP</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,12 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSkin">
-      <HintPath>..\..\..\..\dll\CSkin 4.0\CSkin.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,37 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Request\EmptyRequest.cs" />
-    <Compile Include="Request\TeamChatListRequest.cs" />
-    <Compile Include="Request\LockScreenRequest.cs" />
-    <Compile Include="Request\GroupChatRequest.cs" />
-    <Compile Include="Request\PrivateChatRequest.cs" />
-    <Compile Include="Request\QuietRequest.cs" />
-    <Compile Include="Request\StuCallRequest.cs" />
-    <Compile Include="Request\TeamChatRequest.cs" />
-    <Compile Include="Response\LockScreenReponse.cs" />
-    <Compile Include="Response\QuietResponse.cs" />
-    <Compile Include="Response\ScreenInteract_Response.cs" />
-    <Compile Include="Response\OnlineListResult.cs" />
-    <Compile Include="Request\ScreenInteract_Request.cs" />
-    <Compile Include="LoginInfo.cs" />
-    <Compile Include="Response\TeacherLoginInResponse.cs" />
-    <Compile Include="Response\UserLogoutResponse.cs" />
-    <Compile Include="SendCommand.cs" />
-    <Compile Include="Response\LoginResult.cs" />
-    <Compile Include="LoginUserInfo.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ChatTeamInfo.cs" />
-    <Compile Include="Views\ScreenCaptureInfo.cs" />
-    <Compile Include="Views\SendFileView.cs" />
-    <Compile Include="Views\TeamMember.cs" />
-    <Compile Include="Views\UploadResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{a272ae5d-90b2-4574-b479-dc37060a8862}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

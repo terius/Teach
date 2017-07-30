@@ -14,6 +14,7 @@ namespace SharedForms
 {
     public static class GlobalVariable
     {
+        public static string TeacherIP { get; set; }
         public static MyClient client;
         //public static MyClient client
         //{
