@@ -30,7 +30,19 @@ namespace StudentUser
             InitializeComponent();
             Text = GlobalVariable.LoginUserInfo.DisplayName;
             tuopan.Text = Text;
-            GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
+            GlobalVariable.client.OnBeginCall = (message) =>
+            {
+                DoAction(() =>
+                {
+                    OpenCallForm();
+
+                });
+
+
+            };
+            GlobalVariable.client.DueLostMessage();
+
+          //  GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_StudentInMainForm();
         }
         private void UserMainForm_Load(object sender, System.EventArgs e)

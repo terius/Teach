@@ -24,7 +24,35 @@ namespace StudentUser
             Login_Btn.SetButtonHoverLeave();
             btnExit.SetButtonHoverLeave();
             GlobalVariable.client = new MyClient();
-            GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
+            GlobalVariable.client.OnLoginIn = (message) =>
+            {
+
+                var result = JsonHelper.DeserializeObj<LoginResult>(message.DataStr);
+                if (result.success)
+                {
+                    DoAction(() =>
+                    {
+                      //  this.DialogResult = DialogResult.OK;
+                        // GlobalVariable.client.OnReveieveData -= Client_OnReveieveData;
+                        GlobalVariable.LoginUserInfo = new LoginUserInfo
+                        {
+                            DisplayName = nickName,
+                            UserName = textBox1.Text.Trim(),
+                            UserType = ClientRole.Student,
+                            No = textBox2.Text.Trim()
+                        };
+                        //  this.Close();
+                    });
+
+
+                }
+                else
+                {
+                    MessageBox.Show(result.msg);
+                }
+
+            };
+            //  GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
             this.textBox1.Text = "Stu" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "8888";
@@ -33,6 +61,7 @@ namespace StudentUser
             //TestAES();
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             this.labVer.Text = "版本：" + version;
+       
         }
 
         private void DoAction(Action action)
@@ -128,6 +157,12 @@ namespace StudentUser
         private void button1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

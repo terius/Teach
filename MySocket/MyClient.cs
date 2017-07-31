@@ -142,8 +142,57 @@ namespace MySocket
                 }
 
             });
-
+            OnReveieveData += MyClient_OnReveieveData;
             _connected = client.ConnectAsync(new IPEndPoint(IPAddress.Parse(serverIP), serverPort)).Result;
+        }
+
+        public void DueLostMessage()
+        {
+            foreach (var lostMsg in UnDueMessages)
+            {
+                MyClient_OnReveieveData(lostMsg);
+            }
+            UnDueMessages.Clear();
+        }
+
+
+
+        private IList<ReceieveMessage> UnDueMessages = new List<ReceieveMessage>();
+        public Action<ReceieveMessage> OnLoginIn;
+        public Action<ReceieveMessage> OnTeacherLoginIn;
+        public Action<ReceieveMessage> OnBeginCall;
+        private void MyClient_OnReveieveData(ReceieveMessage message)
+        {
+            switch (message.Action)
+            {
+                case (int)CommandType.UserLoginRes:
+                    if (OnLoginIn == null)
+                    {
+                        UnDueMessages.Add(message);
+                        return;
+                    }
+                    OnLoginIn(message);
+                    break;
+                case (int)CommandType.TeacherLoginIn://教师端登录
+                    if (OnTeacherLoginIn == null)
+                    {
+                        UnDueMessages.Add(message);
+                        return;
+                    }
+                    OnTeacherLoginIn(message);
+                    break;
+                case (int)CommandType.BeginCall://开始点名
+                    if (OnBeginCall == null)
+                    {
+                        UnDueMessages.Add(message);
+                        return;
+                    }
+                    OnBeginCall(message);
+                    break;
+                default:
+                    break;
+            }
+
         }
 
 
