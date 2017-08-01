@@ -59,12 +59,13 @@ namespace MySocket
 
         public void CreateUDPTeacherHole()
         {
-            IPEndPoint fLocalIPEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            IPEndPoint fLocalIPEndPoint = new IPEndPoint(IPAddress.Any, 10010);
             teacherUdpClient = new UdpClient(fLocalIPEndPoint);
             uint IOC_IN = 0x80000000;
             uint IOC_VENDOR = 0x18000000;
             uint SIO_UDP_CONNRESET = IOC_IN | IOC_VENDOR | 12;
             teacherUdpClient.Client.IOControl((int)SIO_UDP_CONNRESET, new byte[] { Convert.ToByte(false) }, null);
+           
             teacherUdpClient.BeginReceive(new AsyncCallback(TeacherReceiveUDPCallback), null);
             byte[] fHelloData = Encoding.UTF8.GetBytes("TEACHER");
             teacherUdpClient.Send(fHelloData, fHelloData.Length, serverIP, udpPort);
