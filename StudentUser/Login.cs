@@ -30,9 +30,10 @@ namespace StudentUser
                 var result = JsonHelper.DeserializeObj<LoginResult>(message.DataStr);
                 if (result.success)
                 {
+                    GlobalVariable.TeacherIP = result.teachIP;
                     DoAction(() =>
                     {
-                      //  this.DialogResult = DialogResult.OK;
+
                         // GlobalVariable.client.OnReveieveData -= Client_OnReveieveData;
                         GlobalVariable.LoginUserInfo = new LoginUserInfo
                         {
@@ -41,7 +42,8 @@ namespace StudentUser
                             UserType = ClientRole.Student,
                             No = textBox2.Text.Trim()
                         };
-                        //  this.Close();
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     });
 
 
@@ -58,7 +60,7 @@ namespace StudentUser
             this.textBox2.Text = "8888";
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             this.labVer.Text = "版本：" + version;
-       
+
         }
 
         private void DoAction(Action action)
@@ -156,11 +158,7 @@ namespace StudentUser
 
         }
 
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
+
     }
 }
 

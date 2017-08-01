@@ -398,13 +398,17 @@ namespace StudentUser
             //var player = new VlcPlayerBase(pluginPath);
             //player.SetRenderWindow((int)this.Handle);//panel
             // player.LoadFile("d:\\1.mkv");//视频文件路径
-            CreateUDPReceive();
-            CreateUDPConnect();
+            CreateUDPHole();
+         //   CreateUDPConnect();
         }
 
-        private void CreateUDPReceive()
+        private void CreateUDPHole()
         {
-            Thread t = new Thread(new ThreadStart(CreateUDPServer));
+            Thread t = new Thread(new ThreadStart(()=> {
+
+                GlobalVariable.client.CreateUDPStudentHole();
+
+            }));
             t.IsBackground = true;
             t.Start();
         }

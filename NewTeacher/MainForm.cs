@@ -36,8 +36,8 @@ namespace NewTeacher
             chatForm = new ChatForm();
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
-           // CreateUDPConnect();
-            ReceiveStudentDesktopImg();
+            CreateUDPConnect();
+          //  ReceiveStudentDesktopImg();
         }
 
         private void CreateUDPConnect()

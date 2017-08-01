@@ -31,21 +31,24 @@ namespace MySocket
 
         bool _connected;
         ScreenInteract _screenInteract;
-        UdpClient sendUdpClient;
-        UdpClient receieveUdpClient;
+        UdpClient studentUdpClient;
+        UdpClient teacherUdpClient;
         IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
         ManualResetEvent sendDone = new ManualResetEvent(false);
         ProgramType programType;
+
+        private string remoteIp;
+        private int remotePort;
         public void SendDesktopPic(byte[] fileBytes, string teacherIp)
         {
-            if (sendUdpClient == null)
+            if (studentUdpClient == null)
             {
-                sendUdpClient = new UdpClient();
+                studentUdpClient = new UdpClient();
                 var remoteEP = new IPEndPoint(IPAddress.Parse(teacherIp), 10888);
-                sendUdpClient.Connect(remoteEP);
+                studentUdpClient.Connect(remoteEP);
             }
             //var fileBytes = FileHelper.FileToByteArray(fileName);
-            sendUdpClient.BeginSend(fileBytes, fileBytes.Length, (result) =>
+            studentUdpClient.BeginSend(fileBytes, fileBytes.Length, (result) =>
             {
                 if (result.IsCompleted)
                 {
@@ -56,30 +59,128 @@ namespace MySocket
 
         public void CreateUDPTeacherHole()
         {
-            var uClient = new UdpClient();
-            var remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), udpPort);
-            uClient.Connect(remoteEP);
-            var bt = Encoding.UTF8.GetBytes("TEACHER");
-            uClient.Send(bt, bt.Length);
+            IPEndPoint fLocalIPEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            teacherUdpClient = new UdpClient(fLocalIPEndPoint);
+            uint IOC_IN = 0x80000000;
+            uint IOC_VENDOR = 0x18000000;
+            uint SIO_UDP_CONNRESET = IOC_IN | IOC_VENDOR | 12;
+            teacherUdpClient.Client.IOControl((int)SIO_UDP_CONNRESET, new byte[] { Convert.ToByte(false) }, null);
+            teacherUdpClient.BeginReceive(new AsyncCallback(TeacherReceiveUDPCallback), null);
+            byte[] fHelloData = Encoding.UTF8.GetBytes("TEACHER");
+            teacherUdpClient.Send(fHelloData, fHelloData.Length, serverIP, udpPort);
+        }
+
+        private void TeacherReceiveUDPCallback(IAsyncResult ar)
+        {
+            try
+            {
+                if (teacherUdpClient.Client != null)
+                {
+                    IPEndPoint fClientIPEndPoint = null;
+                    byte[] fData = teacherUdpClient.EndReceive(ar, ref fClientIPEndPoint);
+                    if (fData.Length > 0)
+                    {//数据接收成功,放入缓存
+                        string fContent = Encoding.UTF8.GetString(fData);
+                        string fIPAddress = fClientIPEndPoint.Address.ToString() + ":" + fClientIPEndPoint.Port;
+                        Loger.LogMessage("源地址： " + fIPAddress + "   内容：" + fContent);
+                        if (fContent.Contains(":"))
+                        {
+                            remoteIp = fContent.Substring(1, fContent.LastIndexOf(":") - 1);
+                            remotePort = Convert.ToInt32(fContent.Substring(fContent.LastIndexOf(":") + 1));
+                            byte[] fHelloData = Encoding.UTF8.GetBytes("hello");
+                            teacherUdpClient.Send(fHelloData, fHelloData.Length, remoteIp, remotePort);
+                        }
+                       
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Loger.LogMessage(ex.ToString());
+            }
+            finally
+            {
+                try
+                {
+                    teacherUdpClient.BeginReceive(new AsyncCallback(TeacherReceiveUDPCallback), null);
+                }
+                catch (Exception ex)
+                {
+                    Loger.LogMessage(ex.ToString());
+                }
+            }
         }
 
         public void CreateUDPStudentHole()
         {
-            var uClient = new UdpClient();
-            var remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), udpPort);
-            uClient.Connect(remoteEP);
-            var bt = Encoding.UTF8.GetBytes("STUDENT");
-            uClient.Send(bt, bt.Length);
+            IPEndPoint fLocalIPEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            studentUdpClient = new UdpClient(fLocalIPEndPoint);
+            uint IOC_IN = 0x80000000;
+            uint IOC_VENDOR = 0x18000000;
+            uint SIO_UDP_CONNRESET = IOC_IN | IOC_VENDOR | 12;
+            studentUdpClient.Client.IOControl((int)SIO_UDP_CONNRESET, new byte[] { Convert.ToByte(false) }, null);
+            studentUdpClient.BeginReceive(new AsyncCallback(StudentReceiveUDPCallback), null);
+            byte[] fHelloData = Encoding.UTF8.GetBytes("STUDENT");
+            studentUdpClient.Send(fHelloData, fHelloData.Length, serverIP, udpPort);
+
+
+            //var uClient = new UdpClient();
+            //var remoteEP = new IPEndPoint(IPAddress.Parse(serverIP), udpPort);
+            //uClient.Connect(remoteEP);
+            //var bt = Encoding.UTF8.GetBytes("STUDENT");
+            //uClient.Send(bt, bt.Length);
+        }
+
+
+        private void StudentReceiveUDPCallback(IAsyncResult ar)
+        {
+            try
+            {
+                if (studentUdpClient.Client != null)
+                {
+                    IPEndPoint fClientIPEndPoint = null;
+                    byte[] fData = studentUdpClient.EndReceive(ar, ref fClientIPEndPoint);
+                    if (fData.Length > 0)
+                    {//数据接收成功,放入缓存
+                        string fContent = Encoding.UTF8.GetString(fData);
+                        string fIPAddress = fClientIPEndPoint.Address.ToString() + ":" + fClientIPEndPoint.Port;
+                        Loger.LogMessage("源地址： " + fIPAddress + "   内容：" + fContent);
+                        if (fContent.Contains(":"))
+                        {
+                            remoteIp = fContent.Substring(1, fContent.LastIndexOf(":") - 1);
+                            remotePort = Convert.ToInt32(fContent.Substring(fContent.LastIndexOf(":") + 1));
+                            byte[] fHelloData = Encoding.UTF8.GetBytes("hello");
+                            studentUdpClient.Send(fHelloData, fHelloData.Length, remoteIp, remotePort);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Loger.LogMessage(ex.ToString());
+            }
+            finally
+            {
+                try
+                {
+                    studentUdpClient.BeginReceive(new AsyncCallback(TeacherReceiveUDPCallback), null);
+                }
+                catch (Exception ex)
+                {
+                    Loger.LogMessage(ex.ToString());
+                }
+            }
         }
 
         public ScreenCaptureInfo GetReceieveDesktopInfo()
         {
-            if (receieveUdpClient == null)
+            if (teacherUdpClient == null)
             {
-                receieveUdpClient = new UdpClient(10888);
+                teacherUdpClient = new UdpClient(10888);
             }
 
-            Byte[] receiveBytes = receieveUdpClient.Receive(ref RemoteIpEndPoint);
+            Byte[] receiveBytes = teacherUdpClient.Receive(ref RemoteIpEndPoint);
             return GetScreen(receiveBytes);
         }
 
