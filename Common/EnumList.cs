@@ -170,4 +170,10 @@
         Image,
         Video
     }
+
+    public enum ProgramType
+    {
+        Teacher,
+        Student
+    }
 }

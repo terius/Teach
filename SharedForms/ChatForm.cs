@@ -502,55 +502,64 @@ namespace SharedForms
         /// <param name="e"></param>
         private void btnUploadFile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
-            if (ChatNav.SelectedLink == null || string.IsNullOrWhiteSpace(selectUserName))
+            try
             {
-                GlobalVariable.ShowWarnning("请先选择聊天对象");
-                return;
+                if (ChatNav.SelectedLink == null || string.IsNullOrWhiteSpace(selectUserName))
+                {
+                    GlobalVariable.ShowWarnning("请先选择聊天对象");
+                    return;
+                }
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Filter = "媒体文件 (*.jpg,*.gif,*.bmp,*.png,*.mp3,*.wav,*.mp4,*.avi,*.mpg)|*.jpg;*.gif;*.bmp;*.png;*.mp3;*.wav;*.mp4;*.avi;*.mpg";
+                dlg.Title = "选择媒体文件";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    this.btnUploadFile.Enabled = false;
+                    progressBarControl1.Visible = true;
+                    ShowNotify("上传中，请稍候。。。");
+                    FileHelper.UploadFile(dlg.FileName, UploadFileServer, (ob, ea) =>
+                    {
+                        string result = Encoding.UTF8.GetString(ea.Result);
+                        UploadResult uploadResult = JsonHelper.DeserializeObj<UploadResult>(result);
+                        if (uploadResult.error == 0)
+                        {
+                            uploadResult.url = "http://" + ServerIp + ":8080" + uploadResult.url;
+                        }
+                        else
+                        {
+                            GlobalVariable.ShowError(uploadResult.message);
+                            return;
+                        }
+                        FileInfo fi = new FileInfo(dlg.FileName);
+                        var uploadtext = _myDisplayName + "上传了文件:" + fi.Name;
+                        var messageType = GetMessageType(fi.Extension.ToLower());
+                        var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, uploadtext, GlobalVariable.LoginUserInfo.UserType, messageType);
+                        message.DownloadFileUrl = uploadResult.url;
+                        if (SendMessageCommand(message))
+                        {
+                            AppendMessage(message, true);
+                            GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
+                            ShowNotify("上传成功");
+                        }
+                        this.btnUploadFile.Enabled = true;
+                        progressBarControl1.Visible = false;
+                    }, (ob, progress) =>
+                    {
+                        var p = (int)(progress.BytesSent * 100 / progress.TotalBytesToSend);
+                        progressBarControl1.Position = p;
+                        Application.DoEvents();
+
+                    });
+
+                }
             }
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "媒体文件 (*.jpg,*.gif,*.bmp,*.png,*.mp3,*.wav,*.mp4,*.avi,*.mpg)|*.jpg;*.gif;*.bmp;*.png;*.mp3;*.wav;*.mp4;*.avi;*.mpg";
-            dlg.Title = "选择媒体文件";
-            if (dlg.ShowDialog() == DialogResult.OK)
+            catch (Exception)
             {
-                this.btnUploadFile.Enabled = false;
-                progressBarControl1.Visible = true;
-                ShowNotify("上传中，请稍候。。。");
-                FileHelper.UploadFile(dlg.FileName, UploadFileServer, (ob, ea) =>
-                {
-                    string result = Encoding.UTF8.GetString(ea.Result);
-                    UploadResult uploadResult = JsonHelper.DeserializeObj<UploadResult>(result);
-                    if (uploadResult.error == 0)
-                    {
-                        uploadResult.url = "http://" + ServerIp + ":8080" + uploadResult.url;
-                    }
-                    else
-                    {
-                        GlobalVariable.ShowError(uploadResult.message);
-                        return;
-                    }
-                    FileInfo fi = new FileInfo(dlg.FileName);
-                    var uploadtext = _myDisplayName + "上传了文件:" + fi.Name;
-                    var messageType = GetMessageType(fi.Extension.ToLower());
-                    var message = new ChatMessage(_myUserName, _myDisplayName, selectUserName, uploadtext, GlobalVariable.LoginUserInfo.UserType, messageType);
-                    message.DownloadFileUrl = uploadResult.url;
-                    if (SendMessageCommand(message))
-                    {
-                        AppendMessage(message, true);
-                        GlobalVariable.SaveChatMessage(smsPanel1, selectUserName);
-                        ShowNotify("上传成功");
-                    }
-                    this.btnUploadFile.Enabled = true;
-                    progressBarControl1.Visible = false;
-                }, (ob, progress) =>
-                {
-                    var p = (int)(progress.BytesSent * 100 / progress.TotalBytesToSend);
-                    progressBarControl1.Position = p;
-                    Application.DoEvents();
-
-                });
-
+                this.btnUploadFile.Enabled = true;
+                progressBarControl1.Visible = false;
+                throw;
             }
+           
         }
 
 

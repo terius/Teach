@@ -35,6 +35,7 @@ namespace MySocket
         UdpClient receieveUdpClient;
         IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
         ManualResetEvent sendDone = new ManualResetEvent(false);
+        ProgramType programType;
         public void SendDesktopPic(byte[] fileBytes, string teacherIp)
         {
             if (sendUdpClient == null)
@@ -126,8 +127,11 @@ namespace MySocket
             }
         }
 
-        public MyClient()
+
+
+        public MyClient(ProgramType _programType)
         {
+            programType = _programType;
             client = new EasyClient();
             client.Initialize(new MyReceiveFilter(), (response) =>
             {
@@ -142,7 +146,15 @@ namespace MySocket
                 }
 
             });
-            OnReveieveData += MyClient_OnReveieveData;
+            if (programType == ProgramType.Student)
+            {
+                OnReveieveData += Student_OnReveieveData;
+            }
+            else
+            {
+                OnReveieveData += Teacher_OnReveieveData;
+            }
+
             _connected = client.ConnectAsync(new IPEndPoint(IPAddress.Parse(serverIP), serverPort)).Result;
         }
 
@@ -150,7 +162,7 @@ namespace MySocket
         {
             foreach (var lostMsg in UnDueMessages)
             {
-                MyClient_OnReveieveData(lostMsg);
+                OnReveieveData(lostMsg);
             }
             UnDueMessages.Clear();
         }
@@ -158,41 +170,115 @@ namespace MySocket
 
 
         private IList<ReceieveMessage> UnDueMessages = new List<ReceieveMessage>();
-        public Action<ReceieveMessage> OnLoginIn;
+        public Action<ReceieveMessage> OnUserLoginRes;
         public Action<ReceieveMessage> OnTeacherLoginIn;
+        public Action<ReceieveMessage> OnTeacherLoginOut;
         public Action<ReceieveMessage> OnBeginCall;
-        private void MyClient_OnReveieveData(ReceieveMessage message)
+        public Action<ReceieveMessage> OnPrivateChat;
+        public Action<ReceieveMessage> OnScreenInteract;
+        public Action<ReceieveMessage> OnStopScreenInteract;
+        public Action<ReceieveMessage> OnLockScreen;
+        public Action<ReceieveMessage> OnStopLockScreen;
+        public Action<ReceieveMessage> OnQuiet;
+        public Action<ReceieveMessage> OnStopQuiet;
+        public Action<ReceieveMessage> OnTeamChat;
+        public Action<ReceieveMessage> OnGroupChat;
+        public Action<ReceieveMessage> OnEndCall;
+        public Action<ReceieveMessage> OnCreateTeam;
+        public Action<ReceieveMessage> OnCallStudentShow;
+        public Action<ReceieveMessage> OnStopStudentShow;
+        public Action<ReceieveMessage> OnForbidPrivateChat;
+        public Action<ReceieveMessage> OnAllowPrivateChat;
+        public Action<ReceieveMessage> OnForbidTeamChat;
+        public Action<ReceieveMessage> OnAllowTeamChat;
+        private void Student_OnReveieveData(ReceieveMessage message)
         {
             switch (message.Action)
             {
                 case (int)CommandType.UserLoginRes:
-                    if (OnLoginIn == null)
-                    {
-                        UnDueMessages.Add(message);
-                        return;
-                    }
-                    OnLoginIn(message);
+                    DueMessage(OnUserLoginRes, message);
                     break;
                 case (int)CommandType.TeacherLoginIn://教师端登录
-                    if (OnTeacherLoginIn == null)
-                    {
-                        UnDueMessages.Add(message);
-                        return;
-                    }
-                    OnTeacherLoginIn(message);
+                    DueMessage(OnTeacherLoginIn, message);
+                    break;
+                case (int)CommandType.TeacherLoginOut://教师端登出
+                    DueMessage(OnTeacherLoginOut, message);
+                    break;
+                case (int)CommandType.ScreenInteract://推送视频流
+                    DueMessage(OnScreenInteract, message);
+                    break;
+                case (int)CommandType.StopScreenInteract://停止视频流
+                    DueMessage(OnStopScreenInteract, message);
+                    break;
+                case (int)CommandType.LockScreen://锁屏
+                    DueMessage(OnLockScreen, message);
+                    break;
+                case (int)CommandType.StopLockScreen://终止锁屏
+                    DueMessage(OnStopLockScreen, message);
+                    break;
+                case (int)CommandType.Quiet://屏幕肃静
+                    DueMessage(OnQuiet, message);
+                    break;
+                case (int)CommandType.StopQuiet://终止屏幕肃静
+                    DueMessage(OnStopQuiet, message);
+                    break;
+                case (int)CommandType.PrivateChat://收到私聊信息
+                    DueMessage(OnPrivateChat, message);
+                    break;
+                case (int)CommandType.TeamChat://收到组聊信息
+                    DueMessage(OnTeamChat, message);
+                    break;
+                case (int)CommandType.GroupChat://收到群聊信息
+                    DueMessage(OnGroupChat, message);
                     break;
                 case (int)CommandType.BeginCall://开始点名
-                    if (OnBeginCall == null)
-                    {
-                        UnDueMessages.Add(message);
-                        return;
-                    }
-                    OnBeginCall(message);
+                    DueMessage(OnBeginCall, message);
+                    break;
+                case (int)CommandType.EndCall://结束点名
+                    DueMessage(OnEndCall, message);
+                    break;
+                case (int)CommandType.CreateTeam://收到创建群组信息
+                    DueMessage(OnCreateTeam, message);
+                    break;
+                case (int)CommandType.CallStudentShow://收到请求学生演示
+                    DueMessage(OnCallStudentShow, message);
+                    break;
+                case (int)CommandType.StopStudentShow://停止演示
+                    DueMessage(OnStopStudentShow, message);
+                    break;
+                case (int)CommandType.ForbidPrivateChat://收到禁止私聊
+                    DueMessage(OnForbidPrivateChat, message);
+                    break;
+                case (int)CommandType.ForbidTeamChat://收到禁止群聊
+                    DueMessage(OnForbidTeamChat, message);
+                    break;
+                case (int)CommandType.AllowPrivateChat://收到允许私聊
+                    DueMessage(OnAllowPrivateChat, message);
+                    break;
+                case (int)CommandType.AllowTeamChat://收到允许群聊
+                    DueMessage(OnAllowTeamChat, message);
                     break;
                 default:
                     break;
             }
 
+        }
+
+
+        private void Teacher_OnReveieveData(ReceieveMessage message)
+        {
+
+
+        }
+
+        private void DueMessage(Action<ReceieveMessage> action, ReceieveMessage message)
+        {
+            if (action == null)
+            {
+                UnDueMessages.Add(message);
+                return;
+            }
+            action(message);
         }
 
 

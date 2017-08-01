@@ -23,8 +23,8 @@ namespace StudentUser
         {
             Login_Btn.SetButtonHoverLeave();
             btnExit.SetButtonHoverLeave();
-            GlobalVariable.client = new MyClient();
-            GlobalVariable.client.OnLoginIn = (message) =>
+            GlobalVariable.client = new MyClient(ProgramType.Student);
+            GlobalVariable.client.OnUserLoginRes = (message) =>
             {
 
                 var result = JsonHelper.DeserializeObj<LoginResult>(message.DataStr);
@@ -56,9 +56,6 @@ namespace StudentUser
             //    GlobalVariable.client.messageDue.OnReceieveMessage += MessageDue_OnReceieveMessage;
             this.textBox1.Text = "Stu" + DateTime.Now.ToString("MMddHHmmss");
             this.textBox2.Text = "8888";
-            //  await LoginIn();
-
-            //TestAES();
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             this.labVer.Text = "版本：" + version;
        
