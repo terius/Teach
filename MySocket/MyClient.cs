@@ -150,8 +150,15 @@ namespace MySocket
                         {
                             remoteIp = fContent.Substring(1, fContent.LastIndexOf(":") - 1);
                             remotePort = Convert.ToInt32(fContent.Substring(fContent.LastIndexOf(":") + 1));
-                            byte[] fHelloData = Encoding.UTF8.GetBytes("hello");
-                            studentUdpClient.Send(fHelloData, fHelloData.Length, remoteIp, remotePort);
+                            Loger.LogMessage("教师端地址： " + remoteIp + ":" + remotePort);
+                            while (true)
+                            {
+                                byte[] fHelloData = Encoding.UTF8.GetBytes("hello" + DateTime.Now.Ticks);
+                                studentUdpClient.Send(fHelloData, fHelloData.Length, remoteIp, remotePort);
+                                Thread.Sleep(5000);
+                            }
+
+                            
                         }
 
                     }
