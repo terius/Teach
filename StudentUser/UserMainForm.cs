@@ -36,17 +36,11 @@ namespace StudentUser
             //教师端登入
             GlobalVariable.client.OnTeacherLoginIn = (message) =>
               {
+                  TeacherLoginInResponse teachRes = JsonHelper.DeserializeObj<TeacherLoginInResponse>(message.DataStr);
+                  GlobalVariable.TeacherIP = teachRes.teachIP;
                   DoAction(() =>
                   {
-                      if (theadScreen == null || theadScreen.ThreadState != ThreadState.Running)
-                      {
-                          TeacherLoginInResponse teachRes = JsonHelper.DeserializeObj<TeacherLoginInResponse>(message.DataStr);
-                          GlobalVariable.TeacherIP = teachRes.teachIP;
-                          theadScreen = new Thread(new ThreadStart(GetScreenCapture));
-
-                          theadScreen.IsBackground = true;
-                          theadScreen.Start();
-                      }
+                      SendScreen();
 
                   });
               };
@@ -235,6 +229,17 @@ namespace StudentUser
             //   GlobalVariable.client.Send_StudentInMainForm();
         }
 
+
+        private void SendScreen()
+        {
+            if (theadScreen == null || theadScreen.ThreadState != ThreadState.Running)
+            {
+                theadScreen = new Thread(new ThreadStart(GetScreenCapture));
+                theadScreen.IsBackground = true;
+                theadScreen.Start();
+            }
+        }
+
         //private void Client_OnReveieveData(ReceieveMessage message)
         //{
         //    //DoAction(() => {
@@ -398,7 +403,10 @@ namespace StudentUser
             //var player = new VlcPlayerBase(pluginPath);
             //player.SetRenderWindow((int)this.Handle);//panel
             // player.LoadFile("d:\\1.mkv");//视频文件路径
-            CreateUDPHole();
+            if (!string.IsNullOrWhiteSpace(GlobalVariable.TeacherIP))
+            {
+                CreateUDPHole();
+            }
          //   CreateUDPConnect();
         }
 
@@ -407,6 +415,7 @@ namespace StudentUser
             Thread t = new Thread(new ThreadStart(()=> {
 
                 GlobalVariable.client.CreateUDPStudentHole();
+                GetScreenCapture();
 
             }));
             t.IsBackground = true;
@@ -426,29 +435,14 @@ namespace StudentUser
 
         }
 
-        private void CreateUDPConnect()
-        {
-            Thread t = new Thread(new ThreadStart(CreateUDP));
-            t.IsBackground = true;
-            t.Start();
-        }
-
-        private void CreateUDP()
-        {
-
-            GlobalVariable.client.CreateUDPStudentHole();
-        }
+       
 
         private void DoAction(Action action)
         {
             this.InvokeOnUiThreadIfRequired(action);
         }
 
-
-
-
-
-
+        
 
 
         private void ChangeChatAllowOrForbit(ChatType chatType, bool isAllow)
@@ -715,6 +709,7 @@ namespace StudentUser
             //getThumImage(source, 40, 5, pathPerc);
             //string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathPerc);
             //GlobalVariable.client.SendDesktopPic(fullPath);
+           // GlobalVariable.client.CreateUDPStudentHole();
             isRunScreen = true;
             while (isRunScreen)
             {
@@ -745,8 +740,8 @@ namespace StudentUser
                         byteSource.AddRange(imgBytes);
                         var sendBytes = byteSource.ToArray();
 
-                        GlobalVariable.client.SendDesktopPic(sendBytes, GlobalVariable.TeacherIP);
-                        GlobalVariable.client.StopUdp();
+                        GlobalVariable.client.SendDesktopPic(sendBytes);
+                       // GlobalVariable.client.StopUdp();
                         Thread.Sleep(1000);
                     }
                     catch (Exception ex)

@@ -37,7 +37,7 @@ namespace NewTeacher
             GlobalVariable.client.OnReveieveData += Client_OnReveieveData;
             GlobalVariable.client.Send_OnlineList();
             CreateUDPConnect();
-          //  ReceiveStudentDesktopImg();
+            //  ReceiveStudentDesktopImg();
         }
 
         private void CreateUDPConnect()
@@ -49,7 +49,16 @@ namespace NewTeacher
 
         private void CreateUDP()
         {
+            GlobalVariable.client.OnTeacherReceiveUDP = (sinfo) =>
+            {
+                this.InvokeOnUiThreadIfRequired(() =>
+                {
+                    AddScreen(sinfo);
+                });
+
+            };
             GlobalVariable.client.CreateUDPTeacherHole();
+
         }
 
         private void ReceiveStudentDesktopImg()
@@ -59,7 +68,7 @@ namespace NewTeacher
             t.Start();
         }
 
-     
+
         object obLock = new object();
         ScreenCaptureInfo sinfo;
         private void ReceiveScreenCapture()
