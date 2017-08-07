@@ -40,9 +40,24 @@ namespace NewTeacher
             //  ReceiveStudentDesktopImg();
         }
 
+        object obLockUDP = new object();
         private void CreateUDPConnect()
         {
-            Thread t = new Thread(new ThreadStart(CreateUDP));
+            Thread t = new Thread(() =>
+            {
+
+                GlobalVariable.client.OnTeacherReceiveUDP = (sinfo) =>
+                {
+                    this.InvokeOnUiThreadIfRequired(() =>
+                    {
+                        AddScreen(sinfo);
+                    });
+
+                };
+                GlobalVariable.client.CreateUDPTeacherHole();
+
+
+            });
             t.IsBackground = true;
             t.Start();
         }
